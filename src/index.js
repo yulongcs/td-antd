@@ -1,4 +1,4 @@
-export { default as LinkBtn } from './linkBtn';
+export { default as LinkBtn } from './link-btn';
 export { default as ModalBox } from './modalBox';
 export { default as InputNumberWithUnit } from './inputNumberWithUnit';
 export { default as FormItem } from './formItem';

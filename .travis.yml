@@ -6,12 +6,12 @@ node_js:
 before_install:
 
 install:
-  - yarn install # 安装依赖
+  - npm install # 安装依赖
 
 before_script:
 
 script:
-  - yarn run doc:build # 依赖安装完成后，进行打包构建
+  - npm run doc:build # 依赖安装完成后，进行打包构建
 
 after_success:
   - cd ./.doc/public/
