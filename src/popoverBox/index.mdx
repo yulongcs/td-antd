@@ -7,7 +7,7 @@ menu: 组件
 import { Playground } from 'docz';
 import PopoverBox from './index';
 import LinkBtn from '../link-btn';
-import DivisionBox from '../divisionBox';
+import HandleBox from '../handle-box';
 
 ## PopoverBox
 
@@ -22,7 +22,7 @@ import DivisionBox from '../divisionBox';
     render () {
       return (
         <React.Fragment>
-          <DivisionBox>
+          <HandleBox>
             <PopoverBox
               title="title"
               ref={(r) => {this.modalRef = r}}
@@ -39,7 +39,7 @@ import DivisionBox from '../divisionBox';
             >
               <LinkBtn>Show2</LinkBtn>
             </PopoverBox>
-          </DivisionBox>
+          </HandleBox>
         </React.Fragment>
       )
     }

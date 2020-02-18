@@ -3,6 +3,6 @@ import './index.less';
 
 export default (props) => {
   return (
-    <div className="td-handleBox">{props.children}</div>
+    <div className="td-handle-box">{props.children}</div>
   );
 }
