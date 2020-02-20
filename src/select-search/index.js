@@ -1,5 +1,5 @@
 import * as React from 'react';
-import _debounce from 'lodash.debounce';
+import _debounce from 'lodash/debounce';
 import { Select, Spin } from 'antd';
 
 export default class SelectSearch extends React.Component {
