@@ -1,20 +1,27 @@
 ---
-name: InputNumberWithUnit
-route: /inputNumberWithUnit
+name: TdInputNumber
+route: /tdInputNumber
 menu: 组件
 ---
 
 import { Playground } from 'docz';
-import InputNumberWithUnit from './index';
+import TdInputNumber from './index';
 
-## InputNumberWithUnit
+## TdInputNumber
 
 基于 InputNumber 的二次封装，实现带单位的数字输入框
 
 <Playground>
-  <InputNumberWithUnit defaultValue={1000} unit="元" />
+  <TdInputNumber defaultValue={1000} />
   <br />
-  <InputNumberWithUnit defaultValue={1000} unit="$" />
+  <br />
+  <TdInputNumber defaultValue={1000} unit="元" />
+  <br />
+  <br />
+  <TdInputNumber defaultValue={1000} unit="$" />
+  <br />
+  <br />
+  <TdInputNumber defaultValue={1000} unit="¥" />
 </Playground>
 
 ## API
@@ -25,9 +32,9 @@ import InputNumberWithUnit from './index';
 |:--|:--|:--|:--|
 |unit|单位|string|无|
 
-> 注意：特定的货币符号会被前置，且金额在展示上会进行千位符格式化，不影响获取的值。
-
 ## 支持的货币符号
+
+> 注意：以下货币符号会被前置，且金额在展示上会进行千位符格式化，不影响获取的值。
 
 ```
 ¥：人民币/日元

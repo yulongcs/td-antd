@@ -26,7 +26,7 @@ import LinkBtn from '../link-btn';
             title="demo"
             ref={(r) => {this.modalRef = r}}
           >
-            content
+            <div style={{ height: 1000 }}>2222</div>
           </ModalBox>
         </React.Fragment>
       )
@@ -44,3 +44,5 @@ import LinkBtn from '../link-btn';
 |hide(callback)|浮层隐藏的函数|function||
 |handleOk|点击确认按钮的回调函数|function||
 |handleCancel|点击取消按钮的回调函数|function||
+
+> PS：内容区域高度最高是 500px，超出的内容会有滚动条。

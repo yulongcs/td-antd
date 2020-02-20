@@ -55,6 +55,6 @@ import SelectSearch from './index';
 |onChange|选择后的回调函数，单选时返回普通对象，多选时返回数组|function(array/object)|-|
 |afterFetch|请求成功后需要返回给组件的列表数据|(res) => (res.list)|-|
 |customOption|自定义渲染下拉框内容|function(record)|-|
-|isData|是否返回所选项的完整数据|bool|false|
+|isData|是否返回所选项的完整数据，如果 true，则 onChange 返回的是对象字符串|bool|false|
 
 > 注意：默认宽度是 100%

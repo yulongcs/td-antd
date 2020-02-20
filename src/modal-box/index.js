@@ -1,6 +1,7 @@
 import * as React from 'react';
-import Modal from 'antd/es/modal';
-import 'antd/es/modal/style';
+import { Modal } from 'antd';
+import classNames from 'classnames';
+import './index.less';
 
 export default class ModalBox extends React.Component {
   state = {
@@ -52,6 +53,7 @@ export default class ModalBox extends React.Component {
     const {
       width = 500,
       children,
+      wrapClassName,
     } = this.props;
 
     return (
@@ -62,6 +64,7 @@ export default class ModalBox extends React.Component {
         onCancel={this.cancel}
         destroyOnClose
         maskClosable={false}
+        wrapClassName={classNames('td-modal-box', wrapClassName)}
         {...this.props}
       >
         {children}

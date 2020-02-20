@@ -12,7 +12,7 @@ import * as React from 'react';
 import Tag from 'antd/es/tag';
 import 'antd/es/tag/style';
 
-export default class TagWithAddon extends React.PureComponent {
+export default class TagAddon extends React.PureComponent {
   static defaultProps = {
     color: 'blue',
     isBackground: true,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import _debounce from 'lodash/debounce';
+import _debounce from 'lodash.debounce';
 import { Select, Spin } from 'antd';
 
 export default class SelectSearch extends React.Component {
@@ -24,17 +24,14 @@ export default class SelectSearch extends React.Component {
   // 自定义异步功能
   onFetch(value) {
     const { url, afterFetch } = this.props;
-    this.setState({ data: [] }, () => {
-      if (value && value.length > 0) {
-        this.setState({ loading: true }, () => {
-          fetch(`${url}${value}`)
-            .then(response => response.json())
-            .then(data => {
-              const res = (afterFetch && afterFetch(data)) || [];
-              this.setState({ loading: false, data: res });
-            })
-        });
-      }
+
+    this.setState({ data: [], loading: true }, () => {
+      fetch(`${url}${value}`)
+        .then(response => response.json())
+        .then(data => {
+          const res = (afterFetch && afterFetch(data)) || [];
+          this.setState({ loading: false, data: res });
+        })
     });
   }
 

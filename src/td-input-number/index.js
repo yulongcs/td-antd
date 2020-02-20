@@ -10,7 +10,7 @@ const symbolReg = {
   '€': /\€\s?|(,*)/g,
 };
 
-export default class InputNumberWithUnit extends React.Component {
+export default class TdInputNumber extends React.Component {
   static defaultProps = {
     unit: '',
   };
