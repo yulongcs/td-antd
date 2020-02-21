@@ -12,7 +12,8 @@
     "start": "father doc dev",
     "doc:build": "father doc build",
     "doc:deploy": "father doc deploy",
-    "build": "father build"
+    "build": "father build",
+    "publish": "father build && npm publish"
   },
   "keywords": [
     "react",
