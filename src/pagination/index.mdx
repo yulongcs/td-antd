@@ -1,0 +1,74 @@
+---
+name: pagination
+route: /pagination
+menu: 组件
+---
+
+import { Playground } from 'docz';
+import { Row, Col, Table } from 'antd';
+import pagination from './index';
+
+## pagination
+
+在 Table 组件中使用的分页器。可以使用 [Pagination](https://ant-design.gitee.io/components/pagination-cn/) 相关的 API。
+
+<Playground>
+  {class Example extends React.Component {
+    constructor(props) {
+      this.state = {
+        dataObject: {
+          pageNum: 1,
+          pageSize: 2,
+          totalCnt: 4,
+          values: [
+            {
+              name: '小明',
+              age: '18',
+            }, {
+              name: '小黄',
+              age: '19',
+            }, {
+              name: '小红',
+              age: '20',
+            },
+          ],
+        },
+      };
+    }
+
+    render () {
+      const { dataObject } = this.state;
+
+      return (
+        <Table
+          rowKey="name"
+          columns={[
+            {
+              title: '姓名',
+              dataIndex: 'name',
+            }, {
+              title: '年龄',
+              dataIndex: 'age',
+            }
+          ]}
+          dataSource={dataObject.values || []}
+          pagination={pagination(dataObject, {
+            onChange: (page, pageSize) => {
+              console.log(page, pageSize);
+            },
+            size: 'small'
+          })}
+        />
+      )
+    }
+  }}
+</Playground>
+
+## API
+
+该方法是一个函数：function(params1, params2)
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|params1|包含 current、pageSize、total 的数据源。<br />`current` 会读取对象中的 pageNum/currPageNo；<br />`pageSize` 会读取对象中的 pageSize/limit；<br />`total` 会读取对象中的 totalCnt/total；|object|{ current: 1, pageSize: 20, total: 1 }|
+|params2|Pagination 组件的其他属性，如 onChange|object|{}|

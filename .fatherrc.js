@@ -6,5 +6,15 @@ export default {
   ],
   doc: {
     base: '/td-antd/',
+    htmlContext: {
+      head: {
+        scripts: [
+          { src: './public/redirect.js' },
+        ],
+        links: [
+          { rel: 'stylesheet', href: './public/common.css' },
+        ],
+      },
+    },
   },
 }

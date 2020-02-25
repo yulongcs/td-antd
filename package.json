@@ -1,6 +1,6 @@
 {
   "name": "td-antd",
-  "version": "1.5.2-beta.0",
+  "version": "1.5.2-beta.1",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -13,7 +13,7 @@
     "doc:build": "father doc build",
     "doc:deploy": "father doc deploy",
     "build": "father build",
-    "publish": "father build && npm publish"
+    "publish": "father build"
   },
   "keywords": [
     "react",
