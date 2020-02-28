@@ -1,6 +1,6 @@
 {
   "name": "td-antd",
-  "version": "1.5.2-beta.1",
+  "version": "1.5.2-beta.3",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,6 +38,7 @@
   "dependencies": {
     "antd": "^3.21.0",
     "classnames": "^2.2.6",
-    "lodash": "4.17.15"
+    "lodash": "^4.17.15",
+    "moment": "^2.19.1"
   }
 }

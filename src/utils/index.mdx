@@ -1,0 +1,64 @@
+---
+name: utils
+route: /utils
+---
+
+## 如何调用
+
+```
+import { delay, momentToString } from 'td-antd/es/utils';
+```
+
+### delay
+
+在指定毫秒数后调用函数，并将附加参数传给函数。
+
+```
+delay((text) => {
+  console.log(text); // 将打印 'later'
+}, 1000, 'later')
+```
+
+### genNonDuplicateID
+
+获取指定位数的随机数，随机数中包含字母和数字，默认两位数
+
+```
+const id = genNonDuplicateID(2);
+```
+
+### getUrlParameter
+
+获取 url 中指定的参数
+
+```
+const name = getUrlParameter('name');
+```
+
+### getUrlParams
+
+获取 url 中所有的参数
+
+```
+const name = getUrlParams();
+
+// { key: value, ... }
+```
+
+### momentToString
+
+moment 和 string 之间的转换，默认格式为 YYYY-MM-DD。如果 value 对象是 moment，则会转为 format 的格式日期，反之亦然
+
+```
+const time = momentToString(value, format);
+```
+
+### toThousands
+
+数字与千位符数字的转化，千位符数字一般用于金融数字展示
+
+```
+toThousands(123456); // "123,456"
+toThousands('123456'); // "123,456"
+toThousands('123,456'); // '123456'
+```
