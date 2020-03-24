@@ -62,3 +62,24 @@ toThousands(123456); // "123,456"
 toThousands('123456'); // "123,456"
 toThousands('123,456'); // '123456'
 ```
+
+### objectToString
+
+对象和字符串之间的转化，自动识别
+
+```
+objectToString('{ a: 1, b: 2 }'); // { a: 1, b: 2 }
+objectToString([1, 2, 3]); // '[1, 2, 3]'
+```
+
+### downloadBlob
+
+二进制流的文件下载
+
+```
+downloadBlob({
+  url: 'xxxx.json', // 请求地址
+  filename: 'xxx.jpg' // 文件名
+  body: {}, // 使用 body 后会发送 POST 请求
+})
+```
