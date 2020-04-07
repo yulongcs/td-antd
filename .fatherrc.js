@@ -5,7 +5,7 @@ export default {
     ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }],
   ],
   doc: {
-    base: '/td-antd/',
+    base: './',
     htmlContext: {
       head: {
         // scripts: [
