@@ -6,3 +6,4 @@ export { default as momentToString } from './momentToString';
 export { default as toThousands } from './toThousands';
 export { default as objectToString } from './objectToString';
 export { default as downloadBlob } from './downloadBlob';
+export { default as noPassByMobile } from './noPassByMobile';
