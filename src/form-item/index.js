@@ -19,13 +19,13 @@ export default function FormItem({ className, children, ...props }) {
     validatorCallback = () => {},
     extraRules = [],
     inputProps = {},
-    valuePropName = 'value',
     itemType = 'default',
     unit,
     isNegative = false,
     isInteger = false,
     message = '必填项',
-    defaultValue = '--'
+    defaultValue = '--',
+    decoratorOptions = {},
   } = props;
 
   if (!form) {
@@ -72,7 +72,7 @@ export default function FormItem({ className, children, ...props }) {
       {form.getFieldDecorator(fieldName, {
         rules,
         initialValue,
-        valuePropName,
+        ...decoratorOptions,
       })(
         (itemType === 'number') ?
           <Input type="number" suffix={unit} /> :
