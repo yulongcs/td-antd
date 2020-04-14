@@ -80,7 +80,7 @@ objectToString([1, 2, 3]); // '[1, 2, 3]'
 ```
 downloadBlob({
   url: 'xxxx.json', // 请求地址
-  filename: 'xxx.jpg' // 文件名
+  filename: 'xxx.jpg' // 文件名。如果不设置，将会获取 headers 中后端设置的文件名
   body: {}, // 使用 body 后会发送 POST 请求
 })
 ```
