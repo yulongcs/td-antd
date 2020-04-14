@@ -14,6 +14,7 @@ import DescList from './index';
 <Playground>
   <DescList
     bordered
+    column={3}
     columns={[
       {
         title: '名字',
@@ -27,9 +28,11 @@ import DescList from './index';
       }, {
         title: '电话',
         render: record => record.phone,
+        span: 3,
       }, {
         title: '描述',
         dataIndex: 'desc.text',
+        span: 3,
       }
     ]}
     dataSource={{
@@ -65,3 +68,4 @@ import DescList from './index';
 |dataIndex|数据在数据项中对应的 key，支持嵌套写法"key.key.key"|string|-|
 |unVisible|是否不显示|bool|false|
 |render|生成复杂数据的渲染函数|Function(record) {}|-|
+|span|包含列的数量|number|1|

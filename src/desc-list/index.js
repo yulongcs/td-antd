@@ -29,7 +29,7 @@ export default class DescList extends React.Component {
     const { dataSource, columns, defaultValue } = this.props;
 
     return columns.map((item, index) => {
-      const { title, dataIndex, render, unVisible } = item;
+      const { title, dataIndex, render, unVisible, span = 1 } = item;
 
       if (unVisible) {
         return null;
@@ -39,7 +39,7 @@ export default class DescList extends React.Component {
 
       return (
         // eslint-disable-next-line
-        <Descriptions.Item label={title} key={index}>
+        <Descriptions.Item label={title} key={index} span={span}>
           {this.renderValue(value)}
         </Descriptions.Item>
       )
