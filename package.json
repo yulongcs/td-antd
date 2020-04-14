@@ -1,6 +1,6 @@
 {
   "name": "td-antd",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
