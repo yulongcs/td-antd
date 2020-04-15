@@ -7,6 +7,7 @@ import toThousands from './toThousands';
 import objectToString from './objectToString';
 import downloadBlob from './downloadBlob';
 import noPassByMobile from './noPassByMobile';
+import countdown from './countdown';
 
 export default {
   delay,
@@ -18,4 +19,5 @@ export default {
   objectToString,
   downloadBlob,
   noPassByMobile,
+  countdown,
 };

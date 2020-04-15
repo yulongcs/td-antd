@@ -3,6 +3,10 @@ name: tools
 route: /tools
 ---
 
+import { Playground } from 'docz';
+import LinkBtn from '../link-btn';
+import countdown from './countdown';
+
 ## 如何调用
 
 ```
@@ -92,3 +96,58 @@ downloadBlob({
 ```
 noPassByMobile('13812345678'); // 138****5678
 ```
+
+### countdown
+
+倒计时函数
+
+```
+countdown({
+  defaultCount: 59, // 默认开始的计数
+  callback: (nowCount, defaultCount) => {
+    // nowCount = 当前计数，defaultCount = 原始计数
+    if (nowCount === 0) {
+      // 结束后代码
+    }
+  },
+});
+```
+
+<Playground>
+  {class Example extends React.Component {
+    constructor(props) {
+      this.state = {
+        count: 10,
+        start: false,
+      };
+    }
+
+    render () {
+      const { count, start } = this.state;
+      if (start) {
+        return `${count}s`;
+      }
+      return (
+        <LinkBtn
+          onClick={() => {
+            this.setState({ start: true });
+            countdown({
+              defaultCount: count,
+              callback: (nowCount, defaultCount) => {
+                this.setState({ count: nowCount });
+                if (nowCount === 0) {
+                  this.setState({
+                    count: defaultCount,
+                    start: false,
+                  });
+                }
+              },
+            });
+          }}
+        >
+          开始倒计时
+        </LinkBtn>
+      );
+    }
+  }}
+</Playground>
