@@ -29,20 +29,20 @@ export default class DescList extends React.Component {
     const { dataSource, columns, defaultValue } = this.props;
 
     return columns.map((item, index) => {
-      const { title, dataIndex, render, unVisible, span = 1 } = item;
+      const { title, dataIndex, render, visible = true, span = 1 } = item;
 
-      if (unVisible) {
-        return null;
+      if (visible) {
+        const value = render ? render(dataSource) : _get(dataSource, dataIndex, defaultValue);
+
+        return (
+          // eslint-disable-next-line
+          <Descriptions.Item label={title} key={index} span={span}>
+            {this.renderValue(value)}
+          </Descriptions.Item>
+        )
       }
 
-      const value = render ? render(dataSource) : _get(dataSource, dataIndex, defaultValue);
-
-      return (
-        // eslint-disable-next-line
-        <Descriptions.Item label={title} key={index} span={span}>
-          {this.renderValue(value)}
-        </Descriptions.Item>
-      )
+      return null;
     })
   };
 
