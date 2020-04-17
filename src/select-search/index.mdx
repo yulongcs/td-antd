@@ -16,6 +16,7 @@ import SelectSearch from './index';
   <Row>
     <Col span={12}>
       <SelectSearch
+        allowClear
         placeholder="输入数字，单选"
         fields={['cell', 'phone']}
         // 使用公共接口进行测试
@@ -29,6 +30,7 @@ import SelectSearch from './index';
     <Col span={12}>
       <SelectSearch
         isData
+        allowClear
         mode="multiple"
         placeholder="输入数字，多选"
         fields={['cell', 'phone']}

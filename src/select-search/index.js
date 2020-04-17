@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { fetch } from 'dva';
 import _debounce from 'lodash/debounce';
 import { Select, Spin } from 'antd';
 
