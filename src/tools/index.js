@@ -8,6 +8,7 @@ import objectToString from './objectToString';
 import downloadBlob from './downloadBlob';
 import noPassByMobile from './noPassByMobile';
 import countdown from './countdown';
+import storageWorker from './storageWorker';
 
 export default {
   delay,
@@ -20,4 +21,5 @@ export default {
   downloadBlob,
   noPassByMobile,
   countdown,
+  storageWorker,
 };
