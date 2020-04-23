@@ -1,5 +1,4 @@
 import * as React from 'react';
-import _get from 'lodash/get';
 import { Descriptions } from 'antd';
 
 export default class DescList extends React.Component {
@@ -9,6 +8,12 @@ export default class DescList extends React.Component {
     column: 4,
     columns: [],
     defaultValue: '--',
+  };
+
+  // 可支持嵌套获取值，如 "key.key.key"
+  deepGet = (object, path, defaultValue) => {
+    return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
+      .reduce((o, k) => (o || {})[k], object) || defaultValue;
   };
 
   // 需要进行 react 组件的判断
@@ -29,10 +34,16 @@ export default class DescList extends React.Component {
     const { dataSource, columns, defaultValue } = this.props;
 
     return columns.map((item, index) => {
-      const { title, dataIndex, render, visible = true, span = 1 } = item;
+      const {
+        title,
+        dataIndex = '',
+        render,
+        visible = true,
+        span = 1,
+      } = item;
 
       if (visible) {
-        const value = render ? render(dataSource) : _get(dataSource, dataIndex, defaultValue);
+        const value = render ? render(dataSource) : this.deepGet(dataSource, dataIndex, defaultValue);
 
         return (
           // eslint-disable-next-line
