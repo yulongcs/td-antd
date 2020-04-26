@@ -14,6 +14,8 @@ import { tools } from 'td-antd';
 const { delay, genNonDuplicateID } = tools;
 ```
 
+## API
+
 ### delay
 
 在指定毫秒数后调用函数，并将附加参数传给函数。
@@ -175,3 +177,17 @@ countdown({
     }
   }}
 </Playground>
+
+### redirect
+
+dva.routerRedux.push 的简单封装，简单的路由切换
+
+```
+// 全局配置，需要app全局初始化完成后进行设置
+redirect.config({
+  appStore: app, // 包裹应用的 app._store 对象
+})
+
+// 路由切换，如切换至：localhost:8080/demo
+redirect.to('/demo', dispatch); // 第二个参数 dispatch 如果不传，将会从全局配置项中获取
+```
