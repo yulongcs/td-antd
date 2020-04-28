@@ -180,10 +180,10 @@ countdown({
 
 ### redirect
 
-dva.routerRedux.push 的简单封装，简单的路由切换
+dva.routerRedux.push 的简单封装，实现路由切换
 
 ```
-// 全局配置，需要app全局初始化完成后进行设置
+// 全局配置，需要app全局初始化完成后进行设置，调用 store.dispatch 进行重定向
 redirect.config({
   appStore: app, // 包裹应用的 app._store 对象
 })
