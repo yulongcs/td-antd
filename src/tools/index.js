@@ -9,6 +9,7 @@ import downloadBlob from './downloadBlob';
 import noPassByMobile from './noPassByMobile';
 import countdown from './countdown';
 import storageWorker from './storageWorker';
+import redirect from './redirect';
 
 export default {
   delay,
@@ -22,4 +23,5 @@ export default {
   noPassByMobile,
   countdown,
   storageWorker,
+  redirect,
 };
