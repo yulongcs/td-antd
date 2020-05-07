@@ -1,3 +1,5 @@
+import toast from '../toast';
+
 function downloadBlob(params) {
   try {
     const { url, filename, body } = params;
@@ -14,6 +16,15 @@ function downloadBlob(params) {
     }
 
     return fetch(url, newOptions)
+      .then(res => res.json().then(r => {
+        if (r.success) {
+          return res;
+        }
+        const error = new Error(r.errorMessage);
+        error.response = res;
+
+        throw error;
+      }))
       .then(res => res.blob().then(blob => {
         const name = filename || res.headers.get('Content-Disposition'); // 获取 headers 中的文件名
         // for IE
@@ -31,6 +42,13 @@ function downloadBlob(params) {
           a.remove();
         }
       }))
+      .catch((error) => {
+        if ('stack' in error && 'message' in error) {
+          toast({ type: 'error', text: error.message });
+        }
+
+        return error;
+      });
   } catch (e) {
     throw new TypeError(e);
   }
