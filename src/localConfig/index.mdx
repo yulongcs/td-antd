@@ -1,0 +1,34 @@
+---
+name: localConfig
+route: /localConfig
+menu: 组件
+---
+
+> 为组件和方法提供统一的全局化配置
+
+## 使用
+
+```
+import { localConfig } from 'td-antd';
+
+// 配置
+localConfig.config({
+  appStore: app._store
+});
+
+// 获取新实例
+const instance = localConfig.newInstance();
+```
+
+## API
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|config|配置项|object|{}|
+|newInstance|返回新的配置项实例|function|-|
+
+### config
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|appStore|被 `dva` 包裹的 app._store 对象，提供获取 model数据和 dispatch() 等|object|-|
