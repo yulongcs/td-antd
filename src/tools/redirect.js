@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva';
-import localConfig from '../localConfig';
+import localConfig from '../local-config';
 
 const redirect = (path, dispatch) => {
   if (dispatch) {
