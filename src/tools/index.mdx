@@ -65,8 +65,15 @@ const time = momentToString(value, format);
 数字与千位符数字的转化，千位符数字一般用于金融数字展示
 
 ```
+// 参数
+Function(number, decimal)
+  number: 一组数字(数字字符串)或者千位符数字字符串
+  decimal: 小数点位数。只针对数字转字符串的情况
+
+// demo
 toThousands(123456); // "123,456"
-toThousands('123456'); // "123,456"
+toThousands(123456, 2); // "123,456.00"
+toThousands('123456.1', 3); // "123,456.100"
 toThousands('123,456'); // 123456
 ```
 

@@ -57,3 +57,14 @@ import Preview from './demo/preview';
 |isInteger|是否为整数，默认不是|boolean |false|
 
 > 注意：暂不支持 antd 4.x 版本
+
+## FAQ
+
+### FormItem 包裹 Upload 时，非空不校验
+
+```
+decoratorOptions: {
+  valuePropName: 'fileList',
+  getValueFromEvent: e => (!e || !e.fileList) ? e : e.fileList,
+}
+```
