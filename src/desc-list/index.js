@@ -21,7 +21,7 @@ export default (props) => {
         return value;
       }
 
-      return this.props.defaultValue;
+      return defaultValue;
     }
   };
 
