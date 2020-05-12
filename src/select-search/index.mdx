@@ -13,36 +13,32 @@ import SelectSearch from './index';
 基于 Select 封装的带接口搜索的下拉框组件。可用于 Form 的受控组件
 
 <Playground>
-  <Row>
-    <Col span={12}>
-      <SelectSearch
-        allowClear
-        placeholder="输入数字，单选"
-        fields={['cell', 'phone']}
-        // 使用公共接口进行测试
-        url="https://randomuser.me/api/?results="
-        afterFetch={res => res.results}
-        onChange={(value) => {
-          console.log(value);
-        }}
-      />
-    </Col>
-    <Col span={12}>
-      <SelectSearch
-        isData
-        allowClear
-        mode="multiple"
-        placeholder="输入数字，多选"
-        fields={['cell', 'phone']}
-        // 使用公共接口进行测试
-        url="https://randomuser.me/api/?results="
-        afterFetch={res => res.results}
-        onChange={(value) => {
-          console.log(value);
-        }}
-      />
-    </Col>
-  </Row>
+<SelectSearch
+  allowClear
+  placeholder="输入数字，单选"
+  fields={['cell', 'phone']}
+  // 使用公共接口进行测试
+  url="https://randomuser.me/api/?results="
+  afterFetch={res => res.results}
+  onChange={(value) => {
+    console.log(value);
+  }}
+/>
+<br />
+<br />
+<SelectSearch
+  isData
+  allowClear
+  mode="multiple"
+  placeholder="输入数字，多选"
+  fields={['cell', 'phone']}
+  // 使用公共接口进行测试
+  url="https://randomuser.me/api/?results="
+  afterFetch={res => res.results}
+  onChange={(value) => {
+    console.log(value);
+  }}
+/>
 </Playground>
 
 ## API

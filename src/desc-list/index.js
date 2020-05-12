@@ -1,23 +1,19 @@
 import * as React from 'react';
 import { Descriptions } from 'antd';
 
-export default class DescList extends React.Component {
-  static defaultProps = {
-    dataSource: {},
-    size: 'small',
-    column: 4,
-    columns: [],
-    defaultValue: '--',
-  };
+export default (props) => {
+  const {
+    dataSource = {},
+    columns = [],
+    defaultValue = '--',
+  } = props;
 
-  // 可支持嵌套获取值，如 "key.key.key"
-  deepGet = (object, path, defaultValue) => {
+  const deepGet = (object, path) => {
     return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
       .reduce((o, k) => (o || {})[k], object) || defaultValue;
   };
 
-  // 需要进行 react 组件的判断
-  renderValue = (value) => {
+  const renderValue = (value) => {
     if (React.isValidElement(value)) {
       return value;
     } else {
@@ -29,10 +25,7 @@ export default class DescList extends React.Component {
     }
   };
 
-  // 子项的渲染
-  renderItem = () => {
-    const { dataSource, columns, defaultValue } = this.props;
-
+  const renderItem = () => {
     return columns.map((item, index) => {
       const {
         title,
@@ -43,12 +36,12 @@ export default class DescList extends React.Component {
       } = item;
 
       if (visible) {
-        const value = render ? render(dataSource) : this.deepGet(dataSource, dataIndex, defaultValue);
+        const value = render ? render(dataSource) : deepGet(dataSource, dataIndex);
 
         return (
           // eslint-disable-next-line
           <Descriptions.Item label={title} key={index} span={span}>
-            {this.renderValue(value)}
+            {renderValue(value)}
           </Descriptions.Item>
         )
       }
@@ -57,11 +50,9 @@ export default class DescList extends React.Component {
     })
   };
 
-  render() {
-    return (
-      <Descriptions {...this.props}>
-        {this.renderItem()}
-      </Descriptions>
-    );
-  }
+  return (
+    <Descriptions {...props}>
+      {renderItem()}
+    </Descriptions>
+  );
 }
