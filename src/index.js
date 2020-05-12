@@ -13,5 +13,6 @@ export { default as PopoverBox } from './popover-box';
 export { default as EmptyBox } from './empty-box';
 export { default as toast } from './toast';
 export { default as pagination } from './pagination';
+export { default as TablePage } from './table-page';
 export { default as localConfig } from './local-config';
 export { default as tools } from './tools';

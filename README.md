@@ -21,7 +21,7 @@ import { Title, FormItem } from 'td-antd';
 ```
 $ git clone https://github.com/long-zhuge/td-antd.git
 $ npm i
-$ npm run build:all
+$ npm run build
 $ sudo npm link
 
 // 宿主项目中

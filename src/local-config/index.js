@@ -5,6 +5,7 @@ const localConfig = {
     const {
       appStore,
       proxy,
+      request,
     } = params;
 
     if (appStore) {
@@ -13,6 +14,10 @@ const localConfig = {
 
     if (proxy) {
       TdConfig.prototype.proxy = proxy;
+    }
+
+    if (request) {
+      TdConfig.prototype.request = request;
     }
   },
   newInstance: () => {
