@@ -18,14 +18,14 @@ export default forwardRef((props, ref) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
   const [keywords, setKeywords] = useState(defaultParams);
+  const { request } = localConfig.newInstance();
 
   useEffect(() => {
     fetchList();
-  }, []);
+  }, [request]);
 
   const fetchList = (obj = {}, reset = false) => {
     const params = reset ? {...obj, ...defaultParams} : {...keywords, ...obj };
-    const { request } = localConfig.newInstance();
 
     if (request) {
       setLoading(true);
