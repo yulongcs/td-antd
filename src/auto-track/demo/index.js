@@ -7,7 +7,7 @@ autoTrack({
   },
   eventCallback: (log) => {
     console.log(log);
-  }
+  },
 });
 
 export default class Demo extends React.Component {

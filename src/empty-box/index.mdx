@@ -12,16 +12,36 @@ import EmptyBox from './index';
 基于 Empty 的二次封装，可灵活的展示空数据的表现
 
 <Playground>
-  <EmptyBox show>
+  <EmptyBox show={false}>
+    show=false时，会展示 children 内容
+  </EmptyBox>
+</Playground>
+
+<Playground>
+  <EmptyBox
+    show
+    description="antd自带的"
+  >
+    展示数据
+  </EmptyBox>
+</Playground>
+
+<Playground>
+  <EmptyBox
+    show
+    inside
+    description="内置的"
+    imageStyle={{ height: 180 }}
+  >
     展示数据
   </EmptyBox>
 </Playground>
 
 ## API
 
-支持原 [Form](https://ant-design.gitee.io/components/form-cn/) API
+支持原 [Empty](https://3x.ant.design/components/empty-cn/) API
 
 |参数|说明|类型|默认值|版本|
 |:--|:--|:--|:--|:--|
 |show|是否展示空数据|Boolean|true||
-|emptyProps|Empty 组件的属性值|Object|{}||
+|inside|是否使用内置图片|Boolean|false|
