@@ -7,21 +7,41 @@ menu: 组件
 import { Playground } from 'docz';
 import Login from './index';
 import toast from '../toast';
+import { Button } from 'antd';
 
 ## Login
 
 Foodpanel 产品的登录组件，支持中英文。
 
 <Playground>
-  <Login
-    locale="zh"
-    proxy="/srm"
-    module="login"
-    onLogin={(res) => {
-      console.log(res);
-      toast({ text: '登录成功' })
-    }}
-  />
+  {class Example extends React.Component {
+    constructor(props) {
+      this.state = {
+        locale: 'zh',
+      };
+    }
+
+    render () {
+      const { locale } = this.state;
+
+      return (
+        <React.Fragment>
+          <Button onClick={() => { this.setState({ locale: locale === 'zh' ? 'en' : 'zh' }) }}>切换语言</Button>
+          <br />
+          <br />
+          <Login
+            locale={locale}
+            // proxy="/aaa"
+            module="login"
+            onLogin={(res) => {
+              console.log(res);
+              toast({ text: '登录成功' })
+            }}
+          />
+        </React.Fragment>
+      )
+    }
+  }}
 </Playground>
 
 ## API
