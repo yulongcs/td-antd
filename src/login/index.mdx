@@ -6,6 +6,7 @@ menu: 组件
 
 import { Playground } from 'docz';
 import Login from './index';
+import toast from '../toast';
 
 ## Login
 
@@ -14,8 +15,12 @@ Foodpanel 产品的登录组件，支持中英文。
 <Playground>
   <Login
     locale="zh"
-    proxy="/market"
-    module="reset"
+    proxy="/srm"
+    module="login"
+    onLogin={(res) => {
+      console.log(res);
+      toast({ text: '登录成功' })
+    }}
   />
 </Playground>
 
