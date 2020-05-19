@@ -15,4 +15,5 @@ export { default as toast } from './toast';
 export { default as pagination } from './pagination';
 export { default as TablePage } from './table-page';
 export { default as localConfig } from './local-config';
+export { default as Login } from './login';
 export { default as tools } from './tools';

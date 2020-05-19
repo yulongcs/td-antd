@@ -122,12 +122,13 @@ downloadBlob({
 })
 ```
 
-### noPassByMobile
+### noPassByInfo
 
-手机号脱敏
+手机号/邮箱 的信息脱敏
 
 ```
-noPassByMobile('13812345678'); // 138****5678
+noPassByInfo('13812345678'); // 138****5678
+noPassByInfo('13812345678@qq.com') // 138********@qq.com
 ```
 
 ### countdown
@@ -192,4 +193,13 @@ dva.routerRedux.push 的简单封装，实现路由切换。必须配置了 `loc
 ```
 // 路由切换，如切换至：localhost:8080/demo
 redirect('/demo', dispatch); // 第二个参数 dispatch 如果不传，将会从全局配置项中获取
+```
+
+### isPromise
+
+判断当前对象是否为 promise 对象
+
+```
+const promise = new Promise();
+isPromise(promise) // true
 ```

@@ -1,0 +1,35 @@
+---
+name: Login
+route: /login
+menu: 组件
+---
+
+import { Playground } from 'docz';
+import Login from './index';
+
+## Login
+
+Foodpanel 产品的登录组件，支持中英文。
+
+<Playground>
+  <Login
+    locale="zh"
+    proxy="/market"
+    module="reset"
+  />
+</Playground>
+
+## API
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|proxy|代理标示|string|/srm|
+|locale|语言，可设置为 en/zh|string|zh|
+|module|初始渲染模块，login=登录、reset=重置密码、register=注册|string|login|
+|loginCustomTitle|自定义登录页标题名称|string/reactNode|-|
+|onLogin|登录成功后的回调函数|function({ dataObject, go })|-|
+|onRegister|注册成功后的回调函数|function(dataObject)|-|
+|onBackHomepage|自定义返回首页的回调函数|function|-|
+|homepagePath|首页地址，onBackHomepage存在时，该属性失效|string|/welcome|
+
+> 注意：需要 localConfig.config 设置 appStore 后才能正常使用 homepagePath 属性

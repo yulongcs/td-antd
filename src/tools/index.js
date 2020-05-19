@@ -6,10 +6,11 @@ import momentToString from './momentToString';
 import toThousands from './toThousands';
 import objectToString from './objectToString';
 import downloadBlob from './downloadBlob';
-import noPassByMobile from './noPassByMobile';
+import noPassByInfo from './noPassByInfo';
 import countdown from './countdown';
 import storageWorker from './storageWorker';
 import redirect from './redirect';
+import isPromise from './isPromise';
 
 export default {
   delay,
@@ -20,8 +21,9 @@ export default {
   toThousands,
   objectToString,
   downloadBlob,
-  noPassByMobile,
+  noPassByInfo,
   countdown,
   storageWorker,
   redirect,
+  isPromise,
 };
