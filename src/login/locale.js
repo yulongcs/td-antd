@@ -9,7 +9,7 @@ export default {
     login_input_password_message: 'Please enter the password',
     login_input_error: 'Incorrect username or password',
     login_remember_text: 'Remember account number',
-    login_create_account_text: 'Create Account',
+    login_create_account_text: 'Register',
     login_button_ok_text: 'Sing-In',
     login_forget_text: 'Forget password?',
     // 步骤条
@@ -47,7 +47,7 @@ export default {
     succ_sub_title: 'later redirect to login page',
     succ_back_homepage: 'Back Homepage',
     // 注册
-    register_title: 'Create Account',
+    register_title: 'Register',
     register_account_placeholder: 'User name / Enterprise name',
     register_account_tip: 'Please enter user name',
     register_account_error: '$1 has been registered',

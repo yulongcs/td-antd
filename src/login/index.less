@@ -1,6 +1,8 @@
+@width_100: 100%;
+
 /* 公共模块 */
 .ry_common_width_100 {
-  width: 100%;
+  width: @width_100;
 }
 
 .ry_common_text_center {
@@ -42,13 +44,8 @@
   margin-bottom: 18px;
 }
 
-.ry_login_btn {
+.ry_login_btn, .ry_login_btn2 {
   width: 120px;
-}
-
-.ry_login_btn2 {
-  min-width: 120px;
-  max-width: 145px;
 }
 
 .ry_login_footer {
@@ -105,4 +102,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+// 媒体查询
+@media (max-width: 575px) {
+  .ry_login_container, .ry_reset_container, .ry_register_container {
+    width: @width_100;
+    padding: 14px;
+  }
+
+  .ry_reset_account_box, .ry_reset_code_body {
+    width: @width_100;
+  }
+
+  .ry_login_btn, .ry_login_btn2 {
+    width: 45%;
+  }
 }
