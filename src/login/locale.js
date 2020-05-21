@@ -55,7 +55,7 @@ export default {
     register_email_tip: 'Please enter your business e-mail address',
     register_email_tip2: 'Format error',
     register_create_text: 'Create',
-    register_back: 'Already a member? Sign in >>',
+    register_back: 'Sign in >>',
     register_success: 'Create Successful',
   },
   // 中文配置
@@ -107,7 +107,7 @@ export default {
     register_email_tip: '请输入邮箱地址',
     register_email_tip2: '格式错误',
     register_create_text: '注册',
-    register_back: '已有账号，直接登录 >>',
+    register_back: '已有账号，去登录 >>',
     register_success: '注册成功',
   },
 };
