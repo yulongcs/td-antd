@@ -43,7 +43,7 @@ export default Form.create()((props) => {
         if (!err) {
           resolve();
           request({
-            url: `${proxy}/user/sendVerificationCode.json?number=${email}&type=regist&isInland=${locale === 'en'}`,
+            url: `${proxy}/user/sendVerificationCode.json?number=${email}&type=regist&isInland=${locale === 'zh'}`,
           });
         }
       });
