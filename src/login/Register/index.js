@@ -11,6 +11,7 @@ export default Form.create()((props) => {
   const {
     form,
     proxy,
+    locale,
     setType,
     language,
     onRegister = () => {}, // 注册成功后的回调
@@ -42,7 +43,7 @@ export default Form.create()((props) => {
         if (!err) {
           resolve();
           request({
-            url: `${proxy}/user/sendVerificationCode.json?number=${email}&type=regist`,
+            url: `${proxy}/user/sendVerificationCode.json?number=${email}&type=regist&isInland=${locale === 'en'}`,
           });
         }
       });
