@@ -3,6 +3,8 @@ import { Form, Input, Icon, Checkbox, Button } from 'antd';
 import storageWorker from '../../tools/storageWorker';
 import getUrlParameter from '../../tools/getUrlParameter';
 import request from '../request';
+import { getLanguage } from '../util';
+import classNames from 'classnames';
 import '../index.less';
 
 const FormItem = Form.Item;
@@ -10,16 +12,20 @@ const FormItem = Form.Item;
 export default Form.create()((props) => {
   const {
     form,
-    proxy, // 代理标示
-    setType,
-    language,
-    onLogin = () => {}, // 登录成功后
-    loginCustomTitle, // 自定义的 title
+    locale = 'en',
+    proxy = '/srm', // 代理标示
+    isSignUpButton = true, // 是否有注册按钮
+    isResetButton = true, // 是否有重置按钮
+    onSignUp = () => {}, // 点击注册按钮事件
+    onSignIn = () => {}, // 登录成功后
+    onResetPassword = () => {}, // 忘记密码点击事件
+    customTitle, // 自定义的 title
   } = props;
   const { getFieldDecorator } = form;
   const [loading, setLoading] = useState(false);
   const [storage, setStorage] = useState({});
   const [remember, setRemember] = useState(false);
+  const language = getLanguage(locale);
 
   useEffect(() => {
     storageWorker({
@@ -52,7 +58,7 @@ export default Form.create()((props) => {
               },
             });
             // 登录成功后的回调函数
-            onLogin({
+            onSignIn({
               dataObject,
               go: getUrlParameter('go'),
             });
@@ -78,7 +84,7 @@ export default Form.create()((props) => {
 
   return (
     <div className="ry_login_container">
-      {loginCustomTitle || <div className="ry_login_title">{language.login_title}</div>}
+      {customTitle || <div className="ry_login_title">{language.login_title}</div>}
       <div className="ry_login_body">
         <FormItem>
           {getFieldDecorator('account', {
@@ -125,20 +131,27 @@ export default Form.create()((props) => {
             type="primary"
             loading={loading}
             onClick={onSubmit}
-            className="ry_login_btn"
+            className={classNames({
+              ry_submit_sign_in: !isSignUpButton,
+            })}
           >{language.login_button_ok_text}
           </Button>
-          <Button
-            size="large"
-            onClick={() => { setType('register') }}
-            className="ry_login_btn2"
-          >{language.login_create_account_text}
-          </Button>
+          {isSignUpButton && (
+            <Button
+              size="large"
+              onClick={onSignUp}
+            >{language.login_create_account_text}
+            </Button>
+          )}
         </div>
       </div>
-      <div className="ry_login_footer">
-        <a onClick={() => { setType('reset') }}>{language.login_forget_text}</a>
-      </div>
+      {isResetButton && (
+        <div className="ry_login_footer">
+          <a onClick={onResetPassword}>
+            {language.login_forget_text}
+          </a>
+        </div>
+      )}
     </div>
   );
 });

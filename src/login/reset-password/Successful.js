@@ -5,7 +5,7 @@ import countdown from '../../tools/countdown';
 
 export default (props) => {
   const {
-    setType,
+    onSignIn = () => {},
     setNext,
     language,
     onBackHomepage,
@@ -19,7 +19,7 @@ export default (props) => {
       callback: (nowCount) => {
         setCount(nowCount);
         if (nowCount === 0) {
-          setType('login');
+          onSignIn();
           setNext(0);
         }
       },
@@ -41,7 +41,7 @@ export default (props) => {
       subTitle={`${count}s ${language.succ_sub_title}`}
       extra={[
         <Button key="buy" onClick={onBack}>{language.succ_back_homepage}</Button>,
-        <Button type="primary" key="console" onClick={() => { setType('login') }}>
+        <Button type="primary" key="console" onClick={onSignIn}>
           {language.login_button_ok_text}
         </Button>,
       ]}

@@ -15,8 +15,8 @@ export default Form.create()((props) => {
     proxy,
     account,
     setNext,
-    setType,
     language,
+    onSignIn = () => {},
   } = props;
   const [loading, setLoading] = useState(false);
 
@@ -44,7 +44,7 @@ export default Form.create()((props) => {
                 cancelText: language.reset_confirm_cancel_text,
                 onOk() {
                   setNext(0);
-                  setType('login');
+                  onSignIn();
                 },
               });
             }
