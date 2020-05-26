@@ -12,6 +12,7 @@ export default {
         // ],
         links: [
           { rel: 'stylesheet', href: './public/common.css' },
+          { rel: 'icon', href: './public/favicon.ico' },
         ],
       },
     },
