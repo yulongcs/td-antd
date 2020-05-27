@@ -3,6 +3,7 @@ import { Form, Input, Row, Col, Button, message } from 'antd';
 import SendCode from '../common/SendCode';
 import PasswordAndConfirm from '../common/PasswordAndConfirm';
 import request from '../request';
+import { getLanguage } from '../util';
 import '../index.less';
 
 const FormItem = Form.Item;
@@ -10,13 +11,13 @@ const FormItem = Form.Item;
 export default Form.create()((props) => {
   const {
     form,
-    proxy,
-    locale,
-    setType,
-    language,
-    onRegister = () => {}, // 注册成功后的回调
+    locale = 'en',
+    proxy = '/srm', // 代理标示
+    onSignIn = () => {}, // 点击去登录的回调
+    onSignUp = () => {}, // 注册成功后的回调
   } = props;
   const [loading, setLoading] = useState(false);
+  const language = getLanguage(locale);
 
   // 验证用户名/邮箱的有效性
   const validateAccountExist = (rule, value, callback) => {
@@ -62,7 +63,7 @@ export default Form.create()((props) => {
           body: values,
           onSuccess: ({ dataObject = {} }) => {
             message.success(language.register_success);
-            onRegister(dataObject);
+            onSignUp(dataObject);
           },
         }).finally(() => {
           setLoading(false);
@@ -142,7 +143,7 @@ export default Form.create()((props) => {
         >
           {language.register_create_text}
         </Button>
-        <a onClick={() => {setType('login')}}>{language.register_back}</a>
+        <a onClick={onSignIn}>{language.register_back}</a>
       </div>
     </div>
   );

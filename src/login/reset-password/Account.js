@@ -12,8 +12,8 @@ export default Form.create()((props) => {
     proxy, // 代理标示
     setAccount,
     setNext,
-    setType,
     language,
+    onSignIn = () => {},
   } = props;
   const [loading, setLoading] = useState(false);
 
@@ -75,7 +75,7 @@ export default Form.create()((props) => {
         </Button>
       </FormItem>
       <div className="ry_common_text_center">
-        <a onClick={() => { setType('login') }}>{language.confirm_account_back}</a>
+        <a onClick={onSignIn}>{language.confirm_account_back}</a>
       </div>
     </div>
   );

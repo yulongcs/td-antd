@@ -4,26 +4,29 @@ import Account from './Account';
 import VerificationCode from './VerificationCode';
 import Password from './Password';
 import Successful from './Successful';
+import { getLanguage } from '../util';
 import '../index.less';
 
 const { Step } = Steps;
 
 export default (props) => {
   const {
-    setType,
-    language,
+    proxy = '/srm',
+    locale = 'en',
     onBackHomepage,
     homepagePath = '/welcome',
+    onSignIn = () => {}, // 去登录的回调函数
   } = props;
   const [account, setAccount] = useState('');
   const [next, setNext] = useState(0);
+  const language = getLanguage(locale);
   const params = {
+    onSignIn,
     language,
-    setType,
     setAccount,
     account,
     setNext,
-    proxy: props.proxy,
+    proxy,
     onBackHomepage,
     homepagePath,
   };
