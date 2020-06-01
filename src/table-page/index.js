@@ -1,7 +1,8 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { stringify } from 'qs';
 import { Table } from 'antd';
-import { SearchForm, pagination } from '../index';
+import SearchForm from '../search-form';
+import pagination from '../pagination';
 import localConfig from '../local-config';
 
 export default forwardRef((props, ref) => {
@@ -66,7 +67,8 @@ export default forwardRef((props, ref) => {
         loading={loading}
         columns={columns}
         dataSource={data.values || []}
-        pagination={pagination(data, {
+        pagination={pagination({
+          data,
           onChange: (pageNum) => {
             fetchList({pageNum});
           },
