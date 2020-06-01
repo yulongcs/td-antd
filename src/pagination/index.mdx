@@ -5,7 +5,7 @@ menu: 组件
 ---
 
 import { Playground } from 'docz';
-import { Row, Col, Table } from 'antd';
+import { Row, Col, Table, Button } from 'antd';
 import pagination from './index';
 
 ## pagination
@@ -16,6 +16,7 @@ import pagination from './index';
   {class Example extends React.Component {
     constructor(props) {
       this.state = {
+        locale: 'zh',
         dataObject: {
           pageNum: 1,
           pageSize: 2,
@@ -36,11 +37,18 @@ import pagination from './index';
       };
     }
 
+    onChange() {
+      const { locale } = this.state;
+
+      this.setState({ locale: locale === 'zh' ? 'en' : 'zh' });
+    }
+
     render () {
-      const { dataObject } = this.state;
+      const { dataObject, locale } = this.state;
 
       return (
         <Table
+          title={() => <Button onClick={() => { this.setState({ locale: locale === 'zh' ? 'en' : 'zh' }) }}>切换语言</Button>}
           rowKey="name"
           columns={[
             {
@@ -52,7 +60,9 @@ import pagination from './index';
             }
           ]}
           dataSource={dataObject.values || []}
-          pagination={pagination(dataObject, {
+          pagination={pagination({
+            locale,
+            data: dataObject,
             onChange: (page, pageSize) => {
               console.log(page, pageSize);
             },
@@ -66,9 +76,10 @@ import pagination from './index';
 
 ## API
 
-该方法是一个函数：function(params1, params2)
+该方法是一个函数：function({ data, locale, ...rest })
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|params1|包含 current、pageSize、total 的数据源。<br />`current` 会读取对象中的 pageNum/currPageNo；<br />`pageSize` 会读取对象中的 pageSize/limit；<br />`total` 会读取对象中的 totalCnt/total；|object|{ current: 1, pageSize: 20, total: 1 }|
-|params2|Pagination 组件的其他属性，如 onChange|object|{}|
+|data|包含 current、pageSize、total 的数据源。<br />`current` 会读取对象中的 pageNum/currPageNo；<br />`pageSize` 会读取对象中的 pageSize/limit；<br />`total` 会读取对象中的 totalCnt/total；|object|{ current: 1, pageSize: 20, total: 1 }|
+|locale|支持的语言，zh/en|string|zh|
+|rest|Pagination 组件的其他属性，如 onChange|object|{}|

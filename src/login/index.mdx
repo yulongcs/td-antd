@@ -11,7 +11,7 @@ import { Button } from 'antd';
 
 ## Login
 
-FoodPanel 产品的登录组合组件，支持中英文。
+FoodPanel 产品的组合登录组件，包含 "登录、注册、重置密码"，支持中英文。
 
 <Playground>
   {class Example extends React.Component {
@@ -31,7 +31,6 @@ FoodPanel 产品的登录组合组件，支持中英文。
           <br />
           <Login
             locale={locale}
-            module="login"
             onSignInSuccess={(res) => {
               console.log(res);
               toast({ text: '登录成功' })
