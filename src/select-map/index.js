@@ -28,6 +28,7 @@ export default (props) => {
       showSearch
       allowClear
       style={{ width: '100%' }}
+      filterOption={(inputValue, option) => (option.props.children.includes(inputValue))}
       {...props}
     >
       {renderOption()}
