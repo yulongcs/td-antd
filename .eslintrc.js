@@ -63,7 +63,7 @@ module.exports = {
     'react/sort-comp': [0],
     'prefer-destructuring': [0],
     'object-shorthand': [0],
-    'react/no-multi-comp': [0],
+    "linebreak-style": [0,"error", "windows"],
   },
   parserOptions: {
     ecmaFeatures: {

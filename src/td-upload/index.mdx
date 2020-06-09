@@ -15,7 +15,6 @@ import TdUpload from './index';
   <TdUpload
     btnText="上传"
     tip="仅支持 pdf 文件。"
-    hideRemoveBtn
     callback={(t) => {
       if (t === 'remove') {
         return Promise.resolve();
@@ -50,7 +49,9 @@ import TdUpload from './index';
 callback = (state, file, files) => {
   if (state === 'before') {}
   if (state === 'after') {}
-  if (state === 'remove') {}
+  if (state === 'remove') {
+    // 点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除。
+  }
 }
 ```
 
