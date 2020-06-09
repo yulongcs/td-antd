@@ -1,0 +1,74 @@
+---
+name: TdUpload
+route: /upload
+menu: 组件
+---
+
+import { Playground } from 'docz';
+import TdUpload from './index';
+
+## TdUpload
+
+基于 Upload 的二次封装
+
+<Playground>
+  <TdUpload
+    btnText="上传"
+    tip="仅支持 pdf 文件。"
+    hideRemoveBtn
+    callback={(t) => {
+      if (t === 'remove') {
+        return Promise.resolve();
+      }
+    }}
+  />
+</Playground>
+
+## API
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|url|接口地址|string|-|
+|initialFiles|初始化数据，需要 onInitialFiles 重组|array|-|
+|wrapClassName|最外层样式类|string|-|
+|isPreview|是否可预览|boolean|true|
+|params|文件上传的入参|object|-|
+|maxFiles|上传文件数的最大值|number|10|
+|disabled|是否禁用|boolean|false|
+|btnText|按钮文案|string|'upload'|
+|btnProps|Button 的 api|object|{}|
+|size|单个文件大小，默认单位 MB|number|20|
+|nameSize|文件名长度，包含后缀|number|200|
+|hideRemoveBtn|是否隐藏删除按钮|boolean|false|
+|showUploadList|是否展示文件列表|boolean|true|
+|filterOptions|同 onInitialFiles 的 filterOptions 函数，在上传后会执行过滤操作|function|-|
+|callback|回调函数|function|-|
+
+### callback
+
+```
+callback = (state, file, files) => {
+  if (state === 'before') {}
+  if (state === 'after') {}
+  if (state === 'remove') {}
+}
+```
+
+### Ref
+
+```
+// 重置列表
+ref.current.reset();
+
+// 主动的文件上传
+ref.current.onUpload((files, dataObject) => {}, (res) => {});
+```
+
+### onInitialFiles(files, filterOptions)
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|files|原数据|Array|[]|
+|filterOptions|自定义数据过滤，需要返回过滤后的数据对象。返回的对象中必须包含 `name、uid、filePath`|function(item, index)|-|
+
+> 注意：需要 localConfig.config 设置 proxy 后才能正常使用
