@@ -39,7 +39,8 @@ export default Form.create()((props) => {
   const onCheckChange = (e) => { setRemember(e.target.checked) };
 
   // 登录
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
         setLoading(true);
