@@ -85,7 +85,7 @@ export default Form.create()((props) => {
   return (
     <div className="ry_login_container">
       {customTitle || <div className="ry_login_title">{language.login_title}</div>}
-      <div className="ry_login_body">
+      <Form className="ry_login_body" onSubmit={onSubmit}>
         <FormItem>
           {getFieldDecorator('account', {
             initialValue: storage.account,
@@ -129,8 +129,8 @@ export default Form.create()((props) => {
           <Button
             size="large"
             type="primary"
+            htmlType="submit"
             loading={loading}
-            onClick={onSubmit}
             className={classNames({
               ry_submit_sign_in: !isSignUpButton,
             })}
@@ -144,7 +144,7 @@ export default Form.create()((props) => {
             </Button>
           )}
         </div>
-      </div>
+      </Form>
       {isResetButton && (
         <div className="ry_login_footer">
           <a onClick={onResetPassword}>
