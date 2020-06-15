@@ -1,24 +1,37 @@
 function storageWorker(props) {
   const {
-    type = 'get', // 使用类型，get = 获取，set = 设置
+    type = 'get', // 使用类型，get = 获取，set = 设置，delete = 删除
     fields = {}, // 当 type = set 时需要赋值的属性。{key: value}
     callback = () => {},
+    version = 'v1',
   } = props;
-  // 默认数据
-  const defaultStorage = {
-    version: 'v1', // 版本号
-  };
 
   try {
-    const data = localStorage.getItem(defaultStorage.version);
     const control = {
+      query() {
+        const storageString = localStorage.getItem(version);
+        return storageString ? JSON.parse(storageString) : {};
+      },
       get() {
-        callback(data ? JSON.parse(data) : {});
+        const res = this.query();
+        callback(res);
       },
       set() {
-        const res = data ? {...JSON.parse(data), ...fields} : {...defaultStorage, ...fields};
-        localStorage.setItem(defaultStorage.version, JSON.stringify(res));
+        const data = this.query();
+        const res = {...data, ...fields, version};
+        localStorage.setItem(version, JSON.stringify(res));
         callback(res);
+      },
+      delete() {
+        // 如果 fields 不是数组时，则报错
+        if (Array.isArray(fields)) {
+          const res = this.query();
+          fields.forEach(key => {
+            delete res[key];
+          });
+          localStorage.setItem(version, JSON.stringify(res));
+          callback(res);
+        }
       },
     };
     control[type]();
