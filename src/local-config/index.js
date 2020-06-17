@@ -6,6 +6,7 @@ const localConfig = {
       appStore,
       proxy,
       request,
+      locale,
     } = params;
 
     if (appStore) {
@@ -18,6 +19,10 @@ const localConfig = {
 
     if (request) {
       TdConfig.prototype.request = request;
+    }
+
+    if (locale) {
+      TdConfig.prototype.locale = locale;
     }
   },
   newInstance: () => {

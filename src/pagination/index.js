@@ -1,8 +1,10 @@
 import React from 'react';
 import localeLanguage from './locale';
+import localConfig from '../local-config';
 
-export default ({ data, locale = 'en', ...rest }) => {
-  const language = localeLanguage[locale];
+export default ({ data, locale, ...rest }) => {
+  const newInstance = localConfig.newInstance();
+  const language = localeLanguage[locale || newInstance.locale || 'en'];
 
   return {
     hideOnSinglePage: true,

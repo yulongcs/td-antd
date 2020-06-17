@@ -76,10 +76,10 @@ import pagination from './index';
 
 ## API
 
-该方法是一个函数：function({ data, locale, ...rest })
+function({ data, locale, ...rest })
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |data|包含 current、pageSize、total 的数据源。<br />`current` 会读取对象中的 pageNum/currPageNo；<br />`pageSize` 会读取对象中的 pageSize/limit；<br />`total` 会读取对象中的 totalCnt/total；|object|{ current: 1, pageSize: 20, total: 1 }|
-|locale|支持的语言，zh/en|string|zh|
+|locale|支持的语言`en/zh`，权重：自身 > localConfig|string|en|
 |rest|Pagination 组件的其他属性，如 onChange|object|{}|
