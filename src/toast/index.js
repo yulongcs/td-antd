@@ -8,9 +8,6 @@ export default function toast(props) {
     type = 'success',
     text = '',
     time = 3,
-    cb = () => {},
   } = props;
-  const hide = message[type](text, time);
-  cb(hide);
-  return hide;
+  return message[type](text, time);
 }
