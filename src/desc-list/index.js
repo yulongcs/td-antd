@@ -35,7 +35,7 @@ export default (props) => {
         span = 1,
       } = item;
 
-      if (visible) {
+      if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(item))) {
         const value = render ? render(dataSource) : deepGet(dataSource, dataIndex);
 
         return (
