@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import InputNumber from 'antd/es/input-number';
 import 'antd/es/input-number/style';
 
@@ -10,36 +10,17 @@ const symbolReg = {
   '€': /\€\s?|(,*)/g,
 };
 
-export default class TdInputNumber extends React.Component {
-  static defaultProps = {
-    unit: '',
-  };
-
-  isMoneySymbol = () => {
-    const { unit } = this.props;
+export default ({ unit = '', ...rest }) => {
+  const isMoneySymbol = () => {
     const symbol = Object.keys(symbolReg);
     return symbol.includes(unit);
   };
 
-  render() {
-    const { unit } = this.props;
-
-    if (this.isMoneySymbol()) {
-      return (
-        <InputNumber
-          formatter={value => `${unit} ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          parser={value => value.replace(symbolReg[unit], '')}
-          {...this.props}
-        />
-      );
-    }
-
-    return (
-      <InputNumber
-        formatter={value => `${value}${unit}`}
-        parser={value => value.replace(unit, '')}
-        {...this.props}
-      />
-    );
-  }
+  return (
+    <InputNumber
+      formatter={value => isMoneySymbol() ? `${unit}${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : `${value}${unit}`}
+      parser={value => value.replace(unit, '')}
+      {...rest}
+    />
+  );
 }

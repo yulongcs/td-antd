@@ -1,97 +1,58 @@
-/*
-* 像 modal 一样使用的气泡组件
-* API: {
-*   okText: 确定按钮的文案
-*   cancelText: 取消按钮的文案
-*   content: '', 浮层中的内容
-*   okButtonProps: 确定按钮的属性
-*   cancelButtonProps: 取消按钮的属性
-*   onOk: 确定事件
-*   onCancel: 取消事件
-* }
-* */
-
-import React from 'react';
+import React, { useState, useImperativeHandle, forwardRef } from 'react';
 import { Button, Popover } from 'antd';
 import './index.less';
 
-export default class PopoverBox extends React.PureComponent {
-  static defaultProps = {
-    okText: '确定',
-    cancelText: '取消',
-    okButtonProps: {},
-    cancelButtonProps: {},
-  };
-  state = {
-    visible: false,
-  };
+export default forwardRef((props, ref) => {
+  const {
+    okText = '确定',
+    cancelText = '取消',
+    okButtonProps = {},
+    cancelButtonProps = {},
+    content,
+    onOk,
+    onCancel,
+    confirmLoading,
+    ...rest
+  } = props;
+  const [visible, setVisible] = useState(false);
 
-  show = (cb) => {
-    this.setState({
-      visible: true,
-    }, () => {
-      // eslint-disable-next-line
-      cb && cb();
-    });
-  };
-
-  hide = (cb) => {
-    // 模态框消失
-    this.setState({
-      visible: false,
-    }, () => {
-      // eslint-disable-next-line
-      cb && cb();
-    });
-  };
-
-  ok = () => {
-    const { onOk } = this.props;
+  const ok = () => {
     // eslint-disable-next-line
-    onOk ? onOk() : this.hide();
+    onOk ? onOk() : setVisible(false);
   };
 
-  cancel = () => {
-    const { onCancel } = this.props;
+  const cancel = () => {
     // eslint-disable-next-line
-    onCancel ? onCancel() : this.hide();
+    onCancel ? onCancel() : setVisible(false);
   };
 
-  contentNode = () => {
-    const {
-      content,
-      okText,
-      cancelText,
-      okButtonProps,
-      cancelButtonProps,
-    } = this.props;
+  // 提供给外部的接口
+  useImperativeHandle(ref, () => ({
+    visible: (bool) => { setVisible(bool) },
+  }));
 
+  const contentNode = () => {
     return (
       <React.Fragment>
         <div className="td-popover-content">{content}</div>
         <div className="td-popover-footer">
-          <Button size="small" onClick={this.cancel} {...cancelButtonProps}>{cancelText}</Button>
-          <Button size="small" type="primary" onClick={this.ok} {...okButtonProps}>{okText}</Button>
+          <Button size="small" onClick={cancel} {...cancelButtonProps}>{cancelText}</Button>
+          <Button size="small" type="primary" onClick={ok} {...okButtonProps} loading={confirmLoading}>{okText}</Button>
         </div>
       </React.Fragment>
     );
   };
 
-  render() {
-    const { children } = this.props;
-    const { visible } = this.state;
-
-    return (
-      <Popover
-        {...this.props}
-        visible={visible}
-        overlayClassName="td-popover-box"
-        content={this.contentNode()}
-        onVisibleChange={(v) => { this.setState({ visible: v }) }}
-        trigger="click"
-      >
-        {children}
-      </Popover>
-    );
-  }
-}
+  return (
+    <Popover
+      {...rest}
+      visible={visible}
+      overlayClassName="td-popover-box"
+      content={contentNode()}
+      onVisibleChange={(v) => { setVisible(v) }}
+      trigger="click"
+    >
+      {props.children}
+    </Popover>
+  );
+})
