@@ -2,22 +2,12 @@ import * as React from 'react';
 import classNames from 'classnames';
 import './index.less';
 
-export default class LinkBtn extends React.Component {
-  static defaultProps = {
-    className: '',
-  };
-
-  render() {
-    const { className, children } = this.props;
-
-    return (
-      <button
-        type="button"
-        {...this.props}
-        className={classNames('td_link_btn', className)}
-      >
-        {children}
-      </button>
-    );
-  }
-}
+export default ({ className, ...rest }) => (
+  <button
+    type="button"
+    {...rest}
+    className={classNames('td_link_btn', className)}
+  >
+    {rest.children}
+  </button>
+);
