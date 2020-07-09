@@ -15,6 +15,7 @@ export default forwardRef((props, ref) => {
     searchFormProps = {},
     searchReturn,
     defaultParams = {},
+    success,
   } = props;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
@@ -32,9 +33,12 @@ export default forwardRef((props, ref) => {
       setLoading(true);
       request({
         url: `${url}?${stringify(params)}`,
-        onSuccess:(res) => {
-          setData(Array.isArray(res.dataObject) ? { values: res.dataObject } : res.dataObject);
+        onSuccess:({ dataObject }) => {
+          const resObj = Array.isArray(dataObject) ? { values: dataObject } : dataObject;
+          setData(resObj);
           setKeywords(params);
+          // eslint-disable-next-line
+          success && success(resObj);
         },
       }).finally(() => {
         setLoading(false);
@@ -67,12 +71,12 @@ export default forwardRef((props, ref) => {
         loading={loading}
         columns={columns}
         dataSource={data.values || []}
-        pagination={pagination({
+        pagination={(data.pageSize || data.limit) ? pagination({
           data,
           onChange: (pageNum) => {
             fetchList({pageNum});
           },
-        })}
+        }) : false}
         {...tableProps}
       />
     </React.Fragment>
