@@ -13,8 +13,10 @@ import TdUpload from './index';
 
 <Playground>
   <TdUpload
+    // disabled
     btnText="上传"
     tip="仅支持 pdf 文件。"
+    // listType="picture-card"
     callback={(t) => {
       if (t === 'remove') {
         return Promise.resolve();
@@ -42,6 +44,7 @@ import TdUpload from './index';
 |showUploadList|是否展示文件列表|boolean|true|
 |filterOptions|同 onInitialFiles 的 filterOptions 函数，在上传后会执行过滤操作|function|-|
 |callback|回调函数|function|-|
+|name|发到后台的文件参数名|string|'files'|
 
 ### callback
 

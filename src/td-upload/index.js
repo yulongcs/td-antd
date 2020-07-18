@@ -1,7 +1,7 @@
 import React from 'react';
 import { fetch } from 'dva';
 import cx from 'classnames';
-import { Upload, Button, message } from 'antd';
+import { Upload, Button, message, Icon } from 'antd';
 import ImgModal from './img-modal';
 import Preview from './preview';
 import onInitialFiles from './onInitialFiles';
@@ -14,6 +14,7 @@ let num = 0; // 上传文件计数
 class TdUpload extends React.PureComponent {
   static defaultProps = {
     url: '/file/upload.json',
+    name: 'files',
     isPreview: false,
     btnText: '上传',
     params: {}, // 除 files 外的入参
@@ -67,19 +68,19 @@ class TdUpload extends React.PureComponent {
 
   // 异步上传文件
   onUpload = async (succ = () => {}, err = () => {}) => {
-    const { params, showUploadList, filterOptions } = this.props;
+    const { params, showUploadList, filterOptions, name } = this.props;
     const noUploadList = []; // 不需要上传的文件列表
     const formData = new FormData();
     // 当前有文件需要上传时，过滤出需要上传的文件进行上传
     this.state.fileList.forEach((file) => {
       if (!file.filePath || (file.toString() === '[object File]')) {
-        formData.append('files', file);
+        formData.append(name, file);
       } else {
         noUploadList.push(file);
       }
     });
 
-    if (formData.get('files')) {
+    if (formData.get(name)) {
       // 将额外的入参注入到 formData 中
       Object.keys(params).forEach(key => {
         formData.append(key, params[key]);
@@ -186,7 +187,7 @@ class TdUpload extends React.PureComponent {
 
   render() {
     const { previewImg } = this.state;
-    const { btnText, disabled, btnProps, tip, isPreview, wrapClassName, hideRemoveBtn } = this.props;
+    const { btnText, disabled, btnProps, tip, isPreview, wrapClassName, hideRemoveBtn, listType } = this.props;
 
     return (
       <div
@@ -208,7 +209,11 @@ class TdUpload extends React.PureComponent {
             }
           })}
         >
-          <Button {...btnProps} icon="upload" disabled={disabled}>{btnText}</Button>
+          {(listType && listType === 'picture-card') ? (
+            <Icon type="plus" className="td-btn-icon" />
+          ) : (
+            <Button {...btnProps} icon="upload" disabled={disabled}>{btnText}</Button>
+          )}
         </Upload>
         {tip && <div className="td-upload-tip">{tip}</div>}
         <ImgModal ref={r => {this.imgRef = r}} url={previewImg} />
