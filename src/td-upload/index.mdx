@@ -92,7 +92,7 @@ ref.current.onUpload((files, dataObject) => {}, (res) => {});
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |files|原数据|Array|[]|
-|filterOptions|自定义数据过滤，需要返回过滤后的数据对象。返回的对象中必须包含 `name、uid、filePath`|function(item, index)|-|
+|filterOptions|自定义数据过滤，需要返回过滤后的数据对象。返回的对象中必须包含 `uid、name、url`|function(item, index)|-|
 
 > 注意：需要 localConfig.config 设置 proxy 后才能正常使用
 
@@ -104,6 +104,6 @@ ref.current.onUpload((files, dataObject) => {}, (res) => {});
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|fileList|渲染的文件列表原数据，需要使用 onInitialFiles 进行过滤；或者数据对象中必须包含 `name、url`|array|-|
+|fileList|渲染的文件列表原数据，需要使用 onInitialFiles 进行过滤；或者数据对象中必须包含 `uid、name、url`|array|-|
 |isHandle|是否在 hover 后展示操作区|boolean|false|
 |onRemove|点击删除的回调函数|function|-|
