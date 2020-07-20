@@ -5,6 +5,7 @@ menu: 组件
 ---
 
 import { Playground } from 'docz';
+import { Row, Col } from 'antd';
 import TdUpload from './index';
 
 ## TdUpload
@@ -12,17 +13,34 @@ import TdUpload from './index';
 基于 Upload 的二次封装
 
 <Playground>
-  <TdUpload
-    // disabled
-    btnText="上传"
-    tip="仅支持 pdf 文件。"
-    // listType="picture-card"
-    callback={(t) => {
-      if (t === 'remove') {
-        return Promise.resolve();
-      }
-    }}
-  />
+  <Row>
+    <Col span={12}>
+      <TdUpload
+        // disabled
+        btnText="上传"
+        tip="仅支持 pdf 文件。"
+        // listType="picture-card"
+        callback={(t) => {
+          if (t === 'remove') {
+            return Promise.resolve();
+          }
+        }}
+      />
+    </Col>
+    <Col span={12}>
+      <TdUpload
+        btnText="上传"
+        tip="仅支持图片格式。"
+        accept="image/*"
+        listType="picture-card"
+        callback={(t) => {
+          if (t === 'remove') {
+            return Promise.resolve();
+          }
+        }}
+      />
+    </Col>
+  </Row>
 </Playground>
 
 ## API
@@ -45,6 +63,7 @@ import TdUpload from './index';
 |filterOptions|同 onInitialFiles 的 filterOptions 函数，在上传后会执行过滤操作|function|-|
 |callback|回调函数|function|-|
 |name|发到后台的文件参数名|string|'files'|
+|tip|提示文案|string|-|
 
 ### callback
 
