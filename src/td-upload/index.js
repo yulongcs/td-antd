@@ -146,16 +146,14 @@ class TdUpload extends React.PureComponent {
     });
   };
 
-  beforeUpload = (file, files) => {
+  beforeUpload = async (file, files) => {
     const { maxFiles, callback, size, nameSize } = this.props; // 最大上传文件数
     const { fileList } = this.state;
     const nowFileLength = files.length + fileList.length;
-    if (num === 0) {
-      callback('before');
-    }
-
+    // eslint-disable-next-line
     num ++;
 
+    await callback('before', file, files);
     // 检测文件名长度
     if (file.name.length > nameSize) {
       message.error(`文件名长度(包含后缀)不能超过 ${nameSize}个字符：${file.name}`);

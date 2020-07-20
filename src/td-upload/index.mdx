@@ -29,13 +29,32 @@ import TdUpload from './index';
     </Col>
     <Col span={12}>
       <TdUpload
+        size={5}
+        multiple
         btnText="上传"
         tip="仅支持图片格式。"
         accept="image/*"
         listType="picture-card"
-        callback={(t) => {
-          if (t === 'remove') {
-            return Promise.resolve();
+        callback={(t, file) => {
+          if (t === 'before') {
+            console.log('开始 before 回调');
+            return new Promise((resolve, reject) => {
+              // 校验文件宽度
+              const reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = function(theFile) {
+              　　var image = new Image();
+                 image.src = theFile.target.result;
+                 image.onload = () => {
+                   if (image.width !== 282) {
+                     alert('图片宽度不符');
+                     reject();
+                   } else {
+                     resolve();
+                   }
+                 };
+              };
+            })
           }
         }}
       />
@@ -69,8 +88,12 @@ import TdUpload from './index';
 
 ```
 callback = (state, file, files) => {
-  if (state === 'before') {}
-  if (state === 'after') {}
+  if (state === 'before') {
+    // 会多次触发，返回 Promise.reject() 时停止上传
+  }
+  if (state === 'after') {
+    // 只会触发一次
+  }
   if (state === 'remove') {
     // 点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除。
   }
