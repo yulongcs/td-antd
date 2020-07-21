@@ -13,53 +13,46 @@ import TdUpload from './index';
 基于 Upload 的二次封装
 
 <Playground>
-  <Row>
-    <Col span={12}>
-      <TdUpload
-        // disabled
-        btnText="上传"
-        tip="仅支持 pdf 文件。"
-        // listType="picture-card"
-        callback={(t) => {
-          if (t === 'remove') {
-            return Promise.resolve();
-          }
-        }}
-      />
-    </Col>
-    <Col span={12}>
-      <TdUpload
-        size={5}
-        multiple
-        btnText="上传"
-        tip="仅支持图片格式。"
-        accept="image/*"
-        listType="picture-card"
-        callback={(t, file) => {
-          if (t === 'before') {
-            console.log('开始 before 回调');
-            return new Promise((resolve, reject) => {
-              // 校验文件宽度
-              const reader = new FileReader();
-              reader.readAsDataURL(file);
-              reader.onload = function(theFile) {
-              　　var image = new Image();
-                 image.src = theFile.target.result;
-                 image.onload = () => {
-                   if (image.width !== 282) {
-                     alert('图片宽度不符');
-                     reject();
-                   } else {
-                     resolve();
-                   }
-                 };
-              };
-            })
-          }
-        }}
-      />
-    </Col>
-  </Row>
+{class Example extends React.Component {
+  render () {
+    return (
+      <Row>
+          <Col span={12}>
+            <TdUpload
+              // disabled
+              btnText="上传"
+              tip="仅支持 pdf 文件。"
+              // listType="picture-card"
+              callback={(t) => {
+                if (t === 'remove') {
+                  return Promise.resolve();
+                }
+              }}
+            />
+          </Col>
+          <Col span={12}>
+            <TdUpload
+              size={5}
+              multiple
+              btnText="上传"
+              isSize={[282]}
+              accept="image/*"
+              tip="仅支持图片格式。"
+              listType="picture-card"
+              callback={(t, file, files) => {
+                if (t === 'before') {
+                  console.log('开始 before 回调');
+                }
+                if (t === 'after') {
+                  console.log(files);
+                }
+              }}
+            />
+          </Col>
+      </Row>
+    )
+  }
+}}
 </Playground>
 
 ## API
@@ -83,13 +76,14 @@ import TdUpload from './index';
 |callback|回调函数|function|-|
 |name|发到后台的文件参数名|string|'files'|
 |tip|提示文案|string|-|
+|isSize|图片宽高校验，如：[350, 750]，表示宽限制为350，高限制为750。也可只限制宽或高，宽度：[350]；高度：[null, 750]|Array|-|
 
 ### callback
 
 ```
 callback = (state, file, files) => {
   if (state === 'before') {
-    // 会多次触发，返回 Promise.reject() 时停止上传
+    // 只会触发一次
   }
   if (state === 'after') {
     // 只会触发一次

@@ -26,6 +26,7 @@ class TdUpload extends React.PureComponent {
     nameSize: 200,
     hideRemoveBtn: false, // 是否可以删除，true 的时候会展示删除按钮
     showUploadList: true, // 是否展示文件列表，原API
+    isSize: null, // 校验图片尺寸
   };
 
   state = {
@@ -146,14 +147,17 @@ class TdUpload extends React.PureComponent {
     });
   };
 
-  beforeUpload = async (file, files) => {
-    const { maxFiles, callback, size, nameSize } = this.props; // 最大上传文件数
+  beforeUpload = (file, files) => {
+    const { maxFiles, callback, size, nameSize, isSize } = this.props; // 最大上传文件数
     const { fileList } = this.state;
     const nowFileLength = files.length + fileList.length;
+    if (num === 0) {
+      callback('before', file, files);
+    }
+
     // eslint-disable-next-line
     num ++;
 
-    await callback('before', file, files);
     // 检测文件名长度
     if (file.name.length > nameSize) {
       message.error(`文件名长度(包含后缀)不能超过 ${nameSize}个字符：${file.name}`);
@@ -172,6 +176,35 @@ class TdUpload extends React.PureComponent {
       return Promise.reject();
     }
 
+    if (isSize && file.type.includes('image/')) {
+      return new Promise((resolve, reject) => {
+        // 校验文件宽度
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (theFile) => {
+          const image = new Image();
+          image.src = theFile.target.result;
+          image.onload = () => {
+            if ((isSize[0] && image.width !== isSize[0]) || (isSize[1] && image.height !== isSize[1])) {
+              message.error(`${file.name}：图片尺寸不符合要求，请修改后重新上传！`);
+              reject();
+            } else {
+              resolve();
+            }
+          };
+        };
+      }).then(() => {
+        this.setState(state => ({
+          fileList: [...state.fileList, file],
+        }), () => {
+          if (num >= files.length) {
+            num = 0;
+            callback('after', file, this.state.fileList);
+          }
+        });
+      })
+    }
+
     this.setState(state => ({
       fileList: [...state.fileList, file],
     }), () => {
@@ -180,6 +213,7 @@ class TdUpload extends React.PureComponent {
         callback('after', file, this.state.fileList);
       }
     });
+
     return false;
   };
 
@@ -198,6 +232,7 @@ class TdUpload extends React.PureComponent {
           fileList={this.state.fileList}
           beforeUpload={this.beforeUpload}
           onRemove={this.onRemove}
+          customRequest={() => {}}
           onPreview={isPreview && ((file) => {
             if (file.url) {
               this.imgRef.show();
