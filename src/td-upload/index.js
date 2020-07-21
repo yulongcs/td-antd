@@ -68,7 +68,7 @@ class TdUpload extends React.PureComponent {
   };
 
   // 异步上传文件
-  onUpload = async (succ = () => {}, err = () => {}) => {
+  onUpload = (succ = () => {}, err = () => {}) => {
     const { params, showUploadList, filterOptions, name } = this.props;
     const noUploadList = []; // 不需要上传的文件列表
     const formData = new FormData();
@@ -157,6 +157,11 @@ class TdUpload extends React.PureComponent {
 
     // eslint-disable-next-line
     num ++;
+
+    // 额外的校验，返回真值后，停止上传
+    if (callback('validate', file, files)) {
+      return Promise.reject();
+    }
 
     // 检测文件名长度
     if (file.name.length > nameSize) {

@@ -85,6 +85,9 @@ callback = (state, file, files) => {
   if (state === 'before') {
     // 只会触发一次
   }
+  if (state === 'validate') {
+    // 额外的校验，每个文件都会执行一次，返回值为真时，则停止上传
+  }
   if (state === 'after') {
     // 只会触发一次
   }
