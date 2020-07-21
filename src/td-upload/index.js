@@ -155,9 +155,6 @@ class TdUpload extends React.PureComponent {
       callback('before', file, files);
     }
 
-    // eslint-disable-next-line
-    num ++;
-
     // 额外的校验，返回真值后，停止上传
     if (callback('validate', file, files)) {
       return Promise.reject();
@@ -190,6 +187,7 @@ class TdUpload extends React.PureComponent {
           const image = new Image();
           image.src = theFile.target.result;
           image.onload = () => {
+            num ++;
             if ((isSize[0] && image.width !== isSize[0]) || (isSize[1] && image.height !== isSize[1])) {
               message.error(`${file.name}：图片尺寸不符合要求，请修改后重新上传！`);
               reject();
@@ -199,17 +197,24 @@ class TdUpload extends React.PureComponent {
           };
         };
       }).then(() => {
-        this.setState(state => ({
-          fileList: [...state.fileList, file],
-        }), () => {
-          if (num >= files.length) {
-            num = 0;
-            callback('after', file, this.state.fileList);
-          }
-        });
+        this.setStateFile(file, files, callback)
+      }, () => {
+        if (num >= files.length) {
+          num = 0;
+          callback('after', file, this.state.fileList);
+        }
       })
     }
 
+    num ++;
+
+    this.setStateFile(file, files, callback);
+
+    return false;
+  };
+
+  // 将可用文件存入 state 中
+  setStateFile = (file, files, callback) => {
     this.setState(state => ({
       fileList: [...state.fileList, file],
     }), () => {
@@ -218,8 +223,6 @@ class TdUpload extends React.PureComponent {
         callback('after', file, this.state.fileList);
       }
     });
-
-    return false;
   };
 
   render() {
