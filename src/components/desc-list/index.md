@@ -56,7 +56,7 @@ export default () => {
         }}
       />
   );
-};
+}
 ```
 
 ## API
@@ -65,9 +65,9 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|dataSource|数据源|object|{}|
-|columns|列描述数据对象|array|[]|
-|defaultValue|当值为空时，默认展示的值|string|'--'|
+|dataSource|数据源|Object|{}|
+|columns|列描述数据对象|Array|[]|
+|defaultValue|当值为空时，默认展示的值|String|'--'|
 
 ### columns
 

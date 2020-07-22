@@ -53,13 +53,13 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|onOk|点击确认按钮的回调函数|function||
-|onCancel|点击取消按钮的回调函数|function||
-|okText|确认按钮的文案|string|确定|
-|cancelText|取消按钮的文案|string|取消|
-|okButtonProps|确定按钮的属性|object|{}|
-|cancelButtonProps|取消按钮的属性|object|{}|
-|confirmLoading|确定按钮 loading|boolean|-|
+|onOk|点击确认按钮的回调函数|Function||
+|onCancel|点击取消按钮的回调函数|Function||
+|okText|确认按钮的文案|String|确定|
+|cancelText|取消按钮的文案|String|取消|
+|okButtonProps|确定按钮的属性|Object|{}|
+|cancelButtonProps|取消按钮的属性|Object|{}|
+|confirmLoading|确定按钮 loading|Boolean|-|
 
 ## Ref
 
@@ -67,4 +67,4 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|visible|浮层展示/隐藏|function(boolean)|-|
+|visible|浮层展示/隐藏|Function(Boolean)|-|

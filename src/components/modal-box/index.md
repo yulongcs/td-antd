@@ -35,8 +35,8 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|onOk|点击确认按钮的回调函数|function||
-|onCancel|点击取消按钮的回调函数|function||
+|onOk|点击确认按钮的回调函数|Function||
+|onCancel|点击取消按钮的回调函数|Function||
 
 ## Ref
 
@@ -44,6 +44,6 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|visible|浮层展示/隐藏|function(boolean)|-|
+|visible|浮层展示/隐藏|Function(Boolean)|-|
 
 > PS：内容区域高度最高是 500px，超出的内容会有滚动条。

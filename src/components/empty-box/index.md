@@ -32,6 +32,6 @@ export default () => {
 
 支持原 [Empty](https://3x.ant.design/components/empty-cn/) API
 
-|参数|说明|类型|默认值|版本|
-|:--|:--|:--|:--|:--|
-|show|是否展示空数据|Boolean|true||
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|show|是否展示空数据|Boolean|true|

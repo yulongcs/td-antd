@@ -61,8 +61,8 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|type|提示类型|string|success|
-|text|提示内容|string|''|
-|time|自动关闭的延时，单位秒。设为 0 时不自动关闭。|number|3|
+|type|提示类型|String|success|
+|text|提示内容|String|''|
+|time|自动关闭的延时，单位秒。设为 0 时不自动关闭。|Number|3|
 
 > 注意：在 message.config 中 maxCount 自动设置为了 1。如果需要不同的配置，请自行设置。[配置](https://ant-design.gitee.io/components/message-cn/#message.config)

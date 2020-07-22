@@ -25,4 +25,4 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|className|样式类|string|-|
+|className|样式类|String|-|

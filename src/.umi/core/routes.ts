@@ -6,17 +6,44 @@ const routes = [
   {
     "path": "/",
     "component": (props) => require('react').createElement(require('../../../node_modules/@umijs/preset-dumi/lib/themes/default/layout.js').default, {
-      ...{"menus":{"*":{"*":[{"path":"/","title":"介绍","meta":{}},{"path":"/change-log","title":"更新日志","meta":{}},{"title":"Components","path":"/components","meta":{},"children":[{"path":"/components/desc-list","title":"DescList","meta":{}},{"path":"/components/drag-modal","title":"DragModal","meta":{}},{"path":"/components/empty-box","title":"EmptyBox","meta":{}},{"path":"/components/form-item","title":"FormItem","meta":{}},{"path":"/components/handle-box","title":"HandleBox","meta":{}},{"path":"/components/link-btn","title":"LinkBtn","meta":{}},{"path":"/components/modal-box","title":"ModalBox","meta":{}},{"path":"/components/popover-box","title":"PopoverBox","meta":{}},{"path":"/components/toast","title":"toast","meta":{}}]}]}},"locales":[],"navs":{},"title":"td-antd","logo":"/logo.png","desc":"基于antd封装的业务组件","mode":"doc","repoUrl":"https://github.com/long-zhuge/td-antd"},
+      ...{"menus":{"*":{"*":[{"path":"/","title":"介绍","meta":{}},{"path":"/change-log","title":"更新日志","meta":{}},{"title":"Components","path":"/components","meta":{},"children":[{"path":"/components/auto-track","title":"autoTrack","meta":{}},{"path":"/components/desc-list","title":"DescList","meta":{}},{"path":"/components/drag-modal","title":"DragModal","meta":{}},{"path":"/components/empty-box","title":"EmptyBox","meta":{}},{"path":"/components/form-item","title":"FormItem","meta":{}},{"path":"/components/handle-box","title":"HandleBox","meta":{}},{"path":"/components/link-btn","title":"LinkBtn","meta":{}},{"path":"/components/modal-box","title":"ModalBox","meta":{}},{"path":"/components/popover-box","title":"PopoverBox","meta":{}},{"path":"/components/search-form","title":"SearchForm","meta":{}},{"path":"/components/select-map","title":"SelectMap","meta":{}},{"path":"/components/select-search","title":"SelectSearch","meta":{}},{"path":"/components/tag-addon","title":"TagAddon","meta":{}},{"path":"/components/td-input-number","title":"TdInputNumber","meta":{}},{"path":"/components/toast","title":"toast","meta":{}}]},{"title":"High-coupling","path":"/high-coupling","meta":{},"children":[{"path":"/high-coupling/local-config","title":"localConfig","meta":{}},{"path":"/high-coupling/login","title":"Login","meta":{}},{"path":"/high-coupling/pagination","title":"pagination","meta":{}},{"path":"/high-coupling/td-upload","title":"TdUpload","meta":{}}]}]}},"locales":[],"navs":{},"title":"td-antd","logo":"/logo.png","desc":"基于antd封装的业务组件","mode":"doc","repoUrl":"https://github.com/long-zhuge/td-antd"},
       ...props,
     }),
     "routes": [
+      {
+        "path": "/components/auto-track",
+        "component": require('../../components/auto-track/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/components/auto-track/index.md",
+          "updatedTime": 1595409420958,
+          "title": "autoTrack",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "autoTrack",
+              "heading": "autotrack"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            }
+          ],
+          "group": {
+            "path": "/components",
+            "title": "Components"
+          }
+        },
+        "title": "autoTrack"
+      },
       {
         "path": "/components/desc-list",
         "component": require('../../components/desc-list/index.md').default,
         "exact": true,
         "meta": {
           "filePath": "src/components/desc-list/index.md",
-          "updatedTime": 1595403898877,
+          "updatedTime": 1595406105000,
           "title": "DescList",
           "slugs": [
             {
@@ -48,7 +75,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/drag-modal/index.md",
-          "updatedTime": 1595401446625,
+          "updatedTime": 1595406105000,
           "title": "DragModal",
           "slugs": [
             {
@@ -75,7 +102,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/empty-box/index.md",
-          "updatedTime": 1595401446611,
+          "updatedTime": 1595406105000,
           "title": "EmptyBox",
           "slugs": [
             {
@@ -102,7 +129,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/form-item/index.md",
-          "updatedTime": 1595404651224,
+          "updatedTime": 1595406105000,
           "title": "FormItem",
           "slugs": [
             {
@@ -166,7 +193,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/link-btn/index.md",
-          "updatedTime": 1595403967238,
+          "updatedTime": 1595406105000,
           "title": "LinkBtn",
           "slugs": [
             {
@@ -193,7 +220,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/modal-box/index.md",
-          "updatedTime": 1595404662101,
+          "updatedTime": 1595406105000,
           "title": "ModalBox",
           "slugs": [
             {
@@ -225,7 +252,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/popover-box/index.md",
-          "updatedTime": 1595404891409,
+          "updatedTime": 1595406105000,
           "title": "PopoverBox",
           "slugs": [
             {
@@ -252,12 +279,159 @@ const routes = [
         "title": "PopoverBox"
       },
       {
+        "path": "/components/search-form",
+        "component": require('../../components/search-form/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/components/search-form/index.md",
+          "updatedTime": 1595407875501,
+          "title": "SearchForm",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "SearchForm",
+              "heading": "searchform"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            },
+            {
+              "depth": 2,
+              "value": "ref",
+              "heading": "ref"
+            }
+          ],
+          "group": {
+            "path": "/components",
+            "title": "Components"
+          }
+        },
+        "title": "SearchForm"
+      },
+      {
+        "path": "/components/select-map",
+        "component": require('../../components/select-map/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/components/select-map/index.md",
+          "updatedTime": 1595407891289,
+          "title": "SelectMap",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "SelectMap",
+              "heading": "selectmap"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            }
+          ],
+          "group": {
+            "path": "/components",
+            "title": "Components"
+          }
+        },
+        "title": "SelectMap"
+      },
+      {
+        "path": "/components/select-search",
+        "component": require('../../components/select-search/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/components/select-search/index.md",
+          "updatedTime": 1595407635789,
+          "title": "SelectSearch",
+          "route": "/selectSearch",
+          "menu": "组件",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "SelectSearch",
+              "heading": "selectsearch"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            }
+          ],
+          "group": {
+            "path": "/components",
+            "title": "Components"
+          }
+        },
+        "title": "SelectSearch"
+      },
+      {
+        "path": "/components/tag-addon",
+        "component": require('../../components/tag-addon/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/components/tag-addon/index.md",
+          "updatedTime": 1595408090555,
+          "title": "TagAddon",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "TagAddon",
+              "heading": "tagaddon"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            }
+          ],
+          "group": {
+            "path": "/components",
+            "title": "Components"
+          }
+        },
+        "title": "TagAddon"
+      },
+      {
+        "path": "/components/td-input-number",
+        "component": require('../../components/td-input-number/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/components/td-input-number/index.md",
+          "updatedTime": 1595407922014,
+          "title": "TdInputNumber",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "TdInputNumber",
+              "heading": "tdinputnumber"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            },
+            {
+              "depth": 2,
+              "value": "支持的货币符号",
+              "heading": "支持的货币符号"
+            }
+          ],
+          "group": {
+            "path": "/components",
+            "title": "Components"
+          }
+        },
+        "title": "TdInputNumber"
+      },
+      {
         "path": "/components/toast",
         "component": require('../../components/toast/index.md').default,
         "exact": true,
         "meta": {
           "filePath": "src/components/toast/index.md",
-          "updatedTime": 1595405134195,
+          "updatedTime": 1595406105000,
           "title": "toast",
           "slugs": [
             {
@@ -279,12 +453,185 @@ const routes = [
         "title": "toast"
       },
       {
+        "path": "/high-coupling/local-config",
+        "component": require('../../highCoupling/local-config/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/highCoupling/local-config/index.md",
+          "updatedTime": 1595410369378,
+          "title": "localConfig",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "localConfig",
+              "heading": "localconfig"
+            },
+            {
+              "depth": 2,
+              "value": "使用",
+              "heading": "使用"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            },
+            {
+              "depth": 3,
+              "value": "config",
+              "heading": "config"
+            }
+          ],
+          "group": {
+            "path": "/high-coupling",
+            "title": "High-coupling"
+          }
+        },
+        "title": "localConfig"
+      },
+      {
+        "path": "/high-coupling/login",
+        "component": require('../../highCoupling/login/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/highCoupling/login/index.md",
+          "updatedTime": 1595412396731,
+          "title": "Login",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "Login",
+              "heading": "login"
+            },
+            {
+              "depth": 3,
+              "value": "API",
+              "heading": "api"
+            },
+            {
+              "depth": 2,
+              "value": "Login.SignIn",
+              "heading": "loginsignin"
+            },
+            {
+              "depth": 3,
+              "value": "API",
+              "heading": "api-1"
+            },
+            {
+              "depth": 2,
+              "value": "Login.SignUp",
+              "heading": "loginsignup"
+            },
+            {
+              "depth": 3,
+              "value": "API",
+              "heading": "api-2"
+            },
+            {
+              "depth": 2,
+              "value": "Login.ResetPassword",
+              "heading": "loginresetpassword"
+            },
+            {
+              "depth": 3,
+              "value": "API",
+              "heading": "api-3"
+            }
+          ],
+          "group": {
+            "path": "/high-coupling",
+            "title": "High-coupling"
+          }
+        },
+        "title": "Login"
+      },
+      {
+        "path": "/high-coupling/pagination",
+        "component": require('../../highCoupling/pagination/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/highCoupling/pagination/index.md",
+          "updatedTime": 1595410574951,
+          "title": "pagination",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "pagination",
+              "heading": "pagination"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            }
+          ],
+          "group": {
+            "path": "/high-coupling",
+            "title": "High-coupling"
+          }
+        },
+        "title": "pagination"
+      },
+      {
+        "path": "/high-coupling/td-upload",
+        "component": require('../../highCoupling/td-upload/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/highCoupling/td-upload/index.md",
+          "updatedTime": 1595411582448,
+          "title": "TdUpload",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "TdUpload",
+              "heading": "tdupload"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            },
+            {
+              "depth": 3,
+              "value": "callback",
+              "heading": "callback"
+            },
+            {
+              "depth": 3,
+              "value": "Ref",
+              "heading": "ref"
+            },
+            {
+              "depth": 3,
+              "value": "onInitialFiles(files, filterOptions)",
+              "heading": "oninitialfilesfiles-filteroptions"
+            },
+            {
+              "depth": 2,
+              "value": "TdUpload.Preview",
+              "heading": "tduploadpreview"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api-1"
+            }
+          ],
+          "group": {
+            "path": "/high-coupling",
+            "title": "High-coupling"
+          }
+        },
+        "title": "TdUpload"
+      },
+      {
         "path": "/change-log",
         "component": require('../../../docs/changeLog.md').default,
         "exact": true,
         "meta": {
           "filePath": "docs/changeLog.md",
-          "updatedTime": 1595397391544,
+          "updatedTime": 1595406105000,
           "title": "更新日志",
           "slugs": [
             {
@@ -548,7 +895,13 @@ const routes = [
         "path": "/components",
         "meta": {},
         "exact": true,
-        "redirect": "/components/desc-list"
+        "redirect": "/components/auto-track"
+      },
+      {
+        "path": "/high-coupling",
+        "meta": {},
+        "exact": true,
+        "redirect": "/high-coupling/local-config"
       }
     ],
     "title": "td-antd"
