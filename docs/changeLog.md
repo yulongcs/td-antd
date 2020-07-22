@@ -6,6 +6,20 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+#### 🚀 1.6.8-bate4
+
+`2020-07-24`
+
+- TablePage
+  - fetchList 改为 query
+
+#### 🚀 1.6.8-bate3
+
+`2020-07-21`
+
+- TdUpload
+  - 新增 isSize 来判断图片宽高
+
 #### 🚀 1.6.8-bate2
 
 `2020-07-21`

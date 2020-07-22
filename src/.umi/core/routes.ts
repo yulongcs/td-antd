@@ -6,7 +6,7 @@ const routes = [
   {
     "path": "/",
     "component": (props) => require('react').createElement(require('../../../node_modules/@umijs/preset-dumi/lib/themes/default/layout.js').default, {
-      ...{"menus":{"*":{"*":[{"path":"/","title":"介绍","meta":{}},{"path":"/change-log","title":"更新日志","meta":{}},{"title":"Components","path":"/components","meta":{},"children":[{"path":"/components/auto-track","title":"autoTrack","meta":{}},{"path":"/components/desc-list","title":"DescList","meta":{}},{"path":"/components/drag-modal","title":"DragModal","meta":{}},{"path":"/components/empty-box","title":"EmptyBox","meta":{}},{"path":"/components/form-item","title":"FormItem","meta":{}},{"path":"/components/handle-box","title":"HandleBox","meta":{}},{"path":"/components/link-btn","title":"LinkBtn","meta":{}},{"path":"/components/modal-box","title":"ModalBox","meta":{}},{"path":"/components/popover-box","title":"PopoverBox","meta":{}},{"path":"/components/search-form","title":"SearchForm","meta":{}},{"path":"/components/select-map","title":"SelectMap","meta":{}},{"path":"/components/select-search","title":"SelectSearch","meta":{}},{"path":"/components/tag-addon","title":"TagAddon","meta":{}},{"path":"/components/td-input-number","title":"TdInputNumber","meta":{}},{"path":"/components/toast","title":"toast","meta":{}}]},{"title":"High-coupling","path":"/high-coupling","meta":{},"children":[{"path":"/high-coupling/local-config","title":"localConfig","meta":{}},{"path":"/high-coupling/login","title":"Login","meta":{}},{"path":"/high-coupling/pagination","title":"pagination","meta":{}},{"path":"/high-coupling/td-upload","title":"TdUpload","meta":{}}]}]}},"locales":[],"navs":{},"title":"td-antd","logo":"/logo.png","desc":"基于antd封装的业务组件","mode":"doc","repoUrl":"https://github.com/long-zhuge/td-antd"},
+      ...{"menus":{"*":{"*":[{"path":"/","title":"介绍","meta":{}},{"path":"/change-log","title":"更新日志","meta":{}},{"title":"Components","path":"/components","meta":{},"children":[{"path":"/components/auto-track","title":"autoTrack","meta":{}},{"path":"/components/desc-list","title":"DescList","meta":{}},{"path":"/components/drag-modal","title":"DragModal","meta":{}},{"path":"/components/empty-box","title":"EmptyBox","meta":{}},{"path":"/components/form-item","title":"FormItem","meta":{}},{"path":"/components/handle-box","title":"HandleBox","meta":{}},{"path":"/components/link-btn","title":"LinkBtn","meta":{}},{"path":"/components/modal-box","title":"ModalBox","meta":{}},{"path":"/components/popover-box","title":"PopoverBox","meta":{}},{"path":"/components/search-form","title":"SearchForm","meta":{}},{"path":"/components/select-map","title":"SelectMap","meta":{}},{"path":"/components/select-search","title":"SelectSearch","meta":{}},{"path":"/components/tag-addon","title":"TagAddon","meta":{}},{"path":"/components/td-input-number","title":"TdInputNumber","meta":{}},{"path":"/components/toast","title":"toast","meta":{}}]},{"title":"High-coupling","path":"/high-coupling","meta":{},"children":[{"path":"/high-coupling/local-config","title":"localConfig","meta":{}},{"path":"/high-coupling/login","title":"Login","meta":{}},{"path":"/high-coupling/pagination","title":"pagination","meta":{}},{"path":"/high-coupling/redirect","title":"redirect","meta":{}},{"path":"/high-coupling/table-page","title":"TablePage","meta":{}},{"path":"/high-coupling/td-upload","title":"TdUpload","meta":{}}]}]}},"locales":[],"navs":{},"title":"td-antd","logo":"/logo.png","desc":"基于antd封装的业务组件","mode":"doc","repoUrl":"https://github.com/long-zhuge/td-antd"},
       ...props,
     }),
     "routes": [
@@ -16,7 +16,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/auto-track/index.md",
-          "updatedTime": 1595409420958,
+          "updatedTime": 1595412553000,
           "title": "autoTrack",
           "slugs": [
             {
@@ -43,7 +43,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/desc-list/index.md",
-          "updatedTime": 1595406105000,
+          "updatedTime": 1595412553000,
           "title": "DescList",
           "slugs": [
             {
@@ -102,7 +102,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/empty-box/index.md",
-          "updatedTime": 1595406105000,
+          "updatedTime": 1595412553000,
           "title": "EmptyBox",
           "slugs": [
             {
@@ -129,7 +129,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/form-item/index.md",
-          "updatedTime": 1595406105000,
+          "updatedTime": 1595412553000,
           "title": "FormItem",
           "slugs": [
             {
@@ -171,7 +171,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/handle-box/index.md",
-          "updatedTime": 1595403984154,
+          "updatedTime": 1595406105000,
           "title": "HandleBox",
           "slugs": [
             {
@@ -193,7 +193,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/link-btn/index.md",
-          "updatedTime": 1595406105000,
+          "updatedTime": 1595412553000,
           "title": "LinkBtn",
           "slugs": [
             {
@@ -220,7 +220,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/modal-box/index.md",
-          "updatedTime": 1595406105000,
+          "updatedTime": 1595412553000,
           "title": "ModalBox",
           "slugs": [
             {
@@ -252,7 +252,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/popover-box/index.md",
-          "updatedTime": 1595406105000,
+          "updatedTime": 1595412553000,
           "title": "PopoverBox",
           "slugs": [
             {
@@ -284,7 +284,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/search-form/index.md",
-          "updatedTime": 1595407875501,
+          "updatedTime": 1595412553000,
           "title": "SearchForm",
           "slugs": [
             {
@@ -316,7 +316,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/select-map/index.md",
-          "updatedTime": 1595407891289,
+          "updatedTime": 1595412553000,
           "title": "SelectMap",
           "slugs": [
             {
@@ -343,7 +343,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/select-search/index.md",
-          "updatedTime": 1595407635789,
+          "updatedTime": 1595412553000,
           "title": "SelectSearch",
           "route": "/selectSearch",
           "menu": "组件",
@@ -372,7 +372,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/tag-addon/index.md",
-          "updatedTime": 1595408090555,
+          "updatedTime": 1595412553000,
           "title": "TagAddon",
           "slugs": [
             {
@@ -399,7 +399,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/td-input-number/index.md",
-          "updatedTime": 1595407922014,
+          "updatedTime": 1595412553000,
           "title": "TdInputNumber",
           "slugs": [
             {
@@ -431,7 +431,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/components/toast/index.md",
-          "updatedTime": 1595406105000,
+          "updatedTime": 1595412553000,
           "title": "toast",
           "slugs": [
             {
@@ -458,7 +458,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/highCoupling/local-config/index.md",
-          "updatedTime": 1595410369378,
+          "updatedTime": 1595412553000,
           "title": "localConfig",
           "slugs": [
             {
@@ -495,7 +495,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/highCoupling/login/index.md",
-          "updatedTime": 1595412396731,
+          "updatedTime": 1595412553000,
           "title": "Login",
           "slugs": [
             {
@@ -552,7 +552,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "src/highCoupling/pagination/index.md",
-          "updatedTime": 1595410574951,
+          "updatedTime": 1595412553000,
           "title": "pagination",
           "slugs": [
             {
@@ -574,12 +574,66 @@ const routes = [
         "title": "pagination"
       },
       {
+        "path": "/high-coupling/redirect",
+        "component": require('../../highCoupling/redirect/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/highCoupling/redirect/index.md",
+          "updatedTime": 1595412779390,
+          "title": "redirect",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "redirect",
+              "heading": "redirect"
+            }
+          ],
+          "group": {
+            "path": "/high-coupling",
+            "title": "High-coupling"
+          }
+        },
+        "title": "redirect"
+      },
+      {
+        "path": "/high-coupling/table-page",
+        "component": require('../../highCoupling/table-page/index.md').default,
+        "exact": true,
+        "meta": {
+          "filePath": "src/highCoupling/table-page/index.md",
+          "updatedTime": 1595412915640,
+          "title": "TablePage",
+          "slugs": [
+            {
+              "depth": 2,
+              "value": "TablePage",
+              "heading": "tablepage"
+            },
+            {
+              "depth": 2,
+              "value": "API",
+              "heading": "api"
+            },
+            {
+              "depth": 3,
+              "value": "Ref，使用 ref.current 进行调用",
+              "heading": "ref，使用-refcurrent-进行调用"
+            }
+          ],
+          "group": {
+            "path": "/high-coupling",
+            "title": "High-coupling"
+          }
+        },
+        "title": "TablePage"
+      },
+      {
         "path": "/high-coupling/td-upload",
         "component": require('../../highCoupling/td-upload/index.md').default,
         "exact": true,
         "meta": {
           "filePath": "src/highCoupling/td-upload/index.md",
-          "updatedTime": 1595411582448,
+          "updatedTime": 1595412553000,
           "title": "TdUpload",
           "slugs": [
             {
@@ -638,6 +692,16 @@ const routes = [
               "depth": 2,
               "value": "更新日志",
               "heading": "更新日志"
+            },
+            {
+              "depth": 4,
+              "value": "🚀 1.6.8-bate4",
+              "heading": "-168-bate4"
+            },
+            {
+              "depth": 4,
+              "value": "🚀 1.6.8-bate3",
+              "heading": "-168-bate3"
             },
             {
               "depth": 4,
@@ -859,7 +923,7 @@ const routes = [
         "exact": true,
         "meta": {
           "filePath": "docs/index.md",
-          "updatedTime": 1595064507633,
+          "updatedTime": 1595406105000,
           "title": "介绍",
           "slugs": [
             {
