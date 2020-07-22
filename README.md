@@ -13,7 +13,7 @@ npm install --save td-antd
 ### Usage
 
 ```
-import { Title, FormItem } from 'td-antd';
+import { FormItem } from 'td-antd';
 ```
 
 ### Development
@@ -28,10 +28,10 @@ $ sudo npm link
 $ npm link td-antd
 
 // Usage
-import { Title, FormItem } from 'td-antd';
+import { FormItem } from 'td-antd';
 
 // 单个组件引入
-import Title from 'td-antd/es/title';
+import FormItem from 'td-antd/es/form-item';
 
 // 卸载测试组件
 npm unlink td-antd
