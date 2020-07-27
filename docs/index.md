@@ -6,6 +6,12 @@ title: 介绍
 
 基于 ant-design 开发的业务组件。
 
+## 组件介绍
+
+- Components：公共组件，低耦合
+- High-coupling：高耦合的业务组件，与项目匹配
+- tools：工具包
+
 ## 依赖
 
 请确保宿主项目安装了以下依赖

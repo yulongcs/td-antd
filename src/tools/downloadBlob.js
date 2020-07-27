@@ -1,5 +1,3 @@
-import toast from '../toast';
-
 function downloadBlob(params) {
   const { url, filename, body } = params;
   const newOptions = { credentials: 'include', body };
@@ -21,7 +19,7 @@ function downloadBlob(params) {
         const value = e.target.result;
         try {
           const json = JSON.parse(value);
-          toast({ type: 'error', text: json.errorMessage });
+          alert(json.errorMessage);
         }
         catch(e) {
           const name = filename || response.headers.get('Content-Disposition');
