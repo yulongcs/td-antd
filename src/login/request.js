@@ -6,6 +6,9 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
+  if (/^50(.)$/.test(response.status)) {
+    return message.warning('服务升级中...');
+  }
   const error = new Error(response.statusText);
   error.response = response;
 
