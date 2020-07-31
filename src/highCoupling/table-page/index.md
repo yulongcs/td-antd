@@ -4,13 +4,13 @@ title: TablePage
 
 ## TablePage
 
-基于 Table 封装的简易列表页
+基于 Table 封装的简易列表页，包含搜索栏和 table
 
 ## API
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|url|列表请求地址|String|-|
+|url|列表请求地址。由于内置使用 request 是从 localConfig 中获取的，不必再使用 proxy |String|-|
 |tableProps|支持原 [Table](https://3x.ant.design/components/table-cn/) 的 API|Object|{}|
 |columns|表格列的配置描述，同原 Table 组件|ColumnProps[]|[]|
 |searchChildren|搜索项的子节点|ReactNode|-|

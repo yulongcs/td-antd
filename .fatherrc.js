@@ -8,7 +8,4 @@ exports.default = {
     extraBabelPlugins: [
         ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }],
     ],
-    doc: {
-        menu: [],
-    },
 };

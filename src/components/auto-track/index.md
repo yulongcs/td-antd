@@ -13,10 +13,10 @@ import autoTrack from './index';
 
 autoTrack({
   pageCallback: (log) => {
-    console.log(log);
+    alert(log);
   },
   eventCallback: (log) => {
-    console.log(log);
+    alert(log);
   },
 });
 
