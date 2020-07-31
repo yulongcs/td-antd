@@ -1,5 +1,7 @@
 import { defineConfig } from 'dumi';
 
+const path = require('path');
+
 // more config: https://d.umijs.org/config
 export default defineConfig({
   title: 'td-antd',
@@ -17,4 +19,8 @@ export default defineConfig({
       'antd',
     ],
   ],
+  alias: {
+    components: path.resolve(__dirname, 'src/'),
+    tools: path.resolve(__dirname, 'src/tools/'),
+  },
 });
