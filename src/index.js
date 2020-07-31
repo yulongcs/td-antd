@@ -11,7 +11,6 @@ export { default as PopoverBox } from './components/popover-box';
 export { default as SearchForm } from './components/search-form';
 export { default as SelectMap } from './components/select-map';
 export { default as SelectSearch } from './components/select-search';
-export { default as TagAddon } from './components/tag-addon';
 export { default as TdInputNumber } from './components/td-input-number';
 export { default as toast } from './components/toast';
 
