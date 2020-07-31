@@ -33,4 +33,4 @@ lib
 es
 .docz
 .doc
-/src/.umi
+/src/.umi/*
