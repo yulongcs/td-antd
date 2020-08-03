@@ -8,7 +8,7 @@ title: TdInputNumber
 
 ```jsx
 import React from 'react';
-import { TdInputNumber } from 'components';
+import { TdInputNumber } from 'td-antd';
 
 export default () => {
   return (

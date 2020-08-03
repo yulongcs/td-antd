@@ -9,7 +9,7 @@ title: delay
 ```jsx
 import React from 'react';
 import { Button } from 'antd';
-import { tools } from 'components';
+import { tools } from 'td-antd';
 
 const { delay } = tools;
 

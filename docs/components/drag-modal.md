@@ -8,7 +8,7 @@ title: DragModal
 
 ```jsx
 import React, { useState } from 'react';
-import { DragModal, LinkBtn } from 'components';
+import { DragModal, LinkBtn } from 'td-antd';
 
 export default () => {
   const [visible, setVisible] = useState(false);

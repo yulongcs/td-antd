@@ -8,7 +8,7 @@ title: toThousands
 
 ```jsx
 import React, { useEffect } from 'react';
-import { tools } from 'components';
+import { tools } from 'td-antd';
 
 const { toThousands } = tools;
 

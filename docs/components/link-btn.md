@@ -8,7 +8,7 @@ title: LinkBtn
 
 ```jsx
 import React from 'react';
-import { LinkBtn } from 'components';
+import { LinkBtn } from 'td-antd';
 
 export default () => {
   return(

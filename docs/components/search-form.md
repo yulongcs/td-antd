@@ -9,7 +9,7 @@ title: SearchForm
 ```jsx
 import React from 'react';
 import { Col } from 'antd';
-import { SearchForm, FormItem } from 'components';
+import { SearchForm, FormItem } from 'td-antd';
 
 export default () => {
   return (

@@ -9,7 +9,7 @@ title: pagination
 ```jsx
 import React, { useState } from 'react';
 import { Row, Col, Table, Button } from 'antd';
-import { pagination } from 'components';
+import { pagination } from 'td-antd';
 
 export default () => {
   const [locale, setLocale] = useState('zh');

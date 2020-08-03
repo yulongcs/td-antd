@@ -9,7 +9,7 @@ moment 和 string 之间的转换，默认格式为 YYYY-MM-DD。如果 value �
 ```jsx
 import React from 'react';
 import { DatePicker } from 'antd';
-import { tools } from 'components';
+import { tools } from 'td-antd';
 
 const { momentToString } = tools;
 

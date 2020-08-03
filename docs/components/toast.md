@@ -9,7 +9,7 @@ title: toast
 ```jsx
 import React from 'react';
 import { Button, Row, Col } from 'antd';
-import { toast } from 'components';
+import { toast } from 'td-antd';
 
 export default () => {
   return(

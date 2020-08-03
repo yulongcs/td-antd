@@ -9,7 +9,7 @@ FoodPanel 产品的组合登录组件，包含 "登录、注册、重置密码"�
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { Login } from 'components';
+import { Login } from 'td-antd';
 
 export default () => {
   const [locale, setLocale] = useState('zh');
@@ -52,7 +52,7 @@ export default () => {
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { Login } from 'components';
+import { Login } from 'td-antd';
 
 export default () => {
   const [locale, setLocale] = useState('zh');
@@ -94,7 +94,7 @@ export default () => {
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { Login } from 'components';
+import { Login } from 'td-antd';
 
 export default () => {
   const [locale, setLocale] = useState('zh');
@@ -135,7 +135,7 @@ export default () => {
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { Login } from 'components';
+import { Login } from 'td-antd';
 
 export default () => {
   const [locale, setLocale] = useState('zh');

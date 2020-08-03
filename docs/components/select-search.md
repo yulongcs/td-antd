@@ -11,7 +11,7 @@ menu: 组件
 ```jsx
 import React from 'react';
 import { Row, Col } from 'antd';
-import { SelectSearch } from 'components';
+import { SelectSearch } from 'td-antd';
 
 export default () => {
   return (

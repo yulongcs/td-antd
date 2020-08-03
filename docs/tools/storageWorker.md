@@ -8,7 +8,7 @@ title: storageWorker
 
 ```jsx
 import React, { useEffect } from 'react';
-import { HandleBox, LinkBtn, tools } from 'components';
+import { HandleBox, LinkBtn, tools } from 'td-antd';
 
 const { storageWorker } = tools;
 

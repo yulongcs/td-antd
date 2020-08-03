@@ -8,7 +8,7 @@ title: SelectMap
 
 ```jsx
 import React from 'react';
-import { SelectMap } from 'components';
+import { SelectMap } from 'td-antd';
 
 export default () => {
   return (

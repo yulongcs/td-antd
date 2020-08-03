@@ -9,7 +9,7 @@ title: TdUpload
 ```jsx
 import React from 'react';
 import { Row, Col } from 'antd';
-import { TdUpload } from 'components';
+import { TdUpload } from 'td-antd';
 
 export default () => {
   return (

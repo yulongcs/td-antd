@@ -11,7 +11,7 @@ title: FormItem
 ```jsx
 import React from 'react';
 import { Form, Button, Switch } from 'antd';
-import { FormItem } from 'components';
+import { FormItem } from 'td-antd';
 
 export default Form.create()(({ form }) => {
   const formProps = {

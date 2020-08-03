@@ -9,7 +9,7 @@ title: countdown
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { tools } from 'components';
+import { tools } from 'td-antd';
 
 const { countdown } = tools;
 

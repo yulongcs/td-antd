@@ -9,7 +9,7 @@ title: getUrlParameter
 ```jsx
 import React from 'react';
 import { Button } from 'antd';
-import { tools } from 'components';
+import { tools } from 'td-antd';
 
 const { getUrlParameter } = tools;
 const url = 'https://www.baidu.com?id=123&name=haha';

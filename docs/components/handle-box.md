@@ -8,7 +8,7 @@ title: HandleBox
 
 ```jsx
 import React from 'react';
-import { LinkBtn, HandleBox } from 'components';
+import { LinkBtn, HandleBox } from 'td-antd';
 
 export default () => {
   return (

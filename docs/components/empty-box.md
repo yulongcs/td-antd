@@ -9,7 +9,7 @@ title: EmptyBox
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { EmptyBox } from 'components';
+import { EmptyBox } from 'td-antd';
 
 export default () => {
   const [show, setShow] = useState(true);

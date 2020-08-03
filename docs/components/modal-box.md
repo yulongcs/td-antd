@@ -8,7 +8,7 @@ title: ModalBox
 
 ```jsx
 import React, { useRef } from 'react';
-import { ModalBox, LinkBtn } from 'components';
+import { ModalBox, LinkBtn } from 'td-antd';
 
 export default () => {
   const ref = useRef();

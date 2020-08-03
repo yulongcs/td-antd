@@ -20,7 +20,7 @@ exports.default = dumi_1.defineConfig({
         ],
     ],
     alias: {
-        components: path.resolve(__dirname, 'src/'),
+        'td-antd': path.resolve(__dirname, 'src/'),
         tools: path.resolve(__dirname, 'src/tools/'),
     },
 });

@@ -9,7 +9,7 @@ title: autoTrack
 ```jsx
 import React from 'react';
 import { Button } from 'antd';
-import { autoTrack } from 'components';
+import { autoTrack } from 'td-antd';
 
 autoTrack({
   pageCallback: (log) => {

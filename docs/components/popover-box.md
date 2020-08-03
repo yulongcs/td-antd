@@ -8,7 +8,7 @@ title: PopoverBox
 
 ```jsx
 import React, { useRef, useState } from 'react';
-import { PopoverBox, LinkBtn, HandleBox } from 'components';
+import { PopoverBox, LinkBtn, HandleBox } from 'td-antd';
 
 export default () => {
   const ref = useRef();

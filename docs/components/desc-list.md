@@ -8,7 +8,7 @@ title: DescList
 
 ```jsx
 import React from 'react';
-import { DescList } from 'components';
+import { DescList } from 'td-antd';
 
 export default () => {
   return (
