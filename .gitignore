@@ -28,7 +28,6 @@ jspm_packages
 *.zip
 jsconfig.json
 .prettierrc
-dist
 lib
 es
 .docz
