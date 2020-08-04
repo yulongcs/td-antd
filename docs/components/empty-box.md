@@ -6,6 +6,8 @@ title: EmptyBox
 
 基于 Empty 的二次封装，可灵活的展示空数据的表现
 
+## 代码演示
+
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
@@ -20,8 +22,10 @@ export default () => {
         onClick={() => { setShow(!show) }}
       >{show ? '有数据' : '无数据'}
       </Button>
+      <br />
+      <br />
       <EmptyBox show={show}>
-          展示内容
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg" />
       </EmptyBox>
     </React.Fragment>
   );

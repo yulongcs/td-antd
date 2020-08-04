@@ -6,55 +6,58 @@ title: DescList
 
 基于 Descriptions 的二次封装，通常用于详情信息的展示。
 
+## 代码演示
+
 ```jsx
+/**
+ * title: 基础用法
+ */
 import React from 'react';
 import { DescList } from 'td-antd';
 
 export default () => {
   return (
     <DescList
-        bordered
-        column={3}
-        columns={[
-          {
-            title: '名字',
-            dataIndex: 'name',
-          }, {
-            title: '年龄',
-            dataIndex: 'age',
-          }, {
-            title: '地址',
-            dataIndex: 'address',
-          }, {
-            title: '电话',
-            render: record => record.phone,
-            span: 3,
-          }, {
-            title: '描述',
-            dataIndex: 'desc.text',
-            span: 3,
-          }, {
-            title: '地址被隐藏了',
-            dataIndex: 'address',
-            visible: false,
-          }, {
-            title: '邮箱被隐藏了',
-            dataIndex: 'email',
-            visible: () => {},
-          }
-        ]}
-        dataSource={{
-          name: 'andy',
-          age: 18,
-          address: '树上第三根叉',
-          phone: '138xxxxxxxx',
-          email: 'xxx@xxx.com',
-          desc: {
-            code: 1,
-            text: 'dataIndex 的嵌套写法'
-          },
-        }}
-      />
+      columns={[
+        {
+          title: '名字',
+          dataIndex: 'name',
+        }, {
+          title: '年龄',
+          dataIndex: 'age',
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        }, {
+          title: '电话',
+          render: record => record.phone,
+          span: 3,
+        }, {
+          title: '描述',
+          dataIndex: 'desc.text',
+          span: 3,
+        }, {
+          title: '地址被隐藏了',
+          dataIndex: 'address',
+          visible: false,
+        }, {
+          title: '邮箱被隐藏了',
+          dataIndex: 'email',
+          visible: () => {},
+        }
+      ]}
+      dataSource={{
+        name: 'andy',
+        age: 18,
+        address: '树上第三根叉',
+        phone: '138xxxxxxxx',
+        email: 'xxx@xxx.com',
+        desc: {
+          code: 1,
+          text: 'dataIndex 的嵌套写法'
+        },
+      }}
+    />
   );
 }
 ```

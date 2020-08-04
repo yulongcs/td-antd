@@ -1,6 +1,6 @@
 {
   "name": "td-antd",
-  "version": "1.6.8-bate6",
+  "version": "1.6.8-bate7",
   "description": "基于antd封装的业务组件库和工具",
   "main": "lib/index.js",
   "module": "es/index.js",

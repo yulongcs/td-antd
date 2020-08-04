@@ -6,6 +6,8 @@ title: Login
 
 FoodPanel 产品的组合登录组件，包含 "登录、注册、重置密码"，支持中英文。
 
+### 代码演示
+
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
@@ -49,6 +51,8 @@ export default () => {
 
 独立的登录组件
 
+### 代码演示
+
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
@@ -91,6 +95,8 @@ export default () => {
 
 独立的注册组件
 
+### 代码演示
+
 ```jsx
 import React, { useState } from 'react';
 import { Button } from 'antd';
@@ -131,6 +137,8 @@ export default () => {
 ## Login.ResetPassword
 
 独立的密码重置组件
+
+### 代码演示
 
 ```jsx
 import React, { useState } from 'react';

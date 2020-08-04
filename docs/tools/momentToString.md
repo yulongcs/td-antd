@@ -6,6 +6,8 @@ title: momentToString
 
 moment 和 string 之间的转换，默认格式为 YYYY-MM-DD。如果 value 对象是 moment，则会转为 format 的格式日期，反之亦然
 
+## 代码演示
+
 ```jsx
 import React from 'react';
 import { DatePicker } from 'antd';

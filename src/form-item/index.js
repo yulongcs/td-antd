@@ -72,7 +72,7 @@ export default ({ className, children, ...rest }) => {
         ...decoratorOptions,
       })(
         (itemType === 'number') ?
-          <Input type="number" suffix={unit} /> :
+          <Input type="number" suffix={unit} {...inputProps} /> :
           (children || <Input {...inputProps} />)
       )}
     </Form.Item>

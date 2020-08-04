@@ -8,41 +8,84 @@ menu: 组件
 
 基于 Select 封装的带接口搜索的下拉框组件。可用于 Form 的受控组件
 
+## 代码演示
+
 ```jsx
+/**
+ * title: 单选
+ */
 import React from 'react';
 import { Row, Col } from 'antd';
 import { SelectSearch } from 'td-antd';
 
 export default () => {
   return (
-    <>
-      <SelectSearch
-        allowClear
-        placeholder="输入数字，单选"
-        fields={['cell', 'phone']}
-        // 使用公共接口进行测试
-        url="https://randomuser.me/api/?results="
-        afterFetch={res => res.results}
-        onChange={(value) => {
-          console.log(value);
-        }}
-      />
-      <br />
-      <br />
-      <SelectSearch
-        isData
-        allowClear
-        mode="multiple"
-        placeholder="输入数字，多选"
-        fields={['cell', 'phone']}
-        // 使用公共接口进行测试
-        url="https://randomuser.me/api/?results="
-        afterFetch={res => res.results}
-        onChange={(value) => {
-          console.log(value);
-        }}
-      />
-    </>
+    <SelectSearch
+      allowClear
+      style={{ width: 350 }}
+      placeholder="输入数字"
+      fields={['cell', 'phone']}
+      // 使用公共接口进行测试
+      url="https://randomuser.me/api/?results="
+      afterFetch={res => res.results}
+      onChange={(value) => {
+        console.log(value);
+      }}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 多选
+ */
+import React from 'react';
+import { Row, Col } from 'antd';
+import { SelectSearch } from 'td-antd';
+
+export default () => {
+  return (
+    <SelectSearch
+      allowClear
+      mode="multiple"
+      placeholder="输入数字"
+      fields={['cell', 'phone']}
+      // 使用公共接口进行测试
+      url="https://randomuser.me/api/?results="
+      afterFetch={res => res.results}
+      onChange={(value) => {
+        console.log(value);
+      }}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 获取选项的全部数据
+ * desc: 返回 Array[String] 类型的数据
+ */
+import React from 'react';
+import { Row, Col } from 'antd';
+import { SelectSearch } from 'td-antd';
+
+export default () => {
+  return (
+    <SelectSearch
+      isData
+      allowClear
+      mode="multiple"
+      placeholder="输入数字"
+      fields={['cell', 'phone']}
+      // 使用公共接口进行测试
+      url="https://randomuser.me/api/?results="
+      afterFetch={res => res.results}
+      onChange={(value) => {
+        console.log(value);
+      }}
+    />
   );
 }
 ```

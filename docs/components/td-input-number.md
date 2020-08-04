@@ -6,6 +6,8 @@ title: TdInputNumber
 
 基于 InputNumber 的二次封装，实现带单位的数字输入框
 
+## 代码演示
+
 ```jsx
 import React from 'react';
 import { TdInputNumber } from 'td-antd';

@@ -6,7 +6,7 @@ title: FormItem
 
 基于 Form.Item 的二次封装，可灵活的搭建表单内容。
 
-### 基础表单
+## 代码演示
 
 ```jsx
 import React from 'react';
@@ -16,7 +16,20 @@ import { FormItem } from 'td-antd';
 export default Form.create()(({ form }) => {
   const formProps = {
     form,
-    cols: [10, 12],
+    cols: [7, 10],
+  };
+  
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 7,
+      },
+    },
   };
   
   const onSubmit = (e) => {
@@ -40,9 +53,10 @@ export default Form.create()(({ form }) => {
       />
       <FormItem
         {...formProps}
-        label="年龄（失去焦点后校验）"
+        label="年龄"
         fieldName="age"
         itemType="number"
+        inputProps={{ placeholder: '失去焦点后校验' }}
         decoratorOptions={{
           validateTrigger: 'onBlur'
         }}
@@ -64,7 +78,9 @@ export default Form.create()(({ form }) => {
       >
         <Switch />
       </FormItem>
-      <Button onClick={onSubmit}>提交</Button>
+      <FormItem {...tailFormItemLayout}>
+        <Button onClick={onSubmit}>提交</Button>
+      </FormItem>
     </React.Fragment>
   );
 })

@@ -3,7 +3,6 @@ import { fetch } from 'dva';
 import cx from 'classnames';
 import { Upload, Button, message, Icon } from 'antd';
 import ImgModal from './img-modal';
-import Preview from './preview';
 import onInitialFiles from './onInitialFiles';
 import isPromise from '../tools/isPromise';
 import localConfig from '../local-config';
@@ -233,6 +232,7 @@ class TdUpload extends React.PureComponent {
       <div
         className={cx('td-upload-wrap', wrapClassName, {
           'td-upload-hide-remove': hideRemoveBtn,
+          'td-upload-hide': disabled,
         })}
       >
         <Upload
@@ -263,7 +263,6 @@ class TdUpload extends React.PureComponent {
   }
 }
 
-TdUpload.Preview = Preview;
 TdUpload.onInitialFiles = onInitialFiles;
 
 export default TdUpload;

@@ -6,6 +6,8 @@ title: isPromise
 
 判断对象是否为 promise 对象
 
+## 代码演示
+
 ```jsx
 import React from 'react';
 import { Button } from 'antd';

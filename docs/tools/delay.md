@@ -6,6 +6,8 @@ title: delay
 
 在指定毫秒数后调用函数，并将附加参数传给函数。
 
+## 代码演示
+
 ```jsx
 import React from 'react';
 import { Button } from 'antd';

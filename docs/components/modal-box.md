@@ -6,8 +6,11 @@ title: ModalBox
 
 基于 Modal 的二次封装，通过 refs 调用组件函数来打开浮层。
 
+## 代码演示
+
 ```jsx
 import React, { useRef } from 'react';
+import { Button } from 'antd';
 import { ModalBox, LinkBtn } from 'td-antd';
 
 export default () => {
@@ -15,7 +18,7 @@ export default () => {
 
   return(
     <React.Fragment>
-      <LinkBtn onClick={() => { ref.current.visible(true) }}>show</LinkBtn>
+      <Button type="primary" onClick={() => { ref.current.visible(true) }}>show</Button>
       <ModalBox
         title="demo"
         ref={ref}

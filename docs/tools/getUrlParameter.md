@@ -6,6 +6,8 @@ title: getUrlParameter
 
 获取 url 中指定的参数
 
+## 代码演示
+
 ```jsx
 import React from 'react';
 import { Button } from 'antd';

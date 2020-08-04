@@ -6,6 +6,8 @@ title: genNonDuplicateID
 
 生成唯一ID
 
+## 代码演示
+
 ```jsx
 import React from 'react';
 import { Button } from 'antd';

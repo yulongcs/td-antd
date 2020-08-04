@@ -6,6 +6,8 @@ title: noPassByInfo
 
 手机号/邮箱 的信息脱敏
 
+## 代码演示
+
 ```jsx
 import React, { useEffect } from 'react';
 import { tools } from 'td-antd';

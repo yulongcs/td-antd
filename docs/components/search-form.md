@@ -6,6 +6,8 @@ title: SearchForm
 
 基于 Form 的二次封装，一般用于列表页头部的搜索栏。组件内部包裹了 Row 组件，在使用组件时，可直接使用 Col 进行排版
 
+## 代码演示
+
 ```jsx
 import React from 'react';
 import { Col } from 'antd';

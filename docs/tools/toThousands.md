@@ -6,6 +6,8 @@ title: toThousands
 
 数字与千位符数字的转化，千位符数字一般用于金融数字展示
 
+## 代码演示
+
 ```jsx
 import React, { useEffect } from 'react';
 import { tools } from 'td-antd';

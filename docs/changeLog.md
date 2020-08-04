@@ -6,6 +6,15 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+#### 🚀 1.6.8-bate7
+
+`2020-08-04`
+
+- FormItem
+  - 修复 itemType = number 时，inputProps 无效的问题
+- TdUpload
+  - 删除了 Preview 的子组件
+
 #### 🚀 1.6.8-bate6
 
 `2020-07-31`

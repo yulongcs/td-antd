@@ -6,8 +6,11 @@ title: DragModal
 
 基于 Modal 的二次封装，可拖拽的浮层
 
+## 代码演示
+
 ```jsx
 import React, { useState } from 'react';
+import { Button } from 'antd';
 import { DragModal, LinkBtn } from 'td-antd';
 
 export default () => {
@@ -16,9 +19,10 @@ export default () => {
   
   return (
     <React.Fragment>
-      <LinkBtn onClick={() => { setVisible(true) }}>Show-1</LinkBtn>
+      <Button onClick={() => { setVisible(true) }}>Show-1</Button>
       <br/>
-      <LinkBtn onClick={() => { setVisible2(true) }}>Show-2</LinkBtn>
+      <br/>
+      <Button onClick={() => { setVisible2(true) }}>Show-2</Button>
       <DragModal title="Modal-1" visible={visible} onCancel={() => setVisible(false)}>
         这里是内容哟
       </DragModal>

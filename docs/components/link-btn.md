@@ -4,7 +4,9 @@ title: LinkBtn
 
 ## LinkBtn
 
-像 a 标签一样的按钮组件，可根据 @primary-color 进行颜色变更
+像 a 标签一样的按钮组件，语义化更好，可根据 @primary-color 进行颜色变更
+
+## 代码演示
 
 ```jsx
 import React from 'react';
