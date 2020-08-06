@@ -6,10 +6,14 @@
 }
 
 .td-upload-hide-remove {
-  :global {
-    .ant-upload-list-item-card-actions  {
-      display: none !important;
-    }
+  .ant-upload-list-item-card-actions {
+    display: none !important;
+  }
+}
+
+.td-upload-hide {
+  .ant-upload-disabled {
+    display: none !important;
   }
 }
 
@@ -24,36 +28,4 @@
 .td-img-modal-img {
   display: block;
   width: 100%;
-}
-
-/* preview */
-.td-preview-item {
-  position: relative;
-
-  &:hover {
-    background-color: rgba(0,0,0,.1);
-
-    .td-preview-item-btn {
-      display: flex;
-    }
-  }
-}
-
-.td-preview-item-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255,255,255,.75);
-  justify-content: center;
-  align-items: center;
-  padding: 0 2px;
-  cursor: pointer;
-  display: none;
-  z-index: 9;
-}
-
-.td-btn-icon {
-  font-size: 32px;
-  color: #999;
 }

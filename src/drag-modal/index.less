@@ -1,17 +1,14 @@
 .td-drag-box {
-  box-shadow: 0 4px 12px rgba(0,0,0,.15);
   right: auto;
   bottom: auto;
-  top: 100px;
+  overflow: inherit;
 
   .td-drag-title {
     cursor: move;
   }
 
-  :global {
-    .ant-modal {
-      top: auto;
-      padding-bottom: 0;
-    }
+  .ant-modal {
+    top: 0;
+    padding-bottom: 0;
   }
 }

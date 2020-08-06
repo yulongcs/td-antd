@@ -9,7 +9,6 @@ import downloadBlob from './downloadBlob';
 import noPassByInfo from './noPassByInfo';
 import countdown from './countdown';
 import storageWorker from './storageWorker';
-import redirect from './redirect';
 import isPromise from './isPromise';
 
 export default {
@@ -24,6 +23,5 @@ export default {
   noPassByInfo,
   countdown,
   storageWorker,
-  redirect,
   isPromise,
 };

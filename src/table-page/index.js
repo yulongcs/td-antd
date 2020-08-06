@@ -23,10 +23,10 @@ export default forwardRef((props, ref) => {
   const { request } = localConfig.newInstance();
 
   useEffect(() => {
-    fetchList();
+    query();
   }, [request]);
 
-  const fetchList = (obj = {}, reset = false) => {
+  const query = (obj = {}, reset = false) => {
     const params = reset ? {...obj, ...defaultParams} : {...keywords, ...obj };
 
     if (request) {
@@ -49,7 +49,7 @@ export default forwardRef((props, ref) => {
   // 提供给外部的接口
   useImperativeHandle(ref, () => ({
     searchFormRef: searchRef.current && searchRef.current.form,
-    fetchList,
+    query,
   }));
 
   return (
@@ -59,7 +59,7 @@ export default forwardRef((props, ref) => {
           wrappedComponentRef={searchRef}
           {...searchFormProps}
           callback={(values = {}) => {
-            fetchList((searchReturn ? searchReturn(values) : values), true);
+            query((searchReturn ? searchReturn(values) : values), true);
           }}
         >
           {(formProps) => searchChildren(formProps)}
@@ -74,7 +74,7 @@ export default forwardRef((props, ref) => {
         pagination={(data.pageSize || data.limit) ? pagination({
           data,
           onChange: (pageNum) => {
-            fetchList({pageNum});
+            query({pageNum});
           },
         }) : false}
         {...tableProps}

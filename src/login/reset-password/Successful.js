@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Result } from 'antd';
-import redirect from '../../tools/redirect';
+import redirect from '../../redirect';
 import countdown from '../../tools/countdown';
 
 export default (props) => {

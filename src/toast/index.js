@@ -1,5 +1,4 @@
-import message from 'antd/es/message';
-import 'antd/es/message/style';
+import { message } from 'antd';
 
 message.config({maxCount: 1});
 

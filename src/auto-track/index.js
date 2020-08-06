@@ -27,7 +27,7 @@ const autoTrack = (config) => {
       trackList.push(args[1].logpage.type);
     }
 
-    if (args[1] && args[1].logevent) {
+    if (args[1] && args[1].logevent && args.length === 3) {
       const event = function () {
         const newProps = Object.assign(props);
         const click = newProps.onClick;

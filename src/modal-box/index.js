@@ -31,7 +31,7 @@ export default forwardRef((props, ref) => {
 
   // 提供给外部的接口
   useImperativeHandle(ref, () => ({
-    visible: (bool) => { setVisible(bool) },
+    visible: setVisible,
   }));
 
   return (

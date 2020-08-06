@@ -1,11 +1,8 @@
 import * as React from 'react';
-import Input from 'antd/es/input';
-import Form from 'antd/es/form';
-import 'antd/es/input/style';
-import 'antd/es/form/style';
+import { Input, Form } from 'antd';
 
-export default function FormItem({ className, children, ...props }) {
-  const { cols = [] } = props;
+export default ({ className, children, ...rest }) => {
+  const { cols = [] } = rest;
   const {
     formItemLayout = {
       labelCol: { sm: { span: cols[0] || 10 } },
@@ -26,7 +23,7 @@ export default function FormItem({ className, children, ...props }) {
     message = '必填项',
     defaultValue = '--',
     decoratorOptions = {},
-  } = props;
+  } = rest;
 
   if (!form) {
     return (
@@ -34,7 +31,7 @@ export default function FormItem({ className, children, ...props }) {
         style={{ marginBottom: 0 }}
         className={className}
         {...formItemLayout}
-        {...props}
+        {...rest}
         label={label}
       >
         {children || initialValue || defaultValue}
@@ -67,7 +64,7 @@ export default function FormItem({ className, children, ...props }) {
     <Form.Item
       className={className}
       {...formItemLayout}
-      {...props}
+      {...rest}
     >
       {form.getFieldDecorator(fieldName, {
         rules,
@@ -75,7 +72,7 @@ export default function FormItem({ className, children, ...props }) {
         ...decoratorOptions,
       })(
         (itemType === 'number') ?
-          <Input type="number" suffix={unit} /> :
+          <Input type="number" suffix={unit} {...inputProps} /> :
           (children || <Input {...inputProps} />)
       )}
     </Form.Item>

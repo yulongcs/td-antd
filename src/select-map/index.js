@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Select from 'antd/es/select';
-import 'antd/es/select/style';
+import { Select } from 'antd';
 
 export default (props) => {
   const {
     data,
     fields = [],
+    ...rest
   } = props;
 
   const renderOption = () => {
@@ -29,7 +29,7 @@ export default (props) => {
       allowClear
       style={{ width: '100%' }}
       filterOption={(inputValue, option) => (option.props.children.includes(inputValue))}
-      {...props}
+      {...rest}
     >
       {renderOption()}
     </Select>
