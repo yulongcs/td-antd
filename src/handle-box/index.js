@@ -1,4 +1,6 @@
 import React from 'react';
 import './index.less';
 
-export default (props) => <div className="td-handle-box">{props.children}</div>;
+export default ({ children, className = '', ...rest }) => (
+  <div {...rest} className={`td-handle-box ${className}`}>{children}</div>
+);
