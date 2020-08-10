@@ -6,6 +6,14 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+#### 🚀 1.6.8-bate9
+
+`2020-08-10`
+
+- TdUpload
+  - isSize 属性被移除，替代为 scale
+  - 新增属性 scale，具体用法请查看组件文档
+
 #### 🚀 1.6.8-bate8
 
 `2020-08-06`

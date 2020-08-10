@@ -74,7 +74,7 @@ export default () => {
       size={5}
       multiple
       btnText="上传"
-      isSize={[750, 750]}
+      scale={[750, 750]}
       accept="image/*"
       tip="仅支持 750*750 的图片"
       listType="picture-card"
@@ -248,7 +248,16 @@ export default () => {
 |callback|回调函数|Function|-|
 |name|发到后台的文件参数名|String|'files'|
 |tip|提示文案|String|-|
-|isSize|图片宽高校验，如：[350, 750]，表示宽限制为350，高限制为750。也可只限制宽或高，宽度：[350]；高度：[null, 750]|Array|-|
+|scale|查看 scale 规则|Array/String|-|
+
+### scale 规则
+
+```
+[350, 750]：限制图片宽为 350，高为 750
+[350]：限制图片宽为 350，不限制高度
+[null, 750]：不限制宽度，限制高度为750
+"16:9"：限制宽高比例
+```
 
 ### callback
 
