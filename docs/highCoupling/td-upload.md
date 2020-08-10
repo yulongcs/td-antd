@@ -248,7 +248,7 @@ export default () => {
 |callback|回调函数|Function|-|
 |name|发到后台的文件参数名|String|'files'|
 |tip|提示文案|String|-|
-|scale|查看 scale 规则|Array/String|-|
+|scale|图片尺寸校验|Array/String|-|
 
 ### scale 规则
 
