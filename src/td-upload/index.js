@@ -9,6 +9,7 @@ import localConfig from '../local-config';
 import './index.less';
 
 let num = 0; // 上传文件计数
+let waitFiles = []; // 等待插入组件的数据
 const ERROR_0 = '图片尺寸不符合要求，请修改后重新上传！';
 const ERROR_1 = '组件 scale 参数格式错误';
 
@@ -152,95 +153,105 @@ class TdUpload extends React.PureComponent {
     const { maxFiles, callback, size, nameSize, scale } = this.props; // 最大上传文件数
     const { fileList } = this.state;
     const nowFileLength = files.length + fileList.length;
+    let check = true; // 当前文件是否校验通过，默认通过
     if (num === 0) {
       callback('before', file, files);
     }
 
+    num ++;
+
     // 额外的校验，返回真值后，停止上传
     if (callback('validate', file, files)) {
-      return Promise.reject();
+      check = false;
     }
 
     // 检测文件名长度
     if (file.name.length > nameSize) {
-      message.error(`文件名长度(包含后缀)不能超过 ${nameSize}个字符：${file.name}`);
-      return Promise.reject();
+      message.error(`${file.name}：文件名长度(包含后缀)不能超过 ${nameSize}个字符`);
+      check = false;
     }
 
     // 检测文件大小
     if ((file.size / 1048576) > size) {
-      message.error(`文件大小不能超过 ${size}MB：${file.name}`);
-      return Promise.reject();
+      message.error(`${file.name}：文件大小不能超过 ${size}MB`);
+      check = false;
     }
 
     // 检测单次上传文件数
     if (nowFileLength > maxFiles) {
       message.error(`最多只能上传 ${maxFiles} 个文件`);
-      return Promise.reject();
+      check = false;
     }
 
     // 校验图片尺寸
     if (scale && file.type.includes('image/')) {
       return new Promise((resolve, reject) => {
-        // 校验文件宽度
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (theFile) => {
-          const image = new Image();
-          image.src = theFile.target.result;
-          image.onload = () => {
-            num ++;
-            // 判断scale是否为字符串，格式是否为 "16:9" 的宽高比
-            if (typeof scale === 'string') {
-              const scaleArray = scale.split(':');
-              const isError = scaleArray.some(i => isNaN(+i));
-              if (isError) {
-                message.error(ERROR_1);
-                return reject();
+        // 前置校验不通过的话，直接 reject
+        if (!check) {
+          reject();
+        } else {
+          // 校验文件宽度
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = (theFile) => {
+            const image = new Image();
+            image.src = theFile.target.result;
+            image.onload = () => {
+              // 判断scale是否为字符串，格式是否为 "16:9" 的宽高比
+              if (typeof scale === 'string') {
+                const scaleArray = scale.split(':');
+                const isError = scaleArray.some(i => isNaN(+i));
+                if (isError) {
+                  message.error(ERROR_1);
+                  reject();
+                }
+                if (+scaleArray[0] * image.height === +scaleArray[1] * image.width) {
+                  resolve();
+                } else {
+                  message.error(`${file.name}：${ERROR_0}`);
+                  reject();
+                }
+              } else if (Array.isArray(scale)) { // 如果是数组的话
+                if ((scale[0] && image.width !== scale[0]) || (scale[1] && image.height !== scale[1])) {
+                  message.error(`${file.name}：${ERROR_0}`);
+                  reject();
+                } else {
+                  resolve();
+                }
               }
-              if (+scaleArray[0] * image.height === +scaleArray[1] * image.width) {
-                resolve();
-              } else {
-                message.error(`${file.name}：${ERROR_0}`);
-                reject();
-              }
-            } else if (Array.isArray(scale)) { // 如果是数组的话
-              if ((scale[0] && image.width !== scale[0]) || (scale[1] && image.height !== scale[1])) {
-                message.error(`${file.name}：${ERROR_0}`);
-                reject();
-              } else {
-                resolve();
-              }
-            }
+            };
           };
-        };
-      }).then(() => {
-        this.setStateFile(file, files, callback)
-      }, () => {
-        if (num >= files.length) {
-          num = 0;
-          callback('after', file, this.state.fileList);
         }
+      }).then(() => {
+        waitFiles.push(file);
+        this.setStateFile(files, callback)
+      }, () => {
+        this.setStateFile(files, callback)
       })
     }
 
-    num ++;
-
-    this.setStateFile(file, files, callback);
-
-    return false;
+    if (check) {
+      waitFiles.push(file);
+      this.setStateFile(files, callback);
+      return false;
+    } else {
+      this.setStateFile(files, callback);
+      return Promise.reject();
+    }
   };
 
   // 将可用文件存入 state 中
-  setStateFile = (file, files, callback) => {
-    this.setState(state => ({
-      fileList: [...state.fileList, file],
-    }), () => {
-      if (num >= files.length) {
-        num = 0;
-        callback('after', file, this.state.fileList);
-      }
-    });
+  setStateFile = (files, callback) => {
+    // 判断当前是否为最后一次文件解析
+    if (num >= files.length) {
+      this.setState(state => ({
+        fileList: [...state.fileList, ...waitFiles],
+      }), () => {
+        waitFiles = []; // 重置待上传文件列表
+        num = 0; // 重置计数
+        callback('after', null, this.state.fileList);
+      });
+    }
   };
 
   render() {

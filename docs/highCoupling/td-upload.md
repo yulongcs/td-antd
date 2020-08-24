@@ -21,9 +21,12 @@ export default () => {
       size={5}
       multiple
       btnText="上传"
-      callback={(t) => {
+      callback={(t, f, fs) => {
         if (t === 'remove') {
           return Promise.resolve();
+        }
+        if (t === 'after') {
+          console.log(fs);
         }
       }}
     />
@@ -264,13 +267,13 @@ export default () => {
 ```
 callback = (state, file, files) => {
   if (state === 'before') {
-    // 只会触发一次
+    // 只会触发一次，上传前
   }
   if (state === 'validate') {
     // 额外的校验，每个文件都会执行一次，返回值为真时，则停止上传
   }
   if (state === 'after') {
-    // 只会触发一次
+    // 只会触发一次，上传后
   }
   if (state === 'remove') {
     // 点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除。
