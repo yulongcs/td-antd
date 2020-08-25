@@ -49,7 +49,7 @@ class TdUpload extends React.PureComponent {
   request = (FormData, cb) => {
     const { url } = this.props;
     const newInstance = localConfig.newInstance();
-    fetch(`${newInstance.proxy}${url}`, {
+    fetch(`${newInstance.proxy || ''}${url}`, {
       headers: {
         pragma: 'no-cache',
         Accept: 'application/json',
@@ -283,7 +283,7 @@ class TdUpload extends React.PureComponent {
           {(listType && listType === 'picture-card') ? (
             <Icon type="plus" className="td-btn-icon" />
           ) : (
-            <Button {...btnProps} icon="upload" disabled={disabled}>{btnText}</Button>
+            <Button {...btnProps} icon="upload">{btnText}</Button>
           )}
         </Upload>
         {tip && <div className="td-upload-tip">{tip}</div>}

@@ -6,6 +6,14 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+#### 🚀 1.6.8-bate11
+
+`2020-08-25-未发布`
+
+- TdUpload
+  - 组件优化
+  - 修复 newInstance 不配置时，url 出现 undefined 的问题
+
 #### 🚀 1.6.8-bate10
 
 `2020-08-24`

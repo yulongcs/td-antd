@@ -4,13 +4,13 @@ title: TdUpload
 
 ## TdUpload
 
-基于 Upload 的二次封装
+基于 Upload 的二次封装。当项目中配置了 [localConfig.config](/high-coupling/local-config).proxy 后，url参数会自动携带 proxy。
 
 ## 代码演示
 
 ```jsx
 /**
- * title: 文件上传
+ * title: 基础上传文件
  */
 import React from 'react';
 import { TdUpload } from 'td-antd';
@@ -27,6 +27,37 @@ export default () => {
         }
         if (t === 'after') {
           console.log(fs);
+        }
+      }}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 立即上传
+ * desc: 点击选择文件后，在 after 回调中中进行立即上传操作
+ */
+import React, { useRef } from 'react';
+import { TdUpload } from 'td-antd';
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <TdUpload
+      ref={ref}
+      size={5}
+      multiple
+      btnText="上传"
+      url="/aaa.json"
+      callback={(t, f, fs) => {
+        if (t === 'remove') {
+          return Promise.resolve();
+        }
+        if (t === 'after') {
+          ref.current.onUpload();
         }
       }}
     />
@@ -288,7 +319,14 @@ callback = (state, file, files) => {
 ref.current.reset();
 
 // 主动的文件上传
-ref.current.onUpload((files, dataObject) => {}, (res) => {});
+ref.current.onUpload((files, dataObject) => {
+  // 成功的回调函数
+  // files 表示已上传的文件列表
+  // dataObject 是当前文件上传的后端返回数据
+}, (res) => {
+  // 失败的回调函数
+  // res 表示后端返回的错误对象
+});
 ```
 
 ### onInitialFiles(files, filterOptions)
@@ -297,5 +335,3 @@ ref.current.onUpload((files, dataObject) => {}, (res) => {});
 |:--|:--|:--|:--|
 |files|原数据|Array|[]|
 |filterOptions|自定义数据过滤，需要返回过滤后的数据对象。返回的对象中必须包含 `uid、name、url`；如果需要图片展示，则数据中需要包含 `type: 'image/*'`|Function(item, index)|-|
-
-> 注意：需要 localConfig.config 设置 proxy 后才能正常使用
