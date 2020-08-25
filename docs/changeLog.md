@@ -13,6 +13,8 @@ title: 更新日志
 - TdUpload
   - 组件优化
   - 修复 newInstance 不配置时，url 出现 undefined 的问题
+- SelectSearch
+  - 组件优化
 
 #### 🚀 1.6.8-bate10
 
