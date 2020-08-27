@@ -9,6 +9,9 @@ title: SearchForm
 ## 代码演示
 
 ```jsx
+/**
+ * title: 基础用法
+ */
 import React from 'react';
 import { Col } from 'antd';
 import { SearchForm, FormItem } from 'td-antd';
@@ -68,6 +71,71 @@ export default () => {
               label="班级"
               fieldName="class"
             />
+          </Col>
+        </React.Fragment>
+      )}
+    </SearchForm>
+  );
+}
+```
+
+```jsx
+/**
+ * title: 无 label 模式
+ */
+import React from 'react';
+import { Col } from 'antd';
+import { SearchForm, FormItem, SelectMap } from 'td-antd';
+
+export default () => {
+  return (
+    <SearchForm
+      callback={(type, values) => {
+        if (type === 'query') {
+          console.log(values);
+        }
+        if (type === 'reset') {
+          console.log('重置表单');
+        }
+      }}
+    >
+      {(formProps) => (
+        <React.Fragment>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="phone"
+              inputProps={{ placeholder: '手机' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="address"
+              inputProps={{ placeholder: '地址' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="age"
+              inputProps={{ placeholder: '年龄' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="grade"
+              inputProps={{ placeholder: '年级' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="sex"
+            >
+              <SelectMap placeholder="性别" data={['男', '女']} />
+            </FormItem>
           </Col>
         </React.Fragment>
       )}
