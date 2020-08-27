@@ -6,7 +6,7 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-#### 🚀 1.6.8-bate12
+#### 🚀 1.6.8-bate13
 
 `2020-08-27`
 

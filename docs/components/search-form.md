@@ -84,12 +84,13 @@ export default () => {
  * title: 无 label 模式
  */
 import React from 'react';
-import { Col } from 'antd';
+import { Col, DatePicker } from 'antd';
 import { SearchForm, FormItem, SelectMap } from 'td-antd';
 
 export default () => {
   return (
     <SearchForm
+      extraNode="额外的内容"
       callback={(type, values) => {
         if (type === 'query') {
           console.log(values);
@@ -125,16 +126,17 @@ export default () => {
           <Col span={6}>
             <FormItem
               {...formProps}
-              fieldName="grade"
-              inputProps={{ placeholder: '年级' }}
-            />
+              fieldName="sex"
+            >
+              <SelectMap placeholder="性别" data={['男', '女']} />
+            </FormItem>
           </Col>
           <Col span={6}>
             <FormItem
               {...formProps}
-              fieldName="sex"
+              fieldName="time"
             >
-              <SelectMap placeholder="性别" data={['男', '女']} />
+              <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
             </FormItem>
           </Col>
         </React.Fragment>

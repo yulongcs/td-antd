@@ -38,7 +38,7 @@ export default Form.create()(forwardRef((props, ref) => {
       className="td-list-form"
       onSubmit={handleSearch}
     >
-      <Row gutter={[12, 12]}>{children({ form, required: false })}</Row>
+      <Row gutter={12}>{children({ form, required: false })}</Row>
       <div className="td-search-form-handle-box">
         <div>{extraNode}</div>
         <div>
