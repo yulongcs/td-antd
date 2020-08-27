@@ -10,10 +10,10 @@ export default Form.create()(forwardRef((props, ref) => {
   const {
     form,
     callback = () => {},
-    btnText = '查询',
+    // btnText = '查询',
     children,
     extraNode,
-    buttonProps = {},
+    // buttonProps = {},
   } = props;
 
   useImperativeHandle(ref, () => ({
@@ -24,12 +24,13 @@ export default Form.create()(forwardRef((props, ref) => {
   const handleSearch = (e) => {
     e.preventDefault();
     form.validateFields((err, values) => {
-      callback(values);
+      callback('query', values);
     });
   };
 
   const reset = () => {
     form.resetFields();
+    callback('reset' ,{});
   };
 
   return (
@@ -39,11 +40,15 @@ export default Form.create()(forwardRef((props, ref) => {
       className="td-list-form"
       onSubmit={handleSearch}
     >
-      <Row>
-        {children({ form, required: false })}
-        {btnText && btnText !== '' && <Button htmlType="submit" {...buttonProps}>{btnText}</Button>}
-        {extraNode}
-      </Row>
+      <Row>{children({ form, required: false })}</Row>
+      <div className="td-search-form-handle-box">
+        <div>{extraNode}</div>
+        <div>
+          <Button onClick={reset} icon="reload">重置</Button>
+          &nbsp;&nbsp;&nbsp;
+          <Button htmlType="submit" type="primary" icon="search">查询</Button>
+        </div>
+      </div>
     </Form>
   );
 }));
