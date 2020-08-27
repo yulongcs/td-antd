@@ -16,9 +16,13 @@ import { SearchForm, FormItem } from 'td-antd';
 export default () => {
   return (
     <SearchForm
-      btnText="搜索"
-      callback={(values) => {
-        console.log(values);
+      callback={(type, values) => {
+        if (type === 'query') {
+          console.log(values);
+        }
+        if (type === 'reset') {
+          console.log('重置表单');
+        }
       }}
     >
       {(formProps) => (
@@ -37,6 +41,34 @@ export default () => {
               fieldName="address"
             />
           </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              label="年龄"
+              fieldName="age"
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              label="手机"
+              fieldName="phone"
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              label="年级"
+              fieldName="grade"
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              label="班级"
+              fieldName="class"
+            />
+          </Col>
         </React.Fragment>
       )}
     </SearchForm>
@@ -49,10 +81,15 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |children|需要渲染的子元素|Function(formProps)||
-|btnText|按钮文案，如果不存在，则不显示按钮|String|查询|
-|buttonProps|查询按钮的 props 属性|Object|{}|
 |callback|回调函数，返回表单内容|Function|() => {}|
 |extraNode|额外的节点|ReactNode|--|
+
+### callback(type, values)
+
+```
+type = query 时，表示查询
+type = reset 时，表示重置
+```
 
 ## ref
 

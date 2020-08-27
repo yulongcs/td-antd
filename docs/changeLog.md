@@ -6,6 +6,19 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+#### 🚀 1.6.8-bate11
+
+`2020-08-27`
+
+- TdUpload
+  - 组件优化
+  - 修复 newInstance 不配置时，url 出现 undefined 的问题
+- SelectSearch
+  - 组件优化
+- SearchForm 组件重构
+  - 删除属性：btnText，buttonProps
+  - 优化交互方式
+
 #### 🚀 1.6.8-bate10
 
 `2020-08-24`

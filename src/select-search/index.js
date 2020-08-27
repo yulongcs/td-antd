@@ -37,11 +37,9 @@ export default class SelectSearch extends React.Component {
   }
 
   handleChange = (value) => {
-    const { onChange} = this.props;
+    const { onChange = () => {} } = this.props;
 
-    this.setState({ value: value }, () => {
-      onChange && onChange(value);
-    });
+    this.setState({ value: value }, onChange(value));
   };
 
   // 多个组件同时使用时，在输入值后进行切换会报错，需要在失去焦点时进行数据重置

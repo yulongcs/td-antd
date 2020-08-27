@@ -58,8 +58,13 @@ export default forwardRef((props, ref) => {
         <SearchForm
           wrappedComponentRef={searchRef}
           {...searchFormProps}
-          callback={(values = {}) => {
-            query((searchReturn ? searchReturn(values) : values), true);
+          callback={(type, values = {}) => {
+            if (type === 'query') {
+              query((searchReturn ? searchReturn(values) : values), true);
+            }
+            if (type === 'reset') {
+              query({}, true);
+            }
           }}
         >
           {(formProps) => searchChildren(formProps)}
