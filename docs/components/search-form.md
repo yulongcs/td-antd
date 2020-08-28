@@ -90,7 +90,7 @@ import { SearchForm, FormItem, SelectMap } from 'td-antd';
 export default () => {
   return (
     <SearchForm
-      extraNode="额外的内容"
+      extraNode="extraNode 属性的内容"
       callback={(type, values) => {
         if (type === 'query') {
           console.log(values);
@@ -146,11 +146,104 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 展开 / 收起
+ * desc: 当 expandNode 属性存在时，会出现 "展开 / 收起" 的按钮
+ */
+import React from 'react';
+import { Col, DatePicker } from 'antd';
+import { SearchForm, FormItem, SelectMap } from 'td-antd';
+
+export default () => {
+  return (
+    <SearchForm
+      callback={(type, values) => {
+        if (type === 'query') {
+          console.log(values);
+        }
+        if (type === 'reset') {
+          console.log('重置表单');
+        }
+      }}
+      expandNode={(formProps) => (
+        <>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="time"
+            >
+              <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
+            </FormItem>
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="idCard"
+              inputProps={{ placeholder: '身份证' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="name"
+              inputProps={{ placeholder: '姓名' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="bankNo"
+              inputProps={{ placeholder: '银行卡号' }}
+            />
+          </Col>
+        </>
+      )}
+    >
+      {(formProps) => (
+        <React.Fragment>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="phone"
+              inputProps={{ placeholder: '手机' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="address"
+              inputProps={{ placeholder: '地址' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="age"
+              inputProps={{ placeholder: '年龄' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
+              fieldName="sex"
+            >
+              <SelectMap placeholder="性别" data={['男', '女']} />
+            </FormItem>
+          </Col>
+        </React.Fragment>
+      )}
+    </SearchForm>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |children|需要渲染的子元素|Function(formProps)||
+|expandNode|折叠字段，紧跟 children 之后的 node 内容|Function(formProps)||
 |callback|回调函数，返回表单内容|Function|() => {}|
 |extraNode|额外的节点|ReactNode|--|
 
