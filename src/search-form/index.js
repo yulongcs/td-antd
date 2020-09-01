@@ -4,11 +4,13 @@
 
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { Form, Button, Row, Icon } from 'antd';
+import classNames from 'classnames';
 import './index.less';
 
 export default Form.create()(forwardRef((props, ref) => {
   const {
     form,
+    className,
     children,
     extraNode,
     expandNode,
@@ -37,7 +39,7 @@ export default Form.create()(forwardRef((props, ref) => {
     <Form
       hideRequiredMark
       autoComplete="off"
-      className="td-list-form"
+      className={classNames('td-search-form-wrap', className)}
       onSubmit={handleSearch}
     >
       <Row gutter={12}>

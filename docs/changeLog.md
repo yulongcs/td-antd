@@ -6,12 +6,15 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-#### 🚀 1.6.8-bate14
+#### 🚀 1.7.0
 
 `2020-09-01`
 
 - SearchForm
   - 新增属性：expandNode
+- TablePage
+  - 删除属性：searchChildren，请使用 searchFormProps.children 代替
+  - 优化样式
 
 #### 🚀 1.6.8-bate13
 

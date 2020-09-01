@@ -84,13 +84,13 @@ export default () => {
  * title: 无 label 模式
  */
 import React from 'react';
-import { Col, DatePicker } from 'antd';
+import { Col, DatePicker, Button } from 'antd';
 import { SearchForm, FormItem, SelectMap } from 'td-antd';
 
 export default () => {
   return (
     <SearchForm
-      extraNode="extraNode 属性的内容"
+      extraNode={<Button type="primary">新增</Button>}
       callback={(type, values) => {
         if (type === 'query') {
           console.log(values);

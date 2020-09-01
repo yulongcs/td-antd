@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { stringify } from 'qs';
-import { Table } from 'antd';
+import { Table, Divider } from 'antd';
 import SearchForm from '../search-form';
 import pagination from '../pagination';
 import localConfig from '../local-config';
@@ -11,7 +11,6 @@ export default forwardRef((props, ref) => {
     url = '',
     tableProps = {},
     columns = [],
-    searchChildren,
     searchFormProps = {},
     searchReturn,
     defaultParams = {},
@@ -54,21 +53,22 @@ export default forwardRef((props, ref) => {
 
   return (
     <React.Fragment>
-      {searchChildren && (
-        <SearchForm
-          wrappedComponentRef={searchRef}
-          {...searchFormProps}
-          callback={(type, values = {}) => {
-            if (type === 'query') {
-              query((searchReturn ? searchReturn(values) : values), true);
-            }
-            if (type === 'reset') {
-              query({}, true);
-            }
-          }}
-        >
-          {(formProps) => searchChildren(formProps)}
-        </SearchForm>
+      {searchFormProps.children && (
+        <React.Fragment>
+          <SearchForm
+            wrappedComponentRef={searchRef}
+            {...searchFormProps}
+            callback={(type, values = {}) => {
+              if (type === 'query') {
+                query((searchReturn ? searchReturn(values) : values), true);
+              }
+              if (type === 'reset') {
+                query({}, true);
+              }
+            }}
+          />
+          <Divider />
+        </React.Fragment>
       )}
       <Table
         bordered
