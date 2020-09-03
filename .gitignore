@@ -34,3 +34,5 @@ es
 .docz
 .doc
 /src/.umi/*
+.fatherrc.js
+.umirc.js
