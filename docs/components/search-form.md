@@ -40,6 +40,13 @@ export default () => {
           <Col span={6}>
             <FormItem
               {...formProps}
+              label="产品名称"
+              fieldName="productName"
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              {...formProps}
               label="地址"
               fieldName="address"
             />

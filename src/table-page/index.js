@@ -9,12 +9,13 @@ export default forwardRef((props, ref) => {
   const searchRef = useRef();
   const {
     url = '',
-    tableProps = {},
-    columns = [],
-    searchFormProps = {},
-    searchReturn,
-    defaultParams = {},
     success,
+    searchReturn,
+    method = 'GET',
+    columns = [],
+    tableProps = {},
+    defaultParams = {},
+    searchFormProps = {},
   } = props;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
@@ -30,8 +31,19 @@ export default forwardRef((props, ref) => {
 
     if (request) {
       setLoading(true);
-      request({
+      let requestApi = {
+        method,
         url: `${url}?${stringify(params)}`,
+      };
+      if (method === 'POST') {
+        requestApi = {
+          ...requestApi,
+          url,
+          body: params,
+        };
+      }
+      request({
+        ...requestApi,
         onSuccess:({ dataObject }) => {
           const resObj = Array.isArray(dataObject) ? { values: dataObject } : dataObject;
           setData(resObj);

@@ -1,11 +1,11 @@
 {
   "name": "td-antd",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "基于antd封装的业务组件库和工具",
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "start": "dumi dev",
+    "start": "dumi dev --port=3000",
     "build:docs": "dumi build",
     "build": "father-build && node ./scripts/clean-build.js",
     "build:publish": "npm run build && npm publish",

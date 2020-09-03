@@ -21,6 +21,7 @@ export default () => {
   return (
     <TablePage
       url="/aaa.json"
+      defaultParams={{ extra: '额外的参数' }}
       searchReturn={(values) => {
         console.log(values);
         
@@ -82,6 +83,7 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |url|列表请求地址。由于内置使用 request 是从 localConfig 中获取的，不必再使用 proxy |String|-|
+|method|请求模式，GET/POST|String|GET|
 |tableProps|支持原 [Table](https://3x.ant.design/components/table-cn/) 的 API|Object|{}|
 |columns|表格列的配置描述，同原 Table 组件|ColumnProps[]|[]|
 |searchFormProps|SearchForm 组件的属性|Object|{}|
