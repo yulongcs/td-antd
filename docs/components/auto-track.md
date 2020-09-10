@@ -9,24 +9,23 @@ title: autoTrack
 ```jsx
 import React from 'react';
 import { Button } from 'antd';
-import { autoTrack } from 'td-antd';
+import { autoTrack, HandleBox } from 'td-antd';
 
 autoTrack({
   pageCallback: (log) => {
-    alert(log);
+    console.log(log);
   },
   eventCallback: (log) => {
-    alert(log);
+    console.log(log);
   },
 });
 
 export default () => {
   return (
-    <div logpage="页面级">
-      <Button logevent={{ type: 'click: Button' }}>按钮</Button>
-      <br />
-      <span logevent={{ type: 'click: span' }}>click</span>
-    </div>
+    <HandleBox logpage="页面级">
+      <Button logevent={{ type: 'click: 这是按钮' }}>按钮</Button>
+      <a logevent={{ type: 'click: 这是a标签' }}>click</a>
+    </HandleBox>
   );
 }
 ```
