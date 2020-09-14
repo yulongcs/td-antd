@@ -261,6 +261,11 @@ type = query 时，表示查询
 type = reset 时，表示重置
 ```
 
-## ref
+### Ref，使用 ref.current 进行调用
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|form|表单对象|Object|-|
+|reset|重置表单方法，会触发callback('reset')|Function()|-|
 
 > 请使用 wrappedComponentRef 进行代替，内置了 reset 方法用于清空表单数据。

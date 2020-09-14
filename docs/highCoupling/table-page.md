@@ -78,6 +78,70 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 多 tab 栏用法
+ * desc: 当切换 tab 栏时，根据指定参数请求列表数据，并重新渲染搜索栏
+ */
+ 
+import React, { useState, useRef } from 'react';
+import { Row, Col, Table, Button, DatePicker, Tabs } from 'antd';
+import { TablePage, SelectMap, FormItem } from 'td-antd';
+
+export default () => {
+  const tablePageRef = useRef();
+
+  return (
+    <>
+      <Tabs
+        onChange={(key) => {
+          tablePageRef.current.query({
+            status: key,
+          }, true)
+          tablePageRef.current.searchFormRef.resetFields(); // 重置搜索栏
+          tablePageRef.current.searchFormRef.setFieldsValue({ status: key }); // 设置搜索栏
+        }}
+      >
+        <Tabs.TabPane tab="全部" key="全部" />
+        <Tabs.TabPane tab="已删除" key="已删除" />
+        <Tabs.TabPane tab="仓库中" key="仓库中" />
+      </Tabs>
+      <TablePage
+        url="/aaa.json"
+        ref={tablePageRef}
+        defaultParams={{ extra: '额外的参数' }}
+        searchReturn={(values) => {
+          console.log(values);
+          
+          return values;
+        }}
+        searchFormProps={{
+          children: (formProps) => (
+            <>
+              <Col span={6}>
+                <FormItem
+                  {...formProps}
+                  fieldName="productName"
+                  inputProps={{ placeholder: '产品名称' }}
+                />
+              </Col>
+              <Col span={6}>
+                <FormItem
+                  {...formProps}
+                  fieldName="status"
+                >
+                  <SelectMap placeholder="状态" data={['全部', '已删除', '仓库中']} />
+                </FormItem>
+              </Col>
+            </>
+          ),
+        }}
+      />
+    </>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|
