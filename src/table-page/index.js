@@ -8,7 +8,8 @@ import localConfig from '../local-config';
 export default forwardRef((props, ref) => {
   const searchRef = useRef();
   const {
-    url = '',
+    url,
+    extra,
     success,
     searchReturn,
     method = 'GET',
@@ -29,7 +30,7 @@ export default forwardRef((props, ref) => {
   const query = (obj = {}, reset = false) => {
     const params = reset ? {...obj, ...defaultParams} : {...keywords, ...obj };
 
-    if (request) {
+    if (request && url) {
       setLoading(true);
       let requestApi = {
         method,
@@ -79,8 +80,11 @@ export default forwardRef((props, ref) => {
               }
             }}
           />
-          <Divider />
+          <Divider style={{ margin: '20px 0' }} />
         </React.Fragment>
+      )}
+      {extra && (
+        <div style={{ paddingBottom: 20 }}>{extra}</div>
       )}
       <Table
         bordered
