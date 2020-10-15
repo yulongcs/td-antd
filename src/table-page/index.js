@@ -46,11 +46,14 @@ export default forwardRef((props, ref) => {
       request({
         ...requestApi,
         onSuccess:({ dataObject }) => {
-          const resObj = Array.isArray(dataObject) ? { values: dataObject } : dataObject;
-          setData(resObj);
+          if (success) {
+            // 当回调函数 success 存在时，必须返回用于渲染的数据
+            setData(success(dataObject));
+          } else {
+            const resObj = Array.isArray(dataObject) ? { values: dataObject } : dataObject;
+            setData(resObj);
+          }
           setKeywords(params);
-          // eslint-disable-next-line
-          success && success(resObj);
         },
       }).finally(() => {
         setLoading(false);
@@ -94,8 +97,8 @@ export default forwardRef((props, ref) => {
         dataSource={data.values || []}
         pagination={(data.pageSize || data.limit) ? pagination({
           data,
-          onChange: (pageNum) => {
-            query({pageNum});
+          onChange: (pageNum, pageSize) => {
+            query({pageNum, pageSize});
           },
         }) : false}
         {...tableProps}

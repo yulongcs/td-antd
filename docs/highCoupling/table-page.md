@@ -154,7 +154,7 @@ export default () => {
 |searchFormProps|SearchForm 组件的属性|Object|{}|
 |searchReturn|自定义搜索栏的回调函数，必须返回结果对象给组件以供搜索使用|Function(values)|-|
 |defaultParams|默认参数，一般是不变的|Object|{}|
-|success|请求成功后的回调函数|Function({ values = [] })|-|
+|success|请求成功后的回调函数，必须返回用于列表渲染的数据，包含 { values, pageNum, pageSize, totalCnt }|Function(res)|-|
 |extra|在搜索栏和列表中间的额外节点项|ReactNode|-|
 
 ### Ref，使用 ref.current 进行调用

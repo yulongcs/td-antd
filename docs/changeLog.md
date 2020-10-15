@@ -6,6 +6,16 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 1.7.4
+
+`2020-10-15`
+
+- TablePage
+  - 修复每页条数更改无效的问题
+  - 优化 success 回调的执行效果
+- tools.countdown
+  - 优化，现在执行该函数时，会立即执行一次 callback
+
 ### 🚀 1.7.1
 
 `2020-09-03`

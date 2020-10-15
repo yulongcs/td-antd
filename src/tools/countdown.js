@@ -1,20 +1,27 @@
 function countdown(props) {
   const {
     callback = () => {},
-    defaultCount = 59,
+    defaultCount = 60,
   } = props;
   let nowCount = defaultCount;
   let timer = null;
 
-  function down() {
+  const clear = () => {
     clearTimeout(timer);
     timer = null;
-    if (nowCount <= defaultCount) {
+  };
+
+  function down() {
+    clear();
+    // 当相等时，会立即执行一次
+    if (nowCount === defaultCount) {
+      nowCount --;
+      callback(nowCount, defaultCount);
+      down();
+    } else if (nowCount <= defaultCount) {
       timer = setTimeout(() => {
         nowCount--;
-        if (nowCount > 0) {
-          down();
-        }
+        nowCount > 0 ? down() : clear();
         callback(nowCount, defaultCount);
       }, 1000)
     }
