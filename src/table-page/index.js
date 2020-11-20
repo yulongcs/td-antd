@@ -28,7 +28,7 @@ export default forwardRef((props, ref) => {
   }, [request]);
 
   const query = (obj = {}, reset = false) => {
-    const params = reset ? {...obj, ...defaultParams} : {...keywords, ...obj };
+    const params = reset ? {...defaultParams, ...obj} : {...keywords, ...obj };
 
     if (request && url) {
       setLoading(true);
