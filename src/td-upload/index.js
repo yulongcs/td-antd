@@ -1,5 +1,4 @@
 import React from 'react';
-import { fetch } from 'dva';
 import cx from 'classnames';
 import { Upload, Button, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -47,32 +46,9 @@ class TdUpload extends React.PureComponent {
     }
   }
 
-  request = (FormData, cb) => {
-    const { url } = this.props;
-    const newInstance = localConfig.newInstance();
-    fetch(`${newInstance.proxy || ''}${url}`, {
-      headers: {
-        pragma: 'no-cache',
-        Accept: 'application/json',
-      },
-      credentials: 'include',
-      method: 'POST',
-      body: FormData,
-    })
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          return response;
-        }
-      })
-      .then(response => response.json())
-      .then(res => {
-        cb(res);
-      })
-  };
-
   // 异步上传文件
-  onUpload = (succ = () => {}, err = () => {}) => {
-    const { params, showUploadList, filterOptions, name } = this.props;
+  onUpload = async ({ success = () => {}, error = () => {}, requestProps = {} }) => {
+    const { params, showUploadList, filterOptions, name, url } = this.props;
     const noUploadList = []; // 不需要上传的文件列表
     const formData = new FormData();
     // 当前有文件需要上传时，过滤出需要上传的文件进行上传
@@ -85,30 +61,36 @@ class TdUpload extends React.PureComponent {
     });
 
     if (formData.get(name)) {
+      const { proxy, request } = localConfig.newInstance(); // 获取实例
+
       // 将额外的入参注入到 formData 中
       Object.keys(params).forEach(key => {
         formData.append(key, params[key]);
       });
 
-      this.request(formData, (res) => {
-        const renderFiles = []; // 需要渲染的文件列表数据
-
-        if (res && res.success) {
-          // 兼容后端返回的可能是个对象的情况，将其包装成数组返回给回调函数
-          const dataObject = Array.isArray(res.dataObject) ? res.dataObject : [res.dataObject];
-          renderFiles.push(...[...noUploadList, ...onInitialFiles(dataObject, filterOptions)]);
-          succ(renderFiles, dataObject);
-        } else {
-          renderFiles.push(...noUploadList);
-          message.error(res.errorMessage);
-          err(res);
-        }
-
-        // 如果不需要渲染，则不显示列表数据
-        this.setState({ fileList: showUploadList ? renderFiles : [] });
+      const res = await request({
+        url: `${proxy}${url}`,
+        method: 'POST',
+        body: formData,
+        ...requestProps,
       });
+
+      const renderFiles = []; // 需要渲染的文件列表数据
+      if (res && res.success) {
+        // 兼容后端返回的可能是个对象的情况，将其包装成数组返回给回调函数
+        const dataObject = Array.isArray(res.dataObject) ? res.dataObject : [res.dataObject];
+        renderFiles.push(...[...noUploadList, ...onInitialFiles(dataObject, filterOptions)]);
+        success(renderFiles, dataObject);
+      } else {
+        renderFiles.push(...noUploadList);
+        message.error(res.errorMessage);
+        error(res);
+      }
+
+      // 如果不需要渲染，则不显示列表数据
+      this.setState({ fileList: showUploadList ? renderFiles : [] });
     } else {
-      succ(noUploadList);
+      success(noUploadList);
     }
   };
 

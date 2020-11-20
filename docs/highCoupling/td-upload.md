@@ -333,7 +333,7 @@ ref.current.onUpload({
   **/
   error(res) {},
   // localConfig 实例的 request 的额外入参
-  requestParams: {},
+  requestProps: {},
 });
 ```
 

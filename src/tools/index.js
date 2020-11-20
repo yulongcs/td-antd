@@ -5,7 +5,6 @@ import getUrlParams from './getUrlParams';
 import momentToString from './momentToString';
 import toThousands from './toThousands';
 import objectToString from './objectToString';
-import downloadBlob from './downloadBlob';
 import noPassByInfo from './noPassByInfo';
 import countdown from './countdown';
 import storageWorker from './storageWorker';
@@ -19,7 +18,6 @@ export default {
   momentToString,
   toThousands,
   objectToString,
-  downloadBlob,
   noPassByInfo,
   countdown,
   storageWorker,
