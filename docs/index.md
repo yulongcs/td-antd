@@ -4,7 +4,7 @@ title: 介绍
 
 ## 简介
 
-基于 ant-design 开发的业务组件。
+基于 ant-design 4.x 开发的业务组件。
 
 ## 组件介绍
 
@@ -18,9 +18,9 @@ title: 介绍
 
 |依赖名|版本|
 |:--|:--|
-|react|16.8.0|
-|react-dom|16.8.0|
-|antd|3.21.0|
+|react|16.9.0|
+|react-dom|16.9.0|
+|antd|4.x|
 |moment|2.19.1|
 |classnames|2.2.6|
 |lodash|4.17.15|

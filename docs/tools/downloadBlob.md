@@ -4,7 +4,7 @@ title: downloadBlob
 
 ## downloadBlob
 
-文件流下载
+文件流下载，也可使用 [DownloadBlob](/components/download-blob)
 
 ## API
 

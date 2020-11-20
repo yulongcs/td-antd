@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { Input, Form } from 'antd';
+// import { FormContext } from 'antd/es/form/context'; // 获取form对象的 context 对象
 
-export default ({ className, children, ...rest }) => {
-  const { cols = [] } = rest;
+export default (props) => {
+  // const { labelCol, wrapperCol } = React.useContext(FormContext);
   const {
-    formItemLayout = {
-      labelCol: { sm: { span: cols[0] || 10 } },
-      wrapperCol: { sm: { span: cols[1] || 14 } },
-    },
-    form,
-    label = '',
-    fieldName = '',
-    initialValue = undefined,
+    className,
+    children,
     required = true,
     validatorCallback = () => {},
     extraRules = [],
@@ -21,23 +16,8 @@ export default ({ className, children, ...rest }) => {
     isNegative = false,
     isInteger = false,
     message = '必填项',
-    defaultValue = '--',
-    decoratorOptions = {},
-  } = rest;
-
-  if (!form) {
-    return (
-      <Form.Item
-        style={{ marginBottom: 0 }}
-        className={className}
-        {...formItemLayout}
-        {...rest}
-        label={label}
-      >
-        {children || initialValue || defaultValue}
-      </Form.Item>
-    );
-  }
+    ...rest
+  } = props;
 
   const rules = [{ required, message }, {
     validator: (rule, value, callback) => {
@@ -46,7 +26,7 @@ export default ({ className, children, ...rest }) => {
       // 当类型为数字类型时，则内置校验规则
       if (itemType === 'number') {
         if (!isNegative && value < 0) {
-          callback(`${label} 不能小于 0`);
+          callback('不能小于 0');
           return;
         }
 
@@ -62,19 +42,15 @@ export default ({ className, children, ...rest }) => {
 
   return (
     <Form.Item
+      rules={rules}
       className={className}
-      {...formItemLayout}
       {...rest}
     >
-      {form.getFieldDecorator(fieldName, {
-        rules,
-        initialValue,
-        ...decoratorOptions,
-      })(
+      {
         (itemType === 'number') ?
           <Input type="number" suffix={unit} {...inputProps} /> :
           (children || <Input {...inputProps} />)
-      )}
+      }
     </Form.Item>
   );
 }

@@ -21,7 +21,6 @@ export default () => {
   return (
     <TablePage
       url="/aaa.json"
-      defaultParams={{ extra: '额外的参数' }}
       searchReturn={(values) => {
         console.log(values);
         
@@ -29,50 +28,48 @@ export default () => {
       }}
       searchFormProps={{
         extraNode: <Button type="primary">新增</Button>,
-        expandNode: (formProps) => (
+      }}
+      searchChildren={
+        <>
           <Col span={6}>
             <FormItem
-              {...formProps}
-              fieldName="time"
+              name="phone"
+              required={false}
+              inputProps={{ placeholder: '手机' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              name="address"
+              required={false}
+              inputProps={{ placeholder: '地址' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              name="age"
+              required={false}
+              inputProps={{ placeholder: '年龄' }}
+            />
+          </Col>
+          <Col span={6}>
+            <FormItem
+              name="sex"
+              required={false}
+            >
+              <SelectMap placeholder="性别" data={['男', '女']} />
+            </FormItem>
+          </Col>
+          <Col span={6}>
+            <FormItem
+              name="time"
+              required={false}
             >
               <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
             </FormItem>
           </Col>
-        ),
-        children: (formProps) => (
-          <>
-            <Col span={6}>
-              <FormItem
-                {...formProps}
-                fieldName="phone"
-                inputProps={{ placeholder: '手机' }}
-              />
-            </Col>
-            <Col span={6}>
-              <FormItem
-                {...formProps}
-                fieldName="address"
-                inputProps={{ placeholder: '地址' }}
-              />
-            </Col>
-            <Col span={6}>
-              <FormItem
-                {...formProps}
-                fieldName="age"
-                inputProps={{ placeholder: '年龄' }}
-              />
-            </Col>
-            <Col span={6}>
-              <FormItem
-                {...formProps}
-                fieldName="sex"
-              >
-                <SelectMap placeholder="性别" data={['男', '女']} />
-              </FormItem>
-            </Col>
-          </>
-        ),
-      }}
+        </>
+      }
     />
   );
 }
@@ -98,6 +95,7 @@ export default () => {
           tablePageRef.current.query({
             status: key,
           }, true)
+          // console.log(tablePageRef.current);
           tablePageRef.current.searchFormRef.resetFields(); // 重置搜索栏
           tablePageRef.current.searchFormRef.setFieldsValue({ status: key }); // 设置搜索栏
         }}
@@ -113,30 +111,27 @@ export default () => {
         extra={<Button type="primary">新增</Button>}
         searchReturn={(values) => {
           console.log(values);
-          
           return values;
         }}
-        searchFormProps={{
-          children: (formProps) => (
-            <>
-              <Col span={6}>
-                <FormItem
-                  {...formProps}
-                  fieldName="productName"
-                  inputProps={{ placeholder: '产品名称' }}
-                />
-              </Col>
-              <Col span={6}>
-                <FormItem
-                  {...formProps}
-                  fieldName="status"
-                >
-                  <SelectMap placeholder="状态" data={['全部', '已删除', '仓库中']} />
-                </FormItem>
-              </Col>
-            </>
-          ),
-        }}
+        searchChildren={(
+          <>
+            <Col span={6}>
+              <FormItem
+                name="productName"
+                required={false}
+                inputProps={{ placeholder: '产品名称' }}
+              />
+            </Col>
+            <Col span={6}>
+              <FormItem
+                name="status"
+                required={false}
+              >
+                <SelectMap placeholder="状态" data={['全部', '已删除', '仓库中']} />
+              </FormItem>
+            </Col>
+          </>
+        )}
       />
     </>
   );
@@ -148,14 +143,15 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |url|列表请求地址。由于内置使用 request 是从 localConfig 中获取的，不必再使用 proxy |String|-|
-|method|请求模式，GET/POST|String|GET|
 |tableProps|支持原 [Table](https://3x.ant.design/components/table-cn/) 的 API|Object|{}|
 |columns|表格列的配置描述，同原 Table 组件|ColumnProps[]|[]|
+|searchChildren|搜索项的子节点|ReactNode|-|
 |searchFormProps|SearchForm 组件的属性|Object|{}|
 |searchReturn|自定义搜索栏的回调函数，必须返回结果对象给组件以供搜索使用|Function(values)|-|
 |defaultParams|默认参数，一般是不变的|Object|{}|
 |success|请求成功后的回调函数，必须返回用于列表渲染的数据，包含 { values, pageNum, pageSize, totalCnt }|Function(res)|-|
-|extra|在搜索栏和列表中间的额外节点项|ReactNode|-|
+|extra|在搜索栏和列表中间的额外节点项|ReactNode/String|-|
+|paginationProps|Pagination组件的 API|[paginationProps](https://ant.design/components/pagination-cn/#API)|{}|
 
 ### Ref，使用 ref.current 进行调用
 

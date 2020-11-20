@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Select } from 'antd';
 
 export default (props) => {
@@ -27,7 +27,6 @@ export default (props) => {
     <Select
       showSearch
       allowClear
-      style={{ width: '100%' }}
       filterOption={(inputValue, option) => (option.props.children.includes(inputValue))}
       {...rest}
     >

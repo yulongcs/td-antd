@@ -5,11 +5,9 @@ import SendCode from '../common/SendCode';
 import request from '../request';
 import '../index.less';
 
-const FormItem = Form.Item;
-
-export default Form.create()((props) => {
+export default (props) => {
+  const [form] = Form.useForm();
   const {
-    form,
     proxy,
     setNext,
     account,
@@ -27,8 +25,7 @@ export default Form.create()((props) => {
   };
 
   // 校验验证码
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onFinish = () => {
     setLoading(true);
     request({
       url: `${proxy}/user/checkCode.json`,
@@ -42,12 +39,13 @@ export default Form.create()((props) => {
         if (dataObject.flag) {
           setNext(2);
         } else {
-          form.setFields({
-            code: {
+          form.setFields([
+            {
+              name: 'code',
               value: code,
-              errors: [new Error(language.code_form_error)],
+              errors: [language.code_form_error],
             },
-          });
+          ]);
         }
       },
     }).finally(() => {
@@ -58,17 +56,15 @@ export default Form.create()((props) => {
   return (
     <div>
       <div className="ry_reset_code_account">{noPassByInfo(account)}</div>
-      <div className="ry_reset_code_body">
-        <FormItem>
+      <Form className="ry_reset_code_body" onFinish={onFinish} form={form}>
+        <Form.Item name="code">
           <Row gutter={12}>
             <Col span={14}>
-              {form.getFieldDecorator('code')(
-                <Input
-                  size="large"
-                  onChange={(e) => { setCode(e.target.value.trim()) }}
-                  placeholder={language.code_input_placeholder}
-                />
-              )}
+              <Input
+                size="large"
+                onChange={(e) => { setCode(e.target.value.trim()) }}
+                placeholder={language.code_input_placeholder}
+              />
             </Col>
             <Col span={10}>
               <SendCode
@@ -77,17 +73,17 @@ export default Form.create()((props) => {
               />
             </Col>
           </Row>
-        </FormItem>
+        </Form.Item>
         <Button
           type="primary"
           size="large"
+          htmlType="submit"
           loading={loading}
-          onClick={onSubmit}
           disabled={code === ''}
           className="ry_common_width_100"
         >{language.next}
         </Button>
-      </div>
+      </Form>
     </div>
   );
-})
+}

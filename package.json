@@ -1,6 +1,6 @@
 {
   "name": "td-antd",
-  "version": "1.7.4",
+  "version": "2.0.0-bate13",
   "description": "基于antd封装的业务组件库和工具",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -49,16 +49,17 @@
     "eslint-plugin-react": "^7.0.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "antd": ">=3.21.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0",
+    "antd": ">=4.6.x"
   },
   "dependencies": {
-    "antd": "^3.21.0",
+    "@ant-design/icons": "^4.2.2",
+    "antd": "^4.6.1",
     "classnames": "^2.2.6",
+    "dva": "2.6.0-beta.20",
     "lodash": "^4.17.15",
-    "moment": "^2.19.1",
-    "dva": "2.6.0-beta.20"
+    "moment": "^2.19.1"
   },
   "license": "ISC"
 }

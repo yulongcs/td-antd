@@ -1,34 +1,30 @@
-/*
-* 请使用 wrappedComponentRef 代替常规的 ref
-* */
-
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
-import { Form, Button, Row, Icon } from 'antd';
+import { Form, Button, Row } from 'antd';
+import {
+  SearchOutlined,
+  ReloadOutlined,
+  DownOutlined,
+  UpOutlined,
+} from '@ant-design/icons';
 import classNames from 'classnames';
 import './index.less';
 
-export default Form.create()(forwardRef((props, ref) => {
+export default forwardRef((props, ref) => {
+  const [form] = Form.useForm();
   const {
-    form,
     className,
     children,
     extraNode,
     expandNode,
     callback = () => {},
+    ...rest
   } = props;
   const [collapse, setCollapse] = useState(false);
 
   useImperativeHandle(ref, () => ({
-    reset,
     form,
+    reset,
   }));
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      callback('query', values);
-    });
-  };
 
   const reset = () => {
     form.resetFields();
@@ -36,28 +32,29 @@ export default Form.create()(forwardRef((props, ref) => {
   };
 
   return (
-    <Form
-      hideRequiredMark
-      autoComplete="off"
-      className={classNames('td-search-form-wrap', className)}
-      onSubmit={handleSearch}
-    >
-      <Row gutter={12}>
-        {children && children({ form, required: false })}
-        {expandNode && collapse && expandNode({ form, required: false })}
-      </Row>
-      <div className="td-search-form-handle-box">
-        <div>{extraNode}</div>
-        <div>
-          <Button htmlType="submit" type="primary" icon="search">查询</Button>
-          <Button onClick={reset} icon="reload" style={{ marginLeft: 8 }}>重置</Button>
-          {expandNode && (
-            <a style={{ fontSize: 12, marginLeft: 8 }} onClick={() => { setCollapse(!collapse) }}>
-              {collapse ? '收起' : '展开'} <Icon type={collapse ? 'up' : 'down'} />
-            </a>
-          )}
+    <React.Fragment>
+      <Form
+        {...rest}
+        form={form}
+        autoComplete="off"
+        requiredMark={false}
+        className={classNames('td-search-form-wrap', className)}
+        onFinish={(values) => { callback('query', values) }}
+      >
+        <Row gutter={12}>{children}{collapse && expandNode}</Row>
+        <div className="td-search-form-handle-box">
+          <div>{extraNode}</div>
+          <div>
+            <Button htmlType="submit" type="primary" icon={<SearchOutlined />}>查询</Button>
+            <Button onClick={reset} icon={<ReloadOutlined />} style={{ marginLeft: 8 }}>重置</Button>
+            {expandNode && (
+              <a style={{ fontSize: 12, marginLeft: 8 }} onClick={() => { setCollapse(!collapse) }}>
+                {collapse ? '收起' : '展开'} {collapse ? <UpOutlined /> : <DownOutlined />}
+              </a>
+            )}
+          </div>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </React.Fragment>
   );
-}));
+});

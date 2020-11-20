@@ -23,8 +23,8 @@ autoTrack({
 export default () => {
   return (
     <HandleBox logpage="页面级">
-      <Button logevent={{ type: 'click: 这是按钮' }}>按钮</Button>
-      <a logevent={{ type: 'click: 这是a标签' }}>click</a>
+      <Button logevent={{ type: 'click: <Button>' }}>按钮</Button>
+      <a logevent={{ type: 'click: <a>' }}>click</a>
     </HandleBox>
   );
 }

@@ -28,11 +28,9 @@ jspm_packages
 *.zip
 jsconfig.json
 .prettierrc
-dist
 lib
 es
 .docz
 .doc
 /src/.umi/*
-.fatherrc.js
-.umirc.js
+/src/.umi-production/*

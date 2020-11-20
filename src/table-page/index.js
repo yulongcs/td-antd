@@ -15,8 +15,10 @@ export default forwardRef((props, ref) => {
     method = 'GET',
     columns = [],
     tableProps = {},
-    defaultParams = {},
+    searchChildren,
     searchFormProps = {},
+    defaultParams = {},
+    paginationProps = {},
   } = props;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
@@ -28,7 +30,7 @@ export default forwardRef((props, ref) => {
   }, [request]);
 
   const query = (obj = {}, reset = false) => {
-    const params = reset ? {...obj, ...defaultParams} : {...keywords, ...obj };
+    const params = reset ? {...defaultParams, ...obj} : {...keywords, ...obj };
 
     if (request && url) {
       setLoading(true);
@@ -69,20 +71,21 @@ export default forwardRef((props, ref) => {
 
   return (
     <React.Fragment>
-      {searchFormProps.children && (
+      {searchChildren && (
         <React.Fragment>
           <SearchForm
-            wrappedComponentRef={searchRef}
+            ref={searchRef}
             {...searchFormProps}
             callback={(type, values = {}) => {
               if (type === 'query') {
                 query((searchReturn ? searchReturn(values) : values), true);
-              }
-              if (type === 'reset') {
+              } else if (type === 'reset') {
                 query({}, true);
               }
             }}
-          />
+          >
+            {searchChildren}
+          </SearchForm>
           <Divider style={{ margin: '20px 0' }} />
         </React.Fragment>
       )}
@@ -91,7 +94,6 @@ export default forwardRef((props, ref) => {
       )}
       <Table
         bordered
-        rowKey="id"
         loading={loading}
         columns={columns}
         dataSource={data.values || []}
@@ -100,6 +102,7 @@ export default forwardRef((props, ref) => {
           onChange: (pageNum, pageSize) => {
             query({pageNum, pageSize});
           },
+          ...paginationProps,
         }) : false}
         {...tableProps}
       />

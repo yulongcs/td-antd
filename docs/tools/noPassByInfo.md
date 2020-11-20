@@ -4,7 +4,7 @@ title: noPassByInfo
 
 ## noPassByInfo
 
-手机号/邮箱 的信息脱敏
+信息脱敏
 
 ## 代码演示
 
@@ -17,8 +17,9 @@ const { noPassByInfo } = tools;
 export default () => {
   return (
     <>
-      <p>{noPassByInfo('13812345678')}</p>
-      <p>{noPassByInfo('13812345678@qq.com')}</p>
+      <p>手机号脱敏：{noPassByInfo('13812345678')}</p>
+      <p>邮箱脱敏：{noPassByInfo('13812345678@qq.com')}</p>
+      <p>身份证脱敏：{noPassByInfo('110101199003072172')}</p>
     </>
   );
 }

@@ -103,5 +103,3 @@ export default () => {
 |afterFetch|请求成功后需要返回给组件的列表数据|(res) => (res.list)|-|
 |customOption|自定义渲染下拉框内容|Function(record)|-|
 |isData|是否返回所选项的完整数据，如果 true，则 onChange 返回的是对象字符串|Boolean|false|
-
-> 注意：默认宽度是 100%

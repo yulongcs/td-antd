@@ -6,11 +6,9 @@ import request from '../request';
 import { getLanguage } from '../util';
 import '../index.less';
 
-const FormItem = Form.Item;
-
-export default Form.create()((props) => {
+export default (props) => {
+  const [form] = Form.useForm();
   const {
-    form,
     locale = 'en',
     proxy = '/srm', // 代理标示
     onSignIn = () => {}, // 点击去登录的回调
@@ -52,7 +50,7 @@ export default Form.create()((props) => {
   };
 
   // 注册
-  const onSubmit = (e) => {
+  const onFinish = (e) => {
     e.preventDefault();
     form.validateFields({ first: true }, (err, values) => {
       if (!err) {
@@ -73,56 +71,56 @@ export default Form.create()((props) => {
   };
 
   return (
-    <div className="ry_register_container">
+    <Form className="ry_register_container" onFinish={onFinish}>
       <div className="ry_login_title">{language.register_title}</div>
-      <FormItem hasFeedback>
-        {form.getFieldDecorator('account', {
-          rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: language.register_account_tip,
-            },
-            {
-              asyncValidator: validateAccountExist,
-            },
-          ],
-          validateFirst: true,
-          validateTrigger: 'onBlur',
-        })(<Input size="large" placeholder={language.register_account_placeholder} />)}
-      </FormItem>
-      <FormItem hasFeedback>
-        {form.getFieldDecorator('email', {
-          rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: language.register_email_tip,
-            },
-            {
-              type: 'email',
-              message: language.register_email_tip2,
-            },
-            {
-              asyncValidator: validateAccountExist,
-            },
-          ],
-          validateFirst: true,
-          validateTrigger: 'onBlur',
-        })(<Input size="large" placeholder={language.register_email_placeholder} />)}
-      </FormItem>
-      <FormItem>
+      <Form.Item
+        hasFeedback
+        name="account"
+        rules={[
+          {
+            required: true,
+            whitespace: true,
+            message: language.register_account_tip,
+          },
+          {
+            asyncValidator: validateAccountExist,
+          },
+        ]}
+      >
+        <Input size="large" placeholder={language.register_account_placeholder} />
+      </Form.Item>
+      <Form.Item
+        hasFeedback
+        name="email"
+        rules={[
+          {
+            required: true,
+            whitespace: true,
+            message: language.register_email_tip,
+          },
+          {
+            type: 'email',
+            message: language.register_email_tip2,
+          },
+          {
+            asyncValidator: validateAccountExist,
+          },
+        ]}
+      >
+        <Input size="large" placeholder={language.register_email_placeholder} />
+      </Form.Item>
+      <Form.Item
+        name="verificationCode"
+        rules={[
+          {
+            required: true,
+            message: language.code_input_placeholder,
+          },
+        ]}
+      >
         <Row gutter={6}>
           <Col span={14}>
-            {form.getFieldDecorator('verificationCode', {
-              rules: [
-                {
-                  required: true,
-                  message: language.code_input_placeholder,
-                },
-              ],
-              validateTrigger: false,
-            })(<Input size="large" placeholder={language.code_input_placeholder} />)}
+            <Input size="large" placeholder={language.code_input_placeholder} />
           </Col>
           <Col span={10}>
             <SendCode
@@ -131,20 +129,20 @@ export default Form.create()((props) => {
             />
           </Col>
         </Row>
-      </FormItem>
+      </Form.Item>
       <PasswordAndConfirm form={form} language={language} isLabel={false} />
       <div className="ry_register_btns">
         <Button
           size="large"
           type="primary"
+          htmlType="submit"
           loading={loading}
           style={{ width: 108 }}
-          onClick={onSubmit}
         >
           {language.register_create_text}
         </Button>
         <a onClick={onSignIn}>{language.register_back}</a>
       </div>
-    </div>
+    </Form>
   );
-})
+}

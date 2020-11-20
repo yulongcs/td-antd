@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Popover, Progress } from 'antd';
 
-const FormItem = Form.Item;
 const passwordProgressMap = {
   ok: 'success',
   pass: 'normal',
@@ -77,7 +76,11 @@ export default (props) => {
 
   return (
     <React.Fragment>
-      <FormItem label={isLabel ? language.reset_new_password_label : null}>
+      <Form.Item
+        name="password"
+        label={isLabel ? language.reset_new_password_label : null}
+        rules={[{validator: checkPassword}]}
+      >
         <Popover
           getPopupContainer={node => {
             if (node && node.parentNode) {
@@ -96,26 +99,26 @@ export default (props) => {
           placement="rightTop"
           overlayStyle={{ width: 240, zIndex: 999 }}
         >
-          {form.getFieldDecorator('password', {
-            rules: [{validator: checkPassword}],
-          })(<Input maxLength={20} size="large" type="password" placeholder={language.reset_new_password_placeholder} />)}
+          <Input maxLength={20} size="large" type="password" placeholder={language.reset_new_password_placeholder} />
         </Popover>
-      </FormItem>
-      <FormItem label={isLabel ? language.reset_confirm_password_label : null}>
-        {form.getFieldDecorator('confirm', {
-          rules: [
-            {
-              required: true,
-              message: language.reset_confirm_password_error,
-            },
-            {
-              validator: checkConfirm,
-            },
-          ],
-          validateFirst: true,
-          validateTrigger: false,
-        })(<Input maxLength={20} size="large" type="password" placeholder={language.reset_confirm_password_placeholder} />)}
-      </FormItem>
+      </Form.Item>
+      <Form.Item
+        name="confirm"
+        validateFirst
+        validateTrigger={false}
+        label={isLabel ? language.reset_confirm_password_label : null}
+        rules={[
+          {
+            required: true,
+            message: language.reset_confirm_password_error,
+          },
+          {
+            validator: checkConfirm,
+          },
+        ]}
+      >
+        <Input maxLength={20} size="large" type="password" placeholder={language.reset_confirm_password_placeholder} />
+      </Form.Item>
     </React.Fragment>
   );
 }

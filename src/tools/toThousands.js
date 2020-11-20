@@ -16,4 +16,11 @@ function toThousands(v = 0, decimal) {
   }
 }
 
+// 显示人民币的展示金额
+const currency = (number) => {
+  return `￥${toThousands(number, 2)}`;
+};
+
+toThousands.currency = currency;
+
 export default toThousands;

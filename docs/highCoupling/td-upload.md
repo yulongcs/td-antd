@@ -20,7 +20,7 @@ export default () => {
     <TdUpload
       size={5}
       multiple
-      btnText="上传"
+      extra={<a style={{ marginLeft: 12 }} onClick={(e) => { e.stopPropagation() }}>点击下载</a>}
       callback={(t, f, fs) => {
         if (t === 'remove') {
           return Promise.resolve();
@@ -283,6 +283,7 @@ export default () => {
 |name|发到后台的文件参数名|String|'files'|
 |tip|提示文案|String|-|
 |scale|图片尺寸校验|Array/String|-|
+|extra|按钮右边区域的内容|String/ReactNode|-|
 
 ### scale 规则
 
@@ -319,13 +320,20 @@ callback = (state, file, files) => {
 ref.current.reset();
 
 // 主动的文件上传
-ref.current.onUpload((files, dataObject) => {
-  // 成功的回调函数
-  // files 表示已上传的文件列表
-  // dataObject 是当前文件上传的后端返回数据
-}, (res) => {
-  // 失败的回调函数
-  // res 表示后端返回的错误对象
+ref.current.onUpload({
+  /*
+  * 成功的回调函数
+  *   files：表示已上传的文件列表
+  *   dataObject：是当前文件上传的后端返回数据
+  **/
+  success(files, dataObject) {},
+  /*
+  * 失败的回调函数
+  *   res：表示后端返回的错误对象
+  **/
+  error(res) {},
+  // localConfig 实例的 request 的额外入参
+  requestParams: {},
 });
 ```
 

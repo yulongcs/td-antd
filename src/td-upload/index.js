@@ -1,7 +1,8 @@
 import React from 'react';
 import { fetch } from 'dva';
 import cx from 'classnames';
-import { Upload, Button, message, Icon } from 'antd';
+import { Upload, Button, message } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import ImgModal from './img-modal';
 import onInitialFiles from './onInitialFiles';
 import isPromise from '../tools/isPromise';
@@ -256,7 +257,7 @@ class TdUpload extends React.PureComponent {
 
   render() {
     const { previewImg } = this.state;
-    const { btnText, disabled, btnProps, tip, isPreview, wrapClassName, hideRemoveBtn, listType } = this.props;
+    const { btnText, disabled, btnProps, tip, isPreview, wrapClassName, hideRemoveBtn, listType, extra } = this.props;
 
     return (
       <div
@@ -281,9 +282,12 @@ class TdUpload extends React.PureComponent {
           })}
         >
           {(listType && listType === 'picture-card') ? (
-            <Icon type="plus" className="td-btn-icon" />
+            <PlusOutlined className="" />
           ) : (
-            <Button {...btnProps} icon="upload">{btnText}</Button>
+            <React.Fragment>
+              <Button {...btnProps}>{btnText}</Button>
+              {extra}
+            </React.Fragment>
           )}
         </Upload>
         {tip && <div className="td-upload-tip">{tip}</div>}

@@ -9,9 +9,9 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default Form.create()((props) => {
+export default (props) => {
+  const [form] = Form.useForm();
   const {
-    form,
     proxy,
     account,
     setNext,
@@ -21,44 +21,39 @@ export default Form.create()((props) => {
   const [loading, setLoading] = useState(false);
 
   // 重置密码
-  const onSubmit = (e) => {
-    e.preventDefault();
-    form.validateFields((err, { password }) => {
-      if (!err) {
-        setLoading(true);
-        request({
-          url: `${proxy}/user/updatePassword.json`,
-          method: 'POST',
-          body: {
-            type: 'forget',
-            number: account,
-            newPassword: password,
-          },
-          onSuccess: ({ dataObject = {} }) => {
-            if (dataObject.flag) {
-              setNext(3);
-            } else {
-              Modal.confirm({
-                title: language.reset_confirm_title,
-                okText: language.reset_confirm_ok_text,
-                cancelText: language.reset_confirm_cancel_text,
-                onOk() {
-                  setNext(0);
-                  onSignIn();
-                },
-              });
-            }
-          },
-        }).finally(() => {
-          setLoading(false);
-        });
-      }
-    })
+  const onFinish = ({ password }) => {
+    setLoading(true);
+    request({
+      url: `${proxy}/user/updatePassword.json`,
+      method: 'POST',
+      body: {
+        type: 'forget',
+        number: account,
+        newPassword: password,
+      },
+      onSuccess: ({ dataObject = {} }) => {
+        if (dataObject.flag) {
+          setNext(3);
+        } else {
+          Modal.confirm({
+            title: language.reset_confirm_title,
+            okText: language.reset_confirm_ok_text,
+            cancelText: language.reset_confirm_cancel_text,
+            onOk() {
+              setNext(0);
+              onSignIn();
+            },
+          });
+        }
+      },
+    }).finally(() => {
+      setLoading(false);
+    });
   };
 
   return (
     <div>
-      <Form {...formItemLayout} hideRequiredMark onSubmit={onSubmit}>
+      <Form {...formItemLayout} requiredMark={false} onFinish={onFinish}>
         <PasswordAndConfirm
           form={form}
           language={language}
@@ -71,4 +66,4 @@ export default Form.create()((props) => {
       </Form>
     </div>
   );
-})
+}
