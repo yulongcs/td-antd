@@ -4,8 +4,8 @@ const path = require('path');
 
 // more config: https://d.umijs.org/config
 export default defineConfig({
-  title: 'td-antd',
-  description: '基于antd封装的业务组件',
+  title: 'td-antd 2.x',
+  description: '基于 Ant Design 4.x 开发的业务组件',
   favicon: '/logo.png',
   logo: '/logo.png',
   extraBabelPlugins: [
