@@ -11,6 +11,7 @@ title: TdUpload
 ```jsx
 /**
  * title: 基础上传文件
+ * desc: 文件类型校验
  */
 import React from 'react';
 import { TdUpload } from 'td-antd';
@@ -20,6 +21,8 @@ export default () => {
     <TdUpload
       size={5}
       multiple
+      fileType={['png']}
+      accept="application/pdf"
       extra={<a style={{ marginLeft: 12 }} onClick={(e) => { e.stopPropagation() }}>点击下载</a>}
       callback={(t, f, fs) => {
         if (t === 'remove') {
@@ -78,7 +81,7 @@ export default () => {
       size={5}
       multiple
       btnText="上传"
-      accept="image/*"
+      accept="image/jpg,image/*"
       tip="仅支持图片格式。"
       listType="picture-card"
       callback={(t, file, files) => {
@@ -284,6 +287,7 @@ export default () => {
 |tip|提示文案|String|-|
 |scale|图片尺寸校验|Array/String|-|
 |extra|按钮右边区域的内容|String/ReactNode|-|
+|fileType|内置了简单的文件类型校验|Array|-|
 
 ### scale 规则
 
@@ -292,6 +296,23 @@ export default () => {
 [350]：限制图片宽为 350，不限制高度
 [null, 750]：不限制宽度，限制高度为750
 "16:9"：限制宽高比例
+```
+
+### fileType
+
+内置的文件类型，如：['image', 'pdf']，可搭配原始的 accept 一起使用
+
+```
+image: 'image/*',
+jpg: 'image/jpg,image/jpeg',
+png: 'image/png',
+gif: 'image/gif',
+svg: 'image/svg+xml',
+txt: 'text/plain',
+pdf: 'application/pdf',
+zip: 'application/zip',
+docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+excel: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 ```
 
 ### callback

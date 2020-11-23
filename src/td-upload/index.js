@@ -5,6 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import ImgModal from './img-modal';
 import onInitialFiles from './onInitialFiles';
 import isPromise from '../tools/isPromise';
+import ACCEPT from './accept';
 import localConfig from '../local-config';
 import './index.less';
 
@@ -12,6 +13,7 @@ let num = 0; // 上传文件计数
 let waitFiles = []; // 等待插入组件的数据
 const ERROR_0 = '图片尺寸不符合要求，请修改后重新上传！';
 const ERROR_1 = '组件 scale 参数格式错误';
+const ERROR_2 = '文件类型不符合要求，请修改后重新上传！';
 
 class TdUpload extends React.PureComponent {
   static defaultProps = {
@@ -143,6 +145,13 @@ class TdUpload extends React.PureComponent {
 
     num ++;
 
+    // 文件类型校验
+    const fileTypeString = this.getAcceptString();
+    if (!fileTypeString.includes(file.type) && !(fileTypeString.includes('image/*') && file.type.includes('image'))) {
+      message.error(ERROR_2);
+      check = false;
+    }
+
     // 额外的校验，返回真值后，停止上传
     if (callback('validate', file, files)) {
       check = false;
@@ -223,6 +232,17 @@ class TdUpload extends React.PureComponent {
     }
   };
 
+  // 获取文件类型集合
+  getAcceptString = () => {
+    const { fileType, accept } = this.props; // 最大上传文件数
+
+    if (Array.isArray(fileType)) {
+      return `${ACCEPT.toString(fileType)}${!!accept ? `,${accept}` : ''}`;
+    }
+
+    return accept;
+  };
+
   // 将可用文件存入 state 中
   setStateFile = (files, callback) => {
     // 判断当前是否为最后一次文件解析
@@ -250,6 +270,7 @@ class TdUpload extends React.PureComponent {
       >
         <Upload
           {...this.props}
+          accept={this.getAcceptString()}
           fileList={this.state.fileList}
           beforeUpload={this.beforeUpload}
           onRemove={this.onRemove}

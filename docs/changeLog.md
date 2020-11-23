@@ -13,6 +13,7 @@ title: 更新日志
 - TdUpload
   - 优化 [onUpload](/high-coupling/td-upload#ref) 回调函数的写法，较上个版本有较多变化，注意项目修改
   - 优化内置的 request 调用，改为 localConfig 中进行调用
+  - 新增属性 [fileType](/high-coupling/td-upload#filetype)
 - tools
   - 删除方法 downloadBlob，被 [DownloadBlob.use()](/components/download-blob#function) 代替了
 
