@@ -11,7 +11,7 @@ function toThousands(v = 0, decimal) {
     try {
       return +v.replace(/\$\s?|(,*)/g, '');
     } catch (e) {
-      throw new TypeError(e);
+      return 'the toThousands Parameter type error';
     }
   }
 }
