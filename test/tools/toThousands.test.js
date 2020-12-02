@@ -10,6 +10,7 @@ describe('toThousands', () => {
 
   // 入参是数字和小数点位数
   test('test params is a number and params2 is 2', () => {
+    expect(errorSpy.mock.calls[0][0]).toMatch('Warning: [toThousands] Parameter type error');
     expect(toThousands(123456, 2)).toBe('123,456.00');
   });
 
