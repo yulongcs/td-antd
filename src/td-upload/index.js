@@ -65,7 +65,7 @@ class TdUpload extends React.PureComponent {
 
     return new Promise(async (resolve, reject) => {
       if (formData.get(name)) {
-        const { proxy, request } = localConfig.newInstance(); // 获取实例
+        const { request } = localConfig.newInstance(); // 获取实例
 
         // 将额外的入参注入到 formData 中
         Object.keys(params).forEach(key => {
@@ -73,7 +73,7 @@ class TdUpload extends React.PureComponent {
         });
 
         const res = await request({
-          url: `${proxy}${url}`,
+          url,
           method: 'POST',
           body: formData,
         });
