@@ -49,12 +49,13 @@ class TdUpload extends React.PureComponent {
   }
 
   // 异步上传文件
-  onUpload = async ({ success = () => {}, error = () => {}, requestProps = {} }) => {
+  onUpload = () => {
+    const _this = this;
     const { params, showUploadList, filterOptions, name, url } = this.props;
     const noUploadList = []; // 不需要上传的文件列表
     const formData = new FormData();
     // 当前有文件需要上传时，过滤出需要上传的文件进行上传
-    this.state.fileList.forEach((file) => {
+    _this.state.fileList.forEach((file) => {
       if (!file.filePath || (file.toString() === '[object File]')) {
         formData.append(name, file);
       } else {
@@ -62,38 +63,39 @@ class TdUpload extends React.PureComponent {
       }
     });
 
-    if (formData.get(name)) {
-      const { proxy, request } = localConfig.newInstance(); // 获取实例
+    return new Promise(async (resolve, reject) => {
+      if (formData.get(name)) {
+        const { proxy, request } = localConfig.newInstance(); // 获取实例
 
-      // 将额外的入参注入到 formData 中
-      Object.keys(params).forEach(key => {
-        formData.append(key, params[key]);
-      });
+        // 将额外的入参注入到 formData 中
+        Object.keys(params).forEach(key => {
+          formData.append(key, params[key]);
+        });
 
-      const res = await request({
-        url: `${proxy}${url}`,
-        method: 'POST',
-        body: formData,
-        ...requestProps,
-      });
+        const res = await request({
+          url: `${proxy}${url}`,
+          method: 'POST',
+          body: formData,
+        });
 
-      const renderFiles = []; // 需要渲染的文件列表数据
-      if (res && res.success) {
-        // 兼容后端返回的可能是个对象的情况，将其包装成数组返回给回调函数
-        const dataObject = Array.isArray(res.dataObject) ? res.dataObject : [res.dataObject];
-        renderFiles.push(...[...noUploadList, ...onInitialFiles(dataObject, filterOptions)]);
-        success(renderFiles, dataObject);
+        const renderFiles = []; // 需要渲染的文件列表数据
+        if (res && res.success) {
+          // 兼容后端返回的可能是个对象的情况，将其包装成数组返回给回调函数
+          const dataObject = Array.isArray(res.dataObject) ? res.dataObject : [res.dataObject];
+          renderFiles.push(...[...noUploadList, ...onInitialFiles(dataObject, filterOptions)]);
+          resolve(renderFiles, dataObject);
+        } else {
+          renderFiles.push(...noUploadList);
+          message.error(res.errorMessage);
+          reject(res);
+        }
+
+        // 如果不需要渲染，则不显示列表数据
+        _this.setState({ fileList: showUploadList ? renderFiles : [] });
       } else {
-        renderFiles.push(...noUploadList);
-        message.error(res.errorMessage);
-        error(res);
+        resolve(noUploadList);
       }
-
-      // 如果不需要渲染，则不显示列表数据
-      this.setState({ fileList: showUploadList ? renderFiles : [] });
-    } else {
-      success(noUploadList);
-    }
+    });
   };
 
   // 重置列表
@@ -234,10 +236,10 @@ class TdUpload extends React.PureComponent {
 
   // 获取文件类型集合
   getAcceptString = () => {
-    const { fileType, accept } = this.props; // 最大上传文件数
+    const { fileTypes, accept } = this.props; // 最大上传文件数
 
-    if (Array.isArray(fileType)) {
-      return `${ACCEPT.toString(fileType)}${!!accept ? `,${accept}` : ''}`;
+    if (Array.isArray(fileTypes)) {
+      return `${ACCEPT.toString(fileTypes)}${!!accept ? `,${accept}` : ''}`;
     }
 
     return accept;
