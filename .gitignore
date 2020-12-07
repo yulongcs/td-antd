@@ -34,3 +34,4 @@ es
 .doc
 /src/.umi/*
 /src/.umi-production/*
+dist
