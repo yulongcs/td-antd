@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.0.0-bate17
+
+`未发布`
+
+- DownloadBlob
+  - 优化 proxy 获取，现在项目中可以不用额外添加 proxy 了
+
 ### 🚀 2.0.0-bate16
 
 `2020-12-08`
@@ -21,7 +28,7 @@ title: 更新日志
   - 优化内置的 request 调用，改为 localConfig 的实例中获取
   - 新增属性 [fileTypes](/high-coupling/td-upload#filetypes)
 - tools
-  - 删除方法 downloadBlob，被 [DownloadBlob.use()](/components/download-blob#function) 代替了
+  - 删除方法 downloadBlob，被 [DownloadBlob.use()](/high-coupling/download-blob#function) 代替了
 
 ### 🚀 2.0.0-bate13
 

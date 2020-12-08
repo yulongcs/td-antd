@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Spin } from 'antd';
+import localConfig from '../local-config';
 import './index.less';
 
 // 函数用法
 function downloadBlob(params) {
   const { url, filename, body } = params;
+  const { proxy = '' } = localConfig.newInstance(); // 获取实例
   const newOptions = { credentials: 'include', body };
 
   if (body) {
@@ -17,7 +19,7 @@ function downloadBlob(params) {
     newOptions.body = JSON.stringify(newOptions.body);
   }
 
-  return fetch(url, newOptions)
+  return fetch(`${proxy}${url}`, newOptions)
     .then(response => response.blob().then(blob => {
       const reader = new FileReader();
       reader.onload = (e) => {
