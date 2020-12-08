@@ -341,7 +341,11 @@ callback = (state, file, files) => {
 ref.current.reset();
 
 // 主动的文件上传
-ref.current.onUpload().then().catch();
+ref.current.onUpload().then((array) => {
+  // files = 总的文件列表
+  // dataObject = 本次文件上传后返回的数据
+  const [files, dataObject] = array;
+}).catch();
 ```
 
 ### onInitialFiles(files, filterOptions)

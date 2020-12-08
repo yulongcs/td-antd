@@ -12,6 +12,7 @@ title: 更新日志
 
 - DownloadBlob
   - 优化 proxy 获取，现在项目中可以不用额外添加 proxy 了
+- TdUpload：优化 [onUpload](/high-coupling/td-upload#ref) 的返回
 
 ### 🚀 2.0.0-bate16
 

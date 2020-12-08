@@ -83,7 +83,7 @@ class TdUpload extends React.PureComponent {
           // 兼容后端返回的可能是个对象的情况，将其包装成数组返回给回调函数
           const dataObject = Array.isArray(res.dataObject) ? res.dataObject : [res.dataObject];
           renderFiles.push(...[...noUploadList, ...onInitialFiles(dataObject, filterOptions)]);
-          resolve(renderFiles, dataObject);
+          resolve([renderFiles, dataObject]);
         } else {
           renderFiles.push(...noUploadList);
           message.error(res.errorMessage);
@@ -93,7 +93,7 @@ class TdUpload extends React.PureComponent {
         // 如果不需要渲染，则不显示列表数据
         _this.setState({ fileList: showUploadList ? renderFiles : [] });
       } else {
-        resolve(noUploadList);
+        resolve([noUploadList]);
       }
     });
   };
