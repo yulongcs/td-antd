@@ -149,7 +149,7 @@ class TdUpload extends React.PureComponent {
 
     // 文件类型校验
     const fileTypeString = this.getAcceptString();
-    if (!fileTypeString.includes(file.type) && !(fileTypeString.includes('image/*') && file.type.includes('image'))) {
+    if (fileTypeString && !fileTypeString.includes(file.type) && !(fileTypeString.includes('image/*') && file.type.includes('image'))) {
       message.error(ERROR_2);
       check = false;
     }
