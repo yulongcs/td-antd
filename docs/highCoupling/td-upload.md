@@ -21,7 +21,7 @@ export default () => {
     <TdUpload
       size={5}
       multiple
-      fileType={['png']}
+      fileTypes={['png']}
       accept="application/pdf"
       extra={<a style={{ marginLeft: 12 }} onClick={(e) => { e.stopPropagation() }}>点击下载</a>}
       callback={(t, f, fs) => {
@@ -40,7 +40,7 @@ export default () => {
 ```jsx
 /**
  * title: 立即上传
- * desc: 点击选择文件后，在 after 回调中中进行立即上传操作
+ * desc: 点击选择文件后，在 after 回调中进行立即上传操作
  */
 import React, { useRef } from 'react';
 import { TdUpload } from 'td-antd';
@@ -60,7 +60,7 @@ export default () => {
           return Promise.resolve();
         }
         if (t === 'after') {
-          ref.current.onUpload();
+          // ref.current.onUpload();
         }
       }}
     />
@@ -123,19 +123,20 @@ export default () => {
 ```jsx
 /**
  * title: 自定义文件回显
- * desc: 利用 onInitialFiles 的 filterOptions 进行自定义回显
+ * desc: 利用 filterOptions 进行数据的自定义清洗
  */
 import React from 'react';
 import { TdUpload } from 'td-antd';
 
-const { onInitialFiles } = TdUpload;
 const files = [
   {
-    name: '1.jpg',
-    url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
+    fileNo: 1,
+    fileName: '1.jpg',
+    filePath: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
   }, {
-    name: '2.jpg',
-    url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
+    fileNo: 2,
+    fileName: '2.jpg',
+    filePath: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
   },
 ];
 
@@ -144,12 +145,7 @@ export default () => {
     <TdUpload
       isPreview
       btnText="上传"
-      initialFiles={onInitialFiles(files, (item, index) => (
-        {
-          ...item,
-          uid: index,
-        }
-      ))}
+      initial={files}
     />
   );
 }
@@ -163,7 +159,6 @@ export default () => {
 import React from 'react';
 import { TdUpload } from 'td-antd';
 
-const { onInitialFiles } = TdUpload;
 const files = [
   {
     name: '1.jpg',
@@ -180,12 +175,7 @@ export default () => {
       isPreview
       disabled
       btnText="上传"
-      initialFiles={onInitialFiles(files, (item, index) => (
-        {
-          ...item,
-          uid: index,
-        }
-      ))}
+      initial={files}
     />
   );
 }
@@ -194,12 +184,11 @@ export default () => {
 ```jsx
 /**
  * title: 自定义图片回显
- * desc: 利用 onInitialFiles 的 filterOptions 进行自定义回显
+ * desc: 使用 listType="picture-card"
  */
 import React from 'react';
 import { TdUpload } from 'td-antd';
 
-const { onInitialFiles } = TdUpload;
 const files = [
   {
     name: '1.jpg',
@@ -216,12 +205,8 @@ export default () => {
       isPreview
       btnText="上传"
       listType="picture-card"
-      initialFiles={onInitialFiles(files, (item, index) => (
-        {
-          ...item,
-          uid: index,
-        }
-      ))}
+      initial={files}
+      filterOptions={(item, index) => ({...item, uid: index})}
     />
   );
 }
@@ -235,7 +220,6 @@ export default () => {
 import React from 'react';
 import { TdUpload } from 'td-antd';
 
-const { onInitialFiles } = TdUpload;
 const files = [
   {
     name: '1.jpg',
@@ -253,12 +237,8 @@ export default () => {
       isPreview
       btnText="上传"
       listType="picture-card"
-      initialFiles={onInitialFiles(files, (item, index) => (
-        {
-          ...item,
-          uid: index,
-        }
-      ))}
+      initial={files}
+      filterOptions={(item, index) => ({...item, uid: index})}
     />
   );
 }
@@ -269,7 +249,7 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |url|接口地址|String|-|
-|initialFiles|初始化数据，需要 onInitialFiles 重组|Array|-|
+|initial|初始化数据，必须的[数据结构](#initial)|Array|-|
 |wrapClassName|最外层样式类|String|-|
 |isPreview|是否可预览|Boolean|true|
 |params|文件上传的入参|Object|-|
@@ -281,13 +261,25 @@ export default () => {
 |nameSize|文件名长度，包含后缀|Number|200|
 |hideRemoveBtn|是否隐藏删除按钮|Boolean|false|
 |showUploadList|是否展示文件列表|Boolean|true|
-|filterOptions|同 onInitialFiles 的 filterOptions 函数，在上传后会执行过滤操作|Function|-|
-|callback|回调函数|Function|-|
+|filterOptions|在初始化或者上传文件时进行的自定义数据过滤，必须返回数据结果|function(item, index)|-|
+|callback|回调函数|function(status, file, files)|-|
 |name|发到后台的文件参数名|String|'files'|
 |tip|提示文案|String|-|
-|scale|图片尺寸校验|Array/String|-|
+|scale|图片尺寸校验[规则](#scale-规则)|Array/String|-|
 |extra|按钮右边区域的内容|String/ReactNode|-|
-|fileTypes|内置了文件类型校验|Array|-|
+|fileTypes|内置了文件[类型](#filetypes)校验|Array|-|
+
+### initial
+
+必要的数据字段
+
+```
+{
+  fileNo,
+  fileName,
+  filePath,
+}
+```
 
 ### scale 规则
 
@@ -347,10 +339,3 @@ ref.current.onUpload().then((array) => {
   const [files, dataObject] = array;
 }).catch();
 ```
-
-### onInitialFiles(files, filterOptions)
-
-|参数|说明|类型|默认值|
-|:--|:--|:--|:--|
-|files|原数据|Array|[]|
-|filterOptions|自定义数据过滤，需要返回过滤后的数据对象。返回的对象中必须包含 `uid、name、url`；如果需要图片展示，则数据中需要包含 `type: 'image/*'`|Function(item, index)|-|

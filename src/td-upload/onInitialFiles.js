@@ -5,7 +5,7 @@ import localConfig from '../local-config';
 
 const onInitialFiles = (files = [], filterOptions) => {
   try {
-    const newInstance = localConfig.newInstance();
+    const { proxy = '' } = localConfig.newInstance();
     return files.map((item, index) => {
       if (filterOptions) {
         return filterOptions(item, index);
@@ -13,9 +13,9 @@ const onInitialFiles = (files = [], filterOptions) => {
 
       return {
         ...item,
-        uid: index,
-        name: item.fileName,
-        url: `${newInstance.proxy}/file/download.json?filePath=${item.filePath}`,
+        uid: item.fileNo || index,
+        name: item.fileName || item.name,
+        url: `${proxy}/file/download.json?filePath=${item.filePath}`,
       };
     });
   } catch (e) {

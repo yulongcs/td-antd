@@ -12,7 +12,10 @@ title: 更新日志
 
 - DownloadBlob
   - 优化 proxy 获取，现在项目中可以不用额外添加 proxy 了
-- TdUpload：优化 [onUpload](/high-coupling/td-upload#ref) 的返回
+- TdUpload：
+  - 优化 [onUpload](/high-coupling/td-upload#ref) 的返回
+  - 删除了 initialFiles 属性，新增了 initial 属性， 优化初始化过程，现在会内置使用 onInitialFiles 进行数据清洗
+  - 优化了内部的 remove 函数，现在以 uid 为唯一的 key，而不是 index
 
 ### 🚀 2.0.0-bate16
 

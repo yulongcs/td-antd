@@ -31,18 +31,19 @@ class TdUpload extends React.PureComponent {
     hideRemoveBtn: false, // 是否可以删除，true 的时候会展示删除按钮
     showUploadList: true, // 是否展示文件列表，原API
     scale: false, // 校验图片尺寸
+    initial: [], // 初始化文件列表数据
   };
 
   state = {
-    fileList: this.props.initialFiles || [],
+    fileList: onInitialFiles(this.props.initial, this.props.filterOptions),
     previewImg: '',
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.initialFiles && nextProps.initialFiles) {
-      if (this.props.initialFiles.toString() !== nextProps.initialFiles.toString()) {
+    if (this.props.initial && nextProps.initial) {
+      if (this.props.initial.toString() !== nextProps.initial.toString()) {
         this.setState({
-          fileList: nextProps.initialFiles,
+          fileList: onInitialFiles(nextProps.initial, this.props.filterOptions),
         })
       }
     }
@@ -126,14 +127,7 @@ class TdUpload extends React.PureComponent {
 
   // 删除文件
   removeFile = (file) => {
-    this.setState((state) => {
-      const index = state.fileList.indexOf(file);
-      const newFileList = state.fileList.slice();
-      newFileList.splice(index, 1);
-      return {
-        fileList: newFileList,
-      };
-    });
+    this.setState(({ fileList = [] }) => ({fileList: fileList.filter(item => item.uid !== file.uid)}));
   };
 
   beforeUpload = (file, files) => {
@@ -261,7 +255,10 @@ class TdUpload extends React.PureComponent {
 
   render() {
     const { previewImg } = this.state;
-    const { btnText, disabled, btnProps, tip, isPreview, wrapClassName, hideRemoveBtn, listType, extra } = this.props;
+    const {
+      btnText, disabled, btnProps, tip, isPreview, wrapClassName,
+      hideRemoveBtn, listType, extra,
+    } = this.props;
 
     return (
       <div
@@ -279,9 +276,10 @@ class TdUpload extends React.PureComponent {
           customRequest={() => {}}
           onPreview={isPreview && ((file) => {
             if (file.url) {
-              this.imgRef.show();
               this.setState({
                 previewImg: file.url,
+              }, () => {
+                this.imgRef.show();
               });
             }
           })}
@@ -301,7 +299,5 @@ class TdUpload extends React.PureComponent {
     );
   }
 }
-
-TdUpload.onInitialFiles = onInitialFiles;
 
 export default TdUpload;
