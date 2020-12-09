@@ -333,9 +333,8 @@ callback = (state, file, files) => {
 ref.current.reset();
 
 // 主动的文件上传
-ref.current.onUpload().then((array) => {
+ref.current.onUpload().then(([files, dataObject]) => {
   // files = 总的文件列表
   // dataObject = 本次文件上传后返回的数据
-  const [files, dataObject] = array;
 }).catch();
 ```
