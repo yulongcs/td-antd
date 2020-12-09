@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 🚀 2.0.0-bate17
 
-`未发布`
+`2020-12-09`
 
 - DownloadBlob
   - 优化 proxy 获取，现在项目中可以不用额外添加 proxy 了
