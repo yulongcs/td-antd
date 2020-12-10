@@ -6,6 +6,12 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.0.0-bate18
+
+`todo`
+
+- 废弃了 autoTrack 组件
+
 ### 🚀 2.0.0-bate17
 
 `2020-12-09`

@@ -1,5 +1,4 @@
 // 基础组件
-export { default as autoTrack } from './auto-track';
 export { default as DescList } from './desc-list';
 export { default as DragModal } from './drag-modal';
 export { default as EmptyBox } from './empty-box';
