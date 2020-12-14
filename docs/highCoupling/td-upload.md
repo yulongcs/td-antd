@@ -11,7 +11,7 @@ title: TdUpload
 ```jsx
 /**
  * title: 基础上传文件
- * desc: 文件类型校验
+ * desc: 文件类型校验，文件名长度校验
  */
 import React from 'react';
 import { TdUpload } from 'td-antd';
@@ -20,7 +20,7 @@ export default () => {
   return (
     <TdUpload
       size={5}
-      multiple
+      nameSize={15}
       fileTypes={['png']}
       accept="application/pdf"
       extra={<a style={{ marginLeft: 12 }} onClick={(e) => { e.stopPropagation() }}>点击下载</a>}
@@ -80,6 +80,7 @@ export default () => {
     <TdUpload
       size={5}
       multiple
+      isPreview
       btnText="上传"
       accept="image/jpg,image/*"
       tip="仅支持图片格式。"

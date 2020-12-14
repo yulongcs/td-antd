@@ -11,6 +11,8 @@ title: 更新日志
 `todo`
 
 - 废弃了 autoTrack 组件
+- TdUpload
+  - 在 listType="picture-card" 下支持图片 base64 预览
 
 ### 🚀 2.0.0-bate17
 

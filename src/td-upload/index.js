@@ -11,6 +11,7 @@ import './index.less';
 
 let num = 0; // 上传文件计数
 let waitFiles = []; // 等待插入组件的数据
+const TEXT_PICTURE_CARD = 'picture-card';
 const ERROR_0 = '图片尺寸不符合要求，请修改后重新上传！';
 const ERROR_1 = '组件 scale 参数格式错误';
 const ERROR_2 = '文件类型不符合要求，请修改后重新上传！';
@@ -139,8 +140,6 @@ class TdUpload extends React.PureComponent {
       callback('before', file, files);
     }
 
-    num ++;
-
     // 文件类型校验
     const fileTypeString = this.getAcceptString();
     if (fileTypeString && !fileTypeString.includes(file.type) && !(fileTypeString.includes('image/*') && file.type.includes('image'))) {
@@ -173,59 +172,14 @@ class TdUpload extends React.PureComponent {
 
     // 校验图片尺寸
     if (scale && file.type.includes('image/')) {
-      return new Promise((resolve, reject) => {
-        // 前置校验不通过的话，直接 reject
-        if (!check) {
-          reject();
-        } else {
-          // 校验文件宽度
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = (theFile) => {
-            const image = new Image();
-            image.src = theFile.target.result;
-            image.onload = () => {
-              // 判断scale是否为字符串，格式是否为 "16:9" 的宽高比
-              if (typeof scale === 'string') {
-                const scaleArray = scale.split(':');
-                const isError = scaleArray.some(i => isNaN(+i));
-                if (isError) {
-                  message.error(ERROR_1);
-                  reject();
-                }
-                if (+scaleArray[0] * image.height === +scaleArray[1] * image.width) {
-                  resolve();
-                } else {
-                  message.error(`${file.name}：${ERROR_0}`);
-                  reject();
-                }
-              } else if (Array.isArray(scale)) { // 如果是数组的话
-                if ((scale[0] && image.width !== scale[0]) || (scale[1] && image.height !== scale[1])) {
-                  message.error(`${file.name}：${ERROR_0}`);
-                  reject();
-                } else {
-                  resolve();
-                }
-              }
-            };
-          };
-        }
-      }).then(() => {
-        waitFiles.push(file);
-        this.setStateFile(files, callback)
-      }, () => {
-        this.setStateFile(files, callback)
-      })
+      return this._scaleVerification(check, file, files);
     }
 
     if (check) {
-      waitFiles.push(file);
-      this.setStateFile(files, callback);
-      return false;
-    } else {
-      this.setStateFile(files, callback);
-      return Promise.reject();
+      return this._getBase64(file, files);
     }
+    this.setStateFile(files);
+    return false;
   };
 
   // 获取文件类型集合
@@ -240,16 +194,92 @@ class TdUpload extends React.PureComponent {
   };
 
   // 将可用文件存入 state 中
-  setStateFile = (files, callback) => {
+  setStateFile = (files) => {
+    num ++;
     // 判断当前是否为最后一次文件解析
     if (num >= files.length) {
       this.setState(state => ({
         fileList: [...state.fileList, ...waitFiles],
       }), () => {
+        const { callback } = this.props;
         waitFiles = []; // 重置待上传文件列表
         num = 0; // 重置计数
         callback('after', null, this.state.fileList);
       });
+    }
+  };
+
+  // 判断类型是否为 picture-card，如果是，则进行 base64 转化，并写入数据
+  _getBase64 = (file, files) => {
+    const { listType } = this.props;
+    return new Promise((resolve) => {
+      if (listType === TEXT_PICTURE_CARD) {
+        this._onLoadFile(file, (base64) => {
+          file.url = base64;
+          resolve(file);
+        });
+      } else {
+        resolve(file);
+      }
+    }).then((resFile) => {
+      waitFiles.push(resFile);
+      this.setStateFile(files);
+    })
+  };
+
+  // 图片尺寸校验
+  _scaleVerification = (check, file, files) => {
+    const { scale } = this.props;
+    return new Promise((resolve, reject) => {
+      // 前置校验不通过的话，直接 reject
+      if (!check) {
+        reject();
+      } else {
+        // 校验文件宽度
+        this._onLoadFile(file, (base64) => {
+          const image = new Image();
+          image.src = base64;
+          image.onload = () => {
+            // 判断scale是否为字符串，格式是否为 "16:9" 的宽高比
+            if (typeof scale === 'string') {
+              const scaleArray = scale.split(':');
+              const isError = scaleArray.some(i => isNaN(+i));
+              if (isError) {
+                message.error(ERROR_1);
+                reject();
+              }
+              if (+scaleArray[0] * image.height === +scaleArray[1] * image.width) {
+                resolve(base64);
+              } else {
+                message.error(`${file.name}：${ERROR_0}`);
+                reject();
+              }
+            } else if (Array.isArray(scale)) { // 如果是数组的话
+              if ((scale[0] && image.width !== scale[0]) || (scale[1] && image.height !== scale[1])) {
+                message.error(`${file.name}：${ERROR_0}`);
+                reject();
+              } else {
+                resolve(base64);
+              }
+            }
+          };
+        });
+      }
+    }).then((base64) => {
+      file.url = base64;
+      waitFiles.push(file);
+      this.setStateFile(files)
+    }, () => {
+      this.setStateFile(files)
+    })
+  };
+
+  // 预读文件，获取文件的 base64 码
+  _onLoadFile = (file, cb = () => {}) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = ({ target }) => {
+      cb(target.result);
     }
   };
 
@@ -284,7 +314,7 @@ class TdUpload extends React.PureComponent {
             }
           })}
         >
-          {(listType && listType === 'picture-card') ? (
+          {(listType && listType === TEXT_PICTURE_CARD) ? (
             <PlusOutlined className="" />
           ) : (
             <React.Fragment>
