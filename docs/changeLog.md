@@ -13,6 +13,8 @@ title: 更新日志
 - 废弃了 autoTrack 组件
 - TdUpload
   - 在 listType="picture-card" 下支持图片 base64 预览
+  - 移除了 disabled 属性
+  - 在触发 onUpload 函数时，内置了 loading 处理效果
 
 ### 🚀 2.0.0-bate17
 

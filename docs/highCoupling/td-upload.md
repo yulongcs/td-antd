@@ -255,7 +255,6 @@ export default () => {
 |isPreview|是否可预览|Boolean|true|
 |params|文件上传的入参|Object|-|
 |maxFiles|上传文件数的最大值，会统计组件内所有的文件，包括已上传的|Number|10|
-|disabled|是否禁用，设置成 true 后按钮会消失|Boolean|false|
 |btnText|按钮文案|String|'upload'|
 |btnProps|Button 的 api|Object|{}|
 |size|单个文件大小，默认单位 MB|Number|20|

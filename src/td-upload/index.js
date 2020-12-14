@@ -25,7 +25,6 @@ class TdUpload extends React.PureComponent {
     params: {}, // 除 files 外的入参
     callback: () => {},
     maxFiles: 10,
-    disabled: false,
     btnProps: {},
     size: 20,
     nameSize: 200,
@@ -38,6 +37,7 @@ class TdUpload extends React.PureComponent {
   state = {
     fileList: onInitialFiles(this.props.initial, this.props.filterOptions),
     previewImg: '',
+    loading: false,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -74,10 +74,13 @@ class TdUpload extends React.PureComponent {
           formData.append(key, params[key]);
         });
 
+        this.setState({ loading: true });
         const res = await request({
           url,
           method: 'POST',
           body: formData,
+        }).finally(() => {
+          this.setState({ loading: false });
         });
 
         const renderFiles = []; // 需要渲染的文件列表数据
@@ -284,9 +287,9 @@ class TdUpload extends React.PureComponent {
   };
 
   render() {
-    const { previewImg } = this.state;
+    const { previewImg, loading } = this.state;
     const {
-      btnText, disabled, btnProps, tip, isPreview, wrapClassName,
+      btnText, btnProps, tip, isPreview, wrapClassName,
       hideRemoveBtn, listType, extra,
     } = this.props;
 
@@ -294,11 +297,12 @@ class TdUpload extends React.PureComponent {
       <div
         className={cx('td-upload-wrap', wrapClassName, {
           'td-upload-hide-remove': hideRemoveBtn,
-          'td-upload-hide': disabled,
+          // 'td-upload-hide': disabled,
         })}
       >
         <Upload
           {...this.props}
+          disabled={loading}
           accept={this.getAcceptString()}
           fileList={this.state.fileList}
           beforeUpload={this.beforeUpload}
@@ -315,10 +319,10 @@ class TdUpload extends React.PureComponent {
           })}
         >
           {(listType && listType === TEXT_PICTURE_CARD) ? (
-            <PlusOutlined className="" />
+            <PlusOutlined />
           ) : (
             <React.Fragment>
-              <Button {...btnProps}>{btnText}</Button>
+              <Button loading={loading} {...btnProps}>{btnText}</Button>
               {extra}
             </React.Fragment>
           )}
