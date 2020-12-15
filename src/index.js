@@ -1,9 +1,7 @@
 // 基础组件
 export { default as DescList } from './desc-list';
 export { default as DragModal } from './drag-modal';
-export { default as EmptyBox } from './empty-box';
 export { default as FormItem } from './form-item';
-export { default as HandleBox } from './handle-box';
 export { default as LinkBtn } from './link-btn';
 export { default as ModalBox } from './modal-box';
 export { default as PopoverBox } from './popover-box';

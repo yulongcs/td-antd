@@ -10,7 +10,10 @@ title: 更新日志
 
 `todo`
 
-- 废弃了 autoTrack 组件
+- 废弃了部分组件
+  - autoTrack
+  - EmptyBox，请使用 [Empty](https://ant-design.gitee.io/components/empty-cn/) 代替
+  - HandleBox，请使用 [Space](https://ant-design.gitee.io/components/space-cn/) 代替
 - TdUpload
   - 在 listType="picture-card" 下支持图片 base64 预览
   - 移除了 disabled 属性

@@ -10,7 +10,8 @@ title: PopoverBox
 
 ```jsx
 import React, { useRef, useState } from 'react';
-import { PopoverBox, LinkBtn, HandleBox } from 'td-antd';
+import { Space } from 'antd';
+import { PopoverBox, LinkBtn } from 'td-antd';
 
 export default () => {
   const ref = useRef();
@@ -18,7 +19,7 @@ export default () => {
   const [loading, setLoading] = useState(false);
 
   return(
-    <HandleBox>
+    <Space>
       <PopoverBox
         ref={ref}
         title="title"
@@ -42,7 +43,7 @@ export default () => {
       >
         <LinkBtn>Show2</LinkBtn>
       </PopoverBox>
-    </HandleBox>
+    </Space>
   );
 }
 ```

@@ -10,7 +10,8 @@ title: storageWorker
 
 ```jsx
 import React, { useEffect } from 'react';
-import { HandleBox, LinkBtn, tools } from 'td-antd';
+import { Space } from 'antd';
+import { LinkBtn, tools } from 'td-antd';
 
 const { storageWorker } = tools;
 
@@ -46,11 +47,11 @@ export default () => {
   };
 
   return (
-    <HandleBox>
+    <Space>
       <LinkBtn onClick={setDemo}>写入</LinkBtn>
       <LinkBtn onClick={getDemo}>获取</LinkBtn>
       <LinkBtn onClick={deleteDemo}>删除</LinkBtn>
-    </HandleBox>
+    </Space>
   );
 }
 ```
