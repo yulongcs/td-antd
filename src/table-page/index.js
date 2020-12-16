@@ -26,13 +26,13 @@ export default forwardRef((props, ref) => {
   const { request } = localConfig.newInstance();
 
   useEffect(() => {
-    query();
-  }, [request]);
+    query({}, true);
+  }, [request, url]);
 
   const query = (obj = {}, reset = false) => {
     const params = reset ? {...defaultParams, ...obj} : {...keywords, ...obj };
 
-    if (request && url) {
+    if (request && url && !url.includes('undefined')) {
       setLoading(true);
       let requestApi = {
         method,
