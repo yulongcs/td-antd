@@ -27,12 +27,12 @@ export default forwardRef((props, ref) => {
 
   useEffect(() => {
     query();
-  }, [request]);
+  }, [request, url]);
 
   const query = (obj = {}, reset = false) => {
     const params = reset ? {...defaultParams, ...obj} : {...keywords, ...obj };
 
-    if (request && url) {
+    if (request && !!url) {
       setLoading(true);
       let requestApi = {
         method,
