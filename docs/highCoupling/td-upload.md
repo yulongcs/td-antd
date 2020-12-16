@@ -4,7 +4,7 @@ title: TdUpload
 
 ## TdUpload
 
-基于 Upload 的二次封装。当项目中配置了 [localConfig.config](/high-coupling/local-config).proxy 后，url参数会自动携带 proxy。
+基于 Upload 的二次封装。当项目中配置了 [localConfig.config.proxy](/high-coupling/local-config#config) 后，url参数会自动携带 proxy。
 
 ## 代码演示
 
@@ -174,7 +174,7 @@ export default () => {
   return (
     <TdUpload
       isPreview
-      disabled
+      hidden
       btnText="上传"
       initial={files}
     />
@@ -234,7 +234,7 @@ const files = [
 export default () => {
   return (
     <TdUpload
-      disabled
+      hidden
       isPreview
       btnText="上传"
       listType="picture-card"
@@ -268,6 +268,7 @@ export default () => {
 |scale|图片尺寸校验[规则](#scale-规则)|Array/String|-|
 |extra|按钮右边区域的内容|String/ReactNode|-|
 |fileTypes|内置了文件[类型](#filetypes)校验|Array|-|
+|hidden|上传按钮是否显示|Boolean|false|
 
 ### initial
 

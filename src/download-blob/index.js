@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Spin } from 'antd';
 import localConfig from '../local-config';
 import './index.less';
 

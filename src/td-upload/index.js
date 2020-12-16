@@ -290,14 +290,14 @@ class TdUpload extends React.PureComponent {
     const { previewImg, loading } = this.state;
     const {
       btnText, btnProps, tip, isPreview, wrapClassName,
-      hideRemoveBtn, listType, extra,
+      hideRemoveBtn, listType, extra, hidden,
     } = this.props;
 
     return (
       <div
         className={cx('td-upload-wrap', wrapClassName, {
           'td-upload-hide-remove': hideRemoveBtn,
-          // 'td-upload-hide': disabled,
+          'td-upload-hide': hidden,
         })}
       >
         <Upload
