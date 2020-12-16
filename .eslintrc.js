@@ -64,6 +64,10 @@ module.exports = {
     'prefer-destructuring': [0],
     'object-shorthand': [0],
     "linebreak-style": [0,"error", "windows"],
+    "no-underscore-dangle": [0],
+    "no-param-reassign": [0],
+    "no-plusplus": [0],
+    "no-extra-boolean-cast": [0],
   },
   parserOptions: {
     ecmaFeatures: {
