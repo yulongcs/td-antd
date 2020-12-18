@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.0.0-bate19
+
+`2020-12-18`
+
+- TdUpload
+  - 修复 hideRemoveBtn 在 listType="picture-card" 下无效的问题
+
 ### 🚀 2.0.0-bate18
 
 `2020-12-16`

@@ -173,9 +173,9 @@ const files = [
 export default () => {
   return (
     <TdUpload
-      isPreview
       hidden
-      btnText="上传"
+      isPreview
+      hideRemoveBtn
       initial={files}
     />
   );
@@ -236,9 +236,9 @@ export default () => {
     <TdUpload
       hidden
       isPreview
-      btnText="上传"
-      listType="picture-card"
+      hideRemoveBtn
       initial={files}
+      listType="picture-card"
       filterOptions={(item, index) => ({...item, uid: index})}
     />
   );
