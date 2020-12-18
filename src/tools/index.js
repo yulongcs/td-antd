@@ -9,17 +9,19 @@ import noPassByInfo from './noPassByInfo';
 import countdown from './countdown';
 import storageWorker from './storageWorker';
 import isPromise from './isPromise';
+import validateFields from './validateFields';
 
 export default {
   delay,
-  genNonDuplicateID,
-  getUrlParameter,
-  getUrlParams,
-  momentToString,
-  toThousands,
-  objectToString,
-  noPassByInfo,
-  countdown,
-  storageWorker,
   isPromise,
+  countdown,
+  toThousands,
+  noPassByInfo,
+  getUrlParams,
+  storageWorker,
+  validateFields,
+  momentToString,
+  objectToString,
+  getUrlParameter,
+  genNonDuplicateID,
 };
