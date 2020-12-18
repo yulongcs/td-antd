@@ -249,13 +249,13 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|url|接口地址|String|-|
+|url|接口地址|String|'/file/upload.json'|
 |initial|初始化数据，必须的[数据结构](#initial)|Array|-|
 |wrapClassName|最外层样式类|String|-|
 |isPreview|是否可预览|Boolean|true|
 |params|文件上传的入参|Object|-|
 |maxFiles|上传文件数的最大值，会统计组件内所有的文件，包括已上传的|Number|10|
-|btnText|按钮文案|String|'upload'|
+|btnText|按钮文案|String|'上传'|
 |btnProps|Button 的 api|Object|{}|
 |size|单个文件大小，默认单位 MB|Number|20|
 |nameSize|文件名长度，包含后缀|Number|200|
