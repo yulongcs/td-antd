@@ -49,8 +49,6 @@ export default () => {
 
 ## API
 
-支持原 [Popover](https://ant-design.gitee.io/components/popover-cn/) API
-
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |onOk|点击确认按钮的回调函数|Function(value, setVisible, setLoading)|-|
