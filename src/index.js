@@ -11,6 +11,7 @@ export { default as SelectSearch } from './select-search';
 export { default as TdInputNumber } from './td-input-number';
 export { default as toast } from './toast';
 export { default as DownloadBlob } from './download-blob';
+export { default as Reject } from './reject';
 
 // 高耦合组件
 export { default as localConfig } from './local-config';

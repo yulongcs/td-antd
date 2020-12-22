@@ -6,6 +6,12 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.0.0-bate22
+
+`2020-12-22`
+
+- 新增组件 [Reject](/components/reject)
+
 ### 🚀 2.0.0-bate21
 
 `2020-12-22`
