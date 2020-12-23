@@ -12,6 +12,8 @@ title: 更新日志
 
 - LinkBtn
   - 新增 loading 属性
+- tools
+  - 新增 [useDebounce](/tools/use-debounce)
 
 ### 🚀 2.0.0-bate22
 

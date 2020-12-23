@@ -10,12 +10,14 @@ import countdown from './countdown';
 import storageWorker from './storageWorker';
 import isPromise from './isPromise';
 import validateFields from './validateFields';
+import useDebounce from './useDebounce';
 
 export default {
   delay,
   isPromise,
   countdown,
   toThousands,
+  useDebounce,
   noPassByInfo,
   getUrlParams,
   storageWorker,

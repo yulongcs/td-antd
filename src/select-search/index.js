@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fetch } from 'dva';
 import { Select, Spin } from 'antd';
-import useDebounce from './useDebounce';
+import useDebounce from '../tools/useDebounce';
 
 export default (props) => {
   const {
