@@ -1,15 +1,16 @@
-import React, { useState, cloneElement } from 'react';
+import React, { useState, cloneElement, useImperativeHandle, forwardRef } from 'react';
 import cx from 'classnames';
 import { Modal, Input } from 'antd';
 import './index.less';
 
-export default (props) => {
+export default forwardRef((props, ref) => {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [showError, setShowError] = useState(false);
   const {
     min,
+    max = 200,
     onOk = () => {},
     placeholder = '请填写拒绝原因',
     title = '拒绝原因',
@@ -24,6 +25,11 @@ export default (props) => {
   const onChange = ({ target }) => {
     setText(target.value);
   };
+
+  // 提供给外部的接口
+  useImperativeHandle(ref, () => ({
+    visible: setVisible,
+  }));
 
   return (
     <React.Fragment>
@@ -51,15 +57,17 @@ export default (props) => {
       >
         <div className="td-reject-wrap">
           <Input.TextArea
+            showCount
             value={text}
+            maxLength={max}
             onChange={onChange}
             placeholder={placeholder}
+            autoSize={{ minRows: 6, maxRows: 6 }}
             onFocus={() => { setShowError(false) }}
-            className={showError && 'td-reject-input-error'}
           />
           <div className={cx('td-reject-default-error', { 'td-reject-show-error': showError })}>不能少于{min}个字符</div>
         </div>
       </Modal>
     </React.Fragment>
   );
-}
+})

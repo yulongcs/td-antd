@@ -12,6 +12,9 @@ title: 更新日志
 
 - LinkBtn
   - 新增 loading 属性
+- Reject
+  - 提供 ref 用法
+  - 新增属性 max
 - tools
   - 新增 [useDebounce](/tools/use-debounce)
 
