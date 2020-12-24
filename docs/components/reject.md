@@ -12,20 +12,24 @@ title: Reject
 /**
  * title: 基础用法
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Space } from 'antd';
 import { Reject, LinkBtn } from 'td-antd';
 
 export default () => {
+  const [loading, setLoading] = useState(false);
+
   return (
     <Space>
       <Reject
         min={30}
         title="退回原因"
+        loading={loading}
         placeholder="请输入退回原因，不能少于30个字符"
-        onOk={(value, setVisible, setLoading) => {
+        onOk={(value, setVisible) => {
           setLoading(true);
           setTimeout(() => {
+            setLoading(false);
             setVisible(false);
           }, 2000);
         }}
@@ -36,9 +40,10 @@ export default () => {
         min={30}
         title="退回原因"
         placeholder="请输入退回原因，不能少于30个字符"
-        onOk={(value, setVisible, setLoading) => {
+        onOk={(value, setVisible) => {
           setLoading(true);
           setTimeout(() => {
+            setLoading(false);
             setVisible(false);
           }, 2000);
         }}
@@ -54,11 +59,12 @@ export default () => {
 /**
  * title: Ref 用法
  */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Reject, LinkBtn } from 'td-antd';
 
 export default () => {
   const ref = useRef();
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
@@ -71,10 +77,12 @@ export default () => {
         ref={ref}
         min={10}
         title="退回原因"
+        loading={loading}
         placeholder="请输入退回原因，不能少于10个字符"
-        onOk={(value, setVisible, setLoading) => {
+        onOk={(value, setVisible) => {
           setLoading(true);
           setTimeout(() => {
+            setLoading(false);
             setVisible(false);
           }, 2000);
         }}
@@ -88,7 +96,7 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|onOk|点击确认按钮的回调函数|Function(value, setVisible, setLoading)|-|
+|onOk|点击确认按钮的回调函数|Function(value, setVisible)|-|
 |min|最少需要的字符数|Number|-|
 |max|最多字符数限制|Number|200|
 

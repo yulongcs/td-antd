@@ -5,12 +5,12 @@ import './index.less';
 
 export default forwardRef((props, ref) => {
   const [text, setText] = useState('');
-  const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [showError, setShowError] = useState(false);
   const {
     min,
     max = 200,
+    loading = false,
     onOk = () => {},
     placeholder = '请填写拒绝原因',
     title = '拒绝原因',
@@ -44,14 +44,13 @@ export default forwardRef((props, ref) => {
         okButtonProps={{ disabled: !text.trim() }}
         afterClose={() => {
           setText('');
-          setLoading(false);
           setShowError(false);
         }}
         onOk={() => {
           if (min && text.trim().length < +min) {
             setShowError(true);
           } else {
-            onOk(text, setVisible, setLoading);
+            onOk(text, setVisible);
           }
         }}
       >

@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.0.0-bate24
+
+`2020-12-24`
+
+- Reject
+  - 优化 loading，改为引入，取消 onOk 的 setLoading 参数
+
 ### 🚀 2.0.0-bate23
 
 `2020-12-23`
