@@ -18,6 +18,7 @@ import { DescList } from 'td-antd';
 export default () => {
   return (
     <DescList
+      column={2}
       columns={[
         {
           title: '名字',
@@ -31,11 +32,10 @@ export default () => {
         }, {
           title: '电话',
           render: record => record.phone,
-          span: 3,
         }, {
           title: '描述',
           dataIndex: 'desc.text',
-          span: 3,
+          span: 2,
         }, {
           title: '地址被隐藏了',
           dataIndex: 'address',

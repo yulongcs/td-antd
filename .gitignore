@@ -35,3 +35,5 @@ es
 /src/.umi/*
 /src/.umi-production/*
 dist
+.fatherrc.js
+.umirc.js
