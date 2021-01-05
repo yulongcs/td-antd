@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.0.0
+
+`2021-01-05`
+
+- tools.storageWorker
+  - 优化 get 的获取方式
+
 ### 🚀 2.0.0-bate24
 
 `2020-12-24`

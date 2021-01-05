@@ -1,10 +1,10 @@
-function storageWorker(props) {
+function storageWorker(params = {}) {
   const {
     type = 'get', // 使用类型，get = 获取，set = 设置，delete = 删除
     fields = {}, // 当 type = set 时需要赋值的属性。{key: value}
     callback = () => {},
     version = 'v1',
-  } = props;
+  } = params;
 
   try {
     const control = {
@@ -15,6 +15,7 @@ function storageWorker(props) {
       get() {
         const res = this.query();
         callback(res);
+        return res;
       },
       set() {
         const data = this.query();
@@ -34,7 +35,7 @@ function storageWorker(props) {
         }
       },
     };
-    control[type]();
+    return control[type]();
   } catch (e) {
     throw new Error(e);
   }

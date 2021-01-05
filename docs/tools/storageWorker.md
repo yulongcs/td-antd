@@ -29,12 +29,17 @@ export default () => {
   };
   
   const getDemo = () => {
-    storageWorker({
-      callback(res) {
-        console.dir(res)
-      },
-    })
+    const res = storageWorker();
+    console.log(res);
   };
+  
+  const getDemo2 = () => {
+      storageWorker({
+        callback(res) {
+          console.log(res);
+        }
+      });
+    };
   
   const deleteDemo = () => {
     storageWorker({
@@ -49,7 +54,8 @@ export default () => {
   return (
     <Space>
       <LinkBtn onClick={setDemo}>写入</LinkBtn>
-      <LinkBtn onClick={getDemo}>获取</LinkBtn>
+      <LinkBtn onClick={getDemo}>直接获取</LinkBtn>
+      <LinkBtn onClick={getDemo2}>callback获取</LinkBtn>
       <LinkBtn onClick={deleteDemo}>删除</LinkBtn>
     </Space>
   );
