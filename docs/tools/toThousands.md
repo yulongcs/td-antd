@@ -17,10 +17,11 @@ const { toThousands } = tools;
 export default () => {
   return (
     <>
-      <p>{toThousands(123456)}</p>
-      <p>{toThousands(123456, 2)}</p>
-      <p>{toThousands('123456.1', 3)}</p>
-      <p>{toThousands('123,456')}</p>
+      <p>示例1：toThousands(123456) => {toThousands(123456)}</p>
+      <p>示例2：toThousands(123456.1, 2) => {toThousands(123456.1, 2)}</p>
+      <p>示例3：toThousands('123456.11111', 4) => {toThousands('123456.11111', 4)}</p>
+      <p>示例4：toThousands('123,456') => {toThousands('123,456')}</p>
+      <p>示例5：toThousands('12345.1') => {toThousands('12345.1')}</p>
     </>
   );
 }
@@ -33,7 +34,7 @@ function(param1, param2)
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |param1|需要转化的数据|Number/String|-|
-|param2|小数的位数|Number|0|
+|param2|小数的位数，当实际位数大于参数位数时，会保留实际的位数，如示例3|Number|-|
 
 ## toThousands.currency
 
@@ -51,6 +52,7 @@ export default () => {
   return (
     <>
       <p>人民币金额展示：{toThousands.currency(12345)}</p>
+      <p>人民币金额展示：{toThousands.currency(510.4119)}</p>
     </>
   );
 }
