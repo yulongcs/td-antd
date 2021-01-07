@@ -4,7 +4,7 @@ title: SearchForm
 
 ## SearchForm
 
-基于 Form 的二次封装，一般用于列表页头部的搜索栏。组件内部包裹了 Row 组件，在使用组件时，可直接使用 Col 进行排版
+基于 Form 的二次封装，一般用于列表页头部的搜索栏。
 
 ## 代码演示
 
@@ -13,12 +13,26 @@ title: SearchForm
  * title: 基础用法
  */
 import React from 'react';
-import { Col, DatePicker } from 'antd';
-import { SearchForm, FormItem, SelectMap } from 'td-antd';
+import { DatePicker } from 'antd';
+import { SearchForm } from 'td-antd';
 
 export default () => {
   return (
     <SearchForm
+      span={6}
+      columns={[
+        {
+          title: '手机',
+          dataIndex: 'phone',
+          inputProps: { placeholder: '请输入手机号' },
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        }, {
+          title: '年龄',
+          dataIndex: 'age',
+        },
+      ]}
       callback={(type, values) => {
         if (type === 'query') {
           console.log(values);
@@ -27,62 +41,45 @@ export default () => {
           console.log('重置表单');
         }
       }}
-    >
-      <Col span={6}>
-        <FormItem
-          label="手机"
-          name="phone"
-          required={false}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          label="地址"
-          name="address"
-          required={false}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          label="年龄"
-          name="age"
-          required={false}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          label="性别"
-          name="sex"
-          required={false}
-        >
-          <SelectMap data={['男', '女']} />
-        </FormItem>
-      </Col>
-      <Col span={6}>
-        <FormItem
-          label="时间"
-          name="time"
-          required={false}
-        >
-          <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
-        </FormItem>
-      </Col>
-    </SearchForm>
+    />
   );
 }
 ```
 
 ```jsx
 /**
- * title: 无 label 模式
+ * title: 多搜索项
+ * desc: 当表单项过多时，会自动进行展示/收起
  */
 import React from 'react';
-import { Col, DatePicker } from 'antd';
-import { SearchForm, FormItem, SelectMap } from 'td-antd';
+import { DatePicker } from 'antd';
+import { SelectMap, SearchForm } from 'td-antd';
 
 export default () => {
   return (
     <SearchForm
+      span={6}
+      columns={[
+        {
+          title: '手机',
+          dataIndex: 'phone',
+          inputProps: { placeholder: '请输入手机号' },
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        }, {
+          title: '年龄',
+          dataIndex: 'age',
+        }, {
+          title: '状态',
+          dataIndex: 'status',
+          component: <SelectMap data={['进行中', '已完成']} />
+        }, {
+          title: '时间',
+          dataIndex: 'date',
+          component: <DatePicker style={{ width: '100%' }} />
+        },
+      ]}
       callback={(type, values) => {
         if (type === 'query') {
           console.log(values);
@@ -91,133 +88,67 @@ export default () => {
           console.log('重置表单');
         }
       }}
-    >
-      <Col span={6}>
-        <FormItem
-          name="phone"
-          required={false}
-          inputProps={{ placeholder: '手机' }}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          name="address"
-          required={false}
-          inputProps={{ placeholder: '地址' }}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          name="age"
-          required={false}
-          inputProps={{ placeholder: '年龄' }}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          name="sex"
-          required={false}
-        >
-          <SelectMap placeholder="性别" data={['男', '女']} />
-        </FormItem>
-      </Col>
-      <Col span={6}>
-        <FormItem
-          name="time"
-          required={false}
-        >
-          <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
-        </FormItem>
-      </Col>
-    </SearchForm>
+    />
   );
 }
 ```
 
 ```jsx
 /**
- * title: 展开 / 收起
- * desc: 当 expandNode 属性存在时，会出现 "展开 / 收起" 的按钮
+ * title: 不同列数量
+ * desc: 控制 span 可展示不同数量的项
  */
-import React from 'react';
-import { Col, DatePicker } from 'antd';
-import { SearchForm, FormItem, SelectMap } from 'td-antd';
+import React, { useState } from 'react';
+import { DatePicker } from 'antd';
+import { SelectMap, SearchForm } from 'td-antd';
 
 export default () => {
+  const [span, setSpan] = useState(6);
+
   return (
-    <SearchForm
-      callback={(type, values) => {
-        if (type === 'query') {
-          console.log(values);
-        }
-        if (type === 'reset') {
-          console.log('重置表单');
-        }
-      }}
-      expandNode={
-        <>
-          <Col span={6}>
-            <FormItem
-              name="time"
-              required={false}
-            >
-              <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
-            </FormItem>
-          </Col>
-          <Col span={6}>
-            <FormItem
-              name="idCard"
-              required={false}
-              inputProps={{ placeholder: '身份证' }}
-            />
-          </Col>
-          <Col span={6}>
-            <FormItem
-              name="name"
-              required={false}
-              inputProps={{ placeholder: '姓名' }}
-            />
-          </Col>
-          <Col span={6}>
-            <FormItem
-              name="bankNo"
-              required={false}
-              inputProps={{ placeholder: '银行卡号' }}
-            />
-          </Col>
-        </>
-      }
-    >
-      <Col span={6}>
-        <FormItem
-          name="phone"
-          required={false}
-          inputProps={{ placeholder: '手机' }}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          name="address"
-          required={false}
-          inputProps={{ placeholder: '地址' }}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          name="age"
-          required={false}
-          inputProps={{ placeholder: '年龄' }}
-        />
-      </Col>
-      <Col span={6}>
-        <FormItem
-          name="sex"
-          required={false}
-        >
-          <SelectMap placeholder="性别" data={['男', '女']} />
-        </FormItem>
-      </Col>
-    </SearchForm>
+    <>
+      <SelectMap
+        value={span}
+        data={[4,6,8]}
+        style={{ width: 200 }}
+        placeholder="请选择展示列"
+        onChange={(key) => { setSpan(+key) }}
+      />
+      <br />
+      <br />
+      <SearchForm
+        span={span}
+        columns={[
+          {
+            title: '手机',
+            dataIndex: 'phone',
+            inputProps: { placeholder: '请输入手机号' },
+          }, {
+            title: '地址',
+            dataIndex: 'address',
+          }, {
+            title: '年龄',
+            dataIndex: 'age',
+          }, {
+            title: '状态',
+            dataIndex: 'status',
+            component: <SelectMap data={['进行中', '已完成']} />
+          }, {
+            title: '时间',
+            dataIndex: 'date',
+            component: <DatePicker style={{ width: '100%' }} />
+          },
+        ]}
+        callback={(type, values) => {
+          if (type === 'query') {
+            console.log(values);
+          }
+          if (type === 'reset') {
+            console.log('重置表单');
+          }
+        }}
+      />
+    </>
   );
 }
 ```
@@ -226,9 +157,19 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|expandNode|额外渲染的元素，紧跟 children 之后，且开启折叠按钮|ReactNode||
+|span|栅格占位格数|Number|8|
+|columns|表单项数组|Array|[]|
 |callback|回调函数，返回表单内容|Function|() => {}|
-|extraNode|额外的节点|ReactNode|--|
+
+### columns
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|title|表单的 label|String/ReactNode|-|
+|dataIndex|表单的 name|String|-|
+|component|Form.Item 的子元素|ReactNode|Input|
+|formItemProps|表单项的属性|Object|-|
+|inputProps|当component不存在时，可以对 Input 进行描述|Object|-|
 
 ### callback(type, values)
 

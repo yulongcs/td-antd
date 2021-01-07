@@ -6,6 +6,16 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.1.0
+
+`未发布`
+
+- SearchForm 重构
+  - 现在可以基于数据来展示搜索栏了，使用更方便
+  - 布局调整，现在可以更智能的进行"展开/收起"
+- TablePage
+  - 优化组件内部的 SearchForm 的表现
+
 ### 🚀 2.0.1
 
 `2021-01-06`

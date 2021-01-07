@@ -14,8 +14,8 @@ title: TablePage
  */
  
 import React, { useState } from 'react';
-import { Row, Col, Table, Button, DatePicker } from 'antd';
-import { TablePage, SelectMap, FormItem } from 'td-antd';
+import { DatePicker } from 'antd';
+import { TablePage, SelectMap } from 'td-antd';
 
 export default () => {
   return (
@@ -26,50 +26,44 @@ export default () => {
         
         return values;
       }}
+      columns={[
+        {
+          title: '手机',
+          dataIndex: 'phone',
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        }, {
+          title: '年龄',
+          dataIndex: 'age',
+        }, {
+          title: '性别',
+          dataIndex: 'sex',
+        }, {
+          title: '时间',
+          dataIndex: 'time',
+        },
+      ]}
       searchFormProps={{
-        extraNode: <Button type="primary">新增</Button>,
+        columns: [
+          {
+            dataIndex: 'phone',
+            inputProps: { placeholder: '手机' }
+          }, {
+            dataIndex: 'address',
+            inputProps: { placeholder: '地址' }
+          }, {
+            dataIndex: 'age',
+            inputProps: { placeholder: '年龄' }
+          }, {
+            dataIndex: 'sex',
+            component: <SelectMap placeholder="性别" data={['男', '女']} />
+          }, {
+            dataIndex: 'time',
+            component: <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
+          },
+        ],
       }}
-      searchChildren={
-        <>
-          <Col span={6}>
-            <FormItem
-              name="phone"
-              required={false}
-              inputProps={{ placeholder: '手机' }}
-            />
-          </Col>
-          <Col span={6}>
-            <FormItem
-              name="address"
-              required={false}
-              inputProps={{ placeholder: '地址' }}
-            />
-          </Col>
-          <Col span={6}>
-            <FormItem
-              name="age"
-              required={false}
-              inputProps={{ placeholder: '年龄' }}
-            />
-          </Col>
-          <Col span={6}>
-            <FormItem
-              name="sex"
-              required={false}
-            >
-              <SelectMap placeholder="性别" data={['男', '女']} />
-            </FormItem>
-          </Col>
-          <Col span={6}>
-            <FormItem
-              name="time"
-              required={false}
-            >
-              <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
-            </FormItem>
-          </Col>
-        </>
-      }
     />
   );
 }
@@ -82,8 +76,8 @@ export default () => {
  */
  
 import React, { useState, useRef } from 'react';
-import { Row, Col, Table, Button, DatePicker, Tabs } from 'antd';
-import { TablePage, SelectMap, FormItem } from 'td-antd';
+import { Button, Tabs } from 'antd';
+import { TablePage, SelectMap } from 'td-antd';
 
 export default () => {
   const tablePageRef = useRef();
@@ -113,25 +107,17 @@ export default () => {
           console.log(values);
           return values;
         }}
-        searchChildren={(
-          <>
-            <Col span={6}>
-              <FormItem
-                name="productName"
-                required={false}
-                inputProps={{ placeholder: '产品名称' }}
-              />
-            </Col>
-            <Col span={6}>
-              <FormItem
-                name="status"
-                required={false}
-              >
-                <SelectMap placeholder="状态" data={['全部', '已删除', '仓库中']} />
-              </FormItem>
-            </Col>
-          </>
-        )}
+        searchFormProps={{
+          columns: [
+            {
+              dataIndex: 'productName',
+              inputProps: { placeholder: '产品名称' }
+            }, {
+              dataIndex: 'status',
+              component: <SelectMap placeholder="状态" data={['全部', '已删除', '仓库中']} />
+            },
+          ],
+        }}
       />
     </>
   );
@@ -145,7 +131,6 @@ export default () => {
 |url|列表请求地址。由于内置使用 request 是从 localConfig 中获取的，不必再使用 proxy |String|-|
 |tableProps|支持原 [Table](https://3x.ant.design/components/table-cn/) 的 API|Object|{}|
 |columns|表格列的配置描述，同原 Table 组件|ColumnProps[]|[]|
-|searchChildren|搜索项的子节点|ReactNode|-|
 |searchFormProps|SearchForm 组件的属性|Object|{}|
 |searchReturn|自定义搜索栏的回调函数，必须返回结果对象给组件以供搜索使用|Function(values)|-|
 |defaultParams|默认参数，一般是不变的|Object|{}|
