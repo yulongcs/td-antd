@@ -14,7 +14,9 @@ title: 更新日志
   - 现在可以基于数据来展示搜索栏了，使用更方便
   - 布局调整，现在可以更智能的进行"展开/收起"
 - TablePage
-  - 优化组件内部的 SearchForm 的表现
+  - 优化组件内部 SearchForm 的表现
+- DescList
+  - 增加 url、callback 属性，使其具有异步请求数据的能力
 
 ### 🚀 2.0.1
 

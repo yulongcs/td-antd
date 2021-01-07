@@ -1,27 +1,62 @@
-import * as React from 'react';
-import { Descriptions } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Descriptions, Spin } from 'antd';
+import localConfig from '../local-config';
+
+// 进行字段的深度识别
+const deepGet = (object, path, defaultValue) => {
+  return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
+    .reduce((o, k) => (o || {})[k], object) || defaultValue;
+};
+
+// 渲染列的值
+const renderValue = (value, defaultValue) => {
+  if (React.isValidElement(value)) {
+    return value;
+  } else {
+    if (value && value !== null && value !== '') {
+      return value;
+    }
+
+    return defaultValue;
+  }
+};
 
 export default (props) => {
   const {
+    url,
     dataSource = {},
     columns = [],
     defaultValue = '--',
+    callback = () => {},
+    ...rest
   } = props;
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(dataSource);
 
-  const deepGet = (object, path) => {
-    return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
-      .reduce((o, k) => (o || {})[k], object) || defaultValue;
-  };
+  useEffect(() => {
+    setData(dataSource);
+  }, [dataSource]);
 
-  const renderValue = (value) => {
-    if (React.isValidElement(value)) {
-      return value;
-    } else {
-      if (value && value !== null && value !== '') {
-        return value;
-      }
+  useEffect(() => {
+    // eslint-disable-next-line
+    url && url.trim() !== '' && query();
+  }, [url]);
 
-      return defaultValue;
+  // 获取详情
+  const query = () => {
+    const { request } = localConfig.newInstance();
+
+    if (request) {
+      setLoading(true);
+      request({
+        url,
+        onSuccess: ({ dataObject }) => {
+          callback(dataObject);
+          setData(dataObject);
+        },
+      }).finally(() => {
+        setLoading(false);
+      });
     }
   };
 
@@ -35,13 +70,13 @@ export default (props) => {
         span = 1,
       } = item;
 
-      if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(dataSource))) {
-        const value = render ? render(dataSource) : deepGet(dataSource, dataIndex);
+      if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(data))) {
+        const value = render ? render(data) : deepGet(data, dataIndex, defaultValue);
 
         return (
           // eslint-disable-next-line
           <Descriptions.Item label={title} key={index} span={span}>
-            {renderValue(value)}
+            {renderValue(value, defaultValue)}
           </Descriptions.Item>
         )
       }
@@ -51,8 +86,10 @@ export default (props) => {
   };
 
   return (
-    <Descriptions {...props}>
-      {renderItem()}
-    </Descriptions>
+    <Spin spinning={loading}>
+      <Descriptions {...rest}>
+        {renderItem()}
+      </Descriptions>
+    </Spin>
   );
 }

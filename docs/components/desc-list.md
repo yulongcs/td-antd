@@ -12,13 +12,32 @@ title: DescList
 /**
  * title: 基础用法
  */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { DescList } from 'td-antd';
 
 export default () => {
+  const [dataSource, setDataSource] = useState({});
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setDataSource({
+        name: 'andy',
+        age: 18,
+        address: '树上第三根叉',
+        phone: '138xxxxxxxx',
+        email: 'xxx@xxx.com',
+        desc: {
+          code: 1,
+          text: 'dataIndex 的嵌套写法'
+        },
+      })
+    }, 2000)
+  }, [])
+
   return (
     <DescList
       column={2}
+      dataSource={dataSource}
       columns={[
         {
           title: '名字',
@@ -46,17 +65,6 @@ export default () => {
           visible: () => {},
         }
       ]}
-      dataSource={{
-        name: 'andy',
-        age: 18,
-        address: '树上第三根叉',
-        phone: '138xxxxxxxx',
-        email: 'xxx@xxx.com',
-        desc: {
-          code: 1,
-          text: 'dataIndex 的嵌套写法'
-        },
-      }}
     />
   );
 }
@@ -68,7 +76,9 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|dataSource|数据源|Object|{}|
+|url|当url开启时，会进行异步请求，调用[localConfig.request](/high-coupling/local-config)|String|-|
+|callback|当异步请求成功后的回调函数|Function(res)|-|
+|dataSource|数据源，当不进行异步请求时，可直接进行数据传递|Object|{}|
 |columns|列描述数据对象|Array|[]|
 |defaultValue|当值为空时，默认展示的值|String|'--'|
 
