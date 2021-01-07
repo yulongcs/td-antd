@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { stringify } from 'qs';
-import { Table } from 'antd';
+import { Table, Divider } from 'antd';
 import SearchForm from '../search-form';
 import pagination from '../pagination';
 import localConfig from '../local-config';
@@ -12,10 +12,11 @@ export default forwardRef((props, ref) => {
     extra,
     success,
     searchReturn,
+    line = true,
     method = 'GET',
     columns = [],
     tableProps = {},
-    searchFormProps = {},
+    searchFormProps,
     defaultParams = {},
     paginationProps = {},
   } = props;
@@ -62,6 +63,18 @@ export default forwardRef((props, ref) => {
     }
   };
 
+  /*
+  * 过滤出需要做搜索栏用的字段
+  * 权重：searchFormProps.columns > columns
+  * */
+  const filterSearchFormColumns = () => {
+    if (searchFormProps && searchFormProps.columns) {
+      return searchFormProps.columns;
+    }
+
+    return columns.filter(i => i.enableSearch).sort((a, b) => a.order - b.order);
+  };
+
   // 提供给外部的接口
   useImperativeHandle(ref, () => ({
     searchFormRef: searchRef.current && searchRef.current.form,
@@ -73,6 +86,7 @@ export default forwardRef((props, ref) => {
       <SearchForm
         ref={searchRef}
         {...searchFormProps}
+        columns={filterSearchFormColumns()}
         callback={(type, values = {}) => {
           if (type === 'query') {
             query((searchReturn ? searchReturn(values) : values), true);
@@ -81,8 +95,9 @@ export default forwardRef((props, ref) => {
           }
         }}
       />
+      {line && <Divider style={{ margin: '0 0 16px 0', clear: 'both' }} />}
       {extra && (
-        <div style={{ paddingBottom: 16 }}>{extra}</div>
+        <div style={{ paddingBottom: 16, display: 'flex', justifyContent: 'space-between' }}>{extra}</div>
       )}
       <Table
         bordered

@@ -15,6 +15,7 @@ title: 更新日志
   - 布局调整，现在可以更智能的进行"展开/收起"
 - TablePage
   - 优化组件内部 SearchForm 的表现
+  - 新增 line 属性
 - DescList
   - 增加 url、callback 属性，使其具有异步请求数据的能力
 

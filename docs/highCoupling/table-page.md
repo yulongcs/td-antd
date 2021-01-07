@@ -102,7 +102,12 @@ export default () => {
         url="/aaa.json"
         ref={tablePageRef}
         defaultParams={{ extra: '额外的参数' }}
-        extra={<Button type="primary">新增</Button>}
+        extra={
+          <>
+            <Button>删除</Button>
+            <Button type="primary">新增</Button>
+          </>
+        }
         searchReturn={(values) => {
           console.log(values);
           return values;
@@ -124,6 +129,61 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 公共 columns 用法
+ * desc: 搜索栏的字段将会从 columns 中进行筛选，并可以使用 order 来排序
+ */
+ 
+import React, { useState } from 'react';
+import { DatePicker } from 'antd';
+import { TablePage, SelectMap } from 'td-antd';
+
+export default () => {
+  return (
+    <TablePage
+      line={false}
+      url="/aaa.json"
+      searchReturn={(values) => {
+        console.log(values);
+        
+        return values;
+      }}
+      columns={[
+        {
+          title: '手机',
+          dataIndex: 'phone',
+          enableSearch: true,
+          inputProps: { placeholder: '手机' },
+          order: 1
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+          enableSearch: true,
+          inputProps: { placeholder: '地址' },
+          order: 0
+        }, {
+          title: '年龄',
+          dataIndex: 'age',
+          enableSearch: true,
+          inputProps: { placeholder: '年龄' },
+        }, {
+          title: '性别',
+          dataIndex: 'sex',
+          enableSearch: true,
+          component: <SelectMap placeholder="性别" data={['男', '女']} />,
+        }, {
+          title: '时间',
+          dataIndex: 'time',
+          enableSearch: true,
+          component: <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />,
+        },
+      ]}
+    />
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|
@@ -137,6 +197,12 @@ export default () => {
 |success|请求成功后的回调函数，必须返回用于列表渲染的数据，包含 { values, pageNum, pageSize, totalCnt }|Function(res)|-|
 |extra|在搜索栏和列表中间的额外节点项|ReactNode/String|-|
 |paginationProps|Pagination组件的 API|[paginationProps](https://ant.design/components/pagination-cn/#API)|{}|
+|line|搜索栏和表格栏之间的基线|Boolean|true|
+
+### columns
+
+1. 当对象中的 enableSearch=true 时，会将此对象写入到 SearchForm 组件中，并可以使用 order 属性进行排序。
+2. 当 searchFormProps.columns 存在时，enableSearch=true 的对象会失效。
 
 ### Ref，使用 ref.current 进行调用
 
