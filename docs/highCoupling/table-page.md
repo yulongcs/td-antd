@@ -152,6 +152,7 @@ export default () => {
       columns={[
         {
           title: '手机',
+          title2: '手机号码',
           dataIndex: 'phone',
           enableSearch: true,
           inputProps: { placeholder: '手机' },
@@ -201,8 +202,16 @@ export default () => {
 
 ### columns
 
-1. 当对象中的 enableSearch=true 时，会将此对象写入到 SearchForm 组件中，并可以使用 order 属性进行排序。
-2. 当 searchFormProps.columns 存在时，enableSearch=true 的对象会失效。
+支持原 Table 组件的属性，以下是针对 "搜索项" 的属性
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|enableSearch|是否将其转为搜索项|Boolean|false|
+|component|用于搜索项展示的字段|ReactNode|Input|
+|formItemProps|表单项的属性|Object|-|
+|inputProps|当 component 不存在时，可以对 Input 进行描述|Object|-|
+|title2|用于搜索项的 label，优先级大于 title|String/ReactNode|-|
+|dataIndex2|用于搜索项的 name，优先级大于 dataIndex|String|-|
 
 ### Ref，使用 ref.current 进行调用
 

@@ -37,8 +37,8 @@ export default forwardRef((props, ref) => {
           {nowColumns.map(i => (
             <Col span={span}>
               <Form.Item
-                label={i.title}
-                name={i.dataIndex}
+                label={i.title2 || i.title}
+                name={i.dataIndex2 || i.dataIndex}
                 {...i.formItemProps}
               >
                 {i.component || <Input {...i.inputProps} />}
