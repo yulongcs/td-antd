@@ -31,11 +31,7 @@ export default (props) => {
     ...rest
   } = props;
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(dataSource);
-
-  useEffect(() => {
-    setData(dataSource);
-  }, [dataSource]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     // eslint-disable-next-line
@@ -61,6 +57,8 @@ export default (props) => {
   };
 
   const renderItem = () => {
+    const nowData = data || dataSource;
+
     return columns.map((item, index) => {
       const {
         title,
@@ -70,8 +68,8 @@ export default (props) => {
         span = 1,
       } = item;
 
-      if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(data))) {
-        const value = render ? render(data) : deepGet(data, dataIndex, defaultValue);
+      if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(nowData))) {
+        const value = render ? render(nowData) : deepGet(nowData, dataIndex, defaultValue);
 
         return (
           // eslint-disable-next-line

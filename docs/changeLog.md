@@ -6,7 +6,7 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.2.0
+### 🚀 2.2.1
 
 `2021-01-13`
 
@@ -17,6 +17,8 @@ title: 更新日志
 - TdUpload
   - 新增属性 show
   - 新增子组件 TdUpload.Preview
+- DescList
+  - bug：修复死循环的问题
 
 ### 🚀 2.1.1
 
