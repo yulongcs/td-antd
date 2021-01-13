@@ -12,24 +12,25 @@ title: FormItem
 /**
  * title: 基本使用
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Switch } from 'antd';
 import { FormItem, SelectMap } from 'td-antd';
 
-export default () => {  
-  const tailLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 7,
-      },
+const tailLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
     },
-  };
-  
+    sm: {
+      span: 16,
+      offset: 7,
+    },
+  },
+};
+
+export default () => {
+  const [show, setShow] = useState(false);
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
@@ -39,7 +40,7 @@ export default () => {
       onFinish={onFinish}
       initialValues={{
         name: '丁老板',
-        switch: true,
+        switch: false,
         age: 18,
         sex: '男'
       }}
@@ -47,10 +48,18 @@ export default () => {
       wrapperCol={{ span: 10 }}
     >
       <FormItem
+        label="开关"
+        name="switch"
+        required={false}
+        valuePropName="checked"
+      >
+        <Switch onChange={(key) => { setShow(key) }} />
+      </FormItem>
+      <FormItem
         label="姓名"
         name="name"
         validateFirst
-        required={false}
+        show={show}
       />
       <FormItem
         label="年龄"
@@ -65,14 +74,6 @@ export default () => {
         name="sex"
       >
         <SelectMap data={['男', '女']} />
-      </FormItem>
-      <FormItem
-        label="开关"
-        name="switch"
-        required={false}
-        valuePropName="checked"
-      >
-        <Switch />
       </FormItem>
       <FormItem {...tailLayout}>
         <Button htmlType="submit">提交</Button>
@@ -90,10 +91,11 @@ export default () => {
 |:--|:--|:--|:--|:--|
 |required|表单项是否为必填|Boolean|true|
 |validatorCallback|自定义校验规则，必须返回callback('错误码')|Function(value, callback)||
-|children|子节点| ReactNode |`<Input />`|
+|children|子节点| ReactNode |`<Input/>`|
 |extraRules|额外的规则，用法同 rules|Array / Object|[ ]|
 |inputProps|Input 组件的属性 API|Object|{ }|
 |itemType|申明组件类型，普通组件(default) / Number组件(number)|String|default|
+|show|是否显示。当不显示时，不进行字段记录和校验，区别于[hidden](https://ant-design.gitee.io/components/form-cn/#Form.Item)|Boolean|true|2.1.2|
 
 > 当 itemType="number" 时，只能输入数字，并可以使用以下属性<br />
 > 遵循 input 的 type="number" 的 w3c 规则

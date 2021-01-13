@@ -73,7 +73,7 @@ export default () => {
         }, {
           title: '状态',
           dataIndex: 'status',
-          component: <SelectMap data={['进行中', '已完成']} />
+          component: <SelectMap data={['很长的一个枚举值哟呵', '已完成']} />
         }, {
           title: '时间',
           dataIndex: 'date',

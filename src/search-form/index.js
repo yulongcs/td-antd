@@ -50,7 +50,7 @@ export default forwardRef((props, ref) => {
             <Button onClick={reset} style={{ marginLeft: 8 }}>重置</Button>
             {isCollapse && (
               <a style={{ fontSize: 12, marginLeft: 8 }} onClick={() => { setCollapse(!collapse) }}>
-                {collapse ? '收起' : '展开'} {collapse ? <UpOutlined /> : <DownOutlined />}
+                {collapse ? <UpOutlined /> : <DownOutlined />}
               </a>
             )}
           </Col>

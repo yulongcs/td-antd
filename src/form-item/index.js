@@ -16,6 +16,7 @@ export default (props) => {
     isNegative = false,
     isInteger = false,
     message = '必填项',
+    show = true,
     ...rest
   } = props;
 
@@ -40,17 +41,21 @@ export default (props) => {
     },
   }].concat(extraRules);
 
-  return (
-    <Form.Item
-      rules={rules}
-      className={className}
-      {...rest}
-    >
-      {
-        (itemType === 'number') ?
-          <Input type="number" suffix={unit} {...inputProps} /> :
-          (children || <Input {...inputProps} />)
-      }
-    </Form.Item>
-  );
+  if (show) {
+    return (
+      <Form.Item
+        rules={rules}
+        className={className}
+        {...rest}
+      >
+        {
+          (itemType === 'number') ?
+            <Input type="number" suffix={unit} {...inputProps} /> :
+            (children || <Input {...inputProps} />)
+        }
+      </Form.Item>
+    );
+  }
+
+  return null;
 }
