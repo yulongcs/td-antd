@@ -154,10 +154,11 @@ export default () => {
 
 ```jsx
 /**
- * title: 禁用上传
- * desc: 一般用于文件列表的展示
+ * title: 预览，显示/隐藏
+ * desc: 使用 TdUpload.Preview 进行展示，show 属性进行显示控制
  */
-import React from 'react';
+import React, { useState } from 'react';
+import { Switch } from 'antd';
 import { TdUpload } from 'td-antd';
 
 const files = [
@@ -171,13 +172,21 @@ const files = [
 ];
 
 export default () => {
+  const [show, setShow] = useState(false);
+
   return (
-    <TdUpload
-      hidden
-      isPreview
-      hideRemoveBtn
-      initial={files}
-    />
+    <>
+      <Switch
+        checkedChildren="显示"
+        unCheckedChildren="隐藏"
+        onChange={checked => { setShow(checked) }}
+      />
+      <TdUpload.Preview
+        show={show}
+        initial={files}
+        filterOptions={(item, index) => ({...item, uid: index})}
+      />
+    </>
   );
 }
 ```
@@ -215,8 +224,8 @@ export default () => {
 
 ```jsx
 /**
- * title: 禁用图片上传
- * desc: 一般用于图片展示
+ * title: 图片预览
+ * desc: 使用 listType="picture-card" 进行展示
  */
 import React from 'react';
 import { TdUpload } from 'td-antd';
@@ -233,10 +242,7 @@ const files = [
 
 export default () => {
   return (
-    <TdUpload
-      hidden
-      isPreview
-      hideRemoveBtn
+    <TdUpload.Preview
       initial={files}
       listType="picture-card"
       filterOptions={(item, index) => ({...item, uid: index})}
@@ -247,8 +253,8 @@ export default () => {
 
 ## API
 
-|参数|说明|类型|默认值|
-|:--|:--|:--|:--|
+|参数|说明|类型|默认值|版本号|
+|:--|:--|:--|:--|:--|
 |url|接口地址|String|'/file/upload.json'|
 |initial|初始化数据，必须的[数据结构](#initial)|Array|-|
 |wrapClassName|最外层样式类|String|-|
@@ -269,6 +275,7 @@ export default () => {
 |extra|按钮右边区域的内容|String/ReactNode|-|
 |fileTypes|内置了文件[类型](#filetypes)校验|Array|-|
 |hidden|上传按钮是否显示|Boolean|false|
+|show|组件是否显示|Boolean|true|2.2.0|
 
 ### initial
 

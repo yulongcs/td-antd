@@ -6,7 +6,7 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.1.2
+### 🚀 2.2.0
 
 `2021-01-13`
 
@@ -14,6 +14,9 @@ title: 更新日志
   - 新增属性 show
 - SearchForm
   - 优化交互
+- TdUpload
+  - 新增属性 show
+  - 新增子组件 TdUpload.Preview
 
 ### 🚀 2.1.1
 

@@ -95,7 +95,7 @@ export default () => {
 |extraRules|额外的规则，用法同 rules|Array / Object|[ ]|
 |inputProps|Input 组件的属性 API|Object|{ }|
 |itemType|申明组件类型，普通组件(default) / Number组件(number)|String|default|
-|show|是否显示。当不显示时，不进行字段记录和校验，区别于[hidden](https://ant-design.gitee.io/components/form-cn/#Form.Item)|Boolean|true|2.1.2|
+|show|是否显示。当不显示时，不进行字段记录和校验，区别于[hidden](https://ant-design.gitee.io/components/form-cn/#Form.Item)|Boolean|true|2.2.0|
 
 > 当 itemType="number" 时，只能输入数字，并可以使用以下属性<br />
 > 遵循 input 的 type="number" 的 w3c 规则

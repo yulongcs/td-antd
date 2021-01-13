@@ -32,6 +32,7 @@ class TdUpload extends React.PureComponent {
     showUploadList: true, // 是否展示文件列表，原API
     scale: false, // 校验图片尺寸
     initial: [], // 初始化文件列表数据
+    show: true, // 是否显示
   };
 
   state = {
@@ -290,48 +291,69 @@ class TdUpload extends React.PureComponent {
     const { previewImg, loading } = this.state;
     const {
       btnText, btnProps, tip, isPreview, wrapClassName,
-      hideRemoveBtn, listType, extra, hidden,
+      hideRemoveBtn, listType, extra, hidden, show,
     } = this.props;
 
-    return (
-      <div
-        className={cx('td-upload-wrap', wrapClassName, {
-          'td-upload-hide-remove': hideRemoveBtn,
-          'td-upload-hide': hidden,
-        })}
-      >
-        <Upload
-          {...this.props}
-          disabled={loading}
-          accept={this.getAcceptString()}
-          fileList={this.state.fileList}
-          beforeUpload={this.beforeUpload}
-          onRemove={this.onRemove}
-          customRequest={() => {}}
-          onPreview={isPreview && ((file) => {
-            if (file.url) {
-              this.setState({
-                previewImg: file.url,
-              }, () => {
-                this.imgRef.show();
-              });
-            }
+    if (show) {
+      return (
+        <div
+          className={cx('td-upload-wrap', wrapClassName, {
+            'td-upload-hide-remove': hideRemoveBtn,
+            'td-upload-hide': hidden,
           })}
         >
-          {(listType && listType === TEXT_PICTURE_CARD) ? (
-            <PlusOutlined />
-          ) : (
-            <React.Fragment>
-              <Button loading={loading} {...btnProps}>{btnText}</Button>
-              {extra}
-            </React.Fragment>
-          )}
-        </Upload>
-        {tip && <div className="td-upload-tip">{tip}</div>}
-        <ImgModal ref={r => {this.imgRef = r}} url={previewImg} />
-      </div>
-    );
+          <Upload
+            {...this.props}
+            disabled={loading}
+            accept={this.getAcceptString()}
+            fileList={this.state.fileList}
+            beforeUpload={this.beforeUpload}
+            onRemove={this.onRemove}
+            customRequest={() => {}}
+            onPreview={isPreview && ((file) => {
+              if (file.url) {
+                this.setState({
+                  previewImg: file.url,
+                }, () => {
+                  this.imgRef.show();
+                });
+              }
+            })}
+          >
+            {(listType && listType === TEXT_PICTURE_CARD) ? (
+              <PlusOutlined />
+            ) : (
+              <React.Fragment>
+                <Button loading={loading} {...btnProps}>{btnText}</Button>
+                {extra}
+              </React.Fragment>
+            )}
+          </Upload>
+          {tip && <div className="td-upload-tip">{tip}</div>}
+          <ImgModal ref={r => {this.imgRef = r}} url={previewImg} />
+        </div>
+      );
+    }
+
+    return null;
   }
 }
+
+TdUpload.Preview = (props) => {
+  const {
+    initial = [],
+    ...rest
+  } = props;
+
+  return (
+    <TdUpload
+      hidden
+      isPreview
+      hideRemoveBtn
+      initial={initial}
+      {...rest}
+    />
+  );
+};
 
 export default TdUpload;
