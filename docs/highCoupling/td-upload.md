@@ -39,6 +39,28 @@ export default () => {
 
 ```jsx
 /**
+ * title: 文件类型校验
+ * desc: 使用 callback('validate') 进行校验 excel
+ */
+import React from 'react';
+import { TdUpload } from 'td-antd';
+
+export default () => {
+  return (
+    <TdUpload
+      callback={(t, f, fs) => {
+        if (t === 'validate' && !(/^.*(\.xls|\.xlsx)$/.test(f.name))) {
+          alert('文件格式不正确');
+          return true;
+        }
+      }}
+    />
+  );
+}
+```
+
+```jsx
+/**
  * title: 立即上传
  * desc: 点击选择文件后，在 after 回调中进行立即上传操作
  */
