@@ -279,7 +279,7 @@ export default () => {
  * desc: 内部集成了 dnd 插件
  */
 import React, { useRef } from 'react';
-import { TdUpload } from 'td-antd';
+import { DragableUpload } from 'td-antd';
 
 const files = [
   {
@@ -295,7 +295,7 @@ export default () => {
   const ref = useRef();
 
   return (
-    <TdUpload.Dragable
+    <DragableUpload
       ref={ref}
       initial={files}
       listType="picture-card"

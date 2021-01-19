@@ -6,12 +6,12 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.3.0
+### 🚀 2.3.1
 
 `2021-01-18`
 
-- TdUpload
-  - 新增子组件 Dragable，可用于文件列表拖拽排序
+- DragableUpload
+  - 新增组件，在 TdUpload 上进行封装，用于文件列表拖拽排序，用法同 TdUpload。
 
 ### 🚀 2.2.1
 

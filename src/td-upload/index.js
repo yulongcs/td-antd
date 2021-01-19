@@ -3,7 +3,6 @@ import cx from 'classnames';
 import { Upload, Button, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import ImgModal from './img-modal';
-import Dragable from './dragable';
 import onInitialFiles from './onInitialFiles';
 import isPromise from '../tools/isPromise';
 import ACCEPT from './accept';
@@ -340,7 +339,6 @@ class TdUpload extends React.PureComponent {
   }
 }
 
-TdUpload.Dragable = Dragable;
 TdUpload.Preview = (props) => {
   const {
     initial = [],
