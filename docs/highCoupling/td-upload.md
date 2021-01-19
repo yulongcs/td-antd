@@ -273,6 +273,38 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 拖拽
+ * desc: 内部集成了 dnd 插件
+ */
+import React, { useRef } from 'react';
+import { TdUpload } from 'td-antd';
+
+const files = [
+  {
+    name: '1.jpg',
+    url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
+  }, {
+    name: '2.jpg',
+    url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
+  },
+];
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <TdUpload.Dragable
+      ref={ref}
+      initial={files}
+      listType="picture-card"
+      filterOptions={(item, index) => ({...item, uid: index})}
+    />
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|版本号|
