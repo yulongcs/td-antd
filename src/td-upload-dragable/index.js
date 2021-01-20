@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useImperativeHandle, forwardRef } from 'rea
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
-import TdUpload from './index';
+import TdUpload from '../td-upload';
 
 const type = 'DragableUploadList';
 
