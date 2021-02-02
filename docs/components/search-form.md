@@ -12,36 +12,47 @@ title: SearchForm
 /**
  * title: 基础用法
  */
-import React from 'react';
-import { DatePicker } from 'antd';
+import React, { useState } from 'react';
+import { DatePicker, Radio } from 'antd';
 import { SearchForm } from 'td-antd';
 
 export default () => {
+  const [mode, setMode] = useState('default');
+
   return (
-    <SearchForm
-      span={6}
-      columns={[
-        {
-          title: '手机',
-          dataIndex: 'phone',
-          inputProps: { placeholder: '请输入手机号' },
-        }, {
-          title: '地址',
-          dataIndex: 'address',
-        }, {
-          title: '年龄',
-          dataIndex: 'age',
-        },
-      ]}
-      callback={(type, values) => {
-        if (type === 'query') {
-          console.log(values);
-        }
-        if (type === 'reset') {
-          console.log('重置表单');
-        }
-      }}
-    />
+    <>
+      <Radio.Group value={mode} onChange={({ target }) => { setMode(target.value) }}>
+        <Radio.Button value="default">默认</Radio.Button>
+        <Radio.Button value="simple">简易</Radio.Button>
+      </Radio.Group>
+      <br /><br />
+      <SearchForm
+        span={6}
+        mode={mode}
+        columns={[
+          {
+            title: '手机',
+            dataIndex: 'phone',
+            inputProps: { placeholder: '请输入手机号' },
+            visible: false,
+          }, {
+            title: '地址',
+            dataIndex: 'address',
+          }, {
+            title: '年龄',
+            dataIndex: 'age',
+          },
+        ]}
+        callback={(type, values) => {
+          if (type === 'query') {
+            console.log(values);
+          }
+          if (type === 'reset') {
+            console.log('重置表单');
+          }
+        }}
+      />
+    </>
   );
 }
 ```
@@ -160,6 +171,8 @@ export default () => {
 |span|栅格占位格数|Number|8|
 |columns|表单项数组|Array|[]|
 |callback|回调函数，返回表单内容|Function|() => {}|
+|defaultCollapse|是否默认展开搜索项|Boolean|true|
+|mode|模式，值为 simple 时，不展示 title|string|'default'|
 
 ### columns
 
@@ -170,6 +183,7 @@ export default () => {
 |component|Form.Item 的子元素|ReactNode|Input|
 |formItemProps|表单项的属性|Object|-|
 |inputProps|当component不存在时，可以对 Input 进行描述|Object|-|
+|visible|字段是否可见|Boolean|true|
 
 ### callback(type, values)
 

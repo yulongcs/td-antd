@@ -6,6 +6,16 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.4.0
+
+`2021-02-02`
+
+- SearchForm
+  - 新增属性 defaultCollapse、mode
+  - columns 新增 visible
+- LinkBtn
+  - 新增属性 danger
+
 ### 🚀 2.3.2
 
 `2021-01-20`

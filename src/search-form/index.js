@@ -1,18 +1,26 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 import { Form, Button, Row, Col, Input } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
 export default forwardRef((props, ref) => {
-  const [form] = Form.useForm();
-  const [collapse, setCollapse] = useState(false);
   const {
     span = 8,
     columns = [],
     callback = () => {},
+    defaultCollapse = true,
+    mode = 'default',
     ...rest
   } = props;
+  const [form] = Form.useForm();
+  const [collapse, setCollapse] = useState(defaultCollapse);
+  const [nowColumns, setNowColumns] = useState([]);
 
   useImperativeHandle(ref, () => ({ form, reset }));
+
+  // 过滤数据
+  useEffect(() => {
+    setNowColumns(columns.filter(({ visible = true }) => visible));
+  }, [columns]);
 
   // 重置表单
   const reset = () => {
@@ -20,24 +28,23 @@ export default forwardRef((props, ref) => {
     callback('reset' ,{});
   };
 
-  if (columns.length > 0) {
-    const isCollapse = (columns.length+1)*span > 24; // 是否需要开启"展开/收起"
-    const nowColumns = isCollapse ? (collapse ? columns : columns.slice(0, (24-span)/span)) : columns;
-    const offset = 24-((nowColumns.length * span)%24+span); // 操作栏的偏移量
+  if (nowColumns.length > 0) {
+    const isCollapse = (nowColumns.length+1)*span > 24; // 是否需要开启"展开/收起"
+    const now = isCollapse ? (collapse ? nowColumns : nowColumns.slice(0, (24-span)/span)) : nowColumns;
+    const offset = 24-((now.length * span)%24+span); // 操作栏的偏移量
 
     return (
       <Form
         {...rest}
         form={form}
-        autoComplete="off"
         requiredMark={false}
         onFinish={(values) => { callback('query', values) }}
       >
         <Row gutter={12}>
-          {nowColumns.map(i => (
+          {now.map(i => (
             <Col span={span}>
               <Form.Item
-                label={i.title2 || i.title}
+                label={mode !== 'simple' && (i.title2 || i.title)}
                 name={i.dataIndex2 || i.dataIndex}
                 {...i.formItemProps}
               >

@@ -62,9 +62,24 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 危险按钮
+ */
+import React from 'react';
+import { LinkBtn } from 'td-antd';
+
+export default () => {
+  return(
+    <LinkBtn danger>click</LinkBtn>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |className|样式类|String|-|
 |loading|设置按钮载入状态|Boolean|false|
+|danger|设置危险按钮|Boolean|false|

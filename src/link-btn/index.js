@@ -7,6 +7,7 @@ export default (props) => {
   const {
     disabled = false,
     loading = false,
+    danger = false,
     className,
     ...rest
   } = props;
@@ -18,6 +19,7 @@ export default (props) => {
       disabled={disabled || loading}
       className={cx('td-link-btn', className, {
         'td-link-loading': loading,
+        'td-link-danger': danger,
       })}
     >
       {loading ? <Spin size="small" /> : props.children}
