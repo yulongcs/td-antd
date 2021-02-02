@@ -6,7 +6,7 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.4.0
+### 🚀 2.4.1
 
 `2021-02-02`
 
@@ -17,6 +17,8 @@ title: 更新日志
   - 新增属性 danger
 - DrawerBox
   - 新增组件
+- pagination
+  - 删除内置的 hideOnSinglePage 属性
 
 ### 🚀 2.3.2
 

@@ -7,7 +7,6 @@ export default ({ data, locale, ...rest }) => {
   const language = localeLanguage[locale || newInstance.locale || 'en'];
 
   return {
-    hideOnSinglePage: true,
     current: data.pageNum || data.currPageNo || 1,
     pageSize: data.pageSize || data.limit || 20,
     total: data.totalCnt || data.total || 1,
