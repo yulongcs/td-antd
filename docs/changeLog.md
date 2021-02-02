@@ -15,6 +15,8 @@ title: 更新日志
   - columns 新增 visible
 - LinkBtn
   - 新增属性 danger
+- DrawerBox
+  - 新增组件
 
 ### 🚀 2.3.2
 

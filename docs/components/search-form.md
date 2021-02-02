@@ -38,9 +38,11 @@ export default () => {
           }, {
             title: '地址',
             dataIndex: 'address',
+            inputProps: { placeholder: '请输入地址' },
           }, {
             title: '年龄',
             dataIndex: 'age',
+            inputProps: { placeholder: '请输入年龄' },
           },
         ]}
         callback={(type, values) => {

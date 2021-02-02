@@ -1,14 +1,15 @@
 import React, { useState, useImperativeHandle, forwardRef } from 'react';
-import { Modal } from 'antd';
-import classNames from 'classnames';
-import './index.less';
+import { Drawer, Button } from 'antd';
 
 export default forwardRef((props, ref) => {
   const {
-    width = 500,
     onOk,
     onCancel,
-    wrapClassName,
+    okText = '确定',
+    cancelText = '取消',
+    afterClose = () => {},
+    okButtonProps = {},
+    cancelButtonProps = {},
     ...rest
   } = props;
   const [visible, setVisible] = useState(false);
@@ -35,14 +36,20 @@ export default forwardRef((props, ref) => {
   }));
 
   return (
-    <Modal
-      width={width}
+    <Drawer
       visible={visible}
-      onOk={ok}
-      onCancel={cancel}
-      destroyOnClose
-      maskClosable={false}
-      wrapClassName={classNames('td-modal-box', wrapClassName)}
+      onClose={cancel}
+      footer={
+        <div style={{ textAlign: 'right' }}>
+          <Button onClick={cancel} style={{ marginRight: 8 }} {...cancelButtonProps}>{cancelText}</Button>
+          <Button onClick={ok} type="primary" {...okButtonProps}>{okText}</Button>
+        </div>
+      }
+      afterVisibleChange={(v) => {
+        if (!v) {
+          afterClose();
+        }
+      }}
       {...rest}
     />
   );

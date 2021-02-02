@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { Form, Button, Row, Col, Input } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
@@ -13,14 +13,9 @@ export default forwardRef((props, ref) => {
   } = props;
   const [form] = Form.useForm();
   const [collapse, setCollapse] = useState(defaultCollapse);
-  const [nowColumns, setNowColumns] = useState([]);
+  const nowColumns = columns.filter(({ visible = true }) => visible);
 
   useImperativeHandle(ref, () => ({ form, reset }));
-
-  // 过滤数据
-  useEffect(() => {
-    setNowColumns(columns.filter(({ visible = true }) => visible));
-  }, [columns]);
 
   // 重置表单
   const reset = () => {

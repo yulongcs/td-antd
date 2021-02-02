@@ -4,6 +4,7 @@ export { default as DragModal } from './drag-modal';
 export { default as FormItem } from './form-item';
 export { default as LinkBtn } from './link-btn';
 export { default as ModalBox } from './modal-box';
+export { default as DrawerBox } from './drawer-box';
 export { default as PopoverBox } from './popover-box';
 export { default as SearchForm } from './search-form';
 export { default as SelectMap } from './select-map';
