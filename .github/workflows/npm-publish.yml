@@ -30,16 +30,14 @@ jobs:
 
       - name: 4. 安装插件
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: |
-          npm install
+        run: npm install
 
       - name: 5. 生成文件
-        run: |
-          npm run build
+        run: npm run build
 
       - name: 6. 发布
         run: |
-          npm config set //registry.npmjs.org/:_authToken=${{secrets.npm_token}}
+          npm config set //registry.npmjs.org/:_authToken=NODE_AUTH_TOKEN
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
