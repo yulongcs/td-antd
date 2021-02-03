@@ -1,3 +1,5 @@
+# travis-ci.org 即将关闭开始收费了，暂时不用了
+
 language: node_js
 
 node_js:
