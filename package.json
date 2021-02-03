@@ -6,7 +6,7 @@
   "module": "es/index.js",
   "scripts": {
     "start": "dumi dev --port=3000",
-    "build:docs": "dumi build",
+    "build:docs": "HTML=none dumi build",
     "build": "father-build && node ./scripts/clean-build.js",
     "build:publish": "npm run build && npm publish",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
