@@ -99,6 +99,7 @@ export default () => {
         <Tabs.TabPane tab="仓库中" key="仓库中" />
       </Tabs>
       <TablePage
+        alert={10}
         url="/aaa.json"
         ref={tablePageRef}
         defaultParams={{ extra: '额外的参数' }}
@@ -199,6 +200,7 @@ export default () => {
 |extra|在搜索栏和列表中间的额外节点项|ReactNode/String|-|
 |paginationProps|Pagination组件的 API|[paginationProps](https://ant.design/components/pagination-cn/#API)|{}|
 |line|搜索栏和表格栏之间的基线|Boolean|true|
+|alert|选中项的数量提醒|Number|0|
 
 ### columns
 
