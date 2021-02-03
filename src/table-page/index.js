@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { stringify } from 'qs';
-import { Table, Divider } from 'antd';
+import { Table, Divider, Alert } from 'antd';
 import SearchForm from '../search-form';
 import pagination from '../pagination';
 import localConfig from '../local-config';
@@ -11,6 +11,7 @@ export default forwardRef((props, ref) => {
     url,
     extra,
     success,
+    alert = 0,
     searchReturn,
     line = true,
     method = 'GET',
@@ -96,9 +97,8 @@ export default forwardRef((props, ref) => {
         }}
       />
       {line && <Divider style={{ margin: '0 0 16px 0', clear: 'both' }} />}
-      {extra && (
-        <div style={{ paddingBottom: 16, display: 'flex', justifyContent: 'space-between' }}>{extra}</div>
-      )}
+      {extra && <div style={{ paddingBottom: 16, display: 'flex', justifyContent: 'space-between' }}>{extra}</div>}
+      {alert > 0 && <Alert message={`已选择 ${alert} 项`} style={{ marginBottom: 16 }} />}
       <Table
         bordered
         loading={loading}
