@@ -38,6 +38,8 @@ jobs:
           npm run build
 
       - name: 6. 发布
-        run: npm publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=${{secrets.npm_token}}
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
