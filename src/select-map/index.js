@@ -28,6 +28,7 @@ export default (props) => {
       showSearch
       allowClear
       filterOption={(inputValue, option) => (option.props.children.includes(inputValue))}
+      placeholder="请选择"
       {...rest}
     >
       {renderOption()}
