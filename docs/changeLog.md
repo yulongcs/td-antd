@@ -12,6 +12,8 @@ title: 更新日志
 
 - SearchForm
   - 添加默认的 placeholder="请输入"
+- DragModal
+  - hooks 重构
 
 ### 🚀 2.4.2
 
