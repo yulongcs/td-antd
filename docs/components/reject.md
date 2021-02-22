@@ -24,7 +24,7 @@ export default () => {
       <Reject
         min={30}
         title="退回原因"
-        loading={loading}
+        confirmLoading={loading}
         placeholder="请输入退回原因，不能少于30个字符"
         onOk={(value, setVisible) => {
           setLoading(true);
@@ -77,7 +77,7 @@ export default () => {
         ref={ref}
         min={10}
         title="退回原因"
-        loading={loading}
+        confirmLoading={loading}
         placeholder="请输入退回原因，不能少于10个字符"
         onOk={(value, setVisible) => {
           setLoading(true);

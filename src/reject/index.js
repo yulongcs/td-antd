@@ -10,7 +10,6 @@ export default forwardRef((props, ref) => {
   const {
     min,
     max = 200,
-    loading = false,
     onOk = () => {},
     placeholder = '请填写拒绝原因',
     title = '拒绝原因',
@@ -39,7 +38,6 @@ export default forwardRef((props, ref) => {
         title={title}
         visible={visible}
         maskClosable={false}
-        confirmLoading={loading}
         onCancel={() => { setVisible(false) }}
         okButtonProps={{ disabled: !text.trim() }}
         afterClose={() => {

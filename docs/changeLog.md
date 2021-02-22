@@ -14,6 +14,8 @@ title: 更新日志
   - 添加默认的 placeholder="请输入"
 - DragModal
   - hooks 重构
+- Reject
+  - 修改 loading 的 API 为 confirmLoading，与 Modal 保持一致
 
 ### 🚀 2.4.2
 
