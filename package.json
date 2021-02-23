@@ -1,6 +1,6 @@
 {
   "name": "td-antd",
-  "version": "2.4.3",
+  "version": "2.4.5",
   "description": "基于antd封装的业务组件库和工具",
   "main": "lib/index.js",
   "module": "es/index.js",

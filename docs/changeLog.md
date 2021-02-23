@@ -6,7 +6,7 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.4.3
+### 🚀 2.5.0
 
 `未发布`
 
@@ -16,6 +16,9 @@ title: 更新日志
   - hooks 重构
 - Reject
   - 修改 loading 的 API 为 confirmLoading，与 Modal 保持一致
+- localConfig
+  - 新增 permission 配置
+- 新增组件：Permission、Role
 
 ### 🚀 2.4.2
 

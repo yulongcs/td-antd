@@ -22,6 +22,8 @@ export { default as redirect } from './redirect';
 export { default as TablePage } from './table-page';
 export { default as TdUpload } from './td-upload';
 export { default as TdUploadDragable } from './td-upload-dragable';
+export { default as Permission } from './permission';
+export { default as Role } from './role';
 
 // 工具
 export { default as tools } from './tools';

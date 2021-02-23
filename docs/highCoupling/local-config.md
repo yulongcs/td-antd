@@ -35,3 +35,4 @@ const instance = localConfig.newInstance();
 |proxy|fetch 请求的代理标示，如：/market|String|-|
 |request|异步请求实例，一般是脚手架中封装的 fetch|Function|-|
 |locale|语言，支持 `en/zh`|String|-|
+|permission|是否开启权限校验，针对 Permission 组件|Boolean|-|
