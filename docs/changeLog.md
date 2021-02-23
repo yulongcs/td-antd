@@ -18,7 +18,7 @@ title: 更新日志
   - 修改 loading 的 API 为 confirmLoading，与 Modal 保持一致
 - localConfig
   - 新增 permission 配置
-- 新增组件：Permission、Role
+- 新增组件：Permission、Role、Magic
 
 ### 🚀 2.4.2
 
