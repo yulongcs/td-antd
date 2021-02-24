@@ -19,6 +19,7 @@ title: 更新日志
 - localConfig
   - 新增 permission 配置
 - 新增组件：Permission、Role、Magic
+- 新增工具：clipboard
 
 ### 🚀 2.4.2
 
