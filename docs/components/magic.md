@@ -22,6 +22,7 @@ export default () => {
       <Magic.Item
         isCollapsed
         title="项目需求"
+        extra={<Button type="primary">新增</Button>}
         footer={<Button type="primary">提交</Button>}
       >
         这里是内容
@@ -49,3 +50,4 @@ export default () => {
 |footerVisible|页脚内容是否展示|Boolean|true|
 |loading|加载效果|Boolean|false|
 |isCollapsed|是否有折叠按钮|Boolean|false|
+|extra|卡片右上角的操作区域|ReactNode|-|
