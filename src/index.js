@@ -13,6 +13,7 @@ export { default as TdInputNumber } from './td-input-number';
 export { default as toast } from './toast';
 export { default as DownloadBlob } from './download-blob';
 export { default as Reject } from './reject';
+export { default as Magic } from './magic';
 
 // 高耦合组件
 export { default as localConfig } from './local-config';
@@ -22,6 +23,8 @@ export { default as redirect } from './redirect';
 export { default as TablePage } from './table-page';
 export { default as TdUpload } from './td-upload';
 export { default as TdUploadDragable } from './td-upload-dragable';
+export { default as Permission } from './permission';
+export { default as Role } from './role';
 
 // 工具
 export { default as tools } from './tools';

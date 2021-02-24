@@ -43,7 +43,7 @@ export default forwardRef((props, ref) => {
                 name={i.dataIndex2 || i.dataIndex}
                 {...i.formItemProps}
               >
-                {i.component || <Input {...i.inputProps} />}
+                {i.component || <Input placeholder="请输入" {...i.inputProps} />}
               </Form.Item>
             </Col>
           ))}

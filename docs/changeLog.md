@@ -6,6 +6,21 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.5.0
+
+`2021-02-24`
+
+- SearchForm
+  - 添加默认的 placeholder="请输入"
+- DragModal
+  - hooks 重构
+- Reject
+  - 修改 loading 的 API 为 confirmLoading，与 Modal 保持一致
+- localConfig
+  - 新增 permission 配置
+- 新增组件：Permission、Role、Magic
+- 新增工具：clipboard
+
 ### 🚀 2.4.2
 
 `2021-02-03`

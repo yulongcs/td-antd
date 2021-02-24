@@ -11,11 +11,13 @@ import storageWorker from './storageWorker';
 import isPromise from './isPromise';
 import validateFields from './validateFields';
 import useDebounce from './useDebounce';
+import clipboard from './clipboard';
 
 export default {
   delay,
   isPromise,
   countdown,
+  clipboard,
   toThousands,
   useDebounce,
   noPassByInfo,
