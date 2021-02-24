@@ -27,6 +27,14 @@ export default () => {
       >
         这里是内容
       </Magic.Item>
+      <Magic.Item
+        isCollapsed
+        title="项目需求"
+        extra={<Button type="primary">新增</Button>}
+        footer={<Button type="primary">提交</Button>}
+      >
+        这里是内容
+      </Magic.Item>
     </Magic>
   );
 }
