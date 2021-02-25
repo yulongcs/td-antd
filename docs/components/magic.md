@@ -17,21 +17,67 @@ import { Button } from 'antd';
 import { Magic } from 'td-antd';
 
 export default () => {
+  const [loading, setLoading] = useState(false);
+  const [itemLoading, setItemLoading] = useState(false);
+  
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000)
+    }
+  }, [loading])
+  
+  useEffect(() => {
+    if (itemLoading) {
+      setTimeout(() => {
+        setItemLoading(false);
+      }, 2000)
+    }
+  }, [itemLoading])
+
   return (
-    <Magic>
+    <Magic loading={loading}>
       <Magic.Item
-        isCollapsed
-        title="项目需求"
+        title="项目A"
         extra={<Button type="primary">新增</Button>}
-        footer={<Button type="primary">提交</Button>}
+        footer={<Button type="primary" onClick={() => { setLoading(true) }}>全局loading</Button>}
       >
         这里是内容
       </Magic.Item>
       <Magic.Item
         isCollapsed
-        title="项目需求"
+        title="项目B"
+        loading={itemLoading}
         extra={<Button type="primary">新增</Button>}
-        footer={<Button type="primary">提交</Button>}
+        footer={<Button type="primary" onClick={() => { setItemLoading(true) }}>卡片loading</Button>}
+      >
+        这里是内容
+      </Magic.Item>
+    </Magic>
+  );
+}
+```
+
+```jsx
+/**
+ * title: 无 header 用法
+ * desc: 当没有 title、extra、isCollapsed 时，不会展示头部
+ */
+import React, { useState, useEffect } from 'react';
+import { Button } from 'antd';
+import { Magic } from 'td-antd';
+
+export default () => {
+  return (
+    <Magic>
+      <Magic.Item
+        // footer={<Button type="primary">提交</Button>}
+      >
+        这里是内容
+      </Magic.Item>
+      <Magic.Item
+        // footer={<Button type="primary">提交</Button>}
       >
         这里是内容
       </Magic.Item>
