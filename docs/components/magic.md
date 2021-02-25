@@ -65,21 +65,37 @@ export default () => {
  * desc: 当没有 title、extra、isCollapsed 时，不会展示头部
  */
 import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
-import { Magic } from 'td-antd';
+import { Button, DatePicker } from 'antd';
+import { Magic, SearchForm, SelectMap } from 'td-antd';
 
 export default () => {
   return (
     <Magic>
-      <Magic.Item
-        // footer={<Button type="primary">提交</Button>}
-      >
-        这里是内容
-      </Magic.Item>
-      <Magic.Item
-        // footer={<Button type="primary">提交</Button>}
-      >
-        这里是内容
+      <Magic.Item>
+        <SearchForm
+          span={8}
+          columns={[
+            {
+              title: '手机',
+              dataIndex: 'phone',
+              inputProps: { placeholder: '请输入手机号' },
+            }, {
+              title: '地址',
+              dataIndex: 'address',
+            }, {
+              title: '年龄',
+              dataIndex: 'age',
+            }, {
+              title: '状态',
+              dataIndex: 'status',
+              component: <SelectMap data={['很长的一个枚举值哟呵', '已完成']} />
+            }, {
+              title: '时间',
+              dataIndex: 'date',
+              component: <DatePicker style={{ width: '100%' }} />
+            },
+          ]}
+        />
       </Magic.Item>
     </Magic>
   );
