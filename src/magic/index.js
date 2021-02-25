@@ -40,13 +40,15 @@ const Item = (props) => {
       spinning={loading}
       {...rest}
     >
-      <div className="td-magic-item-header">
-        <div className="td-magic-item-header-left">{title}</div>
-        <Space>
-          {extra}
-          {isCollapsed && <a onClick={() => {setCollapsed(!collapsed)}}>{collapsed ? '收起' : '展开'}</a>}
-        </Space>
-      </div>
+      {(title || extra || isCollapsed) && (
+        <div className="td-magic-item-header">
+          <div className="td-magic-item-header-left">{title}</div>
+          <Space>
+            {extra}
+            {isCollapsed && <a onClick={() => {setCollapsed(!collapsed)}}>{collapsed ? '收起' : '展开'}</a>}
+          </Space>
+        </div>
+      )}
       {collapsed && (
         <div className="td-magic-item-content">
           {children}
