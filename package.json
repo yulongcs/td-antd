@@ -54,11 +54,11 @@
   "peerDependencies": {
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
-    "antd": ">=4.6.x"
+    "antd": ">=4.x"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
-    "antd": "^4.6.1",
+    "antd": "^4.x",
     "classnames": "^2.2.6",
     "dva": "2.6.0-beta.20",
     "lodash": "^4.17.15",
