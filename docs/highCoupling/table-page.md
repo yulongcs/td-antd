@@ -76,8 +76,8 @@ export default () => {
  */
  
 import React, { useState, useRef } from 'react';
-import { Button, Tabs } from 'antd';
-import { TablePage, SelectMap } from 'td-antd';
+import { Button, Tabs, Space } from 'antd';
+import { TablePage, SelectMap, LinkBtn } from 'td-antd';
 
 export default () => {
   const tablePageRef = useRef();
@@ -100,6 +100,12 @@ export default () => {
       </Tabs>
       <TablePage
         alert={10}
+        alertNodes={(
+          <Space>
+            <LinkBtn>批量删除</LinkBtn>
+            <LinkBtn>批量导出</LinkBtn>
+          </Space>
+        )}
         url="/aaa.json"
         ref={tablePageRef}
         defaultParams={{ extra: '额外的参数' }}
