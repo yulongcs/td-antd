@@ -13,6 +13,9 @@ title: 更新日志
 - TablePage
   - 新增属性 alertNodes
 
+- SearchForm
+  - columns 修改 visible -> enableSearch，新增order，与`tablePage`同步
+
 ### 🚀 2.5.2
 
 `2021-02-25`
