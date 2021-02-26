@@ -13,7 +13,7 @@ export default forwardRef((props, ref) => {
   } = props;
   const [form] = Form.useForm();
   const [collapse, setCollapse] = useState(defaultCollapse);
-  const nowColumns = columns.filter(({ visible = true }) => visible);
+  const nowColumns = columns.filter(({ enableSearch = true }) => enableSearch).sort((a, b) => a.order - b.order);
 
   useImperativeHandle(ref, () => ({ form, reset }));
 

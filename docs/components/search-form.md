@@ -185,7 +185,8 @@ export default () => {
 |component|Form.Item 的子元素|ReactNode|Input|
 |formItemProps|表单项的属性|Object|-|
 |inputProps|当component不存在时，可以对 Input 进行描述|Object|-|
-|visible|字段是否可见|Boolean|true|
+|enableSearch|字段是否可搜索|Boolean|true|
+|order|字段排序|number|-|
 
 ### callback(type, values)
 
