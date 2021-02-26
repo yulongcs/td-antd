@@ -305,6 +305,30 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 自定义图片固定位
+ * desc: 图片固定位，可自定义尺寸及背景图（单张）
+ */
+import React, { useRef } from 'react';
+import { TdUpload } from 'td-antd';
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <TdUpload
+      ref={ref}
+      showUploadList={false}
+      listType="fixed-card"
+      fixedStyles={{width: 300, height: 200}}
+      fixedImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
+      filterOptions={(item, index) => ({...item, uid: index})}
+    />
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|版本号|
