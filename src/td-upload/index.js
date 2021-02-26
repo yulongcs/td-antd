@@ -12,6 +12,7 @@ import './index.less';
 let num = 0; // 上传文件计数
 let waitFiles = []; // 等待插入组件的数据
 const TEXT_PICTURE_CARD = 'picture-card';
+const TEXT_FIXED_CARD = 'fixed-card';
 const ERROR_0 = '图片尺寸不符合要求，请修改后重新上传！';
 const ERROR_1 = '组件 scale 参数格式错误';
 const ERROR_2 = '文件类型不符合要求，请修改后重新上传！';
@@ -136,12 +137,17 @@ class TdUpload extends React.PureComponent {
   };
 
   beforeUpload = (file, files) => {
-    const { maxFiles, callback, size, nameSize, scale } = this.props; // 最大上传文件数
+    const { maxFiles, callback, size, nameSize, scale, listType } = this.props; // 最大上传文件数
     const { fileList } = this.state;
     const nowFileLength = files.length + fileList.length;
     let check = true; // 当前文件是否校验通过，默认通过
     if (num === 0) {
       callback('before', file, files);
+    }
+
+    // 固定位自动清空上一张
+    if (listType === TEXT_FIXED_CARD) {
+      this.reset();
     }
 
     // 文件类型校验
@@ -217,7 +223,7 @@ class TdUpload extends React.PureComponent {
   _getBase64 = (file, files) => {
     const { listType } = this.props;
     return new Promise((resolve) => {
-      if (listType === TEXT_PICTURE_CARD) {
+      if (listType === TEXT_PICTURE_CARD || listType === TEXT_FIXED_CARD) {
         this._onLoadFile(file, (base64) => {
           file.url = base64;
           resolve(file);
@@ -288,10 +294,10 @@ class TdUpload extends React.PureComponent {
   };
 
   render() {
-    const { previewImg, loading } = this.state;
+    const { previewImg, loading, fileList } = this.state;
     const {
       btnText, btnProps, tip, isPreview, wrapClassName,
-      hideRemoveBtn, listType, extra, hidden, show,
+      hideRemoveBtn, listType, extra, hidden, show, fixedStyles, fixedImg,
     } = this.props;
 
     if (show) {
@@ -320,14 +326,28 @@ class TdUpload extends React.PureComponent {
               }
             })}
           >
-            {(listType && listType === TEXT_PICTURE_CARD) ? (
-              <PlusOutlined />
-            ) : (
-              <React.Fragment>
-                <Button loading={loading} {...btnProps}>{btnText}</Button>
-                {extra}
-              </React.Fragment>
-            )}
+            {
+              listType
+              ?
+              (
+                listType === TEXT_PICTURE_CARD
+                ?
+                (<PlusOutlined />)
+                :
+                (
+                  <div style={fixedStyles}>
+                    <img src={fileList.length > 0 ? fileList[0].url : fixedImg} style={{width: '100%', height: '100%'}} alt="图片加载错误" />
+                  </div>
+                )
+              )
+              :
+              (
+                <React.Fragment>
+                  <Button loading={loading} {...btnProps}>{btnText}</Button>
+                  {extra}
+                </React.Fragment>
+              )
+            }
           </Upload>
           {tip && <div className="td-upload-tip">{tip}</div>}
           <ImgModal ref={r => {this.imgRef = r}} url={previewImg} />
