@@ -335,8 +335,16 @@ class TdUpload extends React.PureComponent {
                 (<PlusOutlined />)
                 :
                 (
-                  <div style={fixedStyles}>
-                    <img src={fileList.length > 0 ? fileList[0].url : fixedImg} style={{width: '100%', height: '100%'}} alt="图片加载错误" />
+                  <div style={fixedStyles} className="td-upload-fixed">
+                    {
+                      (!fixedImg && fileList.length === 0)
+                      ?
+                      (<PlusOutlined />)
+                      :
+                      (
+                        <img src={fileList.length > 0 ? fileList[0].url : fixedImg} style={{width: '100%', height: '100%'}} alt="图片加载错误" className="td-upload-fixed-img" />
+                      )
+                    }
                   </div>
                 )
               )

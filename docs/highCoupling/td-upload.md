@@ -321,8 +321,8 @@ export default () => {
       ref={ref}
       showUploadList={false}
       listType="fixed-card"
-      fixedStyles={{width: 300, height: 200}}
-      fixedImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
+      // fixedStyles={{width: 300, height: 200}}
+      // fixedImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
       filterOptions={(item, index) => ({...item, uid: index})}
     />
   );
