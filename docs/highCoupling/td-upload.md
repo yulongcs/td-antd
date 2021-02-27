@@ -307,8 +307,9 @@ export default () => {
 
 ```jsx
 /**
- * title: 自定义图片固定位
- * desc: 图片固定位，可自定义尺寸及背景图（单张）
+ * title: 图片固定位（单张）
+ * desc: 使用 listType="fixed-card"
+ * 
  */
 import React, { useRef } from 'react';
 import { TdUpload } from 'td-antd';
@@ -321,8 +322,8 @@ export default () => {
       ref={ref}
       showUploadList={false}
       listType="fixed-card"
-      // fixedStyles={{width: 300, height: 200}}
-      // fixedImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
+      fixedStyles={{width: 300, height: 200}}
+      fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
       filterOptions={(item, index) => ({...item, uid: index})}
     />
   );
@@ -354,6 +355,8 @@ export default () => {
 |fileTypes|内置了文件[类型](#filetypes)校验|Array|-|
 |hidden|上传按钮是否显示|Boolean|false|
 |show|组件是否显示|Boolean|true|2.2.0|
+|fixedStyles|固定上传图片的固定位置样式|Object|-|-|
+|fixedBgImg|固定上传图片背景图|-|-|-|
 
 ### initial
 
