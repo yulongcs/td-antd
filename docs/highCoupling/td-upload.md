@@ -309,7 +309,6 @@ export default () => {
 /**
  * title: 图片固定位（单张）
  * desc: 使用 listType="fixed-card"
- * 
  */
 import React, { useRef } from 'react';
 import { TdUpload } from 'td-antd';
@@ -323,7 +322,7 @@ export default () => {
       showUploadList={false}
       listType="fixed-card"
       fixedStyles={{width: 300, height: 200}}
-      fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
+      // fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
       filterOptions={(item, index) => ({...item, uid: index})}
     />
   );

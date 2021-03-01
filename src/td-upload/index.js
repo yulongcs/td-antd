@@ -16,6 +16,7 @@ const TEXT_FIXED_CARD = 'fixed-card';
 const ERROR_0 = '图片尺寸不符合要求，请修改后重新上传！';
 const ERROR_1 = '组件 scale 参数格式错误';
 const ERROR_2 = '文件类型不符合要求，请修改后重新上传！';
+const ERROR_3 = '图片加载错误';
 
 class TdUpload extends React.PureComponent {
   static defaultProps = {
@@ -317,7 +318,7 @@ class TdUpload extends React.PureComponent {
               (<PlusOutlined />)
               :
               (
-                <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt="图片加载错误" className="td-upload-fixed-img" />
+                <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt={ERROR_3} className="td-upload-fixed-img" />
               )
             }
           </div>

@@ -1,3 +1,5 @@
+@import '~antd/lib/style/themes/default.less';
+
 // upload
 .td-upload-wrap {
   display: inline-block;
@@ -35,14 +37,15 @@
   justify-content: center;
   align-items: center;
   border: 1px solid #d9d9d9;
+  background-color: #fafafa;
   width: 200px;
   height: 100px;
   border-radius: 2px;
   padding: 8px;
 
   &:hover {
-    border: 1px dashed #1890ff;
-    transition: all 1s ease;
+    border: 1px dashed @primary-color;
+    cursor: pointer;
   }
 
   .td-upload-fixed-img {
