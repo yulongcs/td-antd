@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.5.4
+
+`2021-03-01`
+
+- TdUpload
+  - 新增 listType="fixed-card" 模式
+
 ### 🚀 2.5.3
 
 `2021-02-26`

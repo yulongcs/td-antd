@@ -16,6 +16,7 @@ const TEXT_FIXED_CARD = 'fixed-card';
 const ERROR_0 = '图片尺寸不符合要求，请修改后重新上传！';
 const ERROR_1 = '组件 scale 参数格式错误';
 const ERROR_2 = '文件类型不符合要求，请修改后重新上传！';
+const ERROR_3 = '图片加载错误';
 
 class TdUpload extends React.PureComponent {
   static defaultProps = {
@@ -300,7 +301,7 @@ class TdUpload extends React.PureComponent {
   renderUploadChildren = () => {
     const { loading, fileList } = this.state;
     const {
-      btnText, btnProps, listType, extra, fixedStyles, fixedImg,
+      btnText, btnProps, listType, extra, fixedStyles, fixedBgImg,
     } = this.props;
 
     if (listType) {
@@ -310,8 +311,16 @@ class TdUpload extends React.PureComponent {
 
       if (listType === TEXT_FIXED_CARD) {
         return (
-          <div style={fixedStyles}>
-            <img src={fileList.length > 0 ? fileList[0].url : fixedImg} style={{width: '100%', height: '100%'}} alt="图片加载错误" />
+          <div style={fixedStyles} className="td-upload-fixed">
+            {
+              (!fixedBgImg && fileList.length === 0)
+              ?
+              (<PlusOutlined />)
+              :
+              (
+                <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt={ERROR_3} className="td-upload-fixed-img" />
+              )
+            }
           </div>
         )
       }
