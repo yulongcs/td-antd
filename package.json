@@ -32,8 +32,8 @@
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.5",
     "del": "^5.1.0",
-    "dumi": "1.0.34",
-    "father-build": "^1.17.2",
+    "dumi": "^1.1.7",
+    "father-build": "^1.19.2",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "yorkie": "^2.0.0",
@@ -58,7 +58,7 @@
     "antd": ">=4.x"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.2.2",
+    "@ant-design/icons": "^4.5.0",
     "antd": "^4.x",
     "classnames": "^2.2.6",
     "dva": "2.6.0-beta.20",
