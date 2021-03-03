@@ -22,6 +22,7 @@ export default forwardRef((props, ref) => {
     searchFormProps,
     defaultParams = {},
     paginationProps = {},
+    requestOptions = {},
   } = props;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
@@ -40,6 +41,7 @@ export default forwardRef((props, ref) => {
       let requestApi = {
         method,
         url: `${url}?${stringify(params)}`,
+        ...requestOptions,
       };
       if (method === 'POST') {
         requestApi = {
