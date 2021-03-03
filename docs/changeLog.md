@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.5.5
+
+`2021-03-03`
+
+- TablePage
+  - 新增属性：requestOptions
+
 ### 🚀 2.5.4
 
 `2021-03-01`
