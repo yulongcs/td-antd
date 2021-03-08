@@ -16,11 +16,12 @@ export default forwardRef((props, ref) => {
     alertNodes,
     searchReturn,
     line = true,
-    method = 'GET',
     columns = [],
     tableProps = {},
     searchFormProps,
     defaultParams = {},
+    pageNumField = 'pageNum',
+    pageSizeField = 'pageSize',
     paginationProps = {},
     requestOptions = {},
   } = props;
@@ -39,19 +40,18 @@ export default forwardRef((props, ref) => {
     if (request && url && !url.includes('undefined')) {
       setLoading(true);
       let requestApi = {
-        method,
         url: `${url}?${stringify(params)}`,
-        ...requestOptions,
       };
-      if (method === 'POST') {
+      // 如果是 post 请求，则重新组装入参
+      if (requestOptions.method === 'POST') {
         requestApi = {
-          ...requestApi,
           url,
           body: params,
         };
       }
       request({
         ...requestApi,
+        ...requestOptions,
         onSuccess:({ dataObject }) => {
           if (success) {
             // 当回调函数 success 存在时，必须返回用于渲染的数据
@@ -121,7 +121,7 @@ export default forwardRef((props, ref) => {
         pagination={(data.pageSize || data.limit) ? pagination({
           data,
           onChange: (pageNum, pageSize) => {
-            query({pageNum, pageSize});
+            query({ [pageNumField]: pageNum, [pageSizeField]: pageSize });
           },
           ...paginationProps,
         }) : false}
