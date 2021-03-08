@@ -204,6 +204,8 @@ export default () => {
 |defaultParams|默认参数，一般是不变的|Object|{}|
 |success|请求成功后的回调函数，必须返回用于列表渲染的数据，包含 { values, pageNum, pageSize, totalCnt }|Function(res)|-|
 |extra|在搜索栏和列表中间的额外节点项|ReactNode/String|-|
+|pageNumField|表格翻页时页数的请求参数名|String|pageNum|
+|pageSizeField|表格翻页时每页条数的请求参数名|String|pageSize|
 |paginationProps|Pagination组件的 API|[paginationProps](https://ant.design/components/pagination-cn/#API)|{}|
 |line|搜索栏和表格栏之间的基线|Boolean|true|
 |alert|选中项的数量提醒|Number|0|

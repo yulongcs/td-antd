@@ -20,6 +20,8 @@ export default forwardRef((props, ref) => {
     tableProps = {},
     searchFormProps,
     defaultParams = {},
+    pageNumField = 'pageNum',
+    pageSizeField = 'pageSize',
     paginationProps = {},
     requestOptions = {},
   } = props;
@@ -119,7 +121,7 @@ export default forwardRef((props, ref) => {
         pagination={(data.pageSize || data.limit) ? pagination({
           data,
           onChange: (pageNum, pageSize) => {
-            query({pageNum, pageSize});
+            query({ [pageNumField]: pageNum, [pageSizeField]: pageSize });
           },
           ...paginationProps,
         }) : false}

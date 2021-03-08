@@ -12,6 +12,7 @@ title: 更新日志
 
 - TablePage
   - 废弃属性：method，请使用 requestOptions 代替
+  - 新增属性：`pageNumField`,`pageSizeField` 以适配不同参数名
 
 ### 🚀 2.5.5
 
