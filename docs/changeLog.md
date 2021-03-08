@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 🚀 2.5.6
 
-`未发布`
+`2021-03-08`
 
 - TablePage
   - 废弃属性：method，请使用 requestOptions 代替
