@@ -14,6 +14,7 @@ export { default as toast } from './toast';
 export { default as DownloadBlob } from './download-blob';
 export { default as Reject } from './reject';
 export { default as Magic } from './magic';
+export { default as Title } from './title';
 
 // 高耦合组件
 export { default as localConfig } from './local-config';
