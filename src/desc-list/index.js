@@ -69,7 +69,8 @@ export default (props) => {
       } = item;
 
       if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(nowData))) {
-        const value = render ? render(nowData) : deepGet(nowData, dataIndex, defaultValue);
+        const text = deepGet(nowData, dataIndex, defaultValue);
+        const value = render ? render(nowData, text) : text;
 
         return (
           // eslint-disable-next-line
