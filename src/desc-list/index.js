@@ -3,7 +3,7 @@ import { Descriptions, Spin } from 'antd';
 import localConfig from '../local-config';
 
 // 进行字段的深度识别
-const deepGet = (object, path, defaultValue) => {
+const deepGet = (object, path = '', defaultValue) => {
   return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
     .reduce((o, k) => (o || {})[k], object) || defaultValue;
 };
@@ -62,14 +62,15 @@ export default (props) => {
     return columns.map((item, index) => {
       const {
         title,
-        dataIndex = '',
+        dataIndex,
         render,
         visible = true,
         span = 1,
       } = item;
 
       if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(nowData))) {
-        const value = render ? render(nowData) : deepGet(nowData, dataIndex, defaultValue);
+        const text = deepGet(nowData, dataIndex, defaultValue);
+        const value = render ? render(dataIndex ? text : nowData, nowData) : text;
 
         return (
           // eslint-disable-next-line

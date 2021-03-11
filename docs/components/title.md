@@ -13,7 +13,7 @@ title: Title
  * title: 基础用法
  */
 import React from 'react';
-import { Title } from 'td-antd';
+import { Title, LinkBtn } from 'td-antd';
 
 export default () => {
   return (
@@ -32,6 +32,13 @@ export default () => {
         name="基础设置"
         tip="人与人的悲欢并不相通，我只觉得他们吵闹"
       />
+      <Title
+        required
+        name="基础设置"
+        colon={false}
+        tip="人与人的悲欢并不相通，我只觉得他们吵闹"
+        extra={<LinkBtn>查看全部内容</LinkBtn>}
+      />
     </>
   );
 }
@@ -45,3 +52,4 @@ export default () => {
 |required|是否有必填项标示|Boolean|false|
 |colon|是否有冒号|Boolean|true|
 |tip|提示文案|ReactNode / () => ReactNode|-|
+|extra|额外的操作区|ReactNode / () => ReactNode|-|

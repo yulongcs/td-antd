@@ -54,6 +54,7 @@ export default () => {
         }, {
           title: '描述',
           dataIndex: 'desc.text',
+          render: (t, r) => t,
           span: 2,
         }, {
           title: '地址被隐藏了',
@@ -89,5 +90,5 @@ export default () => {
 |title|label展示的值|String\|ReactNode|-|
 |dataIndex|数据在数据项中对应的 key，支持嵌套写法如`key.key`或数组路径如`['key', 'key']`|String\|String[]|-|
 |visible|是否显示，默认显示；如果是函数时，必须返回布尔值|Boolean\|Function(record)|true|
-|render|生成复杂数据的渲染函数|Function(record) {}|-|
+|render|生成复杂数据的渲染函数|Function(text, record) {}|-|
 |span|包含列的数量|Number|1|
