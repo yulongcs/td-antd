@@ -211,6 +211,7 @@ export default () => {
 |alert|选中项的数量提醒|Number|0|
 |alertNodes|选中项提醒的右侧操作区|ReactNode|-|
 |requestOptions|[localConfig.request](/high-coupling/local-config#config)方法的属性|Object|-|
+|isDefaultRequest|是否默认请求url|Boolean|true|
 
 ### columns
 
