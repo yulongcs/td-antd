@@ -319,7 +319,6 @@ export default () => {
   return (
     <TdUpload
       ref={ref}
-      showUploadList={false}
       listType="fixed-card"
       fixedStyles={{width: 300, height: 200}}
       // fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}

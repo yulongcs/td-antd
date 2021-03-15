@@ -337,7 +337,7 @@ class TdUpload extends React.PureComponent {
   render() {
     const { previewImg, loading } = this.state;
     const {
-      tip, isPreview, wrapClassName, hideRemoveBtn, hidden, show,
+      tip, isPreview, wrapClassName, hideRemoveBtn, hidden, show, listType,
     } = this.props;
 
     if (show) {
@@ -346,6 +346,7 @@ class TdUpload extends React.PureComponent {
           className={cx('td-upload-wrap', wrapClassName, {
             'td-upload-hide-remove': hideRemoveBtn,
             'td-upload-hide': hidden,
+            'td-upload-fixed-card': listType === TEXT_FIXED_CARD, // 如果是图片固定位模式，则不显示列表
           })}
         >
           <Upload
