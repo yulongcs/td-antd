@@ -24,6 +24,7 @@ export default forwardRef((props, ref) => {
     pageSizeField = 'pageSize',
     paginationProps = {},
     requestOptions = {},
+    isDefaultRequest = true,
   } = props;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
@@ -31,7 +32,9 @@ export default forwardRef((props, ref) => {
   const { request } = localConfig.newInstance();
 
   useEffect(() => {
-    query({}, true);
+    if (isDefaultRequest) {
+      query({}, true);
+    }
   }, [request, url]);
 
   const query = (obj = {}, reset = false) => {
