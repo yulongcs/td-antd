@@ -6,12 +6,14 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.6.2
+### 🚀 2.6.3
 
 `2021-03-15`
 
 - TablePage
   - 新增属性：isDefaultRequest
+- TdUpload
+  - 修复 resolve 参数不一致的问题
 
 ### 🚀 2.6.1
 

@@ -101,7 +101,7 @@ class TdUpload extends React.PureComponent {
         // 如果不需要渲染，则不显示列表数据
         _this.setState({ fileList: showUploadList ? renderFiles : [] });
       } else {
-        resolve([noUploadList]);
+        resolve([noUploadList, _this.state.fileList]);
       }
     });
   };
