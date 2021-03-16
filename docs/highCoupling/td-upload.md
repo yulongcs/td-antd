@@ -353,8 +353,13 @@ export default () => {
 |fileTypes|内置了文件[类型](#filetypes)校验|Array|-|
 |hidden|上传按钮是否显示|Boolean|false|
 |show|组件是否显示|Boolean|true|2.2.0|
-|fixedStyles|固定上传图片的固定位置样式|Object|-|-|
-|fixedBgImg|固定上传图片背景图|-|-|-|
+
+### listType="fixed-card"
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|fixedStyles|固定上传图片的固定位置样式|Object|-|
+|fixedBgImg|固定上传图片背景图|String|-|
 
 ### initial
 
