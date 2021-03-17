@@ -28,6 +28,7 @@ const Item = (props) => {
     footer,
     extra,
     children,
+    titleExtra,
     loading = false,
     isCollapsed = false,
     footerVisible = true,
@@ -40,9 +41,12 @@ const Item = (props) => {
       spinning={loading}
       {...rest}
     >
-      {(title || extra || isCollapsed) && (
+      {(title || extra || isCollapsed || titleExtra) && (
         <div className="td-magic-item-header">
-          <div className="td-magic-item-header-left">{title}</div>
+          <div className="td-magic-item-header-left">
+            {title && <span className="td-magic-item-header-title">{title}</span>}
+            {titleExtra}
+          </div>
           <Space>
             {extra}
             {isCollapsed && <a onClick={() => {setCollapsed(!collapsed)}}>{collapsed ? '收起' : '展开'}</a>}

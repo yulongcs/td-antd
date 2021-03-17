@@ -39,7 +39,8 @@ export default () => {
   return (
     <Magic loading={loading}>
       <Magic.Item
-        title="项目A"
+        // title="项目A"
+        titleExtra="自定义title"
         extra={<Button type="primary">新增</Button>}
         footer={<Button type="primary" onClick={() => { setLoading(true) }}>全局loading</Button>}
       >
@@ -116,6 +117,7 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |title|标题|ReactNode|-|
+|titleExtra|额外的标题内容|ReactNode|-|
 |footer|页脚内容|ReactNode|-|
 |footerVisible|页脚内容是否展示|Boolean|true|
 |loading|加载效果|Boolean|false|
