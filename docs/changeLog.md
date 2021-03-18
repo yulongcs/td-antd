@@ -6,6 +6,18 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.6.6
+
+- DescList
+  - 修复不支持 labelStyle 和 contentStyle 的问题
+
+### 🚀 2.6.5
+
+`2021-03-17`
+
+- Magic.Item
+  - 新增 titleExtra 属性
+
 ### 🚀 2.6.4
 
 `2021-03-15`

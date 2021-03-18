@@ -11,6 +11,7 @@ title: DescList
 ```jsx
 /**
  * title: 基础用法
+ * desc: 使用 pre 导致文本超出时，设置样式 whiteSpace="normal"
  */
 import React, { useState, useEffect } from 'react';
 import { DescList } from 'td-antd';
@@ -28,7 +29,7 @@ export default () => {
         email: 'xxx@xxx.com',
         desc: {
           code: 1,
-          text: 'dataIndex 的嵌套写法'
+          text: 'dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法'
         },
       })
     }, 2000)
@@ -54,8 +55,10 @@ export default () => {
         }, {
           title: '描述',
           dataIndex: 'desc.text',
-          render: (t, r) => t,
+          render: (t, r) => <pre style={{ whiteSpace: 'normal' }}>{t}</pre>,
           span: 2,
+          // labelStyle: { flex: '0 0 100px', color: 'red' },
+          // contentStyle: { flex: '0 0 300px' },
         }, {
           title: '地址被隐藏了',
           dataIndex: 'address',
@@ -84,6 +87,8 @@ export default () => {
 |defaultValue|当值为空时，默认展示的值|String|'--'|
 
 ### columns
+
+支持原 [DescriptionItem](https://ant-design.gitee.io/components/descriptions-cn/#DescriptionItem) API
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
