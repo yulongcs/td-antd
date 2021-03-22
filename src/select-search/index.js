@@ -18,15 +18,18 @@ export default (props) => {
   const [data, setData] = useState([]);
 
   const onFetch = useDebounce((v) => {
-    setLoading(true);
-    fetch(`${url}${v}`)
-      .then(response => response.json())
-      .then(d => {
-        const res = (afterFetch && afterFetch(d)) || [];
-        setData(res);
-      }).finally(() => {
-      setLoading(false);
-    })
+    // 有值的情况下才会发送请求
+    if (v && v.trim() !== '') {
+      setLoading(true);
+      fetch(`${url}${v}`)
+        .then(response => response.json())
+        .then(d => {
+          const res = (afterFetch && afterFetch(d)) || [];
+          setData(res);
+        }).finally(() => {
+        setLoading(false);
+      })
+    }
   });
 
   const handleChange = (v) => {

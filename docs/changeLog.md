@@ -8,8 +8,12 @@ title: 更新日志
 
 ### 🚀 2.6.6
 
+`2021-03-22`
+
 - DescList
   - 修复不支持 labelStyle 和 contentStyle 的问题
+- SelectSearch
+  - 修复空字符串依然可以发送请求的问题
 
 ### 🚀 2.6.5
 
