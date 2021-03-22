@@ -66,6 +66,7 @@ export default (props) => {
         render,
         visible = true,
         span = 1,
+        ...columnsRest
       } = item;
 
       if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(nowData))) {
@@ -74,7 +75,7 @@ export default (props) => {
 
         return (
           // eslint-disable-next-line
-          <Descriptions.Item label={title} key={index} span={span}>
+          <Descriptions.Item label={title} key={index} span={span} {...columnsRest}>
             {renderValue(value, defaultValue)}
           </Descriptions.Item>
         )
