@@ -61,7 +61,7 @@ class TdUpload extends React.PureComponent {
     const formData = new FormData();
     // 当前有文件需要上传时，过滤出需要上传的文件进行上传
     _this.state.fileList.forEach((file) => {
-      if (!file.filePath || (file.toString() === '[object File]')) {
+      if (file.toString() === '[object File]') {
         formData.append(name, file);
       } else {
         noUploadList.push(file);

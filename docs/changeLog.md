@@ -8,10 +8,11 @@ title: 更新日志
 
 ### 🚀 2.6.7
 
-`未发布`
+`2021-03-23`
 
 - TdUpload
   - 修复`callback`为异步函数时`beforeUpload`判断有误的问题
+  - 修复 onUpload 无法获取已上传文件的问题
 
 ### 🚀 2.6.6
 
