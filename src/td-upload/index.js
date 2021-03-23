@@ -61,7 +61,7 @@ class TdUpload extends React.PureComponent {
     const formData = new FormData();
     // 当前有文件需要上传时，过滤出需要上传的文件进行上传
     _this.state.fileList.forEach((file) => {
-      if (!file.filePath || (file.toString() === '[object File]')) {
+      if (file.toString() === '[object File]') {
         formData.append(name, file);
       } else {
         noUploadList.push(file);
@@ -137,13 +137,13 @@ class TdUpload extends React.PureComponent {
     this.setState(({ fileList = [] }) => ({fileList: fileList.filter(item => item.uid !== file.uid)}));
   };
 
-  beforeUpload = (file, files) => {
+  beforeUpload = async (file, files) => {
     const { maxFiles, callback, size, nameSize, scale } = this.props; // 最大上传文件数
     const { fileList } = this.state;
     const nowFileLength = files.length + fileList.length;
     let check = true; // 当前文件是否校验通过，默认通过
     if (num === 0) {
-      callback('before', file, files);
+      await callback('before', file, files);
     }
 
     // 文件类型校验
@@ -154,7 +154,7 @@ class TdUpload extends React.PureComponent {
     }
 
     // 额外的校验，返回真值后，停止上传
-    if (callback('validate', file, files)) {
+    if (await callback('validate', file, files)) {
       check = false;
     }
 
