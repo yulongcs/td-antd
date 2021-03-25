@@ -6,6 +6,14 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.6.8
+
+`未发布`
+
+- ModalBox
+  - 新增属性`buttonPosition`
+  - 新增了更多的用例和 FAQ
+
 ### 🚀 2.6.7
 
 `2021-03-23`

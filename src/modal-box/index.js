@@ -8,7 +8,9 @@ export default forwardRef((props, ref) => {
     width = 500,
     onOk,
     onCancel,
+    bodyStyle,
     wrapClassName,
+    buttonPosition = 'right',
     ...rest
   } = props;
   const [visible, setVisible] = useState(false);
@@ -42,7 +44,12 @@ export default forwardRef((props, ref) => {
       onCancel={cancel}
       destroyOnClose
       maskClosable={false}
-      wrapClassName={classNames('td-modal-box', wrapClassName)}
+      wrapClassName={classNames('td-modal-box', `td-modal-footer-${buttonPosition}`, wrapClassName)}
+      bodyStyle={{
+        maxHeight: 520,
+        overflowY: 'auto',
+        ...bodyStyle,
+      }}
       {...rest}
     />
   );
