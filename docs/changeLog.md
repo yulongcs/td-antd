@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 🚀 2.6.8
 
-`未发布`
+`2021-03-29`
 
 - ModalBox
   - 新增属性`buttonPosition`
