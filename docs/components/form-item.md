@@ -65,6 +65,8 @@ export default () => {
         label="年龄"
         name="age"
         unit="岁"
+        nonZero
+        isInteger
         itemType="number"
         inputProps={{ placeholder: '失去焦点后校验' }}
         validateTrigger="onBlur"
@@ -105,6 +107,7 @@ export default () => {
 |unit|显示单位|String|-|
 |isNegative|是否为负数，默认不可以| Boolean |false|
 |isInteger|是否为整数，默认不是|Boolean |false|
+|nonZero|是否非零|Boolean |false|
 
 ## FAQ
 
