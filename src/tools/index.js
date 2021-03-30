@@ -9,7 +9,6 @@ import noPassByInfo from './noPassByInfo';
 import countdown from './countdown';
 import storageWorker from './storageWorker';
 import isPromise from './isPromise';
-import validateFields from './validateFields';
 import useDebounce from './useDebounce';
 import clipboard from './clipboard';
 
@@ -23,7 +22,6 @@ export default {
   noPassByInfo,
   getUrlParams,
   storageWorker,
-  validateFields,
   momentToString,
   objectToString,
   getUrlParameter,
