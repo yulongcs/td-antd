@@ -180,7 +180,7 @@ export default () => {
  * desc: 使用 TdUpload.Preview 进行展示，show 属性进行显示控制
  */
 import React, { useState } from 'react';
-import { Switch } from 'antd';
+import { Switch, Row, Col } from 'antd';
 import { TdUpload } from 'td-antd';
 
 const files = [
@@ -197,18 +197,22 @@ export default () => {
   const [show, setShow] = useState(false);
 
   return (
-    <>
-      <Switch
-        checkedChildren="显示"
-        unCheckedChildren="隐藏"
-        onChange={checked => { setShow(checked) }}
-      />
-      <TdUpload.Preview
-        show={show}
-        initial={files}
-        filterOptions={(item, index) => ({...item, uid: index})}
-      />
-    </>
+    <Row>
+      <Col span={12}>
+        <Switch
+          checkedChildren="显示"
+          unCheckedChildren="隐藏"
+          onChange={checked => { setShow(checked) }}
+        />
+      </Col>
+      <Col span={12}>
+        <TdUpload.Preview
+          show={show}
+          initial={files}
+          filterOptions={(item, index) => ({...item, uid: index})}
+        />
+      </Col>
+    </Row>
   );
 }
 ```

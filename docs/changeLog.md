@@ -8,10 +8,13 @@ title: 更新日志
 
 ### 🚀 2.6.9
 
-`未发布`
+`2021-03-30`
 
 - FormItem
   - 新增属性`nonZero`
+  - 优化 FAQ
+- TdUpload
+  - 优化 Preview 组件的样式
 
 ### 🚀 2.6.8
 

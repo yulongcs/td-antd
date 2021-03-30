@@ -391,6 +391,7 @@ TdUpload.Preview = (props) => {
       isPreview
       hideRemoveBtn
       initial={initial}
+      wrapClassName="td-upload-preview"
       {...rest}
     />
   );
