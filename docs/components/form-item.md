@@ -65,6 +65,8 @@ export default () => {
         label="年龄"
         name="age"
         unit="岁"
+        nonZero
+        isInteger
         itemType="number"
         inputProps={{ placeholder: '失去焦点后校验' }}
         validateTrigger="onBlur"
@@ -85,11 +87,12 @@ export default () => {
 
 ## API
 
-支持原 [Form](https://ant-design.gitee.io/components/form-cn/) API
+支持原 [Form.Item](https://ant-design.gitee.io/components/form-cn/#Form.Item) API
 
 |参数|说明|类型|默认值|版本|
 |:--|:--|:--|:--|:--|
 |required|表单项是否为必填|Boolean|true|
+|message|非空校验错误文案|String|'必填项'|
 |validatorCallback|自定义校验规则，必须返回callback('错误码')|Function(value, callback)||
 |children|子节点| ReactNode |`<Input/>`|
 |extraRules|额外的规则，用法同 rules|Array / Object|[ ]|
@@ -105,6 +108,7 @@ export default () => {
 |unit|显示单位|String|-|
 |isNegative|是否为负数，默认不可以| Boolean |false|
 |isInteger|是否为整数，默认不是|Boolean |false|
+|nonZero|是否非零|Boolean |false|
 
 ## FAQ
 
@@ -113,4 +117,10 @@ export default () => {
 ```
 valuePropName="fileList"
 getValueFromEvent={e => (!e || !e.fileList) ? e : e.fileList}
+```
+
+### 当设置 nonZero 后，空值时会报2个错误
+
+```
+可以使用 validateFirst=true 属性，会在校验不通过后停止后续校验
 ```

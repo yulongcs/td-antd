@@ -15,6 +15,7 @@ export default (props) => {
     unit,
     isNegative = false,
     isInteger = false,
+    nonZero = false,
     message = '必填项',
     show = true,
     ...rest
@@ -26,6 +27,11 @@ export default (props) => {
 
       // 当类型为数字类型时，则内置校验规则
       if (itemType === 'number') {
+        if (nonZero && +value === 0) {
+          callback('不能为 0');
+          return;
+        }
+
         if (!isNegative && value < 0) {
           callback('不能小于 0');
           return;

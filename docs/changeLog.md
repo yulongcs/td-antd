@@ -6,6 +6,16 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.6.9
+
+`2021-03-30`
+
+- FormItem
+  - 新增属性`nonZero`
+  - 优化 FAQ
+- TdUpload
+  - 优化 Preview 组件的样式
+
 ### 🚀 2.6.8
 
 `2021-03-29`
