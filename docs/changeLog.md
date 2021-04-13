@@ -6,6 +6,16 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.7.0
+
+`2021-04-13`
+
+- TdUpload
+  - 现在可以自定义上传按钮了
+- tools
+  - 废弃了 validateFields。由于 antd 升级后对于 form 校验到错误，不会走 catch，导致内置的错误滚动无法执行。推荐使用 Form 的 scrollToFirstError。如项目中使用了，请尽快修复。
+- 优化了 icons 的引入方式，现在改为 `@ant-design/icons/XXX`
+
 ### 🚀 2.6.9
 
 `2021-03-30`

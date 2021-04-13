@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
+import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import { Upload, Button, message } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import ImgModal from './img-modal';
 import onInitialFiles from './onInitialFiles';
 import isPromise from '../tools/isPromise';
@@ -301,7 +301,7 @@ class TdUpload extends React.PureComponent {
   renderUploadChildren = () => {
     const { loading, fileList } = this.state;
     const {
-      btnText, btnProps, listType, extra, fixedStyles, fixedBgImg,
+      btnText, btnProps, listType, extra, fixedStyles, fixedBgImg, children,
     } = this.props;
 
     if (listType) {
@@ -314,12 +314,8 @@ class TdUpload extends React.PureComponent {
           <div style={fixedStyles} className="td-upload-fixed">
             {
               (!fixedBgImg && fileList.length === 0)
-              ?
-              (<PlusOutlined />)
-              :
-              (
-                <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt={ERROR_3} className="td-upload-fixed-img" />
-              )
+              ? <PlusOutlined />
+              : <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt={ERROR_3} className="td-upload-fixed-img" />
             }
           </div>
         )
@@ -328,7 +324,7 @@ class TdUpload extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <Button loading={loading} {...btnProps}>{btnText}</Button>
+        {children || <Button loading={loading} {...btnProps}>{btnText}</Button>}
         {extra}
       </React.Fragment>
     )

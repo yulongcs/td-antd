@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Tooltip } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import QuestionCircleOutlined from '@ant-design/icons/QuestionCircleOutlined';
 import './index.less';
 
 export default ({ required = false, colon = true, name = '', tip, extra, className, ...rest }) => {

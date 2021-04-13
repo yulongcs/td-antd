@@ -11,9 +11,10 @@ title: TdUpload
 ```jsx
 /**
  * title: 基础上传文件
- * desc: 文件类型校验，文件名长度校验
+ * desc: 文件类型校验，文件名长度校验，上传按钮自定义（默认使用 Button）
  */
 import React from 'react';
+import { PaperClipOutlined } from '@ant-design/icons';
 import { TdUpload } from 'td-antd';
 
 export default () => {
@@ -23,7 +24,6 @@ export default () => {
       nameSize={15}
       fileTypes={['png']}
       accept="application/pdf"
-      extra={<a style={{ marginLeft: 12 }} onClick={(e) => { e.stopPropagation() }}>点击下载</a>}
       callback={(t, f, fs) => {
         if (t === 'remove') {
           return Promise.resolve();
@@ -32,7 +32,9 @@ export default () => {
           console.log(fs);
         }
       }}
-    />
+    >
+      <span style={{ cursor: 'pointer' }}><PaperClipOutlined /> 上传文件</span>
+    </TdUpload>
   );
 }
 ```
@@ -48,6 +50,7 @@ import { TdUpload } from 'td-antd';
 export default () => {
   return (
     <TdUpload
+      extra={<a style={{ marginLeft: 12 }} onClick={(e) => { e.stopPropagation() }}>点击下载</a>}
       callback={(t, f, fs) => {
         if (t === 'validate' && !(/^.*(\.xls|\.xlsx)$/.test(f.name))) {
           alert('文件格式不正确');

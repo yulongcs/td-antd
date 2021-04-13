@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import UserOutlined from '@ant-design/icons/UserOutlined';
+import LockOutlined from '@ant-design/icons/LockOutlined';
 import { Form, Input, Checkbox, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import storageWorker from '../../tools/storageWorker';
 import getUrlParameter from '../../tools/getUrlParameter';
 import request from '../request';
