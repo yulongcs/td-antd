@@ -1,6 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import DownOutlined from '@ant-design/icons/DownOutlined';
+import UpOutlined from '@ant-design/icons/UpOutlined';
 import { Form, Button, Row, Col, Input } from 'antd';
-import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
 export default forwardRef((props, ref) => {
   const {

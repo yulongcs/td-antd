@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
+import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import { Upload, Button, message } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import ImgModal from './img-modal';
 import onInitialFiles from './onInitialFiles';
 import isPromise from '../tools/isPromise';
