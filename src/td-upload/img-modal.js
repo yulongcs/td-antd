@@ -6,7 +6,7 @@ export default forwardRef((props, ref) => {
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [tip, setTip] = useState('');
-  const { url } = props;
+  const { url, showDownLoad } = props;
 
   const show = () => {
     setVisible(true);
@@ -31,7 +31,7 @@ export default forwardRef((props, ref) => {
       footer={false}
       visible={visible}
       onCancel={() => { setVisible(false) }}
-      title={<a href={url} download>下载</a>}
+      title={showDownLoad ? <a href={url} download>下载</a> : '预览'}
     >
       <Spin spinning={loading} tip="图片加载中...">
         <img
