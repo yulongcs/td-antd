@@ -32,7 +32,7 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: 6. 发布
+      - name: 5. 发布
         run: |
           npm config set //registry.npmjs.org/:_authToken=${{secrets.npm_token}}
           npm run build:publish
