@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 🚀 2.8.0
 
-`未发布`
+`2021-04-19`
 
 - tools.momentToString：优化了对 Invalid date 的处理
 - 新增组件 [DateEasily](/components/date-easily)
