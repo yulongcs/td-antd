@@ -389,7 +389,7 @@ export default () => {
 |fileTypes|内置了文件[类型](#filetypes)校验|Array|-|
 |hidden|上传按钮是否显示|Boolean|false|
 |show|组件是否显示|Boolean|true|2.2.0|
-｜showDownLoad|预览组件是否展示下载按钮|Boolean|true|-|
+|showDownLoad|预览组件是否展示下载按钮|Boolean|true|2.8.0|
 
 ### listType="fixed-card"
 

@@ -12,6 +12,8 @@ title: 更新日志
 
 - tools.momentToString：优化了对 Invalid date 的处理
 - 新增组件 [DateEasily](/components/date-easily)
+- TdUpload
+  - 新增属性 `showDownLoad`，控制组件预览时，是否有下载按钮。
 
 ### 🚀 2.7.0
 
