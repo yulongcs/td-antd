@@ -35,6 +35,7 @@ class TdUpload extends React.PureComponent {
     scale: false, // 校验图片尺寸
     initial: [], // 初始化文件列表数据
     show: true, // 是否显示
+    showDownLoad: true, // 是否保留下载入口
   };
 
   state = {
@@ -333,7 +334,7 @@ class TdUpload extends React.PureComponent {
   render() {
     const { previewImg, loading } = this.state;
     const {
-      tip, isPreview, wrapClassName, hideRemoveBtn, hidden, show, listType,
+      tip, isPreview, wrapClassName, hideRemoveBtn, hidden, show, listType, showDownLoad,
     } = this.props;
 
     if (show) {
@@ -366,7 +367,7 @@ class TdUpload extends React.PureComponent {
             {this.renderUploadChildren()}
           </Upload>
           {tip && <div className="td-upload-tip">{tip}</div>}
-          <ImgModal ref={r => {this.imgRef = r}} url={previewImg} />
+          <ImgModal ref={r => {this.imgRef = r}} url={previewImg} showDownLoad={showDownLoad} />
         </div>
       );
     }

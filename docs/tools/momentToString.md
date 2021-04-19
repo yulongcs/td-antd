@@ -9,16 +9,19 @@ moment 和 string 之间的转换，默认格式为 YYYY-MM-DD。如果 value �
 ## 代码演示
 
 ```jsx
-import React from 'react';
+/**
+ * title: 基础用法
+ */
+import React, { useState } from 'react';
 import { DatePicker } from 'antd';
 import { tools } from 'td-antd';
 
 const { momentToString } = tools;
 
 export default () => {
-
+  const [time, setTime] = useState('');
   const onChange = (date, dateString) => {
-    console.log(momentToString(date));
+    setTime(momentToString(date));
   };
 
   return (
@@ -27,6 +30,7 @@ export default () => {
         onChange={onChange}
         defaultValue={momentToString('2020-11-11')}
       />
+      <div style={{ paddingTop: 12 }}>{time}</div>
     </>
   );
 }
