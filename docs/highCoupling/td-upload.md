@@ -335,6 +335,35 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 文件仅支持预览，禁用下载
+ * desc: 使用 showDownLoad="false"
+ */
+import React from 'react';
+import { TdUpload } from 'td-antd';
+
+const files = [
+  {
+    name: '1.jpg',
+    url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
+  }, {
+    name: '2.jpg',
+    url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
+  },
+];
+
+export default () => {
+  return (
+    <TdUpload.Preview
+      initial={files}
+      filterOptions={(item, index) => ({...item, uid: index})}
+      showDownLoad={false}
+    />
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|版本号|
@@ -360,6 +389,7 @@ export default () => {
 |fileTypes|内置了文件[类型](#filetypes)校验|Array|-|
 |hidden|上传按钮是否显示|Boolean|false|
 |show|组件是否显示|Boolean|true|2.2.0|
+｜showDownLoad|预览组件是否展示下载按钮|Boolean|true|-|
 
 ### listType="fixed-card"
 
