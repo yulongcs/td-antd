@@ -6,7 +6,7 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.8.3
+### 🚀 2.8.4
 
 - SelectMap
   - 修复 Select.Option 无法添加额外属性的问题
