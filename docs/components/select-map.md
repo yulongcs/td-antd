@@ -35,6 +35,14 @@ export default () => {
         fields={['id', 'text']}
         data={[{ text: 'Jack', id: 18 }, { text: 'Lucy', id: 20 }]}
       />
+      <br />
+      <br />
+      <SelectMap
+        placeholder="数据：数组对象(含禁用)"
+        style={{ width: 350 }}
+        fields={['id', 'text']}
+        data={[{ text: 'Jack', id: 18 , disabled: true}, { text: 'Lucy', id: 20, disabled: false}]}
+      />
     </>
   );
 }
