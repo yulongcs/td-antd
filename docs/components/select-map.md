@@ -9,41 +9,65 @@ title: SelectMap
 ## 代码演示
 
 ```jsx
+/**
+ * title: 基础用法-1
+ * desc: 数据是数组字符串，如：['Jack', 'Lucy', 'Sam', 'Andy']
+ */
 import React from 'react';
 import { SelectMap } from 'td-antd';
 
 export default () => {
   return (
-    <>
-      <SelectMap
-        placeholder="数据：对象"
-        style={{ width: 350 }}
-        data={{ key1: 'Jack', key2: 'Lucy' }}
-      />
-      <br />
-      <br />
-      <SelectMap
-        placeholder="数据：数组字符串"
-        style={{ width: 350 }}
-        data={['Jack', 'Lucy']}
-      />
-      <br />
-      <br />
-      <SelectMap
-        placeholder="数据：数组对象"
-        style={{ width: 350 }}
-        fields={['id', 'text']}
-        data={[{ text: 'Jack', id: 18 }, { text: 'Lucy', id: 20 }]}
-      />
-      <br />
-      <br />
-      <SelectMap
-        placeholder="数据：数组对象(含禁用)"
-        style={{ width: 350 }}
-        fields={['id', 'text']}
-        data={[{ text: 'Jack', id: 18 , disabled: true}, { text: 'Lucy', id: 20, disabled: false}]}
-      />
-    </>
+    <SelectMap
+      style={{ width: 400 }}
+      data={['Jack', 'Lucy', 'Sam', 'Andy']}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 基础用法-2
+ * desc: 数据是普通对象，如：{ key1:'Jack', key2:'Lucy' }
+ */
+import React from 'react';
+import { SelectMap } from 'td-antd';
+
+export default () => {
+  return (
+    <SelectMap
+      style={{ width: 350 }}
+      data={{ key1: 'Jack', key2: 'Lucy' }}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 基础用法-3
+ * desc: 数据是数组对象，如：[{ name:'Jack', id:18 }, { name:'Lucy', id:20 }]。注意，只有该类型的用法可以设置 [Select.Option](https://ant-design.gitee.io/components/select-cn/#Option-props) 的属性
+ */
+import React from 'react';
+import { SelectMap } from 'td-antd';
+
+export default () => {
+  return (
+    <SelectMap
+      style={{ width: 350 }}
+      fields={['id', 'name']}
+      data={[
+        {
+          name: 'Jack',
+          id: 18,
+          disabled: true
+        }, {
+          name: 'Lucy',
+          id: 20
+        }
+      ]}
+    />
   );
 }
 ```
