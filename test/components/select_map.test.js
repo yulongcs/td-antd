@@ -22,24 +22,17 @@ describe('SelectMap', () => {
     jest.useRealTimers();
   });
 
-  it('should have default notFoundContent', () => {
+  it('有默认的 notFoundContent', () => {
     const wrapper = mount(<SelectMap mode="multiple" />);
     toggleOpen(wrapper);
     expect(wrapper.find('.ant-select-item-option').length).toBeFalsy();
     expect(wrapper.find('.ant-empty').length).toBeTruthy();
   });
 
-  it('should support set notFoundContent to null', () => {
+  it('支持将 notFoundContent 设置为 null', () => {
     const wrapper = mount(<SelectMap mode="multiple" notFoundContent={null} />);
     toggleOpen(wrapper);
     const dropdownWrapper = mount(wrapper.find('Trigger').instance().getComponent());
     expect(dropdownWrapper.find('MenuItem').length).toBe(0);
-  });
-
-  it('should support set data to Array[string]', () => {
-    const wrapper = mount(<SelectMap data={['天使', '恶魔']} />);
-    toggleOpen(wrapper);
-    expect(wrapper.find('.ant-select-item-option').length).toBe(2);
-    // expect(wrapper.render()).toMatchSnapshot();
   });
 });

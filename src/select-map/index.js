@@ -1,18 +1,18 @@
 import React from 'react';
 import { Select } from 'antd';
 
-export default (props) => {
-  const {
-    data,
-    fields = [],
-    ...rest
-  } = props;
-
+export default ({ data, fields = [], ...rest}) => {
   const renderOption = () => {
     if (data) {
       if (Array.isArray(data)) {
         if (data[0] && typeof data[0] === 'object') {
-          return data.map(item => <Select.Option key={item[fields[0]]}>{item[fields[1]]}</Select.Option>);
+          return data.map(item => (
+            <Select.Option
+              key={item[fields[0]]}
+              {...item}
+            >{item[fields[1]]}
+            </Select.Option>
+          ));
         }
         return data.map(item => <Select.Option key={item}>{item}</Select.Option>);
       }
