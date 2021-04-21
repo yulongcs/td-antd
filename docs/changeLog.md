@@ -6,7 +6,17 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.8.5
+
+`未发布`
+
+- SelectMap
+  - 重构，现在有更多的支持了，如：[进阶用法](/components/select-map#select-map-demo-3)
+  - 去除了默认属性：showSearch、allowClear、filterOption、placeholder
+
 ### 🚀 2.8.4
+
+`2021-04-20`
 
 - SelectMap
   - 修复 Select.Option 无法添加额外属性的问题
