@@ -21,9 +21,8 @@ export default () => {
   return (
     <TdUpload
       size={5}
-      nameSize={15}
-      fileTypes={['png']}
-      accept="application/pdf"
+      fileTypes={['docx']}
+      tip="支持 doc、docx 格式"
       callback={(t, f, fs) => {
         if (t === 'remove') {
           return Promise.resolve();
@@ -432,8 +431,8 @@ svg: 'image/svg+xml',
 txt: 'text/plain',
 pdf: 'application/pdf',
 zip: 'application/zip',
-docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-excel: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+docx: '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+excel: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 ```
 
 ### callback
