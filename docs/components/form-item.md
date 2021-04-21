@@ -12,7 +12,7 @@ title: FormItem
 /**
  * title: 基本使用
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Switch } from 'antd';
 import { FormItem, SelectMap } from 'td-antd';
 
@@ -30,19 +30,32 @@ const tailLayout = {
 };
 
 export default () => {
+  const [form] = Form.useForm();
   const [show, setShow] = useState(false);
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
   
+  useEffect(() => {
+    setTimeout(() => {
+      form.setFieldsValue({
+        name: '丁老板',
+        switch: true,
+        age: 100,
+        sex: 'woman'
+      });
+    }, 3000)
+  }, [])
+  
   return (
     <Form
+      form={form}
       onFinish={onFinish}
       initialValues={{
         name: '丁老板',
         switch: false,
         age: 18,
-        sex: '男'
+        sex: 'man'
       }}
       labelCol={{ span: 7 }}
       wrapperCol={{ span: 10 }}
@@ -75,7 +88,18 @@ export default () => {
         label="性别"
         name="sex"
       >
-        <SelectMap data={['男', '女']} />
+        <SelectMap
+          fields={['key', 'value']}
+          data={[
+            {
+              key: 'woman',
+              value: '女',
+            }, {
+              key: 'man',
+              value: '男',
+            },
+          ]}
+        />
       </FormItem>
       <FormItem {...tailLayout}>
         <Button htmlType="submit">提交</Button>

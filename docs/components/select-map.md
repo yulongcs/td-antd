@@ -57,17 +57,17 @@ import { SelectMap } from 'td-antd';
 export default () => {
   return (
     <SelectMap
+      defaultValue={18}
       style={{ width: 350 }}
-      fields={['id', 'name']}
+      fields={['id', 'value']}
       onChange={(value) => { console.log(value) }}
       data={[
         {
-          name: 'Jack',
           id: 18,
-          disabled: true
+          value: 'Jack',
         }, {
-          name: 'Lucy',
-          id: 20
+          id: 20,
+          value: 'Lucy',
         }
       ]}
     />
@@ -93,6 +93,7 @@ const national = {
 export default () => {
   return (
     <SelectMap
+      defaultValue={['china', 'japan']}
       mode="multiple"
       style={{ width: '40%' }}
       fields={['value', 'label']}
