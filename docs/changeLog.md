@@ -6,6 +6,15 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.8.7
+
+`未发布`
+
+- SelectSearch
+  - 移除属性：isData，现在可以使用 onChange 方法的第二个参数来获取选中项数据
+  - 现在 onBlur 之后，不会清空已请求的数据
+  - 现在有更好的表单受控能力
+
 ### 🚀 2.8.6
 
 `2021-04-21`
