@@ -14,7 +14,7 @@ title: FormItem
  */
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Switch } from 'antd';
-import { FormItem, SelectMap } from 'td-antd';
+import { FormItem, SelectMap, SelectSearch } from 'td-antd';
 
 const tailLayout = {
   wrapperCol: {
@@ -42,7 +42,8 @@ export default () => {
         name: '丁老板',
         switch: true,
         age: 100,
-        sex: 'woman'
+        sex: 'woman',
+        phone: '0741-454-626',
       });
     }, 3000)
   }, [])
@@ -99,6 +100,20 @@ export default () => {
               value: '男',
             },
           ]}
+        />
+      </FormItem>
+      <FormItem
+        label="电话"
+        name="phone"
+      >
+        <SelectSearch
+          allowClear
+          mode="multiple"
+          placeholder="搜索电话号码"
+          fields={['cell', 'phone']}
+          // 使用公共接口进行测试
+          url="https://randomuser.me/api/?results="
+          afterFetch={res => res.results}
         />
       </FormItem>
       <FormItem {...tailLayout}>
