@@ -37,7 +37,17 @@ export default () => {
   }, [itemLoading])
 
   return (
-    <Magic loading={loading}>
+    <Magic
+      loading={loading}
+      left={260}
+      footerStyle={{ justifyContent: 'flex-end' }}
+      footer={(
+        <>
+          <Button>保存草稿</Button>
+          <Button type="primary">提交</Button>
+        </>
+      )}
+    >
       <Magic.Item
         // title="项目A"
         titleExtra="自定义title"
@@ -111,6 +121,7 @@ export default () => {
 |footerVisible|页脚内容是否展示|Boolean|true|
 |loading|加载效果|Boolean|false|
 |left|定位时距离左侧的值|Number|200|
+|footerStyle|固定页脚的样式|Object|-|
 
 ### Magic.Item
 
@@ -123,3 +134,4 @@ export default () => {
 |loading|加载效果|Boolean|false|
 |isCollapsed|是否有折叠按钮|Boolean|false|
 |extra|卡片右上角的操作区域|ReactNode|-|
+|boxShadow|是否展示阴影|Boolean|true|

@@ -4,7 +4,7 @@ import { Spin, Space } from 'antd';
 import './index.less';
 
 // 最外层组件
-const Magic = ({ footer, footerVisible = true, children, loading = false, left = 200, ...rest }) => {
+const Magic = ({ footer, footerVisible = true, footerStyle, children, loading = false, left = 200, ...rest }) => {
   return (
     <Spin
       wrapperClassName={classNames('td-magic-wrap', {
@@ -15,7 +15,7 @@ const Magic = ({ footer, footerVisible = true, children, loading = false, left =
       {...rest}
     >
       {children}
-      {footerVisible && <Space className="td-magic-footer" style={{ left }}>{footer}</Space>}
+      {footerVisible && <Space className="td-magic-footer" style={{ left, ...footerStyle }}>{footer}</Space>}
     </Spin>
   );
 };
@@ -32,24 +32,27 @@ const Item = (props) => {
     loading = false,
     isCollapsed = false,
     footerVisible = true,
+    boxShadow = true,
     ...rest
   } = props;
 
   return (
     <Spin
-      wrapperClassName="td-magic-item-wrap"
+      wrapperClassName={classNames('td-magic-item-wrap', {
+        'td-magic-item-box-shadow': boxShadow,
+      })}
       spinning={loading}
       {...rest}
     >
       {(title || extra || isCollapsed || titleExtra) && (
         <div className="td-magic-item-header">
-          <div className="td-magic-item-header-left">
+          <Space>
             {title && <span className="td-magic-item-header-title">{title}</span>}
             {titleExtra}
-          </div>
+          </Space>
           <Space>
             {extra}
-            {isCollapsed && <a onClick={() => {setCollapsed(!collapsed)}}>{collapsed ? '收起' : '展开'}</a>}
+            {isCollapsed && <span className="td-magic-collapsed" onClick={() => {setCollapsed(!collapsed)}}>{collapsed ? '收起' : '展开'}</span>}
           </Space>
         </div>
       )}
