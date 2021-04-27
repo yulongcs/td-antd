@@ -1,0 +1,47 @@
+@import '~antd/lib/style/themes/default.less';
+
+.td-magic-item-wrap {
+  border-radius: @border-radius-base;
+  background: #fff;
+  margin-bottom: @padding-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.td-magic-item-box-shadow {
+  box-shadow: @shadow-1-down;
+}
+
+.td-magic-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1;
+  padding: 0 16px;
+  min-height: 64px;
+}
+
+.td-magic-item-header-title {
+  font-size: 16px;
+  color: @primary-color;
+  font-weight: 600;
+}
+
+.td-magic-item-content {
+  padding: 16px;
+}
+
+.td-magic-item-footer {
+  border-top: 1px solid #d8d8d8;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.td-magic-collapsed {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+}
