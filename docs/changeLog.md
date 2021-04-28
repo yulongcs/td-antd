@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.8.9
+
+`2021-04-27`
+
+- Magic
+  - 优化 boxShadow 的表现，现在父组件可以控制子组件的阴影了
+
 ### 🚀 2.8.8
 
 `2021-04-26`
