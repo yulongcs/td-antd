@@ -11,6 +11,7 @@ title: Magic
 ```jsx
 /**
  * title: 基础用法
+ * desc: 可以使用 footerStyle={{ justifyContent: 'center' }} 控制按钮的位置
  */
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
@@ -43,8 +44,8 @@ export default () => {
       footerStyle={{ justifyContent: 'flex-end' }}
       footer={(
         <>
-          <Button>保存草稿</Button>
-          <Button type="primary">提交</Button>
+          <Button size="large">保存草稿</Button>
+          <Button size="large" type="primary">提交</Button>
         </>
       )}
     >
