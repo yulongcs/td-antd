@@ -11,7 +11,7 @@ title: Magic
 ```jsx
 /**
  * title: 基础用法
- * desc: 可以使用 footerStyle={{ justifyContent: 'center' }} 控制按钮的位置
+ * desc: 可以使用 footerStyle:{justifyContent:'center'} 控制按钮的位置
  */
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
