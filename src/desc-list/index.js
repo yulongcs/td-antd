@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Descriptions, Spin } from 'antd';
+import { typeOf } from '../_util';
 import localConfig from '../local-config';
 
 // 进行字段的深度识别
-const deepGet = (object, path = '', defaultValue) => {
+const deepGet = (object, path = '') => {
   return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
-    .reduce((o, k) => (o || {})[k], object) || defaultValue;
+    .reduce((o, k) => (o || {})[k], object);
 };
 
-// 渲染列的值
-const renderValue = (value, defaultValue) => {
-  if (React.isValidElement(value)) {
-    return value;
-  } else {
-    if (value && value !== null && value !== '') {
-      return value;
-    }
+// 渲染值
+const renderValue = ({ dataIndex, nowData, render, defaultValue }) => {
+  // 当 column 中有 dataIndex 时，就可以获取到数据
+  const text = deepGet(nowData, dataIndex);
 
-    return defaultValue;
+  // 当有 render 函数，且有下标字段时，可查询出值是否存在
+  if (render && dataIndex) {
+    return text ? render(text, nowData) : defaultValue;
   }
+
+  // 当只有 render 函数时，直接渲染
+  if (render) {
+    return render(nowData) ?? defaultValue;
+  }
+
+  return text ?? defaultValue;
 };
 
 export default (props) => {
@@ -62,21 +68,15 @@ export default (props) => {
     return columns.map((item, index) => {
       const {
         title,
-        dataIndex,
-        render,
         visible = true,
         span = 1,
         ...columnsRest
       } = item;
 
-      if ((typeof visible === 'boolean' && visible) || (typeof visible === 'function' && visible(nowData))) {
-        const text = deepGet(nowData, dataIndex, defaultValue);
-        const value = render ? render(dataIndex ? text : nowData, nowData) : text;
-
+      if (typeOf(visible, 'Function') ? visible() : visible) {
         return (
-          // eslint-disable-next-line
           <Descriptions.Item label={title} key={index} span={span} {...columnsRest}>
-            {renderValue(value, defaultValue)}
+            {renderValue({ ...item, defaultValue, nowData })}
           </Descriptions.Item>
         )
       }

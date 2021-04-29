@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.8.10
+
+`2021-04-29`
+
+- DescList
+  - 优化渲染逻辑，当 dataIndex 存在时，现在不需要手动判断值是否存在了，且有更好的默认展示了。
+
 ### 🚀 2.8.9
 
 `2021-04-27`
