@@ -73,7 +73,7 @@ export default (props) => {
         ...columnsRest
       } = item;
 
-      if (typeOf(visible, 'Function') ? visible() : visible) {
+      if (typeOf(visible, 'Function') ? visible(nowData) : visible) {
         return (
           <Descriptions.Item label={title} key={index} span={span} {...columnsRest}>
             {renderValue({ ...item, defaultValue, nowData })}
