@@ -81,35 +81,38 @@ import { Button, DatePicker } from 'antd';
 import { Magic, SearchForm, SelectMap } from 'td-antd';
 
 export default () => {
+  const [shadow, setShadow] = useState(true);
+
   return (
-    <Magic>
-      <Magic.Item>
-        <SearchForm
-          span={8}
-          columns={[
-            {
-              title: '手机',
-              dataIndex: 'phone',
-              inputProps: { placeholder: '请输入手机号' },
-            }, {
-              title: '地址',
-              dataIndex: 'address',
-            }, {
-              title: '年龄',
-              dataIndex: 'age',
-            }, {
-              title: '状态',
-              dataIndex: 'status',
-              component: <SelectMap data={['很长的一个枚举值哟呵', '已完成']} />
-            }, {
-              title: '时间',
-              dataIndex: 'date',
-              component: <DatePicker style={{ width: '100%' }} />
-            },
-          ]}
-        />
-      </Magic.Item>
-    </Magic>
+    <Magic.Item
+      boxShadow={shadow}
+      footer={<Button onClick={() => { setShadow(!shadow) }}>{shadow ? '关闭' : '开启'}阴影效果</Button>}
+    >
+      <SearchForm
+        span={8}
+        columns={[
+          {
+            title: '手机',
+            dataIndex: 'phone',
+            inputProps: { placeholder: '请输入手机号' },
+          }, {
+            title: '地址',
+            dataIndex: 'address',
+          }, {
+            title: '年龄',
+            dataIndex: 'age',
+          }, {
+            title: '状态',
+            dataIndex: 'status',
+            component: <SelectMap data={['很长的一个枚举值哟呵', '已完成']} />
+          }, {
+            title: '时间',
+            dataIndex: 'date',
+            component: <DatePicker style={{ width: '100%' }} />
+          },
+        ]}
+      />
+    </Magic.Item>
   );
 }
 ```

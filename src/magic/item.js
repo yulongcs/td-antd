@@ -7,7 +7,7 @@ import { MagicContext } from './index';
 
 // 模块组件
 const Item = (props) => {
-  const { boxShadow } = useContext(MagicContext);
+  const { boxShadow = true } = useContext(MagicContext);
   const [collapsed, setCollapsed] = useState(true);
   const {
     title,
