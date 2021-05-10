@@ -6,6 +6,12 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.8.12
+
+`2021-05-10`
+
+- 修复 Magic.Item 在没有被 Magic 包裹时，默认阴影失效的问题。
+
 ### 🚀 2.8.11
 
 `2021-04-30`
