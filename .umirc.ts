@@ -1,10 +1,11 @@
 import { defineConfig } from 'dumi';
+import packageJson from './package.json';
 
 const path = require('path');
 
 // more config: https://d.umijs.org/config
 export default defineConfig({
-  title: 'td-antd 2.x',
+  title: `td-antd@${packageJson.version}`,
   description: '基于 Ant Design 4.x 开发的业务组件',
   favicon: '/logo.png',
   logo: '/logo.png',
