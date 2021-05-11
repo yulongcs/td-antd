@@ -6,6 +6,13 @@ title: 更新日志
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.8.13
+
+`未发布`
+
+- tools
+  - 删除 getUrlParams 函数，现在由 getUrlParameter 替换
+
 ### 🚀 2.8.12
 
 `2021-05-10`

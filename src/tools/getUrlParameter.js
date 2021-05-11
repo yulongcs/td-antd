@@ -1,12 +1,10 @@
-function getUrlParameter(name, link = window.location.href) {
-  const url = link.slice(link.indexOf('?'), link.length);
-  const r = url.substr(1).match(new RegExp(`(^|&)${name}=([^&]*)(&|$)`));
+const getUrlParameter = (name, url = window.location.href) => {
+  const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(
+    (a, v) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
+    {}
+  )
 
-  if (r !== null) {
-    return unescape(r[2]);
-  }
-
-  return null;
-}
+  return name ? params[name] : params;
+};
 
 export default getUrlParameter;

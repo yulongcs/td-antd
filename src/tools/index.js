@@ -1,7 +1,6 @@
 import delay from './delay';
 import genNonDuplicateID from './genNonDuplicateID';
 import getUrlParameter from './getUrlParameter';
-import getUrlParams from './getUrlParams';
 import momentToString from './momentToString';
 import toThousands from './toThousands';
 import objectToString from './objectToString';
@@ -20,7 +19,6 @@ export default {
   toThousands,
   useDebounce,
   noPassByInfo,
-  getUrlParams,
   storageWorker,
   momentToString,
   objectToString,
