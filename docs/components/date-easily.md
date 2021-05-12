@@ -50,7 +50,8 @@ export default () => {
         <Form.Item
           label="日期"
           name="date"
-          normalize={date => momentToString(date, format.date)}
+          normalize={date => date && momentToString(date, format.date)}
+          rules={[{ required: true, message: '必填' }]}
         >
           <DateEasily />
         </Form.Item>
