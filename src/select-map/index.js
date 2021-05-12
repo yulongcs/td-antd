@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
-import { typeOf } from '../_util';
+import typeOf from '../tools/typeOf';
 
 export default ({ data, fields = [], filterOptionChildren, ...rest}) => {
   const renderOption = () => {

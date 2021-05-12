@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import countdown from '../../tools/countdown';
-import isPromise from '../../tools/isPromise';
+import typeOf from '../../tools/typeOf';
 import '../index.less';
 
 export default (props) => {
@@ -37,7 +37,7 @@ export default (props) => {
 
     if (res === false) {
       go();
-    } else if (isPromise(res)) {
+    } else if (typeOf(res, 'Promise')) {
       res.then(() => {
         go();
       })

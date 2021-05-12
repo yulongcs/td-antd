@@ -7,13 +7,13 @@ import objectToString from './objectToString';
 import noPassByInfo from './noPassByInfo';
 import countdown from './countdown';
 import storageWorker from './storageWorker';
-import isPromise from './isPromise';
 import useDebounce from './useDebounce';
 import clipboard from './clipboard';
+import typeOf from './typeOf';
 
 export default {
   delay,
-  isPromise,
+  typeOf,
   countdown,
   clipboard,
   toThousands,
