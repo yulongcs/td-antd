@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Descriptions, Spin } from 'antd';
-import { typeOf } from '../_util';
+import typeOf from '../tools/typeOf';
 import localConfig from '../local-config';
 
 // 进行字段的深度识别

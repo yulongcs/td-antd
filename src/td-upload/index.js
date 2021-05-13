@@ -4,7 +4,7 @@ import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import { Upload, Button, message } from 'antd';
 import ImgModal from './img-modal';
 import onInitialFiles from './onInitialFiles';
-import isPromise from '../tools/isPromise';
+import typeOf from '../tools/typeOf';
 import ACCEPT from './accept';
 import localConfig from '../local-config';
 import './index.less';
@@ -118,7 +118,7 @@ class TdUpload extends React.PureComponent {
     const { callback } = this.props;
     const res = await callback('remove', file);
 
-    if (isPromise(res)) {
+    if (typeOf(res, 'Promise')) {
       res.then((bool) => {
         if (bool !== false) {
           this.removeFile(file);

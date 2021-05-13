@@ -12,7 +12,7 @@ title: DateEasily
 /**
  * title: 基础用法
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DatePicker, Form, Button } from 'antd';
 import { DateEasily, tools } from 'td-antd';
 
@@ -50,7 +50,8 @@ export default () => {
         <Form.Item
           label="日期"
           name="date"
-          normalize={date => momentToString(date, format.date)}
+          normalize={date => date && momentToString(date, format.date)}
+          rules={[{ required: true, message: '必填' }]}
         >
           <DateEasily />
         </Form.Item>
@@ -83,6 +84,40 @@ export default () => {
       </Form>
       <div style={{ color: 'red' }}>form data：{json}</div>
     </>
+  );
+}
+```
+
+```jsx
+/**
+ * title: 在 SearchForm 上的表现
+ * desc: 搭配 formItemProps 属性，轻松实现数据转化，减少预处理
+ */
+import React, { useState } from 'react';
+import { DateEasily, tools, SearchForm } from 'td-antd';
+
+const { momentToString } = tools;
+
+export default () => {
+  return (
+    <SearchForm
+      columns={[
+        {
+          title: '开始时间',
+          dataIndex: 'startTime',
+          component: <DateEasily />,
+          formItemProps: { normalize: date => date && momentToString(date)},
+        }, {
+          title: '结束时间',
+          dataIndex: 'endTime',
+          component: <DateEasily />,
+          formItemProps: { normalize: date => date && momentToString(date)},
+        },
+      ]}
+      callback={(type, values) => {
+        console.log(values);
+      }}
+    />
   );
 }
 ```
