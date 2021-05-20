@@ -24,4 +24,5 @@ export default defineConfig({
     'td-antd': path.resolve(__dirname, 'src/'),
     tools: path.resolve(__dirname, 'src/tools/'),
   },
+  // mode: 'site'
 });
