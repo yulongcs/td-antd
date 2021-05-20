@@ -62,6 +62,11 @@ export default () => {
       wrapperCol={{ span: 10 }}
     >
       <FormItem
+        label="手机号"
+      >
+        13800000000
+      </FormItem>
+      <FormItem
         label="开关"
         name="switch"
         required={false}
