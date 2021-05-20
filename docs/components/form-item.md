@@ -75,11 +75,22 @@ export default () => {
         <Switch onChange={(key) => { setShow(key) }} />
       </FormItem>
       <FormItem
-        label="姓名"
-        name="name"
-        validateFirst
-        show={show}
-      />
+        noStyle
+        shouldUpdate
+      >
+        {({ getFieldValue }) => {
+          if (getFieldValue('switch')) {
+            return (
+              <FormItem
+                label="姓名"
+                name="name"
+                validateFirst
+                required={false}
+              />
+            );
+          }
+        }}
+      </FormItem>
       <FormItem
         label="年龄"
         name="age"
