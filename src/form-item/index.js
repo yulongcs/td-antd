@@ -52,6 +52,7 @@ export default (props) => {
       <Form.Item
         rules={rules}
         className={className}
+        required={required}
         {...rest}
       >
         {

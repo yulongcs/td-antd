@@ -1,6 +1,6 @@
 {
   "name": "td-antd",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "基于antd封装的业务组件库和工具",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -33,7 +33,7 @@
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.5",
     "del": "^5.1.0",
-    "dumi": "^1.1.7",
+    "dumi": "^1.1.18",
     "father-build": "^1.19.2",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",

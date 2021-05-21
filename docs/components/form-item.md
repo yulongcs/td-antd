@@ -62,6 +62,11 @@ export default () => {
       wrapperCol={{ span: 10 }}
     >
       <FormItem
+        label="手机号"
+      >
+        13800000000
+      </FormItem>
+      <FormItem
         label="开关"
         name="switch"
         required={false}
@@ -70,11 +75,22 @@ export default () => {
         <Switch onChange={(key) => { setShow(key) }} />
       </FormItem>
       <FormItem
-        label="姓名"
-        name="name"
-        validateFirst
-        show={show}
-      />
+        noStyle
+        shouldUpdate
+      >
+        {({ getFieldValue }) => {
+          if (getFieldValue('switch')) {
+            return (
+              <FormItem
+                label="姓名"
+                name="name"
+                validateFirst
+                required={false}
+              />
+            );
+          }
+        }}
+      </FormItem>
       <FormItem
         label="年龄"
         name="age"
