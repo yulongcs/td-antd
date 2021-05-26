@@ -17,11 +17,9 @@ const { momentToString } = tools;
 
 export default () => {
   const [form] = Form.useForm();
-  const [json, setJson] = useState('');
 
   const onFinish = values => {
     console.log(values);
-    setJson(JSON.stringify(values));
   };
 
   return (
@@ -70,6 +68,57 @@ export default () => {
       >
         <DatePicker />
       </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+}
+```
+
+## 表单联动
+
+使用 shouldUpdate 控制表单之间的联动
+
+```jsx
+import React, { useState } from 'react';
+import { DatePicker, Form, Button, Switch } from 'antd';
+import { FormItem } from 'td-antd';
+
+export default () => {
+  const [form] = Form.useForm();
+
+  const onFinish = values => {
+    console.log(values);
+  };
+
+  return (
+    <Form form={form} onFinish={onFinish}>
+      <FormItem
+        label="开关"
+        name="switch"
+        valuePropName="checked"
+        initialValue={false}
+      >
+        <Switch />
+      </FormItem>
+      <FormItem
+        noStyle
+        shouldUpdate
+      >
+        {({ getFieldValue }) => {
+          if (getFieldValue('switch')) {
+            return (
+              <FormItem
+                label="备注"
+                name="remark"
+              />
+            );
+          }
+        }}
+      </FormItem>
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Submit

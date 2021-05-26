@@ -9,6 +9,8 @@ const DateEasily = ({ value, format, Component = DatePicker, ...rest }) => {
     momentedValue = [momentToString(start, format), momentToString(end, format)];
   } else if (value) {
     momentedValue = momentToString(value, format);
+  } else {
+    momentedValue = undefined;
   }
 
   return (
