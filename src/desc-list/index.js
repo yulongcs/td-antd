@@ -76,7 +76,7 @@ export default (props) => {
       if (typeOf(visible, 'Function') ? visible(nowData) : visible) {
         return (
           <Descriptions.Item label={title} key={index} span={span} {...columnsRest}>
-            {renderValue({ ...item, defaultValue, nowData })}
+            {renderValue({ defaultValue, ...item, nowData })}
           </Descriptions.Item>
         )
       }
