@@ -7,6 +7,15 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.9.2
+
+`2021-05-31`
+
+- DescList
+  - column 可以单独设置 defaultValue ，优先级高于组件的 defaultValue
+- SelectMap
+  - 设置一个默认的 placeholder 。
+
 ### 🚀 2.9.1
 
 `2021-05-21`
