@@ -38,7 +38,11 @@ export default ({ data, fields = [], filterOptionChildren, ...rest}) => {
   };
 
   return (
-    <Select style={{ width: '100%' }} {...rest}>
+    <Select
+      style={{ width: '100%' }}
+      placeholder="请选择"
+      {...rest}
+    >
       {renderOption()}
     </Select>
   );

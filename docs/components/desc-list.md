@@ -96,4 +96,5 @@ export default () => {
 |dataIndex|数据在数据项中对应的 key，支持嵌套写法如`key.key`或数组路径如`['key', 'key']`|String\|String[]|-|
 |visible|是否显示，默认显示；如果是函数时，必须返回布尔值|Boolean\|Function(record)|true|
 |render|生成复杂数据的渲染函数|Function(text, record) {}|-|
+|defaultValue|当值为空时，默认展示的值，优先级高于组件的`defaultValue`|String|-|
 |span|包含列的数量|Number|1|
