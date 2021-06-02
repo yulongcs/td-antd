@@ -1,7 +1,7 @@
 export default {
   // 英文配置
   en: {
-    totalTip: 'found $1 matched your search',
+    totalTip: 'Total $1 items',
   },
   // 中文配置
   zh: {

@@ -9,7 +9,7 @@ import '../index.less';
 export default (props) => {
   const [form] = Form.useForm();
   const {
-    locale = 'en',
+    locale = 'zh',
     proxy = '/srm', // 代理标示
     onSignIn = () => {}, // 点击去登录的回调
     onSignUp = () => {}, // 注册成功后的回调

@@ -36,3 +36,4 @@ const instance = localConfig.newInstance();
 |request|异步请求实例，一般是脚手架中封装的 fetch|Function|-|
 |locale|语言，支持 `en/zh`|String|-|
 |permission|是否开启权限校验，针对 Permission 组件|Boolean|-|
+|uploadFilterOptions|TdUpload 的 filterOptions 属性的全局配置方法|Function|-|

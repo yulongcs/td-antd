@@ -45,6 +45,7 @@ export default () => {
 |value|需要转为二维码的字符串|String|-|
 |size|二维码尺寸，正方形|Number|128|
 |img|logo图片，会按照一定规则进行缩放|url/base64|-|
+|scaleSize|logo缩放比例，大多数情况下无需调整，数值越大，logo越大，可能会影响二维码准确度|Number|0.26|
 
 ## PS
 

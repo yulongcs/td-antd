@@ -5,10 +5,11 @@ import localConfig from '../local-config';
 
 const onInitialFiles = (files = [], filterOptions) => {
   try {
-    const { proxy = '' } = localConfig.newInstance();
+    const { proxy = '', uploadFilterOptions } = localConfig.newInstance(); // 获取全局配置实例
+
     return files.map((item, index) => {
-      if (filterOptions) {
-        return filterOptions(item, index);
+      if (filterOptions || uploadFilterOptions) {
+        return (filterOptions || uploadFilterOptions)(item, index);
       }
 
       return {
