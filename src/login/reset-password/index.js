@@ -12,7 +12,7 @@ const { Step } = Steps;
 export default (props) => {
   const {
     proxy = '/srm',
-    locale = 'en',
+    locale = 'zh',
     onBackHomepage,
     homepagePath = '/welcome',
     onSignIn = () => {}, // 去登录的回调函数

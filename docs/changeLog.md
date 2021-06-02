@@ -7,6 +7,15 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.9.4
+
+`2021-06-02`
+
+- localConfig：优化代码
+- locale：现在默认语言环境是中文
+- TdUpload
+  - 现在可以支持全局配置的 uploadFilterOptions 了，优先级：自身的 `filterOptions > localConfig.uploadFilterOptions`
+
 ### 🚀 2.9.3
 
 `2021-06-01`

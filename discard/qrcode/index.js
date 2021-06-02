@@ -10,6 +10,7 @@ export default forwardRef((props, ref) => {
   const {
     img,
     size = 128,
+    scaleSize = 0.26,
     ...rest
   } = props;
 
@@ -61,7 +62,7 @@ export default forwardRef((props, ref) => {
   }, [rest.value]);
 
   const getImgSize = () => {
-    const imgSize = size * 0.26;
+    const imgSize = size * scaleSize; // logo 缩放基准
     const imgPosition = (size - imgSize)/2;
 
     return {

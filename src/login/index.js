@@ -6,7 +6,7 @@ import SignUp from './sign-up';
 const Login = (props) => {
   const {
     proxy = '/srm',
-    locale = 'en',
+    locale = 'zh',
     onBackHomepage,
     homepagePath,
     customSingInTitle,

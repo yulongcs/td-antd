@@ -12,7 +12,7 @@ import '../index.less';
 export default (props) => {
   const [form] = Form.useForm();
   const {
-    locale = 'en',
+    locale = 'zh',
     proxy = '/srm', // 代理标示
     isSignUpButton = true, // 是否有注册按钮
     isResetButton = true, // 是否有重置按钮
