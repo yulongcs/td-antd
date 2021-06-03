@@ -339,26 +339,50 @@ export default () => {
  * title: 文件仅支持预览，禁用下载
  * desc: 使用 showDownLoad="false"
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { TdUpload } from 'td-antd';
 
 const files = [
   {
+    uid: 1,
     name: '1.jpg',
     url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
   }, {
+    uid: 2,
     name: '2.jpg',
     url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
   },
 ];
 
+const files2 = [
+  {
+    uid: 1,
+    name: '3.jpg',
+    url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
+  }, {
+    uid: 2,
+    name: '4.jpg',
+    url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
+  },
+];
+
 export default () => {
+  const [list, setList] = useState(files);
+  
+  const onClick = () => {
+    setList(files2);
+  };
+
   return (
-    <TdUpload.Preview
-      initial={files}
-      filterOptions={(item, index) => ({...item, uid: index})}
-      showDownLoad={false}
-    />
+    <>
+      <button onClick={onClick}>更换</button>
+      <br /><br />
+      <TdUpload.Preview
+        initial={list}
+        filterOptions={(item, index) => ({...item})}
+        showDownLoad={false}
+      />
+    </>
   );
 }
 ```
