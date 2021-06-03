@@ -7,7 +7,7 @@ import onInitialFiles from './onInitialFiles';
 import typeOf from '../tools/typeOf';
 import ACCEPT from './accept';
 import localConfig from '../local-config';
-import _ from 'lodash';
+import _isEqual from 'lodash/isEqual';
 import './index.less';
 
 let num = 0; // 上传文件计数
@@ -47,7 +47,7 @@ class TdUpload extends React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.initial && nextProps.initial) {
-      if (!_.isEqual(this.props.initial, nextProps.initial)) {
+      if (!_isEqual(this.props.initial, nextProps.initial)) {
         this.setState({
           fileList: onInitialFiles(nextProps.initial, this.props.filterOptions),
         })
