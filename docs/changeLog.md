@@ -7,6 +7,11 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.9.6
+
+- Magic
+  - 新增属性 `onCollapsed`
+
 ### 🚀 2.9.5
 
 - TdUpload

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import classNames from 'classnames';
 import { Spin, Space } from 'antd';
 import './item.less';
@@ -15,11 +15,16 @@ const Item = (props) => {
     extra,
     children,
     titleExtra,
+    onCollapsed,
     loading = false,
     isCollapsed = false,
     footerVisible = true,
     ...rest
   } = props;
+
+  useEffect(() => {
+    onCollapsed && onCollapsed(collapsed, props.itemKey);
+  }, [collapsed]);
 
   return (
     <Spin
