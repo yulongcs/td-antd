@@ -42,6 +42,7 @@ export default () => {
       loading={loading}
       left={260}
       footerStyle={{ justifyContent: 'flex-end' }}
+      onCollapsed={(bool, key) => { console.log(bool, key) }}
       footer={(
         <>
           <Button size="large">保存草稿</Button>
@@ -50,6 +51,7 @@ export default () => {
       )}
     >
       <Magic.Item
+        isCollapsed
         // title="项目A"
         titleExtra="自定义title"
         extra={<Button type="primary">新增</Button>}
@@ -58,10 +60,12 @@ export default () => {
         这里是内容
       </Magic.Item>
       <Magic.Item
+        itemKey="haha"
         isCollapsed
         title="项目B"
         loading={itemLoading}
         extra={<Button type="primary">新增</Button>}
+        onCollapsed={(bool, key) => { console.log('子组件的 onCollapsed', key) }}
         footer={<Button type="primary" onClick={() => { setItemLoading(true) }}>卡片loading</Button>}
       >
         这里是内容
@@ -181,6 +185,7 @@ export default () => {
 |left|定位时距离左侧的值|Number|200|
 |footerStyle|固定页脚的样式|Object|-|
 |boxShadow|控制子组件是否有阴影效果|Boolean|true|
+|onCollapsed|子组件 展开/收起 时的回调函数|Function(isCollapsed, itemKey)|-|
 
 ### Magic.Item
 
@@ -194,3 +199,5 @@ export default () => {
 |isCollapsed|是否有折叠按钮|Boolean|false|
 |extra|卡片右上角的操作区域|ReactNode|-|
 |boxShadow|该权限大于父组件属性|Boolean|true|
+|itemKey|组件的唯一标示|String/Number|-|
+|onCollapsed|面板 展开/收起 的回调函数，权重大于父组件|Function(isCollapsed, itemKey)|-|

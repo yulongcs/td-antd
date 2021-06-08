@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Spin } from 'antd';
 import localConfig from '../local-config';
 import './index.less';
 
@@ -74,11 +75,13 @@ const DownloadBlob = (props) => {
   };
 
   return (
-    <div
-      {...rest}
-      onClick={click}
-      className="td-download-wrap"
-    />
+    <Spin spinning={loading} size="small" wrapperClassName="td-download-loading">
+      <div
+        {...rest}
+        onClick={click}
+        className="td-download-wrap"
+      />
+    </Spin>
   );
 };
 
