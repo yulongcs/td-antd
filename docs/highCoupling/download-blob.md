@@ -10,15 +10,23 @@ title: DownloadBlob
 
 ```jsx
 import React from 'react';
+import { Space } from 'antd';
 import { DownloadBlob } from 'td-antd';
 
 export default () => {
-  return(
-    <DownloadBlob
-      url="/demo.jpg"
-      filename="demo.jpeg"
-    >下载
-    </DownloadBlob>
+  return (
+    <Space>
+      <DownloadBlob
+        url="/demo.jpg"
+        filename="demo.jpeg"
+      >下载1
+      </DownloadBlob>
+      <DownloadBlob
+        url="/demo.jpg"
+        filename="demo.jpeg"
+      >下载2
+      </DownloadBlob>
+    </Space>
   );
 }
 ```
