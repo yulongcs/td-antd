@@ -27,20 +27,26 @@ export default forwardRef((props, ref) => {
     show,
   }));
 
-  const toDownLoad = () => {
-    function download() {
-      const a = document.createElement('a'); // 创建a标签
-      a.setAttribute('download', '');// download属性
-      a.setAttribute('href', url);// href链接
-      a.click();// 自执行点击事件
-    }
-    if (beforeDownload && (typeOf(beforeDownload, 'Promise'))) {
-      return beforeDownload().then(() => {
+  const download = () => {
+    const a = document.createElement('a'); // 创建a标签
+    a.setAttribute('download', ''); // download属性
+    a.setAttribute('href', url); // href链接
+    a.setAttribute('target', '_blank');
+    a.click(); // 自执行点击事件
+    a.remove();
+  };
+
+  const onClick = () => {
+    const cb = beforeDownload();
+
+    if(typeOf(cb, 'Promise')) {
+      cb.then(() => {
         download();
       })
+    } else {
+      download();
     }
-    download();
-  }
+  };
 
   return (
     <Modal
@@ -48,7 +54,7 @@ export default forwardRef((props, ref) => {
       footer={false}
       visible={visible}
       onCancel={() => { setVisible(false) }}
-      title={showDownLoad ? <LinkBtn onClick={toDownLoad}>下载</LinkBtn>: '预览'}
+      title={showDownLoad ? <LinkBtn onClick={onClick}>下载</LinkBtn>: '预览'}
     >
       <Spin spinning={loading} tip="图片加载中...">
         <img

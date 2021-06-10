@@ -37,7 +37,7 @@ class TdUpload extends React.PureComponent {
     initial: [], // 初始化文件列表数据
     show: true, // 是否显示
     showDownLoad: true, // 是否保留下载入口
-    beforeDownload: '', // 下载控制
+    beforeDownload: () => {}, // 下载控制
   };
 
   state = {

@@ -400,7 +400,7 @@ const files = [
   {
     uid: 1,
     name: '1.jpg',
-    url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
+    url: '/demo.jpg',
   }, {
     uid: 2,
     name: '2.jpg',
@@ -469,6 +469,7 @@ export default () => {
 |hidden|上传按钮是否显示|Boolean|false|
 |show|组件是否显示|Boolean|true|2.2.0|
 |showDownLoad|预览组件是否展示下载按钮|Boolean|true|2.8.0|
+|beforeDownload|预览组件下载前事件，必须返回 Promise 对象|Function|-|2.9.7|
 
 ### listType="fixed-card"
 

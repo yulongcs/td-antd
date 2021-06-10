@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.9.7
+
+`2021-06-10`
+
+- TdUpload.Preview 下载支持事件了
+- tools.noPassByInfo 优化
+
 ### 🚀 2.9.6
 
 `2021-06-08`
