@@ -20,7 +20,7 @@ export default () => {
       <p>手机号脱敏：{noPassByInfo('13812345678')}</p>
       <p>邮箱脱敏：{noPassByInfo('13812345678@qq.com')}</p>
       <p>身份证脱敏：{noPassByInfo('33032119971122072X')}</p>
-      <p>身份证脱敏：{noPassByInfo('诸葛龙')}</p>
+      <p>身份证脱敏：{noPassByInfo('慕容')}、{noPassByInfo('慕容复')}、{noPassByInfo('慕容璇玑')}、{noPassByInfo('伊利丹怒风')}</p>
     </>
   );
 }

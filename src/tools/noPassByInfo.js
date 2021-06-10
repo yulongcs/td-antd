@@ -28,9 +28,9 @@ function noPassByInfo(v = '') {
 
   // 姓名
   if (v.length <= 3) {
-    return `*${v.substring(1, v.length)}`;
+    return `${v.substring(0, 1)}${v.length > 1 ? '*' : ''}${v.substring(2, v.length)}`;
   } else if (v.length > 3 && v.length <= 6) {
-    return `**${v.substring(2, v.length)}`;
+    return `${v.substring(0, 2)}**${v.substring(4, v.length)}`;
   } else if (v.length > 6) {
     return `${v.substring(0, 2)}****${v.substring(6, v.length)}`;
   }

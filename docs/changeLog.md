@@ -7,7 +7,16 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.9.7
+
+`2021-06-10`
+
+- TdUpload.Preview 下载支持事件了
+- tools.noPassByInfo 优化
+
 ### 🚀 2.9.6
+
+`2021-06-08`
 
 - Magic
   - 新增属性 `onCollapsed`，特性请查看具体组件 API
@@ -15,6 +24,8 @@ order: 1
   - 增加了 loading 效果，优化组件在下载文件较慢时，看似无反应的问题
 
 ### 🚀 2.9.5
+
+`2021-06-03`
 
 - TdUpload
   - 修复当 length 相同时，不会重新渲染的问题

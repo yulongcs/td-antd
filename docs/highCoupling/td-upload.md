@@ -387,6 +387,62 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 二次确认后下载
+ * desc: 使用 beforeDownload传入Promise
+ */
+import React, { useState } from 'react';
+import { TdUpload } from 'td-antd';
+import { Modal } from 'antd';
+
+const files = [
+  {
+    uid: 1,
+    name: '1.jpg',
+    url: '/demo.jpg',
+  }, {
+    uid: 2,
+    name: '2.jpg',
+    url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
+  },
+];
+
+export default () => {
+  const [list, setList] = useState(files);
+  
+  const onClick = () => {
+    setList(files2);
+  };
+
+  const beforeDownload = () => {
+    return new Promise((resolve, reject) => {
+      Modal.confirm({
+        title: '是否确认下载？',
+        onOk: () => {
+          resolve();
+        },
+        onCancel: () => {
+          reject();
+        },
+      });
+    })
+  }
+
+  return (
+    <>
+      <button onClick={onClick}>更换</button>
+      <br /><br />
+      <TdUpload.Preview
+        initial={list}
+        filterOptions={(item, index) => ({...item})}
+        beforeDownload={beforeDownload}
+      />
+    </>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|版本号|
@@ -413,6 +469,7 @@ export default () => {
 |hidden|上传按钮是否显示|Boolean|false|
 |show|组件是否显示|Boolean|true|2.2.0|
 |showDownLoad|预览组件是否展示下载按钮|Boolean|true|2.8.0|
+|beforeDownload|预览组件下载前事件，必须返回 Promise 对象|Function|-|2.9.7|
 
 ### listType="fixed-card"
 
