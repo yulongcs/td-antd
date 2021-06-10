@@ -13,7 +13,8 @@ title: EditTable
  * title: 基础用法
  */
 import React from 'react';
-import { EditTable, FormItem } from 'td-antd';
+import { FormItem } from 'td-antd';
+import EditTable from 'td-antd/edit-table';
 
 export default () => {
   return (
