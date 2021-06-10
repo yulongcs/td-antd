@@ -387,6 +387,62 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 二次确认后下载
+ * desc: 使用 beforeDownload传入Promise
+ */
+import React, { useState } from 'react';
+import { TdUpload } from 'td-antd';
+import { Modal } from 'antd';
+
+const files = [
+  {
+    uid: 1,
+    name: '1.jpg',
+    url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=137628589,3436980029&fm=26&gp=0.jpg',
+  }, {
+    uid: 2,
+    name: '2.jpg',
+    url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg',
+  },
+];
+
+export default () => {
+  const [list, setList] = useState(files);
+  
+  const onClick = () => {
+    setList(files2);
+  };
+
+  const beforeDownload = () => {
+    return new Promise((resolve, reject) => {
+      Modal.confirm({
+        title: '是否确认下载？',
+        onOk: () => {
+          resolve();
+        },
+        onCancel: () => {
+          reject();
+        },
+      });
+    })
+  }
+
+  return (
+    <>
+      <button onClick={onClick}>更换</button>
+      <br /><br />
+      <TdUpload.Preview
+        initial={list}
+        filterOptions={(item, index) => ({...item})}
+        beforeDownload={beforeDownload}
+      />
+    </>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|版本号|
