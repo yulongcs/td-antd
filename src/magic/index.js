@@ -20,10 +20,16 @@ const Magic = (props) => {
     ...rest
   } = props;
 
-  const getItems = React.Children.map(children, (child, index) => (cloneElement(child, {
-    itemKey: child.props.itemKey || index,
-    onCollapsed: child.props.onCollapsed || onCollapsed,
-  })));
+  const getItems = React.Children.map(children, ((child, index) => {
+    if (child) {
+      return cloneElement(child, {
+        itemKey: child.props.itemKey || index,
+        onCollapsed: child.props.onCollapsed || onCollapsed,
+      });
+    }
+
+    return null;
+  }));
 
   return (
     <MagicContext.Provider

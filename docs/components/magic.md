@@ -70,6 +70,7 @@ export default () => {
       >
         这里是内容
       </Magic.Item>
+      {null}
     </Magic>
   );
 }
