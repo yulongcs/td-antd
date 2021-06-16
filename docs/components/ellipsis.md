@@ -43,5 +43,5 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|width|组件展示的最大宽度|String/Number|'100%'|
+|width|组件展示的最大宽度|String/Number|100%|
 |lineClamp|多行省略，使用 -webkit-line-clamp，请注意兼容性|Number|-|

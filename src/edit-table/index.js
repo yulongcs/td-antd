@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle, forwardRef } from 'react';
 import { Table, Form, Space } from 'antd';
+import typeOf from '../tools/typeOf';
 import './index.less';
 
 const EditableCell = ({
@@ -15,13 +16,14 @@ const EditableCell = ({
   );
 };
 
-export default (props) => {
+export default forwardRef((props, ref) => {
   const {
     rowKey = '',
     onFinish = () => {},
     editText = '修改',
     cancelText = '取消',
     okText = '保存',
+    extra,
     ...rest
   } = props;
   const [form] = Form.useForm();
@@ -38,7 +40,10 @@ export default (props) => {
           <a onClick={cancel}>{cancelText}</a>
         </Space>
       ) : (
-        <a onClick={() => edit(r)}>{editText}</a>
+        <Space>
+          <a onClick={() => edit(r)}>{editText}</a>
+          {extra}
+        </Space>
       );
     },
   }].map(col => {
@@ -55,6 +60,11 @@ export default (props) => {
     };
   });
 
+  // 提供给外部的接口
+  useImperativeHandle(ref, () => ({
+    setEditingKey,
+  }));
+
   // 点击编辑按钮，开始进行编辑
   const edit = (r) => {
     form.setFieldsValue(r);
@@ -70,10 +80,15 @@ export default (props) => {
   // 保存
   const save = (record) => {
     form.validateFields().then(values => {
-      onFinish({
+      const promise = onFinish({
         values: {...record, ...values},
-        setEditingKey,
       });
+
+      if(typeOf(promise, 'Promise')) {
+        promise.then(() => {
+          setEditingKey('');
+        })
+      }
     }).catch((err) => {
       console.log(err);
     })
@@ -94,4 +109,4 @@ export default (props) => {
       />
     </Form>
   );
-}
+})
