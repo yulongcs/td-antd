@@ -11,7 +11,7 @@ order: 1
 
 `未发布`
 
-- 新增组件 EditTable、Ellipsis
+- 新增组件 [EditTable](/components/edit-table)、[Ellipsis](/components/ellipsis)
 
 ### 🚀 2.9.8
 

@@ -13,8 +13,7 @@ title: EditTable
  * title: 基础用法
  */
 import React, { useState } from 'react';
-import { FormItem, LinkBtn } from 'td-antd';
-import EditTable from 'td-antd/edit-table';
+import { FormItem, LinkBtn, EditTable } from 'td-antd';
 
 export default () => {
   const [data, setData] = useState([

@@ -16,6 +16,8 @@ export { default as Reject } from './reject';
 export { default as Magic } from './magic';
 export { default as Title } from './title';
 export { default as DateEasily } from './date-easily';
+export { default as EditTable } from './edit-table';
+export { default as Ellipsis } from './ellipsis';
 
 // 高耦合组件
 export { default as localConfig } from './local-config';
