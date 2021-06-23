@@ -9,7 +9,7 @@ order: 1
 
 ### 🚀 2.10.0
 
-`未发布`
+`2021-06-23`
 
 - 新增组件 [EditTable](/components/edit-table)、[Ellipsis](/components/ellipsis)
 
