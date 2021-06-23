@@ -4,7 +4,7 @@ title: Ellipsis
 
 ## Ellipsis
 
-文本省略
+很简单的一个文本省略组件，你甚至可以用 css 来代替🐶
 
 ## 代码演示
 
@@ -13,7 +13,7 @@ title: Ellipsis
  * title: 单行省略
  */
 import React from 'react';
-import Ellipsis from 'td-antd/ellipsis';
+import { Ellipsis } from 'td-antd';
 
 export default () => {
   return (
@@ -43,5 +43,5 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|width|组件展示的最大宽度|String/Number|'100%'|
+|width|组件展示的最大宽度|String/Number|100%|
 |lineClamp|多行省略，使用 -webkit-line-clamp，请注意兼容性|Number|-|

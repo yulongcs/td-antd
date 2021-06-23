@@ -7,6 +7,12 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.10.0
+
+`2021-06-23`
+
+- 新增组件 [EditTable](/components/edit-table)、[Ellipsis](/components/ellipsis)
+
 ### 🚀 2.9.8
 
 `2021-06-11`
