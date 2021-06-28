@@ -15,7 +15,7 @@ interface IPropTypes<DT> extends SelectProps<SelectValue> {
   url: string;
   method?: 'GET' | 'POST';
   pageSize?: number;
-  fields?: [string, string];
+  fields?: DT extends Record<string, string> ? [keyof DT, keyof DT] : null;
   searchField: string;
   defaultData?: DT[];
   defaultParams?: Record<string, any>;
@@ -31,8 +31,7 @@ function SelectList<DataType extends Record<string, string> | string>(
     url,
     method = 'GET',
     pageSize = 50,
-    fields,
-    value,
+    fields = ['key', 'value'],
     searchField,
     defaultData = [],
     defaultParams,
@@ -118,22 +117,29 @@ function SelectList<DataType extends Record<string, string> | string>(
       disabled={!url}
       filterOption={false}
       placeholder="支持搜索"
-      value={value}
       onSearch={onSearch}
       onPopupScroll={loadMore}
       autoClearSearchValue={false}
       dropdownMatchSelectWidth={false}
       {...restProps}
     >
-      {data.map(item => (fields ? (
-        <Option
-          key={(item as Record<string, string>)[fields[0]]}
-          value={(item as Record<string, string>)[fields[0]]}
-        >
-          {(item as Record<string, string>)[fields[1]]}
-        </Option>
-      ) : <Option key={item as string} value={item as string}>{item}</Option>
-      ))}
+      {data.map(item => {
+        if (typeof item === 'string') {
+          return <Option key={item} value={item}>{item}</Option>;
+        }
+        if (item && typeof item === 'object' && fields[0] in item) {
+          return (
+            <Option
+              key={item[fields[0]]}
+              value={item[fields[0]]}
+              {...item as Record<string, string>}
+            >
+              {item[fields[1]]}
+            </Option>
+          );
+        }
+        return null;
+      })}
       {loading && <Option key="loading" value="loading" disabled><Spin size="small" /></Option>}
     </Select>
   );
