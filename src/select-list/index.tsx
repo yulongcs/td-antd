@@ -1,4 +1,4 @@
-import React, { useState, useRef, useImperativeHandle } from 'react';
+import React, { useState, useRef, useImperativeHandle, ReactNode } from 'react';
 import { Select, Spin } from 'antd';
 import { SelectProps, SelectValue } from 'antd/es/select';
 import { stringify } from 'qs';
@@ -19,8 +19,8 @@ interface IPropTypes<DT> extends SelectProps<SelectValue> {
   searchField?: string;
   localData?: DT[];
   defaultParams?: Record<string, any>;
-  getOptions?: (d: DT[]) => DT[],
-  filterOptionChildren?,
+  getOptions?: (d: DT[]) => DT[];
+  filterOptionChildren?: (item: DT, index: number) => React.ReactElement;
 }
 
 const { Option } = Select;
@@ -40,7 +40,7 @@ function SelectList<DataType extends Record<string, string> | string>(
     getOptions = (d) => d,
     onSelect: propOnSelect,
     onFocus: propOnFocus,
-    filterOptionChildren = () => {},
+    filterOptionChildren,
     ...restProps
   } = props;
 
