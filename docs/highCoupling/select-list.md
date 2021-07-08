@@ -115,6 +115,42 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 自定义下拉展示option
+ */
+import React from 'react';
+import { localConfig, SelectList, tools } from 'td-antd';
+import request from '../../utils/request';
+
+localConfig.config({ request });
+
+const localData = [];
+for (let i = 0; i < 20; i++) {
+  const id = tools.genNonDuplicateID(10);
+  localData.push(id);
+}
+
+export default () => {
+  return (
+    <SelectList
+      style={{ width: 240 }}
+      url="http://rap2api.taobao.org/app/mock/286633/get/country.json"
+      pageSize={null}
+      fields={['english', 'country']}
+      onChange={(v, o) => { console.log(v, o); }}
+      placeholder="请选择，支持搜索"
+      filterOptionChildren={(item, index) => (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <span>{item.country}--</span>
+          <span>{item.english}</span>
+        </div>
+      )}
+    />
+  );
+}
+```
+
 ## API
 
 支持原 [Select](https://ant-design.gitee.io/components/select-cn/) API
@@ -130,6 +166,7 @@ export default () => {
 |defaultParams|默认请求参数|Object|-|
 |getOptions|对数据项进行过滤|(d: DT[]) => DT[]|(d) => d|
 |onChange|`option`参数保留完整数据项|Function(value, option:Option \| Array\<Option\>)|-|
+|filterOptionChildren|搭配数据类型为 [object Object] 时使用，自定义渲染下拉框内容 |function(item, index)|-|
 
 ### Ref，使用 ref.current 进行调用
 

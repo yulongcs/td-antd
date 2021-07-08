@@ -20,6 +20,7 @@ interface IPropTypes<DT> extends SelectProps<SelectValue> {
   localData?: DT[];
   defaultParams?: Record<string, any>;
   getOptions?: (d: DT[]) => DT[],
+  filterOptionChildren?,
 }
 
 const { Option } = Select;
@@ -39,6 +40,7 @@ function SelectList<DataType extends Record<string, string> | string>(
     getOptions = (d) => d,
     onSelect: propOnSelect,
     onFocus: propOnFocus,
+    filterOptionChildren = () => {},
     ...restProps
   } = props;
 
@@ -152,7 +154,7 @@ function SelectList<DataType extends Record<string, string> | string>(
     <Select
       showSearch
       filterOption={allDataLoaded}
-      optionFilterProp="children"
+      optionFilterProp="label"
       placeholder="支持搜索"
       onSelect={onSelect}
       onSearch={onSearch}
@@ -162,18 +164,19 @@ function SelectList<DataType extends Record<string, string> | string>(
       dropdownMatchSelectWidth={false}
       {...restProps}
     >
-      {getOptions(data).map(item => {
+      {getOptions(data).map((item, index) => {
         if (typeof item === 'string') {
-          return <Option key={item} value={item}>{item}</Option>;
+          return <Option key={item} value={item} label={item}>{item}</Option>;
         }
         if (item && typeof item === 'object' && fields[0] in item) {
           return (
             <Option
               key={item[fields[0]]}
               value={item[fields[0]]}
+              label={item[fields[1]]}
               {...item as Record<string, string>}
             >
-              {item[fields[1]]}
+              {(filterOptionChildren && filterOptionChildren(item, index)) || item[fields[1]]}
             </Option>
           );
         }
