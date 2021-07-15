@@ -13,7 +13,7 @@ title: DateEasily
  * title: 基础用法
  */
 import React, { useState } from 'react';
-import { DatePicker, Form, Button } from 'antd';
+import { Form, Button } from 'antd';
 import { DateEasily, tools } from 'td-antd';
 
 const { momentToString } = tools;
@@ -43,9 +43,9 @@ export default () => {
         <Form.Item
           label="时间"
           name="time"
-          normalize={date => momentToString(date, format.time)}
+          normalize={date => date && momentToString(date, format.time)}
         >
-          <DateEasily picker="time" format={format.time} />
+          <DateEasily type="123" picker="time" format={format.time} />
         </Form.Item>
         <Form.Item
           label="日期"
@@ -58,23 +58,23 @@ export default () => {
         <Form.Item
           label="周"
           name="week"
-          normalize={date => momentToString(date, format.week)}
+          normalize={date => date && momentToString(date, format.week)}
         >
           <DateEasily picker="week" format={format.week} />
         </Form.Item>
         <Form.Item
           label="月份"
           name="month"
-          normalize={date => momentToString(date, format.month)}
+          normalize={date => date && momentToString(date, format.month)}
         >
           <DateEasily picker="month" format={format.month} />
         </Form.Item>
         <Form.Item
           label="日期区间"
           name="dateRange"
-          normalize={date => [momentToString(date[0], format.date), momentToString(date[1], format.date)]}
+          normalize={date => date && [momentToString(date[0], format.date), momentToString(date[1], format.date)]}
         >
-          <DateEasily Component={DatePicker.RangePicker} />
+          <DateEasily type="RangePicker" />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
@@ -128,7 +128,7 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|Component|当前使用的组件|antdComponent|DatePicker|
+|type|需要使用 DatePicker 的子组件时，填写子组件名称，如：RangePicker|string|-|
 |format|需要转化的时间格式，可以参考 [moment.js](http://momentjs.cn/docs/)|String|`YYYY-MM-DD`|
 
 ## PS
