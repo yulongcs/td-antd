@@ -164,9 +164,9 @@ export default () => {
 |searchField|搜索字段，数据未全部加载时从服务端获取搜索结果|String|fields[1]|
 |localData|本地数据项，不再触发数据请求，进行本地搜索|Array|[]|
 |defaultParams|默认请求参数|Object|-|
-|getOptions|对数据项进行过滤|(d: DT[]) => DT[]|(d) => d|
-|onChange|`option`参数保留完整数据项|Function(value, option:Option \| Array\<Option\>)|-|
-|filterOptionChildren|搭配数据类型为 [object Object] 时使用，自定义渲染下拉框内容 |function(item, index)|-|
+|getOptions|对数据项进行过滤|Function(d: DT[]) => DT[]|(d) => d|
+|onChange|`option`参数保留完整数据项|Function(value, option: Option \| Array\<Option\>)|-|
+|filterOptionChildren|自定义渲染下拉框内容 |Function(item, index) => ReactChild|-|
 
 ### Ref，使用 ref.current 进行调用
 
