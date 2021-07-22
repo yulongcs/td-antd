@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.10.2
+
+`2021-07-22`
+
+- DrawerBox
+  - 新增属性：buttonPosition、confirmLoading
+
 ### 🚀 2.10.0
 
 `2021-06-23`

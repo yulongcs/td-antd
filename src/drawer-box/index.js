@@ -10,6 +10,8 @@ export default forwardRef((props, ref) => {
     afterClose = () => {},
     okButtonProps = {},
     cancelButtonProps = {},
+    buttonPosition = 'right',
+    confirmLoading = false,
     ...rest
   } = props;
   const [visible, setVisible] = useState(false);
@@ -39,9 +41,10 @@ export default forwardRef((props, ref) => {
     <Drawer
       visible={visible}
       onClose={cancel}
+      maskClosable={false}
       footer={
-        <div style={{ textAlign: 'right' }}>
-          <Button onClick={cancel} style={{ marginRight: 8 }} {...cancelButtonProps}>{cancelText}</Button>
+        <div style={{ textAlign: buttonPosition }}>
+          <Button onClick={cancel} style={{ marginRight: 8 }} loading={confirmLoading} {...cancelButtonProps}>{cancelText}</Button>
           <Button onClick={ok} type="primary" {...okButtonProps}>{okText}</Button>
         </div>
       }
