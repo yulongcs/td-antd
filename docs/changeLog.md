@@ -7,12 +7,12 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.10.1
+### 🚀 2.10.2
 
-`2021-07-15`
+`2021-07-22`
 
-- DateEasily
-  - 废弃 Component 属性，由 type 属性代替，现在使用 DatePicker 的子组件时更方便了
+- DrawerBox
+  - 新增属性：buttonPosition、confirmLoading
 
 ### 🚀 2.10.0
 

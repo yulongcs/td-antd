@@ -20,8 +20,10 @@ export default () => {
     <React.Fragment>
       <Button type="primary" onClick={() => { ref.current.visible(true) }}>show</Button>
       <DrawerBox
+        width={400}
         title="demo"
         ref={ref}
+        buttonPosition="center"
         onOk={() => { alert('ok') }}
       >
         <div style={{ height: 1000 }}>2222</div>
@@ -44,6 +46,8 @@ export default () => {
 |cancelText|取消按钮文字|ReactNode|取消|
 |okButtonProps|ok 按钮 props|[ButtonProps](https://ant.design/components/button-cn/#API)||
 |cancelButtonProps|cancel 按钮 props|[ButtonProps](https://ant.design/components/button-cn/#API)||
+|confirmLoading|确定按钮 loading|Boolean|false|
+|buttonPosition|页脚按钮的位置|left、center、right|'right'|
 
 ## Ref
 
