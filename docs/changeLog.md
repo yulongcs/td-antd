@@ -9,11 +9,18 @@ order: 1
 
 ### 🚀 2.11.0
 
-`2021-06-24`
+`2021-07-23`
 
 - 新增组件 [SelectList](/high-coupling/select-list)
 - Magic
   - 新增属性 `wrapperClassName`，Spin容器类名称方便自定义样式
+
+### 🚀 2.10.2
+
+`2021-07-22`
+
+- DrawerBox
+  - 新增属性：buttonPosition、confirmLoading
 
 ### 🚀 2.10.0
 

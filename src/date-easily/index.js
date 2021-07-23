@@ -2,7 +2,9 @@ import React from 'react';
 import { DatePicker } from 'antd';
 import momentToString from '../tools/momentToString';
 
-const DateEasily = ({ value, format, Component = DatePicker, ...rest }) => {
+const DateEasily = ({ value, format, type = '', ...rest }) => {
+  const Component = type ? DatePicker[type] : DatePicker;
+
   let momentedValue;
   if (Array.isArray(value)) {
     const [start, end] = value;
@@ -13,12 +15,16 @@ const DateEasily = ({ value, format, Component = DatePicker, ...rest }) => {
     momentedValue = undefined;
   }
 
-  return (
-    <Component
-      value={momentedValue}
-      {...rest}
-    />
-  );
+  if (Component) {
+    return (
+      <Component
+        value={momentedValue}
+        {...rest}
+      />
+    );
+  }
+
+  return null;
 };
 
 export default DateEasily;
