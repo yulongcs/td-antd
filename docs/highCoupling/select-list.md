@@ -6,7 +6,7 @@ title: SelectList
 
 ### 基于 Select 封装的下拉框组件，支持分页请求和搜索数据。可用于 Form 的受控组件
 
-- 仅在首次`onFocus`时触发数据请求
+- 可选`onLoad`或首次`onFocus`时触发数据请求
 - 传入`localData`不会触发数据请求，进行本地搜索
 - 基于返回数据结构存储数据并判断数据是否已全部加载（进行本地搜索）
 
@@ -27,6 +27,33 @@ export default () => {
     <SelectList
       style={{ width: 240 }}
       url="http://rap2api.taobao.org/app/mock/95250/get/api/random/qryByPage.json"
+      pageSize={10}
+      searchField="label"
+      fields={['id', 'label']}
+      mode="multiple"
+      onChange={(v, o) => { console.log(v, o); }}
+      placeholder="请选择随机生成的项，支持搜索"
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 组件加载完毕触发数据请求，默认是input框获取焦点时触发
+ */
+import React from 'react';
+import { localConfig, SelectList } from 'td-antd';
+import request from '../../utils/request';
+
+localConfig.config({ request });
+
+export default () => {
+  return (
+    <SelectList
+      style={{ width: 240 }}
+      url="http://rap2api.taobao.org/app/mock/95250/get/api/random/qryByPage.json"
+      trigger="onLoad"
       pageSize={10}
       searchField="label"
       fields={['id', 'label']}
@@ -159,6 +186,7 @@ export default () => {
 |:--|:--|:--|:--|
 |url|请求地址，由于内置使用 request 是从 localConfig 中获取的，不必再使用 proxy|String|-|
 |method|请求方式|"GET" \| "POST"|"GET"|
+|trigger|触发数据请求时机|"onLoad" \| "onFocus"|"onFocus"|
 |pageSize|不分页接口请设置`falsely`，不会生成分页请求参数|Number|200|
 |fields|`Select.Option`的`key`和`value`，数据项为对象类型时请正确设置|[String, String]|['key', 'value']|
 |searchField|搜索字段，数据未全部加载时从服务端获取搜索结果|String|fields[1]|

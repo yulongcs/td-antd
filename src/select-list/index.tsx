@@ -1,4 +1,4 @@
-import React, { useState, useRef, useImperativeHandle } from 'react';
+import React, { useState, useRef, useEffect, useImperativeHandle } from 'react';
 import { Select, Spin } from 'antd';
 import { SelectProps, SelectValue } from 'antd/es/select';
 import { stringify } from 'qs';
@@ -14,8 +14,9 @@ interface IResponseType<DT = any> {
 interface IPropTypes<DT> extends SelectProps<SelectValue> {
   url?: string;
   method?: 'GET' | 'POST';
+  trigger?: 'onLoad' | 'onFocus';
   pageSize?: number;
-  fields?: DT extends Record<string, string> ? [keyof DT, keyof DT] : null;
+  fields?: DT extends Record<string, string> ? [keyof DT, keyof DT] : [string, string];
   searchField?: string;
   localData?: DT[];
   defaultParams?: Record<string, any>;
@@ -32,6 +33,7 @@ function SelectList<DataType extends Record<string, string> | string>(
   const {
     url,
     method = 'GET',
+    trigger = 'onFocus',
     pageSize = 200,
     fields = ['key', 'value'],
     searchField = fields[1],
@@ -56,6 +58,12 @@ function SelectList<DataType extends Record<string, string> | string>(
   useImperativeHandle(ref, () => ({
     fetchList,
   }))
+
+  useEffect(() => {
+    if (trigger === 'onLoad' && !localData.length) {
+      fetchList({}, 'reset');
+    }
+  }, [])
 
   const fetchList = (param = {}, action) => {
     if (!url) {
@@ -103,7 +111,7 @@ function SelectList<DataType extends Record<string, string> | string>(
 
   // 首次获得焦点时请求数据
   const onFocus = (e) => {
-    if (!focusRef.current && !localData.length) {
+    if (trigger === 'onFocus' && !focusRef.current && !localData.length) {
       focusRef.current = true;
       fetchList({}, 'reset');
     }
