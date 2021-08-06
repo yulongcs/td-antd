@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { Descriptions, Spin } from 'antd';
 import typeOf from '../tools/typeOf';
 import localConfig from '../local-config';
@@ -27,9 +27,9 @@ const renderValue = ({ dataIndex, nowData, render, defaultValue }) => {
   return text ?? defaultValue;
 };
 
-export default (props) => {
+export default forwardRef((props, ref) => {
   const {
-    url,
+    url = '',
     dataSource = {},
     columns = [],
     defaultValue = '--',
@@ -40,15 +40,14 @@ export default (props) => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    // eslint-disable-next-line
-    url && url.trim() !== '' && query();
+    query();
   }, [url]);
 
   // 获取详情
   const query = () => {
     const { request } = localConfig.newInstance();
 
-    if (request) {
+    if (request && url) {
       setLoading(true);
       request({
         url,
@@ -85,6 +84,11 @@ export default (props) => {
     })
   };
 
+  // 提供给外部的接口
+  useImperativeHandle(ref, () => ({
+    query,
+  }));
+
   return (
     <Spin spinning={loading}>
       <Descriptions {...rest}>
@@ -92,4 +96,4 @@ export default (props) => {
       </Descriptions>
     </Spin>
   );
-}
+})
