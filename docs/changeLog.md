@@ -9,10 +9,11 @@ order: 1
 
 ### 🚀 2.10.5
 
-`2021-08-06`
+`2021-08-09`
 
 - DescList
   - 增加 ref 功能
+- 新增组件 [InnerHtml](/components/inner-html)
 
 ### 🚀 2.10.4
 

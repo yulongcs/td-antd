@@ -66,7 +66,7 @@ export default () => {
 
 ```jsx
 /**
- * title: 隐藏字段
+ * title: 基础用法-2
  * desc: 使用 visible 控制字段的展示/隐藏
  */
 import React, { useState, useEffect } from 'react';
@@ -124,7 +124,7 @@ export default () => {
 
 ```jsx
 /**
- * title: 异步请求数据
+ * title: 进阶用法
  * desc: 使用 url 进行数据请求
  */
 import React, { useState, useEffect, useRef } from 'react';
