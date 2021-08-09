@@ -7,6 +7,14 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.10.5
+
+`2021-08-09`
+
+- DescList
+  - 增加 ref 功能
+- 新增组件 [InnerHtml](/components/inner-html)
+
 ### 🚀 2.10.4
 
 `2021-07-28`

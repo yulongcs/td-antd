@@ -17,23 +17,17 @@ import React, { useState, useEffect } from 'react';
 import { DescList } from 'td-antd';
 
 export default () => {
-  const [dataSource, setDataSource] = useState({});
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setDataSource({
-        name: 'andy',
-        age: 18,
-        address: '树上第三根叉',
-        phone: '138xxxxxxxx',
-        email: 'xxx@xxx.com',
-        desc: {
-          code: 1,
-          text: 'dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法'
-        },
-      })
-    }, 2000)
-  }, [])
+  const [dataSource, setDataSource] = useState({
+    name: 'andy',
+    age: 18,
+    address: '树上第三根叉',
+    phone: '138xxxxxxxx',
+    email: 'xxx@xxx.com',
+    desc: {
+      code: 1,
+      text: 'dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法'
+    },
+  });
 
   return (
     <DescList
@@ -57,12 +51,66 @@ export default () => {
           dataIndex: 'desc.text',
           render: (t, r) => <pre style={{ whiteSpace: 'normal' }}>{t}</pre>,
           span: 2,
-          // labelStyle: { flex: '0 0 100px', color: 'red' },
-          // contentStyle: { flex: '0 0 300px' },
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        }, {
+          title: '邮箱',
+          dataIndex: 'email',
+        }
+      ]}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 基础用法-2
+ * desc: 使用 visible 控制字段的展示/隐藏
+ */
+import React, { useState, useEffect } from 'react';
+import { DescList } from 'td-antd';
+
+export default () => {
+  const [dataSource, setDataSource] = useState({
+    name: 'andy',
+    age: 18,
+    address: '树上第三根叉',
+    phone: '138xxxxxxxx',
+    email: 'xxx@xxx.com',
+    desc: {
+      code: 1,
+      text: 'dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法'
+    },
+  });
+
+  return (
+    <DescList
+      column={2}
+      dataSource={dataSource}
+      columns={[
+        {
+          title: '名字',
+          dataIndex: 'name',
+        }, {
+          title: '年龄',
+          dataIndex: 'age',
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        }, {
+          title: '电话',
+          render: record => record.phone,
+        }, {
+          title: '描述',
+          dataIndex: 'desc.text',
+          render: (t, r) => <pre style={{ whiteSpace: 'normal' }}>{t}</pre>,
+          span: 2,
+           visible: false,
         }, {
           title: '地址被隐藏了',
           dataIndex: 'address',
-          visible: false,
         }, {
           title: '邮箱被隐藏了',
           dataIndex: 'email',
@@ -70,6 +118,53 @@ export default () => {
         }
       ]}
     />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 进阶用法
+ * desc: 使用 url 进行数据请求
+ */
+import React, { useState, useEffect, useRef } from 'react';
+import { Button } from 'antd';
+import { DescList, localConfig } from 'td-antd';
+import request from '../../utils/request';
+
+localConfig.config({ request });
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <>
+      <Button type="primary" onClick={() => { ref.current.query() }} style={{ marginBottom: 12 }}>重新请求数据</Button>
+      <DescList
+        column={2}
+        bordered
+        ref={ref}
+        url="http://rap2api.taobao.org/app/mock/288350/desclist/001.json"
+        columns={[
+          {
+            title: '名字',
+            dataIndex: 'name',
+          }, {
+            title: '年龄',
+            dataIndex: 'age',
+          }, {
+            title: '职业',
+            dataIndex: 'occupation',
+          }, {
+            title: '地址',
+             dataIndex: 'address',
+          }, {
+            title: '描述',
+            dataIndex: 'desc',
+          }
+        ]}
+      />
+    </>
   );
 }
 ```
@@ -98,3 +193,11 @@ export default () => {
 |render|生成复杂数据的渲染函数|Function(text, record) {}|-|
 |defaultValue|当值为空时，默认展示的值，优先级高于组件的`defaultValue`|String|-|
 |span|包含列的数量|Number|1|
+
+### Ref，使用 ref.current 进行调用
+
+|参数|说明|类型|默认值|
+|:--|:--|:--|:--|
+|query|重新获取数据，url必须存在|Function()|-|
+
+> 注意：需要 localConfig.config 设置 request 后才能正常使用

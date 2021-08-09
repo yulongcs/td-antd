@@ -65,6 +65,7 @@ export default () => {
         {
           id: 18,
           value: 'Jack',
+          disabled: true,
         }, {
           id: 20,
           value: 'Lucy',
