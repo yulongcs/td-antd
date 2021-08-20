@@ -179,3 +179,9 @@ getValueFromEvent={e => (!e || !e.fileList) ? e : e.fileList}
 ```
 可以使用 validateFirst=true 属性，会在校验不通过后停止后续校验
 ```
+
+### itemType=number 时，鼠标滚轮会造成数字变动
+
+```
+可以使用 inputProps={{ onWheel: event => event.currentTarget.blur() }} 来解决
+```

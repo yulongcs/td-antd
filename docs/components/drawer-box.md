@@ -9,22 +9,64 @@ title: DrawerBox
 ## 代码演示
 
 ```jsx
+/**
+ * title: 基础用法
+ */
 import React, { useRef } from 'react';
 import { Button } from 'antd';
-import { DrawerBox, LinkBtn } from 'td-antd';
+import { DrawerBox } from 'td-antd';
 
 export default () => {
   const ref = useRef();
 
   return (
     <React.Fragment>
-      <Button type="primary" onClick={() => { ref.current.visible(true) }}>show</Button>
+      <Button type="primary" onClick={() => { ref.current.visible(true) }}>打开抽屉</Button>
       <DrawerBox
+        ref={ref}
         width={400}
         title="demo"
-        ref={ref}
+        placement="left"
         buttonPosition="center"
-        onOk={() => { alert('ok') }}
+        onOk={() => {
+          alert('ok')
+          ref.current.visible(false)
+        }}
+      >
+        <div style={{ height: 1000 }}>2222</div>
+      </DrawerBox>
+    </React.Fragment>
+  );
+}
+```
+
+```jsx
+/**
+ * title: 自定义页脚
+ * desc: 注意，自定义 footer 后，将无法使用属性 onOk、onCancel、okText、cancelText、okButtonProps、cancelButtonProps、confirmLoading、buttonPosition
+ */
+import React, { useRef } from 'react';
+import { Button, Space } from 'antd';
+import { DrawerBox } from 'td-antd';
+
+export default () => {
+  const ref = useRef();
+
+  return (
+    <React.Fragment>
+      <Button type="primary" onClick={() => { ref.current.visible(true) }}>自定义页脚</Button>
+      <DrawerBox
+        ref={ref}
+        width={400}
+        title="demo"
+        footer={
+          <div style={{ textAlign: 'left' }}>
+            <Space>
+              <Button danger>删除</Button>
+              <Button type="primary">确定</Button>
+            </Space>
+          </div>
+        }
       >
         <div style={{ height: 1000 }}>2222</div>
       </DrawerBox>

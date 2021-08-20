@@ -28,6 +28,7 @@ export default () => {
       }}
       columns={[
         {
+          visible: false,
           title: '手机',
           dataIndex: 'phone',
         }, {
@@ -225,6 +226,7 @@ export default () => {
 |inputProps|当 component 不存在时，可以对 Input 进行描述|Object|-|
 |title2|用于搜索项的 label，优先级大于 title|String/ReactNode|-|
 |dataIndex2|用于搜索项的 name，优先级大于 dataIndex|String|-|
+|visible|Table的列是否显示，不影响 SearchForm 的搜索项|Boolean|true|
 
 ### Ref，使用 ref.current 进行调用
 
