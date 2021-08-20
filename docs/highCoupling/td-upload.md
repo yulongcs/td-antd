@@ -4,7 +4,7 @@ title: TdUpload
 
 ## TdUpload
 
-基于 Upload 的二次封装。当项目中配置了 [localConfig.config.proxy](/high-coupling/local-config#config) 后，url参数会自动携带 proxy。
+基于 Upload 的二次封装。项目中需要配置 [localConfig.config.request](/high-coupling/local-config#config)
 
 ## 代码演示
 
@@ -147,11 +147,20 @@ export default () => {
 
 ```jsx
 /**
- * title: 自定义文件回显
- * desc: 利用 filterOptions 进行数据的自定义清洗
+ * title: 配置全局的 filterOptions
+ * desc: 使用 localConfig.config 配置 filterOptions 的数据过滤
  */
 import React from 'react';
-import { TdUpload } from 'td-antd';
+import { TdUpload, localConfig } from 'td-antd';
+
+localConfig.config({
+  uploadFilterOptions: (item) => ({
+    uid: item.fileNo,
+    name: item.fileName,
+    url: item.filePath,
+    ...item,
+  }),
+});
 
 const files = [
   {
@@ -167,11 +176,7 @@ const files = [
 
 export default () => {
   return (
-    <TdUpload
-      isPreview
-      btnText="上传"
-      initial={files}
-    />
+    <TdUpload isPreview initial={files} />
   );
 }
 ```
@@ -438,6 +443,52 @@ export default () => {
         filterOptions={(item, index) => ({...item})}
         beforeDownload={beforeDownload}
       />
+    </>
+  );
+}
+```
+
+```jsx
+/**
+ * title: 多组件文件上传
+ * desc: 使用 Promise.all 进行上传控制
+ */
+import React, { useRef } from 'react';
+import { Button } from 'antd';
+import { TdUpload } from 'td-antd';
+
+export default () => {
+  const uploadRef = useRef();
+  const uploadRef2 = useRef();
+  
+  const onClick = () => {
+    const uploadFn1 = () => {
+      return uploadRef.current.onUpload().catch(() => {
+        // todo...
+        // 如果是在表单中应用，在上传失败后，重置表单
+        // form.setFieldsValue({ invoiceFile: null });
+      });
+    };
+
+    const uploadFn2 = () => {
+      return uploadRef2.current.onUpload().catch(() => {
+        // todo...
+      });
+    };
+    
+    Promise.all([uploadFn1(), uploadFn2()])
+      .then(([uploadFiles1, uploadFiles2]) => {
+        // todo...
+      })
+  };
+
+  return (
+    <>
+      <Button onClick={onClick}>批量上传</Button>
+      <br /><br />
+      <TdUpload ref={uploadRef} btnText="上传组件1" />
+      <br /><br />
+      <TdUpload ref={uploadRef2} btnText="上传组件2" />
     </>
   );
 }
