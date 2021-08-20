@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.10.6
+
+`2021-08-20`
+
+- TablePage
+  - columns 新增属性 visible
+
 ### 🚀 2.10.5
 
 `2021-08-09`
