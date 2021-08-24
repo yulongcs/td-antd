@@ -11,6 +11,7 @@ title: Ellipsis
 ```jsx
 /**
  * title: 单行省略
+ * desc: 双击改变省略状态
  */
 import React from 'react';
 import { Ellipsis } from 'td-antd';
@@ -18,6 +19,26 @@ import { Ellipsis } from 'td-antd';
 export default () => {
   return (
     <Ellipsis width={240}>以前我每天都会买彩票，终于有一天，我连彩票都买不起了。</Ellipsis>
+  );
+}
+```
+
+```jsx
+/**
+ * title: 不要默认的双击事件
+ * desc: 可以重写 onDoubleClick 来覆盖原有的默认事件
+ */
+import React from 'react';
+import { Ellipsis } from 'td-antd';
+
+export default () => {
+  return (
+    <Ellipsis
+      width={240}
+      onDoubleClick={() => {}}
+    >
+      以前我每天都会买彩票，终于有一天，我连彩票都买不起了。
+    </Ellipsis>
   );
 }
 ```
@@ -45,3 +66,8 @@ export default () => {
 |:--|:--|:--|:--|
 |width|组件展示的最大宽度|String/Number|100%|
 |lineClamp|多行省略，使用 -webkit-line-clamp，请注意兼容性|Number|-|
+|defaultEllipsis|默认是否进行省略展示|Boolean|true|
+
+## PS
+
+双击后可进行省略或全文展示

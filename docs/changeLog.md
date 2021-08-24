@@ -7,6 +7,14 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.10.7
+
+`未发布`
+
+- Ellipsis
+  - 新增属性 defaultEllipsis
+  - 新增双击事件
+
 ### 🚀 2.10.6
 
 `2021-08-20`
