@@ -25,4 +25,10 @@ export default defineConfig({
     tools: path.resolve(__dirname, 'src/tools/'),
   },
   // mode: 'site'
+  proxy: {
+    '/app': {
+      target: 'http://rap2api.taobao.org',
+      changeOrigin: true,
+    },
+  },
 });

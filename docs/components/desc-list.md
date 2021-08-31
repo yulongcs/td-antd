@@ -144,7 +144,7 @@ export default () => {
         column={2}
         bordered
         ref={ref}
-        url="http://rap2api.taobao.org/app/mock/288350/desclist/001.json"
+        url="/app/mock/288350/desclist/001.json"
         columns={[
           {
             title: '名字',
