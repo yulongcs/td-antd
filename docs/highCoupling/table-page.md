@@ -226,7 +226,7 @@ export default () => {
 |inputProps|当 component 不存在时，可以对 Input 进行描述|Object|-|
 |title2|用于搜索项的 label，优先级大于 title|String/ReactNode|-|
 |dataIndex2|用于搜索项的 name，优先级大于 dataIndex|String|-|
-|visible|Table的列是否显示，不影响 SearchForm 的搜索项|Boolean|true|
+|visible|列是否显示，不影响 SearchForm 的搜索项|Boolean|true|
 
 ### Ref，使用 ref.current 进行调用
 
@@ -236,3 +236,22 @@ export default () => {
 |query|重新获取列表数据|Function(params, reset)|-|
 
 > 注意：需要 localConfig.config 设置 request 后才能正常使用
+
+### 关于 column.hide
+
+使用了 [rc-table](https://github.com/react-component/table/blob/master/src/ColGroup.tsx) 的隐藏属性
+
+```
+// 可以使用如下方法进行列的隐藏
+.hide {
+  display: none;    
+}
+
+const columns = [
+  {
+    title: '年龄',
+    dataIndex: 'age',
+    RC_TABLE_INTERNAL_COL_DEFINE: { className: "hide" } // 该列会被隐藏
+  },
+]
+```
