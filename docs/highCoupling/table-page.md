@@ -251,7 +251,9 @@ const columns = [
   {
     title: '年龄',
     dataIndex: 'age',
-    RC_TABLE_INTERNAL_COL_DEFINE: { className: "hide" } // 该列会被隐藏
+    // 该列会被隐藏
+    className: 'hide',
+    RC_TABLE_INTERNAL_COL_DEFINE: { className: "hide" }
   },
 ]
 ```
