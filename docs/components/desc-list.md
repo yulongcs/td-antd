@@ -20,6 +20,7 @@ export default () => {
   const [dataSource, setDataSource] = useState({
     name: 'andy',
     age: 18,
+    et: 0,
     address: '树上第三根叉',
     phone: '138xxxxxxxx',
     email: 'xxx@xxx.com',
@@ -28,6 +29,11 @@ export default () => {
       text: 'dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法dataIndex 的嵌套写法'
     },
   });
+  
+  const map = {
+    0: '地球人',
+    1: '外星人',
+  };
 
   return (
     <DescList
@@ -37,6 +43,10 @@ export default () => {
         {
           title: '名字',
           dataIndex: 'name',
+        }, {
+          title: '星球',
+          dataIndex: 'et',
+          render: t => map[t],
         }, {
           title: '年龄',
           dataIndex: 'age',
