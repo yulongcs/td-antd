@@ -16,7 +16,7 @@ const renderValue = ({ dataIndex, nowData, render, defaultValue }) => {
 
   // 当有 render 函数，且有下标字段时，可查询出值是否存在
   if (render && dataIndex) {
-    return text ? render(text, nowData) : defaultValue;
+    return (text !== undefined && text !== null) ? render(text, nowData) : defaultValue;
   }
 
   // 当只有 render 函数时，直接渲染
