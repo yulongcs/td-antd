@@ -9,7 +9,7 @@ order: 1
 
 ### 🚀 2.10.7
 
-`未发布`
+`2021-09-03`
 
 - Ellipsis
   - 新增属性 defaultEllipsis
