@@ -7,6 +7,12 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.10.8
+
+`2021-10-09`
+
+- 新增组件 [DocumentHidden](/components/document-hidden)
+
 ### 🚀 2.10.7
 
 `2021-09-03`
