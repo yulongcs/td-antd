@@ -12,6 +12,7 @@ order: 1
 `2021-10-09`
 
 - 新增组件 [DocumentHidden](/components/document-hidden)
+- redirect 新增参数，使其可以新开页面
 
 ### 🚀 2.10.7
 
