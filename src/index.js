@@ -19,6 +19,7 @@ export { default as DateEasily } from './date-easily';
 export { default as EditTable } from './edit-table';
 export { default as Ellipsis } from './ellipsis';
 export { default as InnerHtml } from './inner-html';
+export { default as DocumentHidden } from './document-hidden';
 
 // 高耦合组件
 export { default as localConfig } from './local-config';

@@ -15,56 +15,35 @@ title: TablePage
  
 import React, { useState } from 'react';
 import { DatePicker } from 'antd';
-import { TablePage, SelectMap } from 'td-antd';
+import { TablePage, localConfig } from 'td-antd';
+import request from '../../utils/request';
+
+localConfig.config({ request });
 
 export default () => {
   return (
     <TablePage
-      url="/aaa.json"
-      searchReturn={(values) => {
-        console.log(values);
-        
-        return values;
-      }}
+      url="/app/mock/288350/tablepage/001.json"
+      paginationProps={{ showQuickJumper: true }}
       columns={[
         {
-          visible: false,
-          title: '手机',
-          dataIndex: 'phone',
-        }, {
-          title: '地址',
-          dataIndex: 'address',
-        }, {
-          title: '年龄',
-          dataIndex: 'age',
+          title: '姓名',
+          dataIndex: 'name',
+          enableSearch: true,
         }, {
           title: '性别',
           dataIndex: 'sex',
         }, {
-          title: '时间',
-          dataIndex: 'time',
+          title: '年龄',
+          dataIndex: 'age',
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        },  {
+          title: '邮箱',
+          dataIndex: 'email',
         },
       ]}
-      searchFormProps={{
-        columns: [
-          {
-            dataIndex: 'phone',
-            inputProps: { placeholder: '手机' }
-          }, {
-            dataIndex: 'address',
-            inputProps: { placeholder: '地址' }
-          }, {
-            dataIndex: 'age',
-            inputProps: { placeholder: '年龄' }
-          }, {
-            dataIndex: 'sex',
-            component: <SelectMap placeholder="性别" data={['男', '女']} />
-          }, {
-            dataIndex: 'time',
-            component: <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
-          },
-        ],
-      }}
     />
   );
 }
@@ -107,7 +86,7 @@ export default () => {
             <LinkBtn>批量导出</LinkBtn>
           </Space>
         )}
-        url="/aaa.json"
+        // url="/aaa.json"
         ref={tablePageRef}
         defaultParams={{ extra: '额外的参数' }}
         extra={
@@ -151,7 +130,7 @@ export default () => {
   return (
     <TablePage
       line={false}
-      url="/aaa.json"
+      // url="/aaa.json"
       searchReturn={(values) => {
         console.log(values);
         

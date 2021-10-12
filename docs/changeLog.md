@@ -7,9 +7,16 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.10.8
+
+`2021-10-09`
+
+- 新增组件 [DocumentHidden](/components/document-hidden)
+- redirect 新增参数，使其可以新开页面
+
 ### 🚀 2.10.7
 
-`未发布`
+`2021-09-03`
 
 - Ellipsis
   - 新增属性 defaultEllipsis
