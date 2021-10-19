@@ -7,9 +7,15 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.11.0
+
+`2021-10-19`
+
+- 新增组件 [NoCopyBox](/components/no-copy-box)
+
 ### 🚀 2.10.8
 
-`2021-10-09`
+`2021-10-12`
 
 - 新增组件 [DocumentHidden](/components/document-hidden)
 - redirect 新增参数，使其可以新开页面
