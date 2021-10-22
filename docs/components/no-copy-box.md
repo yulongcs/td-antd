@@ -4,7 +4,7 @@ title: NoCopyBox
 
 ## NoCopyBox
 
-被组件包裹的内容无法被选中和复制
+被组件包裹的内容无法被选中和复制。[w3c](https://www.w3school.com.cn/cssref/pr_user-select.asp)
 
 ## 代码演示
 
