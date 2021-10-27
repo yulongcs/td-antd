@@ -3,6 +3,12 @@ import { Spin } from 'antd';
 import localConfig from '../local-config';
 import './index.less';
 
+const decodeFileName = (originFileName = '') => {
+  const arr = originFileName.replace('attachment;filename=', '').split('.');
+
+  return `${decodeURI(arr[0])}.${arr[1]}`;
+};
+
 // 函数用法
 function downloadBlob(params) {
   const { url, filename, body } = params;
@@ -29,7 +35,7 @@ function downloadBlob(params) {
           alert(json.errorMessage);
         }
         catch(e) {
-          const name = filename || response.headers.get('Content-Disposition');
+          const name = filename || decodeFileName(response.headers.get('Content-Disposition'));
           // for IE
           if (window.navigator && window.navigator.msSaveOrOpenBlob) {
             window.navigator.msSaveOrOpenBlob(blob, name);
