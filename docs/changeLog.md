@@ -7,6 +7,15 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.11.1
+
+`2021-10-27`
+
+- NoCopyBox
+  - 优化IE10的支持
+- DownloadBlob
+  - 🐞 修复文件名乱码问题
+
 ### 🚀 2.11.0
 
 `2021-10-19`
