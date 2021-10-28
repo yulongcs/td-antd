@@ -570,7 +570,7 @@ excel: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-offic
 ### callback
 
 ```
-callback = (state, file, files) => {
+callback = (state, file, files, onUpload) => {
   if (state === 'before') {
     // 只会触发一次，上传前
   }
@@ -579,6 +579,9 @@ callback = (state, file, files) => {
   }
   if (state === 'after') {
     // 只会触发一次，上传后
+    onUpload().then(([files, dataObject]) => {
+      // todo
+    })
   }
   if (state === 'remove') {
     // 点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除。

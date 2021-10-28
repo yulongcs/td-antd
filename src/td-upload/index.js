@@ -146,7 +146,7 @@ class TdUpload extends React.PureComponent {
     const nowFileLength = files.length + fileList.length;
     let check = true; // 当前文件是否校验通过，默认通过
     if (num === 0) {
-      await callback('before', file, files);
+      await callback('before', file, files, this.onUpload);
     }
 
     // 文件类型校验
@@ -157,7 +157,7 @@ class TdUpload extends React.PureComponent {
     }
 
     // 额外的校验，返回真值后，停止上传
-    if (await callback('validate', file, files)) {
+    if (await callback('validate', file, files, this.onUpload)) {
       check = false;
     }
 
@@ -220,7 +220,7 @@ class TdUpload extends React.PureComponent {
         const { callback } = this.props;
         waitFiles = []; // 重置待上传文件列表
         num = 0; // 重置计数
-        callback('after', null, this.state.fileList);
+        callback('after', null, this.state.fileList, this.onUpload);
       });
     }
   };
