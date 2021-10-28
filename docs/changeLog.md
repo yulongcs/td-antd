@@ -7,6 +7,11 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.11.2
+
+- TdUpload
+  - callback 新增第四个参数，this.onUpload，以减少组件对 ref 的依赖
+
 ### 🚀 2.11.1
 
 `2021-10-27`
