@@ -11,29 +11,66 @@ title: TdUpload
 ```jsx
 /**
  * title: 基础上传文件
- * desc: 文件类型校验，文件名长度校验，上传按钮自定义（默认使用 Button）
+ * desc: 校验：文件大小、文件类型、文件名长度、文件数
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { PaperClipOutlined } from '@ant-design/icons';
+import { Slider, Form, Checkbox } from 'antd';
 import { TdUpload } from 'td-antd';
 
 export default () => {
+  const [size, setSize] = useState(20);
+  const [nameSize, setNameSize] = useState(200);
+  const [fileTypes, setFileTypes] = useState([]);
+  const [maxFiles, setMaxFiles] = useState(10);
+  
+  const ACCEPT = {
+    image: 'image/*',
+    video: 'video/*',
+    audio: 'audio/*',
+    jpg: 'image/jpg,image/jpeg',
+    png: 'image/png',
+    gif: 'image/gif',
+    svg: 'image/svg+xml',
+    txt: 'text/plain',
+    pdf: 'application/pdf',
+    zip: 'application/zip',
+    docx: '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    excel: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  };
+
   return (
-    <TdUpload
-      size={5}
-      fileTypes={['docx']}
-      tip="支持 doc、docx 格式"
-      callback={(t, f, fs) => {
-        if (t === 'remove') {
-          return Promise.resolve();
-        }
-        if (t === 'after') {
-          console.log(fs);
-        }
-      }}
-    >
-      <span style={{ cursor: 'pointer' }}><PaperClipOutlined /> 上传文件</span>
-    </TdUpload>
+    <>
+      <Form.Item label="文件大小">
+        <Slider defaultValue={size} onChange={(v) => setSize(v)} />
+      </Form.Item>
+      <Form.Item label="文件名长度">
+        <Slider max={200} defaultValue={nameSize} onChange={(v) => setNameSize(v)} />
+      </Form.Item>
+      <Form.Item label="文件数量">
+        <Slider max={10} defaultValue={maxFiles} onChange={(v) => setMaxFiles(v)} />
+      </Form.Item>
+      <Form.Item label="文件类型">
+        <Checkbox.Group onChange={(v) => setFileTypes(v)}>
+          {Object.keys(ACCEPT).map(key => <Checkbox value={key} key={key}>{key}</Checkbox>)}
+        </Checkbox.Group>
+      </Form.Item>
+   
+      <TdUpload
+        size={size}
+        maxFiles={maxFiles}
+        nameSize={nameSize}
+        fileTypes={fileTypes}
+        callback={(t, f, fs) => {
+          if (t === 'remove') {
+            return Promise.resolve();
+          }
+          if (t === 'after') {
+            console.log(fs);
+          }
+        }}
+      />
+    </>
   );
 }
 ```
@@ -556,6 +593,8 @@ export default () => {
 
 ```
 image: 'image/*',
+video: 'video/*',
+audio: 'audio/*',
 jpg: 'image/jpg,image/jpeg',
 png: 'image/png',
 gif: 'image/gif',
