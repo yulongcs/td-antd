@@ -9,11 +9,15 @@ order: 1
 
 ### 🚀 2.11.3
 
+`2021-11-03`
+
 - TdUpload
   - fileTypes 支持 video、audio 文件类型
 - 🐞 tools.toThousands.currency 修复当传入空字符串时，显示错误的问题
 
 ### 🚀 2.11.2
+
+`2021-10-28`
 
 - TdUpload
   - callback 新增第四个参数，this.onUpload，以减少组件对 ref 的依赖
