@@ -38,6 +38,7 @@ class TdUpload extends React.PureComponent {
     show: true, // 是否显示
     showDownLoad: true, // 是否保留下载入口
     beforeDownload: () => {}, // 下载控制
+    fileTypes: [],
   };
 
   state = {
@@ -142,6 +143,8 @@ class TdUpload extends React.PureComponent {
 
   beforeUpload = async (file, files) => {
     const { maxFiles, callback, size, nameSize, scale } = this.props; // 最大上传文件数
+
+
     const { fileList } = this.state;
     const nowFileLength = files.length + fileList.length;
     let check = true; // 当前文件是否校验通过，默认通过
@@ -149,12 +152,16 @@ class TdUpload extends React.PureComponent {
       await callback('before', file, files, this.onUpload);
     }
 
-    // 文件类型校验
-    const fileTypeString = this.getAcceptString();
+    // 上传文件的类型存在时，文件类型校验
+    if (file.type) {
+      const replaceText = file.type.substring(file.type.lastIndexOf('/'), file.type.length);
+      const accept = file.type.replace(replaceText, '/*');
+      const accepts = this.getAcceptString();
 
-    if (fileTypeString && !fileTypeString.includes(file.type) && !(fileTypeString.includes('image/*') && file.type.includes('image')) && !(fileTypeString.includes('video/*') && file.type.includes('video'))) {
-      message.error(ERROR_2);
-      check = false;
+      if (accepts && !accepts.includes(accept)) {
+        message.error(ERROR_2);
+        check = false;
+      }
     }
 
     // 额外的校验，返回真值后，停止上传
@@ -196,7 +203,7 @@ class TdUpload extends React.PureComponent {
   getAcceptString = () => {
     const { fileTypes, accept } = this.props; // 最大上传文件数
 
-    if (Array.isArray(fileTypes)) {
+    if (fileTypes.length > 0) {
       return `${ACCEPT.toString(fileTypes)}${!!accept ? `,${accept}` : ''}`;
     }
 

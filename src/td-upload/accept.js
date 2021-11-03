@@ -1,5 +1,7 @@
 const ACCEPT = {
   image: 'image/*',
+  video: 'video/*',
+  audio: 'audio/*',
   jpg: 'image/jpg,image/jpeg',
   png: 'image/png',
   gif: 'image/gif',
