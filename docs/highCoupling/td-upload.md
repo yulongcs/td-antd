@@ -103,25 +103,22 @@ export default () => {
  * title: 立即上传
  * desc: 点击选择文件后，在 after 回调中进行立即上传操作
  */
-import React, { useRef } from 'react';
+import React from 'react';
 import { TdUpload } from 'td-antd';
 
 export default () => {
-  const ref = useRef();
-
   return (
     <TdUpload
-      ref={ref}
       size={5}
       multiple
       btnText="上传"
       url="/aaa.json"
-      callback={(t, f, fs) => {
+      callback={(t, f, fs, onUpload) => {
         if (t === 'remove') {
           return Promise.resolve();
         }
         if (t === 'after') {
-          // ref.current.onUpload();
+          // onUpload().then(([files, dataObject]) => {})
         }
       }}
     />
@@ -143,7 +140,7 @@ export default () => {
       multiple
       isPreview
       btnText="上传"
-      accept="image/jpg,image/*"
+      fileTypes={['image']}
       tip="仅支持图片格式。"
       listType="picture-card"
       callback={(t, file, files) => {
@@ -174,7 +171,7 @@ export default () => {
       multiple
       btnText="上传"
       scale={[750, 750]}
-      accept="image/*"
+      fileTypes={['image']}
       tip="仅支持 750*750 的图片"
       listType="picture-card"
     />
@@ -326,7 +323,7 @@ export default () => {
  * title: 拖拽
  * desc: 内部集成了 dnd 插件
  */
-import React, { useRef } from 'react';
+import React from 'react';
 import { TdUploadDragable } from 'td-antd';
 
 const files = [
@@ -340,11 +337,8 @@ const files = [
 ];
 
 export default () => {
-  const ref = useRef();
-
   return (
     <TdUploadDragable
-      ref={ref}
       initial={files}
       listType="picture-card"
       filterOptions={(item, index) => ({...item, uid: index})}
@@ -358,15 +352,12 @@ export default () => {
  * title: 图片固定位（单张）
  * desc: 使用 listType="fixed-card"
  */
-import React, { useRef } from 'react';
+import React from 'react';
 import { TdUpload } from 'td-antd';
 
 export default () => {
-  const ref = useRef();
-
   return (
     <TdUpload
-      ref={ref}
       listType="fixed-card"
       fixedStyles={{width: 300, height: 200}}
       // fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
