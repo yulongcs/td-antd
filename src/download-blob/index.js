@@ -4,7 +4,7 @@ import localConfig from '../local-config';
 import './index.less';
 
 const decodeFileName = (originFileName = '') => {
-  const arr = originFileName.replace('attachment;filename=', '').split('.');
+  const arr = originFileName.replace(/attachment;filename=/ig, '').split('.');
 
   return `${decodeURI(arr[0])}.${arr[1]}`;
 };
