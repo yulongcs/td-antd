@@ -128,3 +128,44 @@ export default () => {
   );
 }
 ```
+
+## 表单错误滚动
+
+当 scrollToFirstError 设置不起效时，可使用以下方式解决
+
+```jsx
+import React, { useState } from 'react';
+import { DatePicker, Form, Button, Switch } from 'antd';
+import { FormItem } from 'td-antd';
+
+export default () => {
+  const [form] = Form.useForm();
+
+  const onFinish = () => {
+    form.validateFields().then(values => {
+      console.log(values)
+    }).catch(error => {
+      // 当表单错误函数存在时，页面拉到对应错误位置
+      if (error.errorFields) {
+        form.scrollToField((error.errorFields[0].name)[0]);
+      }
+    })
+  };
+
+  return (
+    <Form form={form}>
+      {(new Array(20).fill(0)).map((i, index) => (
+        <FormItem
+          label={`名称${index}`}
+          name={`name${index}`}
+        />
+      ))}
+      <Form.Item>
+        <Button type="primary" onClick={onFinish}>
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+}
+```

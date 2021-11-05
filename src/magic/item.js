@@ -6,31 +6,31 @@ import './item.less';
 import { MagicContext } from './index';
 
 // 模块组件
-const Item = (props) => {
+const Item = ({
+  wrapperClassName,
+  title,
+  footer,
+  extra,
+  children,
+  titleExtra,
+  onCollapsed,
+  loading = false,
+  isCollapsed = false,
+  footerVisible = true,
+  defaultCollapsed = true,
+  ...rest
+}) => {
   const { boxShadow = true } = useContext(MagicContext);
-  const [collapsed, setCollapsed] = useState(true);
-  const {
-    wrapperClassName,
-    title,
-    footer,
-    extra,
-    children,
-    titleExtra,
-    onCollapsed,
-    loading = false,
-    isCollapsed = false,
-    footerVisible = true,
-    ...rest
-  } = props;
+  const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
   useEffect(() => {
-    onCollapsed && onCollapsed(collapsed, props.itemKey);
+    onCollapsed && onCollapsed(collapsed, rest.itemKey);
   }, [collapsed]);
 
   return (
     <Spin
       wrapperClassName={classNames(wrapperClassName, 'td-magic-item-wrap', {
-        'td-magic-item-box-shadow': props.boxShadow ?? boxShadow,
+        'td-magic-item-box-shadow': rest.boxShadow ?? boxShadow,
       })}
       spinning={loading}
       {...rest}

@@ -54,6 +54,7 @@ export default () => {
         isCollapsed
         // title="项目A"
         titleExtra="自定义title"
+        defaultCollapsed={false}
         extra={<Button type="primary">新增</Button>}
         footer={<Button type="primary" onClick={() => { setLoading(true) }}>全局loading</Button>}
       >
@@ -204,3 +205,4 @@ export default () => {
 |boxShadow|该权限大于父组件属性|Boolean|true|
 |itemKey|组件的唯一标示|String/Number|-|
 |onCollapsed|面板 展开/收起 的回调函数，权重大于父组件|Function(isCollapsed, itemKey)|-|
+|defaultCollapsed|面板展开或收起的默认值|Boolean|true|

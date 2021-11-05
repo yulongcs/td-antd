@@ -15,55 +15,35 @@ title: TablePage
  
 import React, { useState } from 'react';
 import { DatePicker } from 'antd';
-import { TablePage, SelectMap } from 'td-antd';
+import { TablePage, localConfig } from 'td-antd';
+import request from '../../utils/request';
+
+localConfig.config({ request });
 
 export default () => {
   return (
     <TablePage
-      url="/aaa.json"
-      searchReturn={(values) => {
-        console.log(values);
-        
-        return values;
-      }}
+      url="/app/mock/288350/tablepage/001.json"
+      paginationProps={{ showQuickJumper: true }}
       columns={[
         {
-          title: '手机',
-          dataIndex: 'phone',
-        }, {
-          title: '地址',
-          dataIndex: 'address',
-        }, {
-          title: '年龄',
-          dataIndex: 'age',
+          title: '姓名',
+          dataIndex: 'name',
+          enableSearch: true,
         }, {
           title: '性别',
           dataIndex: 'sex',
         }, {
-          title: '时间',
-          dataIndex: 'time',
+          title: '年龄',
+          dataIndex: 'age',
+        }, {
+          title: '地址',
+          dataIndex: 'address',
+        },  {
+          title: '邮箱',
+          dataIndex: 'email',
         },
       ]}
-      searchFormProps={{
-        columns: [
-          {
-            dataIndex: 'phone',
-            inputProps: { placeholder: '手机' }
-          }, {
-            dataIndex: 'address',
-            inputProps: { placeholder: '地址' }
-          }, {
-            dataIndex: 'age',
-            inputProps: { placeholder: '年龄' }
-          }, {
-            dataIndex: 'sex',
-            component: <SelectMap placeholder="性别" data={['男', '女']} />
-          }, {
-            dataIndex: 'time',
-            component: <DatePicker.RangePicker placeholder={['开始时间', '结束时间']} />
-          },
-        ],
-      }}
     />
   );
 }
@@ -106,7 +86,7 @@ export default () => {
             <LinkBtn>批量导出</LinkBtn>
           </Space>
         )}
-        url="/aaa.json"
+        // url="/aaa.json"
         ref={tablePageRef}
         defaultParams={{ extra: '额外的参数' }}
         extra={
@@ -150,7 +130,7 @@ export default () => {
   return (
     <TablePage
       line={false}
-      url="/aaa.json"
+      // url="/aaa.json"
       searchReturn={(values) => {
         console.log(values);
         
@@ -225,6 +205,7 @@ export default () => {
 |inputProps|当 component 不存在时，可以对 Input 进行描述|Object|-|
 |title2|用于搜索项的 label，优先级大于 title|String/ReactNode|-|
 |dataIndex2|用于搜索项的 name，优先级大于 dataIndex|String|-|
+|visible|列是否显示，不影响 SearchForm 的搜索项|Boolean|true|
 
 ### Ref，使用 ref.current 进行调用
 
@@ -234,3 +215,24 @@ export default () => {
 |query|重新获取列表数据|Function(params, reset)|-|
 
 > 注意：需要 localConfig.config 设置 request 后才能正常使用
+
+### 关于 column.hide
+
+使用了 [rc-table](https://github.com/react-component/table/blob/master/src/ColGroup.tsx) 的隐藏属性
+
+```
+// 可以使用如下方法进行列的隐藏
+.hide {
+  display: none;    
+}
+
+const columns = [
+  {
+    title: '年龄',
+    dataIndex: 'age',
+    // 该列会被隐藏
+    className: 'hide',
+    RC_TABLE_INTERNAL_COL_DEFINE: { className: "hide" }
+  },
+]
+```

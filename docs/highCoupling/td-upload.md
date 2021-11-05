@@ -4,36 +4,73 @@ title: TdUpload
 
 ## TdUpload
 
-基于 Upload 的二次封装。当项目中配置了 [localConfig.config.proxy](/high-coupling/local-config#config) 后，url参数会自动携带 proxy。
+基于 Upload 的二次封装。项目中需要配置 [localConfig.config.request](/high-coupling/local-config#config)
 
 ## 代码演示
 
 ```jsx
 /**
  * title: 基础上传文件
- * desc: 文件类型校验，文件名长度校验，上传按钮自定义（默认使用 Button）
+ * desc: 校验：文件大小、文件类型、文件名长度、文件数
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { PaperClipOutlined } from '@ant-design/icons';
+import { Slider, Form, Checkbox } from 'antd';
 import { TdUpload } from 'td-antd';
 
 export default () => {
+  const [size, setSize] = useState(20);
+  const [nameSize, setNameSize] = useState(200);
+  const [fileTypes, setFileTypes] = useState([]);
+  const [maxFiles, setMaxFiles] = useState(10);
+  
+  const ACCEPT = {
+    image: 'image/*',
+    video: 'video/*',
+    audio: 'audio/*',
+    jpg: 'image/jpg,image/jpeg',
+    png: 'image/png',
+    gif: 'image/gif',
+    svg: 'image/svg+xml',
+    txt: 'text/plain',
+    pdf: 'application/pdf',
+    zip: 'application/zip',
+    docx: '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    excel: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  };
+
   return (
-    <TdUpload
-      size={5}
-      fileTypes={['docx']}
-      tip="支持 doc、docx 格式"
-      callback={(t, f, fs) => {
-        if (t === 'remove') {
-          return Promise.resolve();
-        }
-        if (t === 'after') {
-          console.log(fs);
-        }
-      }}
-    >
-      <span style={{ cursor: 'pointer' }}><PaperClipOutlined /> 上传文件</span>
-    </TdUpload>
+    <>
+      <Form.Item label="文件大小">
+        <Slider defaultValue={size} onChange={(v) => setSize(v)} />
+      </Form.Item>
+      <Form.Item label="文件名长度">
+        <Slider max={200} defaultValue={nameSize} onChange={(v) => setNameSize(v)} />
+      </Form.Item>
+      <Form.Item label="文件数量">
+        <Slider max={10} defaultValue={maxFiles} onChange={(v) => setMaxFiles(v)} />
+      </Form.Item>
+      <Form.Item label="文件类型">
+        <Checkbox.Group onChange={(v) => setFileTypes(v)}>
+          {Object.keys(ACCEPT).map(key => <Checkbox value={key} key={key}>{key}</Checkbox>)}
+        </Checkbox.Group>
+      </Form.Item>
+   
+      <TdUpload
+        size={size}
+        maxFiles={maxFiles}
+        nameSize={nameSize}
+        fileTypes={fileTypes}
+        callback={(t, f, fs) => {
+          if (t === 'remove') {
+            return Promise.resolve();
+          }
+          if (t === 'after') {
+            console.log(fs);
+          }
+        }}
+      />
+    </>
   );
 }
 ```
@@ -66,25 +103,22 @@ export default () => {
  * title: 立即上传
  * desc: 点击选择文件后，在 after 回调中进行立即上传操作
  */
-import React, { useRef } from 'react';
+import React from 'react';
 import { TdUpload } from 'td-antd';
 
 export default () => {
-  const ref = useRef();
-
   return (
     <TdUpload
-      ref={ref}
       size={5}
       multiple
       btnText="上传"
       url="/aaa.json"
-      callback={(t, f, fs) => {
+      callback={(t, f, fs, onUpload) => {
         if (t === 'remove') {
           return Promise.resolve();
         }
         if (t === 'after') {
-          // ref.current.onUpload();
+          // onUpload().then(([files, dataObject]) => {})
         }
       }}
     />
@@ -106,7 +140,7 @@ export default () => {
       multiple
       isPreview
       btnText="上传"
-      accept="image/jpg,image/*"
+      fileTypes={['image']}
       tip="仅支持图片格式。"
       listType="picture-card"
       callback={(t, file, files) => {
@@ -137,7 +171,7 @@ export default () => {
       multiple
       btnText="上传"
       scale={[750, 750]}
-      accept="image/*"
+      fileTypes={['image']}
       tip="仅支持 750*750 的图片"
       listType="picture-card"
     />
@@ -147,11 +181,20 @@ export default () => {
 
 ```jsx
 /**
- * title: 自定义文件回显
- * desc: 利用 filterOptions 进行数据的自定义清洗
+ * title: 配置全局的 filterOptions
+ * desc: 使用 localConfig.config 配置 filterOptions 的数据过滤
  */
 import React from 'react';
-import { TdUpload } from 'td-antd';
+import { TdUpload, localConfig } from 'td-antd';
+
+localConfig.config({
+  uploadFilterOptions: (item) => ({
+    uid: item.fileNo,
+    name: item.fileName,
+    url: item.filePath,
+    ...item,
+  }),
+});
 
 const files = [
   {
@@ -167,11 +210,7 @@ const files = [
 
 export default () => {
   return (
-    <TdUpload
-      isPreview
-      btnText="上传"
-      initial={files}
-    />
+    <TdUpload isPreview initial={files} />
   );
 }
 ```
@@ -284,7 +323,7 @@ export default () => {
  * title: 拖拽
  * desc: 内部集成了 dnd 插件
  */
-import React, { useRef } from 'react';
+import React from 'react';
 import { TdUploadDragable } from 'td-antd';
 
 const files = [
@@ -298,11 +337,8 @@ const files = [
 ];
 
 export default () => {
-  const ref = useRef();
-
   return (
     <TdUploadDragable
-      ref={ref}
       initial={files}
       listType="picture-card"
       filterOptions={(item, index) => ({...item, uid: index})}
@@ -316,15 +352,12 @@ export default () => {
  * title: 图片固定位（单张）
  * desc: 使用 listType="fixed-card"
  */
-import React, { useRef } from 'react';
+import React from 'react';
 import { TdUpload } from 'td-antd';
 
 export default () => {
-  const ref = useRef();
-
   return (
     <TdUpload
-      ref={ref}
       listType="fixed-card"
       fixedStyles={{width: 300, height: 200}}
       // fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
@@ -443,6 +476,52 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 多组件文件上传
+ * desc: 使用 Promise.all 进行上传控制
+ */
+import React, { useRef } from 'react';
+import { Button } from 'antd';
+import { TdUpload } from 'td-antd';
+
+export default () => {
+  const uploadRef = useRef();
+  const uploadRef2 = useRef();
+  
+  const onClick = () => {
+    const uploadFn1 = () => {
+      return uploadRef.current.onUpload().catch(() => {
+        // todo...
+        // 如果是在表单中应用，在上传失败后，重置表单
+        // form.setFieldsValue({ invoiceFile: null });
+      });
+    };
+
+    const uploadFn2 = () => {
+      return uploadRef2.current.onUpload().catch(() => {
+        // todo...
+      });
+    };
+    
+    Promise.all([uploadFn1(), uploadFn2()])
+      .then(([uploadFiles1, uploadFiles2]) => {
+        // todo...
+      })
+  };
+
+  return (
+    <>
+      <Button onClick={onClick}>批量上传</Button>
+      <br /><br />
+      <TdUpload ref={uploadRef} btnText="上传组件1" />
+      <br /><br />
+      <TdUpload ref={uploadRef2} btnText="上传组件2" />
+    </>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|版本号|
@@ -505,6 +584,8 @@ export default () => {
 
 ```
 image: 'image/*',
+video: 'video/*',
+audio: 'audio/*',
 jpg: 'image/jpg,image/jpeg',
 png: 'image/png',
 gif: 'image/gif',
@@ -519,7 +600,7 @@ excel: '.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-offic
 ### callback
 
 ```
-callback = (state, file, files) => {
+callback = (state, file, files, onUpload) => {
   if (state === 'before') {
     // 只会触发一次，上传前
   }
@@ -528,6 +609,9 @@ callback = (state, file, files) => {
   }
   if (state === 'after') {
     // 只会触发一次，上传后
+    onUpload().then(([files, dataObject]) => {
+      // todo
+    })
   }
   if (state === 'remove') {
     // 点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除。

@@ -19,9 +19,10 @@ export default () => {
     <>
       <p>示例1：toThousands(123456) => {toThousands(123456)}</p>
       <p>示例2：toThousands(123456.1, 2) => {toThousands(123456.1, 2)}</p>
-      <p>示例3：toThousands('123456.11111', 4) => {toThousands('123456.11111', 4)}</p>
+      <p>示例3：toThousands('123456.11111', 3) => {toThousands('123456.11111', 3)}</p>
       <p>示例4：toThousands('123,456') => {toThousands('123,456')}</p>
       <p>示例5：toThousands('12345.1') => {toThousands('12345.1')}</p>
+      <p>示例6：toThousands('') => {toThousands('')}</p>
     </>
   );
 }
@@ -51,8 +52,13 @@ const { toThousands } = tools;
 export default () => {
   return (
     <>
-      <p>人民币金额展示：{toThousands.currency(12345)}</p>
-      <p>人民币金额展示：{toThousands.currency(510.4119)}</p>
+      <p>示例1：toThousands.currency(123456) => {toThousands.currency(12345)}</p>
+      <p>示例2：toThousands.currency(888.8) => {toThousands.currency(888.8)}</p>
+      <p>示例3：toThousands.currency(510.4119) => {toThousands.currency(510.4119)}</p>
+      <p>示例4：toThousands.currency('') => {toThousands.currency('')}</p>
+      <p>示例5：toThousands.currency(0) => {toThousands.currency(0)}</p>
+      <p>示例6：toThousands.currency(null) => {toThousands.currency(null)}</p>
+      <p>示例7：toThousands.currency(undefined) => {toThousands.currency(undefined)}</p>
     </>
   );
 }

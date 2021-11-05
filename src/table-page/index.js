@@ -83,6 +83,11 @@ export default forwardRef((props, ref) => {
     return columns.filter(i => i.enableSearch).sort((a, b) => a.order - b.order);
   };
 
+  /*
+  * Table 的列项，如果 visible = false，则不渲染
+  * */
+  const filterTableColumns = columns.filter(({ visible = true }) => visible);
+
   // 提供给外部的接口
   useImperativeHandle(ref, () => ({
     searchFormRef: searchRef.current && searchRef.current.form,
@@ -119,7 +124,7 @@ export default forwardRef((props, ref) => {
       <Table
         bordered
         loading={loading}
-        columns={columns}
+        columns={filterTableColumns}
         dataSource={data.values || []}
         pagination={(data.pageSize || data.limit) ? pagination({
           data,

@@ -13,7 +13,7 @@ title: pagination
  * title: 基础用法
  */
 import React, { useState } from 'react';
-import { Row, Col, Table, Button } from 'antd';
+import { Table } from 'antd';
 import { pagination } from 'td-antd';
 
 export default () => {
@@ -65,7 +65,7 @@ export default () => {
  * desc: 可以中英文切换
  */
 import React, { useState } from 'react';
-import { Row, Col, Table, Button } from 'antd';
+import { Table, Button } from 'antd';
 import { pagination } from 'td-antd';
 
 export default () => {

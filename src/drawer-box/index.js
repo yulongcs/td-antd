@@ -44,8 +44,8 @@ export default forwardRef((props, ref) => {
       maskClosable={false}
       footer={
         <div style={{ textAlign: buttonPosition }}>
-          <Button onClick={cancel} style={{ marginRight: 8 }} loading={confirmLoading} {...cancelButtonProps}>{cancelText}</Button>
-          <Button onClick={ok} type="primary" {...okButtonProps}>{okText}</Button>
+          <Button onClick={cancel} style={{ marginRight: 8 }} {...cancelButtonProps}>{cancelText}</Button>
+          <Button onClick={ok} type="primary" loading={confirmLoading} {...okButtonProps}>{okText}</Button>
         </div>
       }
       afterVisibleChange={(v) => {

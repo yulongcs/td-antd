@@ -7,13 +7,91 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.11.0
+### 🚀 2.12.0
 
-`2021-07-23`
+`2021-11-05`
 
 - 新增组件 [SelectList](/high-coupling/select-list)
 - Magic
   - 新增属性 `wrapperClassName`，Spin容器类名称方便自定义样式
+
+### 🚀 2.11.5
+
+`2021-11-04`
+
+- clipboard 修复 Safari 无法复制的问题
+
+### 🚀 2.11.4
+
+`2021-11-03`
+
+- TdUpload
+  - fileTypes 支持 video、audio 文件类型
+- 🐞 tools.toThousands.currency 修复当传入空字符串时，显示错误的问题
+- 🐞 DownloadBlob 修复文件名解码错误的问题
+
+### 🚀 2.11.2
+
+`2021-10-28`
+
+- TdUpload
+  - callback 新增第四个参数，this.onUpload，以减少组件对 ref 的依赖
+
+### 🚀 2.11.1
+
+`2021-10-27`
+
+- NoCopyBox
+  - 优化IE10的支持
+- DownloadBlob
+  - 🐞 修复文件名乱码问题
+
+### 🚀 2.11.0
+
+`2021-10-19`
+
+- 新增组件 [NoCopyBox](/components/no-copy-box)
+
+### 🚀 2.10.8
+
+`2021-10-12`
+
+- 新增组件 [DocumentHidden](/components/document-hidden)
+- redirect 新增参数，使其可以新开页面
+
+### 🚀 2.10.7
+
+`2021-09-03`
+
+- Ellipsis
+  - 新增属性 defaultEllipsis
+  - 新增双击事件
+- DescList
+  - 🐞 修复真实值为 0 时的判断
+
+### 🚀 2.10.6
+
+`2021-08-20`
+
+- TablePage
+  - columns 新增属性 visible
+
+### 🚀 2.10.5
+
+`2021-08-09`
+
+- DescList
+  - 增加 ref 功能
+- 新增组件 [InnerHtml](/components/inner-html)
+
+### 🚀 2.10.4
+
+`2021-07-28`
+
+- Magic.Item
+  - 增加 defaultCollapsed 属性
+- DrawerBox
+  - 修复已知bug
 
 ### 🚀 2.10.2
 
