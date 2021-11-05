@@ -1,14 +1,6 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-  ],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'airbnb',
-    'prettier',
-  ],
+  parser: 'babel-eslint',
+  extends: ['airbnb', 'prettier'],
   env: {
     browser: true,
     node: true,
@@ -17,6 +9,20 @@ module.exports = {
     jest: true,
     jasmine: true,
   },
+  overrides: [
+    {
+      files: ["**/*.ts", "**/*.tsx"],
+      parser: '@typescript-eslint/parser',
+      plugins: [
+        '@typescript-eslint',
+      ],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+      ],
+    },
+  ],
   rules: {
     'generator-star-spacing': [0],
     'consistent-return': [0],
@@ -76,8 +82,6 @@ module.exports = {
     "no-param-reassign": [0],
     "no-plusplus": [0],
     "no-extra-boolean-cast": [0],
-    "no-unused-vars": [0],
-    "@typescript-eslint/no-unused-vars": [2],
   },
   parserOptions: {
     ecmaFeatures: {
