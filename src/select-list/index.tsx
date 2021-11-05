@@ -5,13 +5,17 @@ import { stringify } from 'qs';
 import useDebounce from '../tools/useDebounce';
 import localConfig from '../local-config';
 
-interface IResponseType<DT = any> {
+interface ISelectListRef {
+  fetchList(param, action): void;
+}
+
+interface IResponseType<DT> {
   success: boolean;
   dataObject: { values: DT[], totalCnt: number } | DT[];
   errorMessage?: string;
 }
 
-interface IPropTypes<DT> extends SelectProps<SelectValue> {
+interface IPropTypes<DT = Record<string, string>> extends SelectProps<SelectValue> {
   url?: string;
   method?: 'GET' | 'POST';
   trigger?: 'onLoad' | 'onFocus';
@@ -26,27 +30,25 @@ interface IPropTypes<DT> extends SelectProps<SelectValue> {
 
 const { Option } = Select;
 
-function SelectList<DataType extends Record<string, string> | string>(
-  props: IPropTypes<DataType>,
-  ref: React.Ref<any>
-) {
-  const {
-    url,
+function SelectList<DataType extends Record<string, string> | string> (
+  {
+    url = '',
     method = 'GET',
     trigger = 'onFocus',
     pageSize = 200,
     fields = ['key', 'value'],
     searchField = fields[1],
     localData = [],
-    defaultParams,
+    defaultParams = {},
     getOptions = (d) => d,
-    onSelect: propOnSelect,
-    onFocus: propOnFocus,
-    filterOptionChildren,
+    onSelect: propOnSelect = null,
+    onFocus: propOnFocus = null,
+    filterOptionChildren = null,
     ...restProps
-  } = props;
-
-  const focusRef = useRef(false);
+  },
+  ref
+) {
+  const focusedOnce = useRef<boolean>(false);
   const { request } = localConfig.newInstance();
   const [data, setData] = useState<DataType[]>(localData);
   const [more, setMore] = useState<boolean>(true);
@@ -57,13 +59,13 @@ function SelectList<DataType extends Record<string, string> | string>(
 
   useImperativeHandle(ref, () => ({
     fetchList,
-  }))
+  }));
 
   useEffect(() => {
     if (trigger === 'onLoad' && !localData.length) {
       fetchList({}, 'reset');
     }
-  }, [])
+  }, []);
 
   const fetchList = (param = {}, action) => {
     if (!url) {
@@ -76,8 +78,8 @@ function SelectList<DataType extends Record<string, string> | string>(
     if (action !== 'reset') {
       reqParams = { ...reqParams, ...params };
     }
-    if (action === 'loadmore') {
-      reqParams = { ...reqParams, pageNum: reqParams.pageNum + 1 };
+    if (action === 'loadMore') {
+      reqParams = { ...reqParams, pageNum: (reqParams as { pageNum: number }).pageNum + 1 };
     }
     reqParams = { ...reqParams, ...param };
     let reqConfig = {};
@@ -95,9 +97,7 @@ function SelectList<DataType extends Record<string, string> | string>(
       onSuccess: ({ dataObject }: IResponseType<DataType>) => {
         const values = Array.isArray(dataObject) ? dataObject : dataObject.values;
         const totalCnt = Array.isArray(dataObject) ? dataObject.length : dataObject.totalCnt;
-        const d = action === 'loadmore'
-          ? data.concat(values)
-          : values;
+        const d = action === 'loadMore' ? data.concat(values) : values;
         const m = d.length < totalCnt;
         setData(d);
         setMore(m);
@@ -107,18 +107,18 @@ function SelectList<DataType extends Record<string, string> | string>(
     }).finally(() => {
       setLoading(false);
     });
-  }
+  };
 
   // 首次获得焦点时请求数据
   const onFocus = (e) => {
-    if (trigger === 'onFocus' && !focusRef.current && !localData.length) {
-      focusRef.current = true;
+    if (trigger === 'onFocus' && !focusedOnce.current && !localData.length) {
+      focusedOnce.current = true;
       fetchList({}, 'reset');
     }
     if (propOnFocus) {
       propOnFocus(e);
     }
-  }
+  };
 
   // 选中搜索结果项时，重置搜索文本和选项数据
   const onSelect = (selectValue, option) => {
@@ -129,7 +129,7 @@ function SelectList<DataType extends Record<string, string> | string>(
     if (propOnSelect) {
       propOnSelect(selectValue, option);
     }
-  }
+  };
 
   // 搜索资源项
   const search = useDebounce(v => {
@@ -137,7 +137,7 @@ function SelectList<DataType extends Record<string, string> | string>(
       setData([]);
       fetchList({ [searchField]: v.trim() }, 'reset');
     }
-  }, 600)
+  }, 600);
 
   // 文本框值变化时回调
   const onSearch = (v) => {
@@ -145,7 +145,7 @@ function SelectList<DataType extends Record<string, string> | string>(
       setSearchValue(v);
       search(v);
     }
-  }
+  };
 
   // 滚动加载更多资源
   const loadMore = (e: React.UIEvent<HTMLDivElement>) => {
@@ -154,9 +154,9 @@ function SelectList<DataType extends Record<string, string> | string>(
       && more
       && el.scrollTop > el.scrollHeight - 300
     ) {
-      fetchList({}, 'loadmore');
+      fetchList({}, 'loadMore');
     }
-  }
+  };
 
   return (
     <Select
@@ -195,4 +195,4 @@ function SelectList<DataType extends Record<string, string> | string>(
   );
 }
 
-export default React.forwardRef(SelectList);
+export default React.forwardRef<ISelectListRef, IPropTypes>(SelectList);

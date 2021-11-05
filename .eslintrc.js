@@ -1,6 +1,14 @@
 module.exports = {
-  parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier'],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+  ],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb',
+    'prettier',
+  ],
   env: {
     browser: true,
     node: true,
@@ -13,7 +21,7 @@ module.exports = {
     'generator-star-spacing': [0],
     'consistent-return': [0],
     'react/forbid-prop-types': [0],
-    'react/jsx-filename-extension': [1, { extensions: ['.js'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'global-require': [1],
     'import/prefer-default-export': [0],
     'react/jsx-no-bind': [0],
@@ -68,9 +76,12 @@ module.exports = {
     "no-param-reassign": [0],
     "no-plusplus": [0],
     "no-extra-boolean-cast": [0],
+    "no-unused-vars": [0],
+    "@typescript-eslint/no-unused-vars": [2],
   },
   parserOptions: {
     ecmaFeatures: {
+      jsx: true,
       experimentalObjectRestSpread: true,
     },
   },
