@@ -26,7 +26,7 @@ export default () => {
   return (
     <SelectList
       style={{ width: 240 }}
-      url="http://rap2api.taobao.org/app/mock/95250/get/api/random/qryByPage.json"
+      url="/app/mock/95250/get/api/random/qryByPage.json"
       pageSize={10}
       searchField="label"
       fields={['id', 'label']}
@@ -52,7 +52,7 @@ export default () => {
   return (
     <SelectList
       style={{ width: 240 }}
-      url="http://rap2api.taobao.org/app/mock/95250/get/api/random/qryByPage.json"
+      url="/app/mock/95250/get/api/random/qryByPage.json"
       trigger="onLoad"
       pageSize={10}
       searchField="label"
@@ -79,7 +79,7 @@ export default () => {
   return (
     <SelectList
       style={{ width: 240 }}
-      url="http://rap2api.taobao.org/app/mock/95250/get/api/random/qryOnePage.json"
+      url="/app/mock/95250/get/api/random/qryOnePage.json"
       pageSize={200}
       fields={['id', 'label']}
       mode="multiple"
@@ -104,7 +104,7 @@ export default () => {
   return (
     <SelectList
       style={{ width: 240 }}
-      url="http://rap2api.taobao.org/app/mock/95250/get/api/random/qry.json"
+      url="/app/mock/95250/get/api/random/qry.json"
       pageSize={null}
       fields={['id', 'label']}
       onChange={(v, o) => { console.log(v, o); }}
@@ -162,7 +162,7 @@ export default () => {
   return (
     <SelectList
       style={{ width: 240 }}
-      url="http://rap2api.taobao.org/app/mock/286633/get/country.json"
+      url="/app/mock/286633/get/country.json"
       pageSize={null}
       fields={['english', 'country']}
       onChange={(v, o) => { console.log(v, o); }}
