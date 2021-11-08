@@ -57,7 +57,7 @@ export default () => {
  
 import React, { useState, useRef } from 'react';
 import { Button, Tabs, Space } from 'antd';
-import { TablePage, SelectMap, LinkBtn } from 'td-antd';
+import { TablePage, SelectList, LinkBtn } from 'td-antd';
 
 export default () => {
   const tablePageRef = useRef();
@@ -106,7 +106,7 @@ export default () => {
               inputProps: { placeholder: '产品名称' }
             }, {
               dataIndex: 'status',
-              component: <SelectMap placeholder="状态" data={['全部', '已删除', '仓库中']} />
+              component: <SelectList placeholder="状态" localData={['全部', '已删除', '仓库中']} />
             },
           ],
         }}
@@ -124,7 +124,7 @@ export default () => {
  
 import React, { useState } from 'react';
 import { DatePicker } from 'antd';
-import { TablePage, SelectMap } from 'td-antd';
+import { TablePage, SelectList } from 'td-antd';
 
 export default () => {
   return (
@@ -159,7 +159,7 @@ export default () => {
           title: '性别',
           dataIndex: 'sex',
           enableSearch: true,
-          component: <SelectMap placeholder="性别" data={['男', '女']} />,
+          component: <SelectList placeholder="性别" localData={['男', '女']} />,
         }, {
           title: '时间',
           dataIndex: 'time',

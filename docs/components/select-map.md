@@ -2,7 +2,7 @@
 title: SelectMap
 ---
 
-## SelectMap
+## SelectMap（即将废弃，请使用 [SelectList](/high-coupling/select-list) 代替）
 
 基于 Select 的二次封装
 

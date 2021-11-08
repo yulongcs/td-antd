@@ -66,7 +66,7 @@ export default () => {
  */
 import React from 'react';
 import { DatePicker } from 'antd';
-import { SelectMap, SearchForm } from 'td-antd';
+import { SelectList, SearchForm } from 'td-antd';
 
 export default () => {
   return (
@@ -86,7 +86,7 @@ export default () => {
         }, {
           title: '状态',
           dataIndex: 'status',
-          component: <SelectMap data={['很长的一个枚举值哟呵', '已完成']} />
+         component: <SelectList localData={['很长的一个枚举值哟呵', '已完成']} />
         }, {
           title: '时间',
           dataIndex: 'date',
@@ -109,23 +109,23 @@ export default () => {
 ```jsx
 /**
  * title: 不同列数量
- * desc: 控制 span 可展示不同数量的项
+ * desc: 控制 span 可展示不同数量的项。行数量 = 24 / span
  */
 import React, { useState } from 'react';
 import { DatePicker } from 'antd';
-import { SelectMap, SearchForm } from 'td-antd';
+import { SelectList, SearchForm } from 'td-antd';
 
 export default () => {
   const [span, setSpan] = useState(6);
 
   return (
     <>
-      <SelectMap
+      <SelectList
         value={span}
-        data={[4,6,8]}
+        localData={[4,6,8]}
         style={{ width: 200 }}
         placeholder="请选择展示列"
-        onChange={(key) => { setSpan(+key) }}
+        onChange={(key) => setSpan(key)}
       />
       <br />
       <br />
@@ -145,7 +145,7 @@ export default () => {
           }, {
             title: '状态',
             dataIndex: 'status',
-            component: <SelectMap data={['进行中', '已完成']} />
+            component: <SelectList localData={['进行中', '已完成']} />
           }, {
             title: '时间',
             dataIndex: 'date',
