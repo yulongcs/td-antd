@@ -117,12 +117,10 @@ export default () => {
 ```jsx
 /**
  * title: 本地数据(数组字符串)
+ * desc: 如：['c9d1b94465', '6efes87765']
  */
 import React from 'react';
-import { localConfig, SelectList, tools } from 'td-antd';
-import request from '../../utils/request';
-
-localConfig.config({ request });
+import { SelectList, tools } from 'td-antd';
 
 const localData = [];
 for (let i = 0; i < 20; i++) {
@@ -144,13 +142,33 @@ export default () => {
 
 ```jsx
 /**
+ * title: 本地数据(数组数字)
+ * desc: 如：[1, 2, 3, 4]
+ */
+import React, { useState, useEffect } from 'react';
+import { SelectList } from 'td-antd';
+
+const localData = [1, 2, 3, 4];
+
+export default () => {
+  return (
+    <SelectList
+      style={{ width: 240 }}
+      localData={localData}
+      onChange={(v, o) => { console.log(v, o); }}
+      placeholder="请选择数字，支持搜索"
+    />
+  );
+}
+```
+
+```jsx
+/**
  * title: 本地数据(普通对象)
+ * desc: 如：{ male:'男', female:'女' }
  */
 import React from 'react';
-import { localConfig, SelectList, tools } from 'td-antd';
-import request from '../../utils/request';
-
-localConfig.config({ request });
+import { SelectList } from 'td-antd';
 
 const localData = { male: '男', female: '女' };
 
