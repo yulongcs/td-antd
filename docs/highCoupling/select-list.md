@@ -116,7 +116,7 @@ export default () => {
 
 ```jsx
 /**
- * title: 本地数据
+ * title: 本地数据(数组字符串)
  */
 import React from 'react';
 import { localConfig, SelectList, tools } from 'td-antd';
@@ -137,6 +137,30 @@ export default () => {
       localData={localData}
       onChange={(v, o) => { console.log(v, o); }}
       placeholder="请选择随机生成的项，支持搜索"
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 本地数据(普通对象)
+ */
+import React from 'react';
+import { localConfig, SelectList, tools } from 'td-antd';
+import request from '../../utils/request';
+
+localConfig.config({ request });
+
+const localData = { male: '男', female: '女' };
+
+export default () => {
+  return (
+    <SelectList
+      style={{ width: 240 }}
+      localData={localData}
+      onChange={(v, o) => { console.log(v, o); }}
+      placeholder="请选择性别，支持搜索"
     />
   );
 }
@@ -190,7 +214,7 @@ export default () => {
 |pageSize|不分页接口请设置`falsely`，不会生成分页请求参数|Number|200|
 |fields|`Select.Option`的`key`和`value`，数据项为对象类型时请正确设置|[String, String]|['key', 'value']|
 |searchField|搜索字段，数据未全部加载时从服务端获取搜索结果|String|fields[1]|
-|localData|本地数据项，不再触发数据请求，进行本地搜索|Array|[]|
+|localData|本地数据项，不再触发数据请求，进行本地搜索|Object/Array|-|
 |defaultParams|默认请求参数|Object|-|
 |getOptions|对数据项进行过滤|Function(d: DT[]) => DT[]|(d) => d|
 |onChange|`option`参数保留完整数据项|Function(value, option: Option \| Array\<Option\>)|-|

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useImperativeHandle } from 'react';
 import { Select, Spin } from 'antd';
 import { SelectProps, SelectValue } from 'antd/es/select';
 import { stringify } from 'qs';
+import typeOf from '../tools/typeOf';
 import useDebounce from '../tools/useDebounce';
 import localConfig from '../local-config';
 
@@ -22,7 +23,7 @@ interface IPropTypes<DT = Record<string, string>> extends SelectProps<SelectValu
   pageSize?: number;
   fields?: DT extends Record<string, string> ? [keyof DT, keyof DT] : [string, string];
   searchField?: string;
-  localData?: DT[];
+  localData?: unknown;
   defaultParams?: Record<string, any>;
   getOptions?: (d: DT[]) => DT[];
   filterOptionChildren?: (item: DT, index: number) => React.ReactChild;
@@ -38,7 +39,7 @@ function SelectList<DataType extends Record<string, string> | string> (
     pageSize = 200,
     fields = ['key', 'value'],
     searchField = fields[1],
-    localData = [],
+    localData = null,
     defaultParams = {},
     getOptions = (d) => d,
     onSelect: propOnSelect = null,
@@ -48,21 +49,30 @@ function SelectList<DataType extends Record<string, string> | string> (
   },
   ref
 ) {
+  let localDataArr = [];
+  if (typeOf(localData, 'Array')) {
+    localDataArr = localData;
+  }
+  if (typeOf(localData, 'Object')) {
+    localDataArr = Object.entries(localData).map(([key, value]) => (
+      { [fields[0]]: key, [fields[1]]: value, }
+    ))
+  }
   const focusedOnce = useRef<boolean>(false);
   const { request } = localConfig.newInstance();
-  const [data, setData] = useState<DataType[]>(localData);
+  const [data, setData] = useState<DataType[]>(localDataArr);
   const [more, setMore] = useState<boolean>(true);
   const [params, setParams] = useState<Record<string, any>>();
   const [searchValue, setSearchValue] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(localData.length === 0);
-  const [allDataLoaded, setAllDataLoaded] = useState<boolean>(localData.length > 0);
+  const [loading, setLoading] = useState<boolean>(localDataArr.length === 0);
+  const [allDataLoaded, setAllDataLoaded] = useState<boolean>(localDataArr.length > 0);
 
   useImperativeHandle(ref, () => ({
     fetchList,
   }));
 
   useEffect(() => {
-    if (trigger === 'onLoad' && !localData.length) {
+    if (trigger === 'onLoad' && !localDataArr.length) {
       fetchList({}, 'reset');
     }
   }, []);
@@ -111,7 +121,7 @@ function SelectList<DataType extends Record<string, string> | string> (
 
   // 首次获得焦点时请求数据
   const onFocus = (e) => {
-    if (trigger === 'onFocus' && !focusedOnce.current && !localData.length) {
+    if (trigger === 'onFocus' && !focusedOnce.current && !localDataArr.length) {
       focusedOnce.current = true;
       fetchList({}, 'reset');
     }
@@ -179,10 +189,10 @@ function SelectList<DataType extends Record<string, string> | string> (
         if (item && typeof item === 'object' && fields[0] in item) {
           return (
             <Option
+              {...item as Record<string, string>}
               key={item[fields[0]]}
               value={item[fields[0]]}
               label={item[fields[1]]}
-              {...item as Record<string, string>}
             >
               {filterOptionChildren?.(item, index) || item[fields[1]]}
             </Option>
