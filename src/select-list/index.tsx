@@ -49,30 +49,36 @@ function SelectList<DataType extends Record<string, string> | string> (
   },
   ref
 ) {
-  let localDataArr = [];
-  if (typeOf(localData, 'Array')) {
-    localDataArr = localData;
-  }
-  if (typeOf(localData, 'Object')) {
-    localDataArr = Object.entries(localData).map(([key, value]) => (
-      { [fields[0]]: key, [fields[1]]: value, }
-    ))
-  }
   const focusedOnce = useRef<boolean>(false);
   const { request } = localConfig.newInstance();
-  const [data, setData] = useState<DataType[]>(localDataArr);
+  const [data, setData] = useState<DataType[]>([]);
   const [more, setMore] = useState<boolean>(true);
   const [params, setParams] = useState<Record<string, any>>();
   const [searchValue, setSearchValue] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(localDataArr.length === 0);
-  const [allDataLoaded, setAllDataLoaded] = useState<boolean>(localDataArr.length > 0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [allDataLoaded, setAllDataLoaded] = useState<boolean>(!url);
 
   useImperativeHandle(ref, () => ({
     fetchList,
   }));
 
   useEffect(() => {
-    if (trigger === 'onLoad' && !localDataArr.length) {
+    if (!url) {
+      let localDataArr = [];
+      if (typeOf(localData, 'Array')) {
+        localDataArr = localData;
+      }
+      if (typeOf(localData, 'Object')) {
+        localDataArr = Object.entries(localData).map(([key, value]) => (
+          { [fields[0]]: key, [fields[1]]: value, }
+        ));
+      }
+      setData(localDataArr);
+    }
+  }, [localData]);
+
+  useEffect(() => {
+    if (trigger === 'onLoad') {
       fetchList({}, 'reset');
     }
   }, []);
@@ -121,7 +127,7 @@ function SelectList<DataType extends Record<string, string> | string> (
 
   // 首次获得焦点时请求数据
   const onFocus = (e) => {
-    if (trigger === 'onFocus' && !focusedOnce.current && !localDataArr.length) {
+    if (trigger === 'onFocus' && !focusedOnce.current) {
       focusedOnce.current = true;
       fetchList({}, 'reset');
     }
