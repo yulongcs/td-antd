@@ -186,6 +186,40 @@ export default () => {
 
 ```jsx
 /**
+ * title: 本地数据(异步获取)
+ */
+import React, { useState, useEffect } from 'react';
+import { localConfig, SelectList, tools } from 'td-antd';
+import request from '../../utils/request';
+
+localConfig.config({ request });
+
+export default () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    request({
+      url: "/app/mock/95250/get/api/random/qry.json",
+      onSuccess: ({ dataObject }) => {
+        setData(dataObject);
+      },
+    });
+  }, []);
+
+  return (
+    <SelectList
+      style={{ width: 240 }}
+      localData={data}
+      fields={['id', 'label']}
+      onChange={(v, o) => { console.log(v, o); }}
+      placeholder="请选择随机生成的项，支持搜索"
+    />
+  );
+}
+```
+
+```jsx
+/**
  * title: 自定义下拉展示option
  */
 import React from 'react';

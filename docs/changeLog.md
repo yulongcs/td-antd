@@ -13,6 +13,7 @@ order: 1
 
 - SelectList
   - 修复 change 事件取得的 value 值错误
+  - `localData` 支持异步数据更新
   - `localData` 支持传入普通对象，与 [SelectMap](/components/select-map) 保持一致
 
 ### 🚀 2.12.0
