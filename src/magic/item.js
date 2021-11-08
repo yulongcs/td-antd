@@ -7,6 +7,7 @@ import { MagicContext } from './index';
 
 // 模块组件
 const Item = ({
+  wrapperClassName,
   title,
   footer,
   extra,
@@ -28,7 +29,7 @@ const Item = ({
 
   return (
     <Spin
-      wrapperClassName={classNames('td-magic-item-wrap', {
+      wrapperClassName={classNames(wrapperClassName, 'td-magic-item-wrap', {
         'td-magic-item-box-shadow': rest.boxShadow ?? boxShadow,
       })}
       spinning={loading}

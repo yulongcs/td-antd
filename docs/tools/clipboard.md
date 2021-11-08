@@ -16,7 +16,7 @@ import { tools, toast } from 'td-antd';
 const { clipboard } = tools;
 
 export default () => {
-  const [text, setText] = useState('我住长江头,君住长江尾。日日思君不见君,共饮长江水。');
+  const [text, setText] = useState('我住长江头，君住长江尾。日日思君不见君，共饮长江水。');
 
   return (
     <>

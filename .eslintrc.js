@@ -9,11 +9,25 @@ module.exports = {
     jest: true,
     jasmine: true,
   },
+  overrides: [
+    {
+      files: ["**/*.ts", "**/*.tsx"],
+      parser: '@typescript-eslint/parser',
+      plugins: [
+        '@typescript-eslint',
+      ],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+      ],
+    },
+  ],
   rules: {
     'generator-star-spacing': [0],
     'consistent-return': [0],
     'react/forbid-prop-types': [0],
-    'react/jsx-filename-extension': [1, { extensions: ['.js'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'global-require': [1],
     'import/prefer-default-export': [0],
     'react/jsx-no-bind': [0],
@@ -71,6 +85,7 @@ module.exports = {
   },
   parserOptions: {
     ecmaFeatures: {
+      jsx: true,
       experimentalObjectRestSpread: true,
     },
   },
