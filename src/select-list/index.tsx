@@ -183,7 +183,7 @@ function SelectList<DataType extends Record<string, string> | string> (
       {...restProps}
     >
       {getOptions(data).map((item, index) => {
-        if (typeof item === 'string') {
+        if (['string', 'number'].includes(typeof item)) {
           return <Option key={item} value={item} label={item}>{item}</Option>;
         }
         if (item && typeof item === 'object' && fields[0] in item) {

@@ -84,7 +84,7 @@ export default () => {
  */
 import React, { useState, useEffect } from 'react';
 import { Button, DatePicker } from 'antd';
-import { Magic, SearchForm, SelectMap } from 'td-antd';
+import { Magic, SearchForm, SelectList } from 'td-antd';
 
 export default () => {
   const [shadow, setShadow] = useState(true);
@@ -110,7 +110,7 @@ export default () => {
           }, {
             title: '状态',
             dataIndex: 'status',
-            component: <SelectMap data={['很长的一个枚举值哟呵', '已完成']} />
+            component: <SelectList localData={['很长的一个枚举值哟呵', '已完成']} />
           }, {
             title: '时间',
             dataIndex: 'date',
@@ -130,7 +130,7 @@ export default () => {
  */
 import React, { useState, useEffect } from 'react';
 import { Button, DatePicker } from 'antd';
-import { Magic, SearchForm, SelectMap } from 'td-antd';
+import { Magic, SearchForm, SelectList } from 'td-antd';
 
 export default () => {
   return (
@@ -139,6 +139,10 @@ export default () => {
         <Magic.Item>
           <SearchForm
             span={8}
+            callback={(type, values) => {
+              console.log('type: ', type);
+              console.log('values: ', values);
+            }}
             columns={[
               {
                 title: '手机',
@@ -153,7 +157,7 @@ export default () => {
               }, {
                 title: '状态',
                 dataIndex: 'status',
-                component: <SelectMap data={['很长的一个枚举值哟呵', '已完成']} />
+                component: <SelectList localData={['很长的一个枚举值哟呵', '已完成']} />
               }, {
                 title: '时间',
                 dataIndex: 'date',

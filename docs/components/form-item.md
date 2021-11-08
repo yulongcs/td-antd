@@ -14,7 +14,7 @@ title: FormItem
  */
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Switch } from 'antd';
-import { FormItem, SelectMap, SelectSearch } from 'td-antd';
+import { FormItem, SelectList, SelectSearch } from 'td-antd';
 
 const tailLayout = {
   wrapperCol: {
@@ -105,9 +105,8 @@ export default () => {
         label="性别"
         name="sex"
       >
-        <SelectMap
-          fields={['key', 'value']}
-          data={[
+        <SelectList
+          localData={[
             {
               key: 'woman',
               value: '女',
