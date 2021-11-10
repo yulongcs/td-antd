@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, cloneElement } from 'react';
 import { Spin } from 'antd';
+import cx from 'classnames';
 import localConfig from '../local-config';
 import './index.less';
 
@@ -63,12 +64,13 @@ const DownloadBlob = (props) => {
     url,
     body,
     filename,
+    disabled = false,
     ...rest
   } = props;
   const [loading, setLoading] = useState(false);
 
   const click = () => {
-    if (!loading) {
+    if (!loading && !disabled) {
       setLoading(true);
       downloadBlob({
         url,
@@ -80,13 +82,28 @@ const DownloadBlob = (props) => {
     }
   };
 
+  const crumbs = React.Children.map(rest.children, (element, index) => {
+    if (React.isValidElement(element)) {
+      return cloneElement(element, {
+        key: index,
+        disabled,
+        onClick: () => {},
+      })
+    }
+
+    return element;
+  });
+
   return (
     <Spin spinning={loading} size="small" wrapperClassName="td-download-loading">
       <div
-        {...rest}
         onClick={click}
-        className="td-download-wrap"
-      />
+        className={cx('td-download-wrap', {
+          'td-download-wrap-disabled': disabled,
+        })}
+      >
+        {crumbs}
+      </div>
     </Spin>
   );
 };
