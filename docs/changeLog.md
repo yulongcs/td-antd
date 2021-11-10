@@ -7,6 +7,14 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.12.2
+
+`2021-11-10`
+
+- DownloadBlob
+  - 新增属性 disabled
+  - 🐞 修复子组件的 onClick 触发的问题
+
 ### 🚀 2.12.1
 
 `2021-11-08`
