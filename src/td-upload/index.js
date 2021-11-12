@@ -196,7 +196,8 @@ class TdUpload extends React.PureComponent {
       return this._getBase64(file, files);
     }
 
-    return false;
+    // 校验错误的文件不写入到 Upload.files 中
+    return Upload.LIST_IGNORE;
   };
 
   // 获取文件类型集合
