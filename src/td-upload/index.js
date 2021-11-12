@@ -195,7 +195,7 @@ class TdUpload extends React.PureComponent {
     if (check) {
       return this._getBase64(file, files);
     }
-    this.setStateFile(files);
+
     return false;
   };
 

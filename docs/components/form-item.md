@@ -14,7 +14,7 @@ title: FormItem
  */
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Switch } from 'antd';
-import { FormItem, SelectList, SelectSearch } from 'td-antd';
+import { FormItem, SelectList, SelectSearch, TdUpload } from 'td-antd';
 
 const tailLayout = {
   wrapperCol: {
@@ -130,6 +130,14 @@ export default () => {
           url="https://randomuser.me/api/?results="
           afterFetch={res => res.results}
         />
+      </FormItem>
+      <FormItem
+        label="文件"
+        name="files"
+        valuePropName="fileList"
+        getValueFromEvent={e => (!e || !e.fileList) ? e : e.fileList}
+      >
+        <TdUpload maxFiles={1} />
       </FormItem>
       <FormItem {...tailLayout}>
         <Button htmlType="submit">提交</Button>
