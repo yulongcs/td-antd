@@ -31,5 +31,5 @@ export default defineConfig({
       changeOrigin: true,
     },
   },
-  // mfsu: { production: { output: '.mfsu-production' } },
+  mfsu: { production: { output: '.mfsu-production' } },
 });
