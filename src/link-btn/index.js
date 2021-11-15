@@ -1,6 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Spin } from 'antd';
+import redirect from '../redirect';
 import './index.less';
 
 export default (props) => {
@@ -9,6 +10,7 @@ export default (props) => {
     loading = false,
     danger = false,
     className,
+    to,
     ...rest
   } = props;
 
@@ -21,6 +23,7 @@ export default (props) => {
         'td-link-loading': loading,
         'td-link-danger': danger,
       })}
+      onClick={() => to ? redirect(to, null, rest.blank) : rest.onClick()}
     >
       {loading ? <Spin size="small" /> : props.children}
     </button>
