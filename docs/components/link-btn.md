@@ -79,14 +79,14 @@ export default () => {
 ```jsx
 /**
  * title: router 跳转
- * desc: 结合 dva.router 进行路由跳转。设置 blank="_blank" 会新开页面。
+ * desc: 结合 dva.router 进行路由跳转。设置 target="_blank" 会新开页面。
  */
 import React from 'react';
 import { LinkBtn } from 'td-antd';
 
 export default () => {
   return(
-    <LinkBtn to="/change-log" blank="_blank">查看更新信息</LinkBtn>
+    <LinkBtn to="/change-log" target="_blank">查看更新信息</LinkBtn>
   );
 }
 ```

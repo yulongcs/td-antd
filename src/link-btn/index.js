@@ -23,7 +23,7 @@ export default (props) => {
         'td-link-loading': loading,
         'td-link-danger': danger,
       })}
-      onClick={() => to ? redirect(to, null, rest.blank) : rest.onClick()}
+      onClick={() => to ? redirect(to, null, rest.target) : rest.onClick()}
     >
       {loading ? <Spin size="small" /> : props.children}
     </button>

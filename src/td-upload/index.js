@@ -154,13 +154,16 @@ class TdUpload extends React.PureComponent {
 
     // 上传文件的类型存在时，文件类型校验
     if (file.type) {
-      const replaceText = file.type.substring(file.type.lastIndexOf('/'), file.type.length);
-      const accept = file.type.replace(replaceText, '/*');
       const accepts = this.getAcceptString();
 
-      if (accepts && !accepts.includes(accept)) {
-        message.error(ERROR_2);
-        check = false;
+      if (!accepts.includes(file.type)) {
+        const replaceText = file.type.substring(file.type.lastIndexOf('/'), file.type.length);
+        const accept = file.type.replace(replaceText, '/*');
+
+        if (accepts && !accepts.includes(accept)) {
+          message.error(ERROR_2);
+          check = false;
+        }
       }
     }
 
