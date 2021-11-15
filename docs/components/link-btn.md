@@ -76,6 +76,21 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: router 跳转
+ * desc: 结合 dva.router 进行路由跳转。设置 blank="_blank" 会新开页面。
+ */
+import React from 'react';
+import { LinkBtn } from 'td-antd';
+
+export default () => {
+  return(
+    <LinkBtn to="/change-log" blank="_blank">查看更新信息</LinkBtn>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|
@@ -83,3 +98,4 @@ export default () => {
 |className|样式类|String|-|
 |loading|设置按钮载入状态|Boolean|false|
 |danger|设置危险按钮|Boolean|false|
+|to|dva.router 的路由跳转|String|-|2.12.4|
