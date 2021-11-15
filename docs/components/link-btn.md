@@ -98,4 +98,4 @@ export default () => {
 |className|样式类|String|-|
 |loading|设置按钮载入状态|Boolean|false|
 |danger|设置危险按钮|Boolean|false|
-|to|dva.router 的路由跳转|String|-|2.12.4|
+|to|dva.router 的路由跳转|String|-|>=2.12.5|
