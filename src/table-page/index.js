@@ -56,14 +56,10 @@ export default forwardRef((props, ref) => {
         ...requestApi,
         ...requestOptions,
         onSuccess:({ dataObject }) => {
-          if (success) {
-            // 当回调函数 success 存在时，必须返回用于渲染的数据
-            setData(success(dataObject));
-          } else {
-            const resObj = Array.isArray(dataObject) ? { values: dataObject } : dataObject;
-            setData(resObj);
-          }
           setKeywords(params);
+          const returnData = success ? success(dataObject, params) : dataObject;
+
+          setData(Array.isArray(returnData) ? { values: returnData } : returnData);
         },
       }).finally(() => {
         setLoading(false);
