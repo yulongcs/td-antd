@@ -52,6 +52,26 @@ export default forwardRef((props, ref) => {
     }
   };
 
+  const renderContent = () => {
+    const childrenContent = children && children(fileObject);
+
+    if (childrenContent) {
+      return childrenContent;
+    }
+
+    return (
+      <Spin spinning={loading} tip="图片加载中...">
+        <img
+          alt={tip}
+          src={url}
+          onLoad={onLoad}
+          onError={onError}
+          className="td-img-modal-img"
+        />
+      </Spin>
+    );
+  };
+
   return (
     <Modal
       width={700}
@@ -61,17 +81,7 @@ export default forwardRef((props, ref) => {
       title={showDownLoad ? <LinkBtn onClick={onClick}>下载</LinkBtn>: '预览'}
       {...rest}
     >
-      {children ? children(fileObject) : (
-        <Spin spinning={loading} tip="图片加载中...">
-          <img
-            alt={tip}
-            src={url}
-            onLoad={onLoad}
-            onError={onError}
-            className="td-img-modal-img"
-          />
-        </Spin>
-      )}
+      {renderContent()}
     </Modal>
   );
 })

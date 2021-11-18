@@ -471,7 +471,7 @@ export default () => {
 ```jsx
 /**
  * title: 自定义预览框内容
- * desc: 使用 previewModalProps 进行自定义
+ * desc: 使用 previewModalProps.children 进行自定义渲染，当返回 null 时，自动进行图片预览
  */
 import React, { useState } from 'react';
 import { TdUpload } from 'td-antd';
@@ -479,9 +479,14 @@ import { Modal } from 'antd';
 
 const files = [
   {
-    uid: 122334455,
+    uid: '511d26',
     name: '1.jpg',
     url: '/demo.jpg',
+  },
+  {
+    uid: '0b6fb9',
+    name: 'demo.docx',
+    url: '/demo.docx',
   }
 ];
 
@@ -491,15 +496,13 @@ export default () => {
       initial={files}
       filterOptions={(item, index) => ({...item})}
       previewModalProps={{
-        children: (file) => (
-          <>
-            uid: {file.uid}
-            <br />
-            fileName：{file.name}
-            <br />
-            filePath: {file.url}
-          </>
-        ),
+        children: (file) => {
+          if (file.name?.includes('docx')) {
+            return '.docx文件无法预览，请下载查看';
+          }
+
+          return null;
+        },
       }}
     />
   );

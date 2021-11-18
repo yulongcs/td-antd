@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.12.9
+
+`未发布`
+
+- TdUpload
+  - 优化 previewModalProps.children 的逻辑，使其扩展性更好
+
 ### 🚀 2.12.8
 
 `2021-11-18`
