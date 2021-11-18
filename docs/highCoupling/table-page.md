@@ -23,8 +23,14 @@ localConfig.config({ request });
 export default () => {
   return (
     <TablePage
+      line={false}
       url="/app/mock/288350/tablepage/001.json"
       paginationProps={{ showQuickJumper: true }}
+      success={(res, keywords) => {
+        console.log(keywords);
+      
+        return res;
+      }}
       columns={[
         {
           title: '姓名',
@@ -182,7 +188,7 @@ export default () => {
 |searchFormProps|SearchForm 组件的属性|Object|{}|
 |searchReturn|自定义搜索栏的回调函数，必须返回结果对象给组件以供搜索使用|Function(values)|-|
 |defaultParams|默认参数，一般是不变的|Object|{}|
-|success|请求成功后的回调函数，必须返回用于列表渲染的数据，包含 { values, pageNum, pageSize, totalCnt }|Function(res)|-|
+|success|请求成功后的回调函数，必须返回用于列表渲染的数据，包含 { values, pageNum, pageSize, totalCnt }|Function(res, keywords)|-|
 |extra|在搜索栏和列表中间的额外节点项|ReactNode/String|-|
 |pageNumField|表格翻页时页数的请求参数名|String|pageNum|
 |pageSizeField|表格翻页时每页条数的请求参数名|String|pageSize|

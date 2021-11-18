@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { Descriptions, Spin } from 'antd';
 import typeOf from '../tools/typeOf';
 import localConfig from '../local-config';
