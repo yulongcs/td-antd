@@ -443,10 +443,6 @@ const files = [
 
 export default () => {
   const [list, setList] = useState(files);
-  
-  const onClick = () => {
-    setList(files2);
-  };
 
   const beforeDownload = () => {
     return new Promise((resolve, reject) => {
@@ -463,15 +459,49 @@ export default () => {
   }
 
   return (
-    <>
-      <button onClick={onClick}>更换</button>
-      <br /><br />
-      <TdUpload.Preview
-        initial={list}
-        filterOptions={(item, index) => ({...item})}
-        beforeDownload={beforeDownload}
-      />
-    </>
+    <TdUpload.Preview
+      initial={list}
+      filterOptions={(item, index) => ({...item})}
+      beforeDownload={beforeDownload}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 自定义预览框内容
+ * desc: 使用 previewModalProps 进行自定义
+ */
+import React, { useState } from 'react';
+import { TdUpload } from 'td-antd';
+import { Modal } from 'antd';
+
+const files = [
+  {
+    uid: 122334455,
+    name: '1.jpg',
+    url: '/demo.jpg',
+  }
+];
+
+export default () => {
+  return (
+    <TdUpload.Preview
+      initial={files}
+      filterOptions={(item, index) => ({...item})}
+      previewModalProps={{
+        children: (file) => (
+          <>
+            uid: {file.uid}
+            <br />
+            fileName：{file.name}
+            <br />
+            filePath: {file.url}
+          </>
+        ),
+      }}
+    />
   );
 }
 ```
@@ -549,6 +579,7 @@ export default () => {
 |show|组件是否显示|Boolean|true|2.2.0|
 |showDownLoad|预览组件是否展示下载按钮|Boolean|true|2.8.0|
 |beforeDownload|预览组件下载前事件，必须返回 Promise 对象|Function|-|2.9.7|
+|previewModalProps|预览浮层的Modal属性|Object|-|2.12.8|
 
 ### listType="fixed-card"
 

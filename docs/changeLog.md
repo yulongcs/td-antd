@@ -7,7 +7,15 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.12.6
+### 🚀 2.12.8
+
+`2021-11-18`
+
+- TdUpload
+  - 新增属性 previewModalProps
+  - 优化预览浮层中下载文件时，文件名不正确的问题
+
+### 🚀 2.12.7
 
 `2021-11-15`
 

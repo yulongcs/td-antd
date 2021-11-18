@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import { Upload, Button, message } from 'antd';
-import ImgModal from './img-modal';
+import FileViewModal from './file-view-modal';
 import onInitialFiles from './onInitialFiles';
 import typeOf from '../tools/typeOf';
 import ACCEPT from './accept';
@@ -39,11 +39,12 @@ class TdUpload extends React.PureComponent {
     showDownLoad: true, // 是否保留下载入口
     beforeDownload: () => {}, // 下载控制
     fileTypes: [],
+    previewModalProps: {}, // 预览浮层的属性
   };
 
   state = {
     fileList: onInitialFiles(this.props.initial, this.props.filterOptions),
-    previewImg: '',
+    fileObject: {}, // 图片预览下载的数据源
     loading: false,
   };
 
@@ -345,9 +346,9 @@ class TdUpload extends React.PureComponent {
   };
 
   render() {
-    const { previewImg, loading } = this.state;
+    const { fileObject, loading } = this.state;
     const {
-      tip, isPreview, wrapClassName, hideRemoveBtn, hidden, show, listType, showDownLoad, beforeDownload,
+      tip, isPreview, wrapClassName, hideRemoveBtn, hidden, show, listType, showDownLoad, beforeDownload, previewModalProps,
     } = this.props;
 
     if (show) {
@@ -370,7 +371,7 @@ class TdUpload extends React.PureComponent {
             onPreview={isPreview && ((file) => {
               if (file.url) {
                 this.setState({
-                  previewImg: file.url,
+                  fileObject: file,
                 }, () => {
                   this.imgRef.show();
                 });
@@ -380,7 +381,18 @@ class TdUpload extends React.PureComponent {
             {this.renderUploadChildren()}
           </Upload>
           {tip && <div className="td-upload-tip">{tip}</div>}
-          <ImgModal ref={r => {this.imgRef = r}} url={previewImg} beforeDownload={beforeDownload} showDownLoad={showDownLoad} />
+          <FileViewModal
+            ref={r => {this.imgRef = r}}
+            fileObject={fileObject}
+            beforeDownload={beforeDownload}
+            showDownLoad={showDownLoad}
+            afterClose={() => {
+              this.setState({
+                fileObject: {},
+              });
+            }}
+            {...previewModalProps}
+          />
         </div>
       );
     }
