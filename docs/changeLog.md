@@ -7,6 +7,12 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.13.0
+
+`2021-12-01`
+
+- 新增组件：[Clipboard](/components/clipboard)
+- 废弃组件：SelectMap
 
 ### 🚀 2.12.9
 

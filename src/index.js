@@ -7,7 +7,6 @@ export { default as ModalBox } from './modal-box';
 export { default as DrawerBox } from './drawer-box';
 export { default as PopoverBox } from './popover-box';
 export { default as SearchForm } from './search-form';
-export { default as SelectMap } from './select-map';
 export { default as SelectSearch } from './select-search';
 export { default as TdInputNumber } from './td-input-number';
 export { default as toast } from './toast';
@@ -21,6 +20,7 @@ export { default as Ellipsis } from './ellipsis';
 export { default as InnerHtml } from './inner-html';
 export { default as DocumentHidden } from './document-hidden';
 export { default as NoCopyBox } from './no-copy-box';
+export { default as Clipboard } from './clipboard';
 
 // 高耦合组件
 export { default as localConfig } from './local-config';

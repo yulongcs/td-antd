@@ -38,6 +38,6 @@ function(fn, delay, dep)
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|fn|需要执行的函数|function|-|
+|fn|需要执行的函数|Function|-|
 |delay|延迟时间，毫秒数|Number|600|
 |dep|依赖项，改变时会重新返回回调函数|Array|[]|
