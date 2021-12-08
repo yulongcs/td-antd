@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
-import { Upload, Button, message } from 'antd';
+import { Upload, Button, message, Spin } from 'antd';
 import FileViewModal from './file-view-modal';
 import onInitialFiles from './onInitialFiles';
 import typeOf from '../tools/typeOf';
@@ -314,39 +314,45 @@ class TdUpload extends React.PureComponent {
 
   // 子内容的渲染
   renderUploadChildren = () => {
-    const { loading, fileList } = this.state;
+    const { fileList } = this.state;
     const {
       btnText, btnProps, listType, extra, fixedStyles, fixedBgImg, children,
     } = this.props;
 
-    if (listType) {
-      if (listType === TEXT_PICTURE_CARD) {
-        return <PlusOutlined />;
-      }
+    if (listType === TEXT_PICTURE_CARD) {
+      return (
+        <Spin spinning={this.getLoading()}>
+          <PlusOutlined />
+        </Spin>
+      );
+    }
 
-      if (listType === TEXT_FIXED_CARD) {
-        return (
+    if (listType === TEXT_FIXED_CARD) {
+      return (
+        <Spin spinning={this.getLoading()}>
           <div style={fixedStyles} className="td-upload-fixed">
             {
               (!fixedBgImg && fileList.length === 0)
-              ? <PlusOutlined />
-              : <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt={ERROR_3} className="td-upload-fixed-img" />
+                ? <PlusOutlined />
+                : <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt={ERROR_3} className="td-upload-fixed-img" />
             }
           </div>
-        )
-      }
+        </Spin>
+      );
     }
 
     return (
       <React.Fragment>
-        {children || <Button loading={loading} {...btnProps}>{btnText}</Button>}
+        {children || <Button {...btnProps} loading={this.getLoading()}>{btnText}</Button>}
         {extra}
       </React.Fragment>
     )
   };
 
+  getLoading = () => this.state.loading || this.props.btnProps?.loading || false;
+
   render() {
-    const { fileObject, loading } = this.state;
+    const { fileObject } = this.state;
     const {
       tip, isPreview, wrapClassName, hideRemoveBtn, hidden, show, listType, showDownLoad, beforeDownload, previewModalProps,
     } = this.props;
@@ -362,7 +368,7 @@ class TdUpload extends React.PureComponent {
         >
           <Upload
             {...this.props}
-            disabled={loading}
+            disabled={this.getLoading()}
             accept={this.getAcceptString()}
             fileList={this.state.fileList}
             beforeUpload={this.beforeUpload}

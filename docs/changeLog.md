@@ -9,10 +9,12 @@ order: 1
 
 ### 🚀 2.13.0
 
-`2021-12-01`
+`2021-12-08`
 
 - 新增组件：[Clipboard](/components/clipboard)
 - 废弃组件：SelectMap
+- TdUpload
+  - 优化 loading 状态
 
 ### 🚀 2.12.9
 
