@@ -128,7 +128,7 @@ export default () => {
 
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
-|type|需要使用 DatePicker 的子组件时，填写子组件名称，如：RangePicker|string|-|
+|type|需要使用 DatePicker 的子组件时，填写子组件名称，如：RangePicker|String|-|
 |format|需要转化的时间格式，可以参考 [moment.js](http://momentjs.cn/docs/)|String|`YYYY-MM-DD`|
 
 ## PS

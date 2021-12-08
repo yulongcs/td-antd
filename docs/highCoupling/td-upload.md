@@ -555,6 +555,46 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: loading状态
+ * desc: 当文件上传时，或者 btnProps.loading 为 true 时
+ */
+import React, { useState } from 'react';
+import { Switch } from 'antd';
+import { TdUpload } from 'td-antd';
+
+export default () => {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <>
+      <Switch
+        checkedChildren="开启"
+        unCheckedChildren="关闭"
+        onChange={checked => { setLoading(checked) }}
+      />
+      <br /><br />
+      <TdUpload
+        btnProps={{ loading }}
+      />
+      <br /><br />
+      <TdUpload
+        btnProps={{ loading }}
+        btnText="上传"
+        listType="picture-card"
+      />
+      <br /><br />
+      <TdUpload
+        btnProps={{ loading }}
+        listType="fixed-card"
+        fixedStyles={{width: 300, height: 200}}
+      />
+    </>
+  );
+}
+```
+
 ## API
 
 |参数|说明|类型|默认值|版本号|
