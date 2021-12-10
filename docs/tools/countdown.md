@@ -9,6 +9,9 @@ title: countdown
 ## 代码演示
 
 ```jsx
+/**
+ * title: 基础用法
+ */
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { tools } from 'td-antd';
@@ -37,6 +40,52 @@ export default () => {
     >
       {count !== 10 ? `${count}s` : '开始倒计时'}
     </Button>
+  );
+}
+```
+
+```jsx
+/**
+ * title: 中断
+ */
+import React, { useState, useRef } from 'react';
+import { Button } from 'antd';
+import { tools } from 'td-antd';
+
+const { countdown } = tools;
+
+export default () => {
+  const timer = useRef();
+  const [count, setCount] = useState(10);
+
+  return (
+    <>
+      <Button
+        style={{ width: 120 }}
+        disabled={count !== 10}
+        onClick={() => {
+          timer.current = countdown({
+            defaultCount: count,
+            callback: (nowCount, defaultCount) => {
+              console.log(nowCount)
+              setCount(nowCount);
+              if (nowCount === 0) {
+                setCount(defaultCount);
+              }
+            },
+          });
+        }}
+      >
+        {count !== 10 ? `${count}s` : '开始倒计时'}
+      </Button>
+      <br /><br />
+      <Button
+        onClick={() => {
+          countdown.clear(timer.current)
+        }}
+      >中断</Button>
+    </>
+
   );
 }
 ```

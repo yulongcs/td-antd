@@ -21,6 +21,7 @@ export { default as InnerHtml } from './inner-html';
 export { default as DocumentHidden } from './document-hidden';
 export { default as NoCopyBox } from './no-copy-box';
 export { default as Clipboard } from './clipboard';
+export { default as CA } from './ca';
 
 // 高耦合组件
 export { default as localConfig } from './local-config';

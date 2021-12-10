@@ -4,29 +4,22 @@ function countdown(props) {
     defaultCount = 60,
   } = props;
   let nowCount = defaultCount;
-  let timer = null;
+  let timer = setInterval(() => {
+    nowCount --;
+    callback(nowCount, defaultCount);
 
-  const clear = () => {
-    clearTimeout(timer);
-    timer = null;
-  };
-
-  function down() {
-    clear();
-    // 当相等时，会立即执行一次
-    if (nowCount === defaultCount) {
-      nowCount --;
-      callback(nowCount, defaultCount);
-      down();
-    } else if (nowCount <= defaultCount) {
-      timer = setTimeout(() => {
-        nowCount--;
-        nowCount > 0 ? down() : clear();
-        callback(nowCount, defaultCount);
-      }, 1000)
+    if (nowCount <= 0) {
+      nowCount = defaultCount;
+      clearInterval(timer);
+      timer = null;
     }
-  }
-  down();
+  }, 1000);
+
+  return timer;
 }
 
+countdown.clear = (timer) => {
+  clearInterval(timer);
+  timer = null;
+};
 export default countdown;
