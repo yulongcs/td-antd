@@ -1,5 +1,5 @@
 import React, { useState, useImperativeHandle, forwardRef } from 'react';
-import { Drawer, Button } from 'antd';
+import { Drawer, Button, Spin } from 'antd';
 
 export default forwardRef((props, ref) => {
   const {
@@ -12,6 +12,7 @@ export default forwardRef((props, ref) => {
     cancelButtonProps = {},
     buttonPosition = 'right',
     confirmLoading = false,
+    children,
     ...rest
   } = props;
   const [visible, setVisible] = useState(false);
@@ -54,6 +55,10 @@ export default forwardRef((props, ref) => {
         }
       }}
       {...rest}
-    />
+    >
+      <Spin spinning={confirmLoading}>
+        {children}
+      </Spin>
+    </Drawer>
   );
 })

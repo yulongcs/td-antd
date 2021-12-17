@@ -1,5 +1,5 @@
 import React, { useState, useImperativeHandle, forwardRef } from 'react';
-import { Modal } from 'antd';
+import { Modal, Spin } from 'antd';
 import classNames from 'classnames';
 import './index.less';
 
@@ -11,6 +11,7 @@ export default forwardRef((props, ref) => {
     bodyStyle,
     wrapClassName,
     buttonPosition = 'right',
+    children,
     ...rest
   } = props;
   const [visible, setVisible] = useState(false);
@@ -51,6 +52,10 @@ export default forwardRef((props, ref) => {
         ...bodyStyle,
       }}
       {...rest}
-    />
+    >
+      <Spin spinning={!!rest.confirmLoading}>
+        {children}
+      </Spin>
+    </Modal>
   );
 })

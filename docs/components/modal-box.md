@@ -26,6 +26,7 @@ export default () => {
         title="demo"
         ref={ref}
         onOk={() => { alert('ok') }}
+        confirmLoading
       >
         <div style={{ height: 1000 }}>2222</div>
       </ModalBox>
