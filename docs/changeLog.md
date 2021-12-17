@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.13.2
+
+`2021-12-17`
+
+- SelectList
+  - 对外暴露 focusedOnce 对象，可用于重置 onFocus 状态
+
 ### 🚀 2.13.1
 
 `2021-12-10`

@@ -60,6 +60,7 @@ function SelectList<DataType extends Record<string, string> | string> (
 
   useImperativeHandle(ref, () => ({
     fetchList,
+    focusedOnce,
   }));
 
   useEffect(() => {

@@ -277,5 +277,6 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |fetchList|通常用于重置数据|Function(param, action)|-|
+|focusedOnce|当 focusedOnce.current 设置为 false 时，可再次触发 onFocus|Object|-|
 
 > 注意：需要 localConfig.config 设置 request 后才能正常使用
