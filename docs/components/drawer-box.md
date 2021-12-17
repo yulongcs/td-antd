@@ -12,12 +12,13 @@ title: DrawerBox
 /**
  * title: 基础用法
  */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button } from 'antd';
 import { DrawerBox } from 'td-antd';
 
 export default () => {
   const ref = useRef();
+  const [loading, setLoading] = useState(true);
 
   return (
     <React.Fragment>
@@ -28,6 +29,7 @@ export default () => {
         title="demo"
         placement="left"
         buttonPosition="center"
+        confirmLoading={loading}
         onOk={() => {
           alert('ok')
           ref.current.visible(false)
@@ -88,7 +90,7 @@ export default () => {
 |cancelText|取消按钮文字|ReactNode|取消|
 |okButtonProps|ok 按钮 props|[ButtonProps](https://ant.design/components/button-cn/#API)||
 |cancelButtonProps|cancel 按钮 props|[ButtonProps](https://ant.design/components/button-cn/#API)||
-|confirmLoading|确定按钮 loading|Boolean|false|
+|confirmLoading|确定按钮和内容部分的 loading|Boolean|false|
 |buttonPosition|页脚按钮的位置|left、center、right|'right'|
 
 ## Ref
