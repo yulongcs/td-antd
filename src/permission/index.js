@@ -1,17 +1,20 @@
 import React from 'react';
 import { Button } from 'antd';
 import redirect from '../redirect';
+import deepGet from '../tools/deepGet';
+import typeOf from '../tools/typeOf';
 import localConfig from '../local-config';
 
 const Permission = (props) => {
   const {
     code = '',
+    keyword = 'permissions',
     homePath = '/welcome', // 首页地址
     isShow = false, // 是否展示 403 权限提示
     children = null, // 在无组件返回时，必须返回null，否则 react 报错
   } = props;
 
-  if (is(code)) {
+  if (is(code, keyword)) {
     return children;
   }
 
@@ -36,28 +39,18 @@ const Permission = (props) => {
 const is = (code, keyword = 'permissions') => {
   const { permission, appStore } = localConfig.newInstance(); // 获取实例
 
-  if (permission && appStore) {
-    if (!code) {
-      return true;
+  if (permission && appStore && code) {
+    const values = deepGet(appStore.getState().global, keyword);
+
+    if (typeOf(values, 'String') && typeOf(code, 'String')) {
+      return values === code;
     }
 
-    const arr = appStore.getState().global[keyword]; // 系统返回的权限码内容
-
-    if (arr) {
-      // 当 code 是数组时
-      if (code instanceof Array) {
-        const isTrue = arr.some(item => code.includes(item));
-
-        if (isTrue) {
-          return true;
-        }
-      }
-
-      // 当 code 为字符串时
-      if (typeof code === 'string' && arr.includes(code)) {
-        return true;
-      }
+    if (typeOf(code, 'Array')) {
+      return values.some(item => code.includes(item))
     }
+
+    return values.includes(code);
   } else {
     return true;
   }
