@@ -1,13 +1,8 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { Descriptions, Spin } from 'antd';
 import typeOf from '../tools/typeOf';
+import deepGet from '../tools/deepGet';
 import localConfig from '../local-config';
-
-// 进行字段的深度识别
-const deepGet = (object, path = '') => {
-  return (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
-    .reduce((o, k) => (o || {})[k], object);
-};
 
 // 渲染值
 const renderValue = ({ dataIndex, nowData, render, defaultValue }) => {
