@@ -21,7 +21,7 @@ const ERROR_3 = '图片加载错误';
 
 class TdUpload extends React.PureComponent {
   static defaultProps = {
-    url: '/file/upload.json',
+    url: '',
     name: 'files',
     isPreview: false,
     btnText: '上传',
@@ -75,7 +75,7 @@ class TdUpload extends React.PureComponent {
 
     return new Promise(async (resolve, reject) => {
       if (formData.get(name)) {
-        const { request } = localConfig.newInstance(); // 获取实例
+        const { request, uploadUrl } = localConfig.newInstance(); // 获取实例
 
         // 将额外的入参注入到 formData 中
         Object.keys(params).forEach(key => {
@@ -84,7 +84,7 @@ class TdUpload extends React.PureComponent {
 
         this.setState({ loading: true });
         const res = await request({
-          url,
+          url: url || uploadUrl,
           method: 'POST',
           body: formData,
         }).finally(() => {

@@ -37,3 +37,4 @@ const instance = localConfig.newInstance();
 |locale|语言，支持 `en/zh`|String|-|
 |permission|是否开启权限校验，针对 Permission 组件|Boolean|-|
 |uploadFilterOptions|TdUpload 的 filterOptions 属性的全局配置方法|Function|-|
+|uploadUrl|TdUpload 的 url 属性的全局配置方法|String|-|
