@@ -22,6 +22,22 @@ title: Permission
 |code|一组权限码|String/Array|-|
 |keyword|appStore 中 global 存储的字段名，支持嵌套写法|String|'permissions'|
 
+## Permission.useRole()
+
+获取系统角色
+
+|实例值|说明|
+|:--|:--|
+|SA|超级管理员|
+|PM|平台|
+|EP|企业|
+|AG|代理商|
+|ME|医疗机构|
+|AR|代表/MSL|
+|MW|医生/专家|
+|PERSONAL|AR 和 MW 的集合|
+|roleType|当前角色|
+
 ### demo
 
 ```
@@ -30,4 +46,14 @@ Permission.is(['dept_del', 'mgr_page']);
 
 // 验证当前账号是否为 cdd
 Permission.is(['cdd', 'info.account']);
+
+// 获取角色
+const { PM, SA, EP } = Permission.useRole();
+
+if (EP) {
+  // 如果是企业...
+}
+if (PM) {
+  // 如果是平台...
+}
 ```

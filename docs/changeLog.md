@@ -7,6 +7,15 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.13.5
+
+`2021-12-27`
+
+- Permission
+  - 新增 useRole 方法
+- TdUpload
+  - 新增对 localConfig.config.uploadUrl 的支持
+
 ### 🚀 2.13.4
 
 `2021-12-21`

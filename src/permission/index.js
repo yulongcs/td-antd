@@ -56,6 +56,25 @@ const is = (code, keyword = 'permissions') => {
   }
 };
 
+const useRole = () => {
+  const { appStore } = localConfig.newInstance(); // 获取实例
+
+  const { roleType } = appStore?.getState().global.info;
+
+  return {
+    SA: roleType === 'SUPPER',                    // 超级管理员
+    PM: roleType === 'PLATFORM',                  // 平台
+    EP: roleType === 'ENTERPRISE',                // 企业
+    AG: roleType === 'AGENT',                     // 代理商
+    ME: roleType === 'MEDICINE',                  // 医疗机构
+    AR: roleType === 'ACADEMIC_REPRESENTATIVE',   // 代表/MSL
+    MW: roleType === 'MEDICAL_WORKER',            // 医生/专家
+    PERSONAL: ['ACADEMIC_REPRESENTATIVE', 'MEDICAL_WORKER'].includes(roleType),
+    roleType,
+  };
+};
+
 Permission.is = is;
+Permission.useRole = useRole;
 
 export default Permission;
