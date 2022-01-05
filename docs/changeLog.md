@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.13.6（未发布）
+
+`2022-01-05`
+
+- ModalBox、DrawerBox
+  - 优化 loading 展示方式，使其支持 Spin.tip 方法
+
 ### 🚀 2.13.5
 
 `2021-12-27`

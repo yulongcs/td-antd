@@ -18,7 +18,7 @@ import { DrawerBox } from 'td-antd';
 
 export default () => {
   const ref = useRef();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <React.Fragment>
@@ -31,11 +31,15 @@ export default () => {
         buttonPosition="center"
         confirmLoading={loading}
         onOk={() => {
-          alert('ok')
-          ref.current.visible(false)
+          alert('ok');
+          ref.current.visible(false);
+        }}
+        onCancel={() => {
+          ref.current.visible(false);
+          setLoading(false);
         }}
       >
-        <div style={{ height: 1000 }}>2222</div>
+        <Button type="primary" onClick={() => { setLoading('内容加载中...') }}>Loading</Button>
       </DrawerBox>
     </React.Fragment>
   );
