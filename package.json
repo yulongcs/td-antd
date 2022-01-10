@@ -64,7 +64,7 @@
   "peerDependencies": {
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
-    "antd": ">=4.",
+    "antd": ">=4.x",
     "qs": ">=6.5.0"
   },
   "dependencies": {
