@@ -56,7 +56,7 @@ export default forwardRef((props, ref) => {
       }}
       {...rest}
     >
-      <Spin spinning={confirmLoading}>
+      <Spin spinning={confirmLoading} tip={confirmLoading}>
         {children}
       </Spin>
     </Drawer>

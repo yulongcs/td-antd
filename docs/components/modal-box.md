@@ -12,12 +12,13 @@ title: ModalBox
 /**
  * title: 基础用法
  */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button } from 'antd';
 import { ModalBox, LinkBtn } from 'td-antd';
 
 export default () => {
   const ref = useRef();
+  const [loading, setLoading] = useState(false);
 
   return(
     <React.Fragment>
@@ -25,10 +26,17 @@ export default () => {
       <ModalBox
         title="demo"
         ref={ref}
-        onOk={() => { alert('ok') }}
-        confirmLoading
+        confirmLoading={loading}
+        onOk={() => {
+          alert('ok');
+          ref.current.visible(false);
+        }}
+        onCancel={() => {
+          ref.current.visible(false);
+          setLoading(false);
+        }}
       >
-        <div style={{ height: 1000 }}>2222</div>
+        <Button type="primary" onClick={() => { setLoading('内容加载中...') }}>Loading</Button>
       </ModalBox>
     </React.Fragment>
   );
