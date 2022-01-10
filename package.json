@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
-    "antd": "^4.x",
+    "antd": "4.17.x",
     "classnames": "^2.2.6",
     "dva": "2.6.0-beta.20",
     "lodash": "^4.17.15",
