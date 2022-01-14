@@ -279,7 +279,7 @@ export default () => {
 |required|表单项是否为必填|Boolean|true|
 |message|非空校验错误文案|String|'必填项'|
 |validatorCallback|自定义校验规则，必须返回callback('错误码')|Function(value, callback)|-|
-|children|子节点| ReactNode |`<Input/>`|
+|children|子节点| ReactNode |[Input](https://ant-design.gitee.io/components/input-cn/)|
 |extraRules|额外的规则，用法同 rules|Array / Object|-|
 |inputProps|Input 组件的属性 API|Object|{ }|
 |itemType|申明组件类型，普通组件(default) / Number组件(number)|String|default|

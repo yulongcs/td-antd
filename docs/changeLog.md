@@ -10,8 +10,8 @@ order: 1
 ### 🚀 2.13.7
 
 - FormItem
-  - 优化校验顺序，现在会先校验 extraRules，再校验 validatorCallback
-  - 🐞 修复 validatorCallback 异步校验失败的问题
+  - 优化校验顺序，现在会先校验 extraRules，再校验 validatorCallback；[用例](/components/form-item#form-item-demo-1)
+  - 🐞 修复 validatorCallback 异步校验失败的问题；[用例](/components/form-item#form-item-demo-2)
 
 ### 🚀 2.13.6
 
