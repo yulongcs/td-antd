@@ -8,7 +8,7 @@ export default (props) => {
     className,
     children,
     required = true,
-    validatorCallback = () => {},
+    validatorCallback,
     extraRules = [],
     inputProps = {},
     itemType = 'default',
@@ -21,10 +21,8 @@ export default (props) => {
     ...rest
   } = props;
 
-  const rules = [{ required, message }, {
+  const rules = [{ required, message }].concat(extraRules).concat({
     validator: (rule, value, callback) => {
-      validatorCallback(value, callback, rule);
-
       // 当类型为数字类型时，则内置校验规则
       if (itemType === 'number') {
         if (nonZero && +value === 0) {
@@ -43,9 +41,13 @@ export default (props) => {
         }
       }
 
-      callback();
+      if (validatorCallback) {
+        validatorCallback(value, callback, rule);
+      } else {
+        callback();
+      }
     },
-  }].concat(extraRules);
+  });
 
   if (show) {
     return (
