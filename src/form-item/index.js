@@ -21,7 +21,7 @@ export default (props) => {
     ...rest
   } = props;
 
-  const rules = [{ required, message }, {
+  const rules = [{ required, message }].concat(extraRules).concat({
     validator: (rule, value, callback) => {
       validatorCallback(value, callback, rule);
 
@@ -45,7 +45,7 @@ export default (props) => {
 
       callback();
     },
-  }].concat(extraRules);
+  });
 
   if (show) {
     return (

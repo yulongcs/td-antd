@@ -147,6 +147,64 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 校验顺序
+ * desc: 先校验 extraRules，再校验 validatorCallback
+ */
+import React from 'react';
+import { Form, Button } from 'antd';
+import { FormItem } from 'td-antd';
+
+const tailLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 7,
+    },
+  },
+};
+
+export default () => {
+  const [form] = Form.useForm();
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+  };
+  
+  return (
+    <Form
+      form={form}
+      onFinish={onFinish}
+      labelCol={{ span: 7 }}
+      wrapperCol={{ span: 10 }}
+    >
+      <FormItem
+        label="手机号"
+        name="phone"
+        validateFirst
+        inputProps={{ placeholder: '请输入手机号' }}
+        extraRules={{
+          pattern: /^1[3456789]\d{9}$/,
+          message: '手机号格式不正确',
+        }}
+        validatorCallback={(value, callback) => {
+          if (value !== '13666666666') {
+            callback('手机号码应该为 13666666666');
+          }
+        }}
+      />
+      <FormItem {...tailLayout}>
+        <Button htmlType="submit">提交</Button>
+      </FormItem>
+    </Form>
+  );
+}
+```
+
 ## API
 
 支持原 [Form.Item](https://ant-design.gitee.io/components/form-cn/#Form.Item) API
@@ -157,7 +215,7 @@ export default () => {
 |message|非空校验错误文案|String|'必填项'|
 |validatorCallback|自定义校验规则，必须返回callback('错误码')|Function(value, callback)||
 |children|子节点| ReactNode |`<Input/>`|
-|extraRules|额外的规则，用法同 rules|Array / Object|[ ]|
+|extraRules|额外的规则，用法同 rules|Array / Object|-|
 |inputProps|Input 组件的属性 API|Object|{ }|
 |itemType|申明组件类型，普通组件(default) / Number组件(number)|String|default|
 |show|是否显示。当不显示时，不进行字段记录和校验，区别于[hidden](https://ant-design.gitee.io/components/form-cn/#Form.Item)|Boolean|true|2.2.0|
