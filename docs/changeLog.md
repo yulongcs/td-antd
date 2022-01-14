@@ -11,6 +11,7 @@ order: 1
 
 - FormItem
   - 优化校验顺序，现在会先校验 extraRules，再校验 validatorCallback
+  - 🐞 修复 validatorCallback 异步校验失败的问题
 
 ### 🚀 2.13.6
 
