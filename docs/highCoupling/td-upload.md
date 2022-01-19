@@ -349,8 +349,8 @@ export default () => {
 
 ```jsx
 /**
- * title: 图片固定位（单张）
- * desc: 使用 listType="fixed-card"
+ * title: 图片固定位（单张）使用方法1
+ * desc: 使用 listType="fixed-card" 模式；fixedBgImg 设置默认背景；fixedStyles 设置样式，比如控制宽高等；
  */
 import React from 'react';
 import { TdUpload } from 'td-antd';
@@ -360,7 +360,27 @@ export default () => {
     <TdUpload
       listType="fixed-card"
       fixedStyles={{width: 300, height: 200}}
-      // fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
+      fixedBgImg={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'}
+      filterOptions={(item, index) => ({...item, uid: index})}
+    />
+  );
+}
+```
+
+```jsx
+/**
+ * title: 图片固定位（单张）使用方法2
+ * desc: 使用 listType="fixed-card" 模式；fixedDefaultText 设置默认背景文字，同时设置 fixedBgImg 时，该属性无效；
+ */
+import React from 'react';
+import { TdUpload } from 'td-antd';
+
+export default () => {
+  return (
+    <TdUpload
+      listType="fixed-card"
+      fixedStyles={{width: 300, height: 200}}
+      fixedDefaultText="请上传身份证照片"
       filterOptions={(item, index) => ({...item, uid: index})}
     />
   );
@@ -630,6 +650,7 @@ export default () => {
 |:--|:--|:--|:--|
 |fixedStyles|固定上传图片的固定位置样式|Object|-|
 |fixedBgImg|固定上传图片背景图|String|-|
+|fixedDefaultText|默认文案|String/ReactNode|`<PlusOutlined />`|
 
 ### initial
 

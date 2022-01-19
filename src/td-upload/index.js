@@ -316,7 +316,7 @@ class TdUpload extends React.PureComponent {
   renderUploadChildren = () => {
     const { fileList } = this.state;
     const {
-      btnText, btnProps, listType, extra, fixedStyles, fixedBgImg, children,
+      btnText, btnProps, listType, extra, fixedStyles, fixedBgImg, fixedDefaultText = <PlusOutlined />, children,
     } = this.props;
 
     if (listType === TEXT_PICTURE_CARD) {
@@ -333,7 +333,7 @@ class TdUpload extends React.PureComponent {
           <div style={fixedStyles} className="td-upload-fixed">
             {
               (!fixedBgImg && fileList.length === 0)
-                ? <PlusOutlined />
+                ? fixedDefaultText
                 : <img src={fileList.length > 0 ? fileList[0].url : fixedBgImg} alt={ERROR_3} className="td-upload-fixed-img" />
             }
           </div>
