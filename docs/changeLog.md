@@ -7,6 +7,10 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.14.0-alpha.0
+
+- 更新包依赖，使其 antd 的依赖为 >=4.18.0 版本;使用低于该版本的 antd，可能无法到达预期。
+
 
 ### 🚀 2.13.8
 
