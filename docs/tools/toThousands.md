@@ -9,7 +9,7 @@ title: toThousands
 ### 代码演示
 
 ```jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { tools } from 'td-antd';
 
 const { toThousands } = tools;
@@ -44,7 +44,7 @@ function(param1, param2)
 ### 代码演示
 
 ```jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { tools } from 'td-antd';
 
 const { toThousands } = tools;

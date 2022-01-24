@@ -10,6 +10,7 @@ import storageWorker from './storageWorker';
 import useDebounce from './useDebounce';
 import clipboard from './clipboard';
 import typeOf from './typeOf';
+import moneyToChinese from './moneyToChinese';
 
 export default {
   delay,
@@ -24,4 +25,5 @@ export default {
   objectToString,
   getUrlParameter,
   genNonDuplicateID,
+  moneyToChinese,
 };
