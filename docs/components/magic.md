@@ -20,6 +20,7 @@ import { Magic } from 'td-antd';
 export default () => {
   const [loading, setLoading] = useState(false);
   const [itemLoading, setItemLoading] = useState(false);
+  const [defaultCollapsed, setDefaultCollapsed] = useState(false);
   
   useEffect(() => {
     if (loading) {
@@ -36,6 +37,12 @@ export default () => {
       }, 2000)
     }
   }, [itemLoading])
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setDefaultCollapsed(true);
+    }, 3000)
+  }, [])
 
   return (
     <Magic
@@ -53,8 +60,8 @@ export default () => {
       <Magic.Item
         isCollapsed
         // title="项目A"
-        titleExtra="自定义title"
-        defaultCollapsed={false}
+        titleExtra="自定义title，3s后自动展开"
+        defaultCollapsed={defaultCollapsed}
         extra={<Button type="primary">新增</Button>}
         footer={<Button type="primary" onClick={() => { setLoading(true) }}>全局loading</Button>}
       >
@@ -209,4 +216,4 @@ export default () => {
 |boxShadow|该权限大于父组件属性|Boolean|true|
 |itemKey|组件的唯一标示|String/Number|-|
 |onCollapsed|面板 展开/收起 的回调函数，权重大于父组件|Function(isCollapsed, itemKey)|-|
-|defaultCollapsed|面板展开或收起的默认值|Boolean|true|
+|defaultCollapsed|面板展开或收起|Boolean|true|

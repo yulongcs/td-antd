@@ -27,6 +27,10 @@ const Item = ({
     onCollapsed && onCollapsed(collapsed, rest.itemKey);
   }, [collapsed]);
 
+  useEffect(() => {
+    setCollapsed(defaultCollapsed);
+  }, [defaultCollapsed]);
+
   return (
     <Spin
       wrapperClassName={classNames(wrapperClassName, 'td-magic-item-wrap', {

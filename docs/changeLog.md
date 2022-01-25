@@ -7,6 +7,11 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.14.0-alpha.3
+
+- Magic.Item
+  - 优化 defaultCollapsed 属性，使其可变更
+
 ### 🚀 2.14.0-alpha.2
 
 - tools
