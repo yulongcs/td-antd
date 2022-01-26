@@ -82,6 +82,8 @@ module.exports = {
     "no-param-reassign": [0],
     "no-plusplus": [0],
     "no-extra-boolean-cast": [0],
+    'no-unused-expressions': [0],
+    'no-unused-vars': [1],
   },
   parserOptions: {
     ecmaFeatures: {

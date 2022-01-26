@@ -1,6 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { Spin, Space } from 'antd';
+import genNonDuplicateID from '../tools/genNonDuplicateID';
+import { _setTimeout } from '../_utils';
 import './item.less';
 
 import { MagicContext } from './index';
@@ -11,19 +13,20 @@ const Item = ({
   footer,
   extra,
   children,
-  titleExtra,
   onCollapsed,
   loading = false,
   isCollapsed = false,
-  footerVisible = true,
   defaultCollapsed = true,
+  footerClassName,
   wrapperClassName,
   ...rest
 }) => {
 
+  const id = useRef(`td-magic-item-body-${genNonDuplicateID(5)}`).current;
   const { boxShadow = true } = useContext(MagicContext);
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
+  // 执行回调函数
   useEffect(() => {
     onCollapsed && onCollapsed(collapsed, rest.itemKey);
   }, [collapsed]);
@@ -40,23 +43,35 @@ const Item = ({
       spinning={loading}
       {...rest}
     >
-      {(title || extra || isCollapsed || titleExtra) && (
-        <div className="td-magic-item-header">
-          <Space>
-            {title && <span className="td-magic-item-header-title">{title}</span>}{titleExtra}
-          </Space>
-          <Space>
-            {extra}
-            {isCollapsed && <span className="td-magic-collapsed" onClick={() => {setCollapsed(!collapsed)}}>{collapsed ? '收起' : '展开'}</span>}
-          </Space>
-        </div>
-      )}
-      {collapsed && (
-        <div className="td-magic-item-content">
-          {children}
-        </div>
-      )}
-      {footerVisible && collapsed && <Space className="td-magic-item-footer">{footer}</Space>}
+      <div className="td-magic-item-header">
+        <Space className={classNames('td-magic-item-header-title', { 'td-magic-item-hidden': !title })}>
+          {title}
+        </Space>
+        <Space>
+          {extra}
+          {isCollapsed && (
+            <span
+              className="td-magic-collapsed"
+              onClick={() => {
+                if (collapsed) {
+                  // 准备收起时
+                  const bodyElement = document.getElementById(id);
+                  bodyElement.style = `height:${bodyElement.offsetHeight}px;`;
+                }
+
+                _setTimeout(() => {
+                  setCollapsed(!collapsed);
+                });
+              }}
+            >{collapsed ? '收起' : '展开'}
+            </span>
+          )}
+        </Space>
+      </div>
+      <div id={id} className={classNames('td-magic-item-body', { 'td-magic-item-body-hidden': !collapsed })}>
+        <div className="td-magic-item-content">{children}</div>
+        <Space className={classNames('td-magic-item-footer', footerClassName, { 'td-magic-item-hidden': !footer })}>{footer}</Space>
+      </div>
     </Spin>
   );
 };

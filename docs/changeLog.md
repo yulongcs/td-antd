@@ -11,8 +11,15 @@ order: 1
 
 - Magic
   - 删除属性：footerStyle、left、footerVisible
-  - 新增属性：footerClassName，可用该属性控制页脚的样式，如宽度位置等
+  - 新增属性：footerClassName
   - 优化对 Magic.Item 组件的识别
+- Magic.Item
+  - 删除属性：titleExtra、footerVisible
+  - 新增属性：footerClassName
+  - 优化了 展开/收起 的动画效果
+  - 重构了内部逻辑，现在组件收起的情况下也会渲染 children 了
+- LinkBtn
+  - 🐞 修复 onClick 属性缺失时浏览器报错的问题
 
 ### 🚀 2.14.0-alpha.3
 
