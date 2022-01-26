@@ -7,7 +7,6 @@ import { MagicContext } from './index';
 
 // 模块组件
 const Item = ({
-  wrapperClassName,
   title,
   footer,
   extra,
@@ -18,8 +17,10 @@ const Item = ({
   isCollapsed = false,
   footerVisible = true,
   defaultCollapsed = true,
+  wrapperClassName,
   ...rest
 }) => {
+
   const { boxShadow = true } = useContext(MagicContext);
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
@@ -59,5 +60,7 @@ const Item = ({
     </Spin>
   );
 };
+
+Item.__TD_ANTD_MAGIC_ITEM = true;
 
 export default Item;

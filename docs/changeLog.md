@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.14.0-alpha.4
+
+- Magic
+  - 删除属性：footerStyle、left、footerVisible
+  - 新增属性：footerClassName，可用该属性控制页脚的样式，如宽度位置等
+  - 优化对 Magic.Item 组件的识别
+
 ### 🚀 2.14.0-alpha.3
 
 - Magic.Item

@@ -10,23 +10,25 @@ export const MagicContext = React.createContext({});
 const Magic = (props) => {
   const {
     wrapperClassName,
-    footer,
-    footerVisible = true,
-    footerStyle,
-    children,
+    footerClassName,
+    footer = false,
     loading = false,
-    left = 200,
     boxShadow = true,
     onCollapsed,
     ...rest
   } = props;
 
-  const getItems = React.Children.map(children, ((child, index) => {
+  const getItems = React.Children.map(rest.children, ((child, index) => {
     if (child) {
-      return cloneElement(child, {
-        itemKey: child.props.itemKey || index,
-        onCollapsed: child.props.onCollapsed || onCollapsed,
-      });
+
+      if (child.type && child.type.__TD_ANTD_MAGIC_ITEM) {
+        return cloneElement(child, {
+          itemKey: child.props.itemKey || index,
+          onCollapsed: child.props.onCollapsed || onCollapsed,
+        });
+      }
+
+      return cloneElement(child);
     }
 
     return null;
@@ -40,16 +42,16 @@ const Magic = (props) => {
       }}
     >
       <Spin
-        wrapperClassName={classNames(wrapperClassName, 'td-magic-wrap', {
-          'td-magic-wrap-padding-bottom': footerVisible && footer,
+        wrapperClassName={classNames(wrapperClassName, {
+          'td-magic-wrap-padding-bottom': footer,
         })}
         style={{ paddingBottom: footer ? 64 : 0}}
         spinning={loading}
         {...rest}
       >
         {getItems}
-        {footerVisible && <Space className="td-magic-footer" style={{ left, ...footerStyle }}>{footer}</Space>}
       </Spin>
+      {footer && <Space className={classNames('td-magic-footer', footerClassName)}>{footer}</Space>}
     </MagicContext.Provider>
   );
 };

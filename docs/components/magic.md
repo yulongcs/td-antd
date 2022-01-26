@@ -4,84 +4,18 @@ title: Magic
 
 ## Magic
 
-魔法卡片
+魔法卡片，用到你不想用的那种。。。
 
 ## 代码演示
 
 ```jsx
 /**
- * title: 基础用法
- * desc: 可以使用 footerStyle:{justifyContent:'center'} 控制按钮的位置
+ * title: Magic 基础用法
  */
-import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
-import { Magic } from 'td-antd';
+import React from 'react';
+import Demo from '../tests/magic/demo1';
 
-export default () => {
-  const [loading, setLoading] = useState(false);
-  const [itemLoading, setItemLoading] = useState(false);
-  const [defaultCollapsed, setDefaultCollapsed] = useState(false);
-  
-  useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000)
-    }
-  }, [loading])
-  
-  useEffect(() => {
-    if (itemLoading) {
-      setTimeout(() => {
-        setItemLoading(false);
-      }, 2000)
-    }
-  }, [itemLoading])
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setDefaultCollapsed(true);
-    }, 3000)
-  }, [])
-
-  return (
-    <Magic
-      loading={loading}
-      left={260}
-      footerStyle={{ justifyContent: 'flex-end' }}
-      onCollapsed={(bool, key) => { console.log(bool, key) }}
-      footer={(
-        <>
-          <Button size="large">保存草稿</Button>
-          <Button size="large" type="primary">提交</Button>
-        </>
-      )}
-    >
-      <Magic.Item
-        isCollapsed
-        // title="项目A"
-        titleExtra="自定义title，3s后自动展开"
-        defaultCollapsed={defaultCollapsed}
-        extra={<Button type="primary">新增</Button>}
-        footer={<Button type="primary" onClick={() => { setLoading(true) }}>全局loading</Button>}
-      >
-        这里是内容
-      </Magic.Item>
-      <Magic.Item
-        itemKey="haha"
-        isCollapsed
-        title="项目B"
-        loading={itemLoading}
-        extra={<Button type="primary">新增</Button>}
-        onCollapsed={(bool, key) => { console.log('子组件的 onCollapsed', key) }}
-        footer={<Button type="primary" onClick={() => { setItemLoading(true) }}>卡片loading</Button>}
-      >
-        这里是内容
-      </Magic.Item>
-      {null}
-    </Magic>
-  );
-}
+export default () => <Demo />;
 ```
 
 ```jsx
@@ -193,13 +127,13 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |wrapperClassName|Spin容器类名称|String|-|
-|footer|页脚内容，会固定在底部|ReactNode|-|
-|footerVisible|页脚内容是否展示|Boolean|true|
+|footerClassName|页脚的样式类|ClassName|-|
+|footer|页脚内容，会固定在底部。等于 false 时，不显示|ReactNode|false|
 |loading|加载效果|Boolean|false|
-|left|定位时距离左侧的值|Number|200|
-|footerStyle|固定页脚的样式|Object|-|
 |boxShadow|控制子组件是否有阴影效果|Boolean|true|
 |onCollapsed|子组件 展开/收起 时的回调函数|Function(isCollapsed, itemKey)|-|
+
+> 建议单个页面只使用一个 Magic 组件进行包裹，否则可能出现预期外的情况。
 
 ### Magic.Item
 
