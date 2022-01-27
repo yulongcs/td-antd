@@ -7,7 +7,16 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.14.0-alpha.5
+
+`2022-02-27` (未发布)
+
+- Magic.Item
+  - 🐞 修复展开/收起动画在快速点击后出现展开失败的问题
+
 ### 🚀 2.14.0-alpha.4
+
+`2022-02-26`
 
 - Magic
   - 删除属性：footerStyle、left、footerVisible
@@ -23,25 +32,35 @@ order: 1
 
 ### 🚀 2.14.0-alpha.3
 
+`2022-02-24`
+
 - Magic.Item
   - 优化 defaultCollapsed 属性，使其可变更
 
 ### 🚀 2.14.0-alpha.2
+
+`2022-02-23`
 
 - tools
   - 新增函数 [moneyToChinese](/tools/money-to-chinese)
 
 ### 🚀 2.14.0-alpha.1
 
+`2022-02-21`
+
 - 更新包依赖，使其 antd 的依赖为 4.17.4 版本;
 
 
 ### 🚀 2.13.8
 
+`2022-01-19`
+
 - TdUpload
   - 新增属性 [fixedDefaultText](/high-coupling/td-upload#td-upload-demo-11)
 
 ### 🚀 2.13.7
+
+`2022-01-14`
 
 - FormItem
   - 优化校验顺序，现在会先校验 extraRules，再校验 validatorCallback；[用例](/components/form-item#form-item-demo-1)

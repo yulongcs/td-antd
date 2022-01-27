@@ -21,7 +21,7 @@ export default () => <Demo />;
 ```jsx
 /**
  * title: Magic.Item 基础用法
- * desc: 
+ * desc: defaultCollapsed = false 时，卡片收起。
  */
 import React, { useState, useEffect } from 'react';
 import { Button, DatePicker } from 'antd';
@@ -45,6 +45,7 @@ export default () => {
       isCollapsed
       loading={loading}
       boxShadow={shadow}
+      defaultCollapsed={false}
       title={
         <>
           这是一个魔法盒子
