@@ -1,5 +1,9 @@
 @import '~antd/lib/style/themes/default.less';
 
+.td-magic-hidden {
+  display: none;
+}
+
 .td-magic-item-wrap {
   border-radius: @border-radius-base;
   background: #fff;
@@ -18,15 +22,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 16px;
   line-height: 1;
-  padding: 0 16px;
-  min-height: 64px;
+}
+
+.td-magic-item-header-hidden {
+  display: none;
 }
 
 .td-magic-item-header-title {
   font-size: 16px;
   color: @primary-color;
-  font-weight: 600;
+  font-weight: 500;
+}
+
+.td-magic-item-body {
+  transition: all .3s, visibility 0s;
+  overflow: hidden;
+}
+
+.td-magic-item-body-hidden {
+  height: 0 !important;
+  opacity: 0;
 }
 
 .td-magic-item-content {

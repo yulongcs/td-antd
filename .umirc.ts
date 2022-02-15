@@ -23,6 +23,7 @@ export default defineConfig({
   alias: {
     'td-antd': path.resolve(__dirname, 'src/'),
     tools: path.resolve(__dirname, 'src/tools/'),
+    _utils: path.resolve(__dirname, 'src/_utils')
   },
   // mode: 'site'
   proxy: {

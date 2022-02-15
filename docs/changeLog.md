@@ -7,13 +7,71 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.14.0-alpha.6
+
+`2022-02-15`
+
+- tools
+  - 新增 identityCard 方法，可以从身份证号码中获取各种信息
+- Magic.Item
+  - 移除了 title 内置 Space
+  - 🐞 修复 header 没有内容的情况下，仍然有内边距的问题
+  - 🐞 修复 title 不存在时，extra 等内容左移的问题
+
+### 🚀 2.14.0-alpha.5
+
+`2022-01-28`
+
+- Magic.Item
+  - 🐞 修复展开/收起动画在快速点击后出现展开失败的问题
+
+### 🚀 2.14.0-alpha.4
+
+`2022-01-26`
+
+- Magic
+  - 删除属性：footerStyle、left、footerVisible
+  - 新增属性：footerClassName
+  - 优化对 Magic.Item 组件的识别
+- Magic.Item
+  - 删除属性：titleExtra、footerVisible
+  - 新增属性：footerClassName
+  - 优化了 展开/收起 的动画效果
+  - 重构了内部逻辑，现在组件收起的情况下也会渲染 children 了
+- LinkBtn
+  - 🐞 修复 onClick 属性缺失时浏览器报错的问题
+
+### 🚀 2.14.0-alpha.3
+
+`2022-01-24`
+
+- Magic.Item
+  - 优化 defaultCollapsed 属性，使其可变更
+
+### 🚀 2.14.0-alpha.2
+
+`2022-01-23`
+
+- tools
+  - 新增函数 [moneyToChinese](/tools/money-to-chinese)
+
+### 🚀 2.14.0-alpha.1
+
+`2022-01-21`
+
+- 更新包依赖，使其 antd 的依赖为 4.17.4 版本;
+
 
 ### 🚀 2.13.8
+
+`2022-01-19`
 
 - TdUpload
   - 新增属性 [fixedDefaultText](/high-coupling/td-upload#td-upload-demo-11)
 
 ### 🚀 2.13.7
+
+`2022-01-14`
 
 - FormItem
   - 优化校验顺序，现在会先校验 extraRules，再校验 validatorCallback；[用例](/components/form-item#form-item-demo-1)

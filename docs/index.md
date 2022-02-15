@@ -19,9 +19,9 @@ order: 0
 
 |依赖名|版本|
 |:--|:--|
-|react|16.9.0|
-|react-dom|16.9.0|
-|antd|4.x|
+|react|>=16.9.0|
+|react-dom|>=16.9.0|
+|antd|4.17.4|
 |moment|2.19.1|
 |classnames|2.2.6|
 |lodash|4.17.15|
