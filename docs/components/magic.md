@@ -49,7 +49,7 @@ export default () => {
       title={
         <>
           这是一个魔法盒子
-          <Button>按钮</Button>
+          <Button style={{ marginLeft: 6 }}>按钮</Button>
         </>
       }
       extra={<Button type="primary" onClick={onClick}>Loading</Button>}

@@ -11,6 +11,7 @@ import useDebounce from './useDebounce';
 import clipboard from './clipboard';
 import typeOf from './typeOf';
 import moneyToChinese from './moneyToChinese';
+import identityCard from './identityCard';
 
 export default {
   delay,
@@ -26,4 +27,5 @@ export default {
   getUrlParameter,
   genNonDuplicateID,
   moneyToChinese,
+  identityCard,
 };

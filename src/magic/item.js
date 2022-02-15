@@ -63,10 +63,14 @@ const Item = ({
       spinning={loading}
       {...rest}
     >
-      <div className="td-magic-item-header">
-        <Space className={classNames('td-magic-item-header-title', { 'td-magic-item-hidden': !title })}>
+      <div
+        className={classNames('td-magic-item-header', {
+          'td-magic-hidden': !(title || extra || isCollapsed),
+        })}
+      >
+        <div className="td-magic-item-header-title">
           {title}
-        </Space>
+        </div>
         <Space>
           {extra}
           {isCollapsed && (
