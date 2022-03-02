@@ -18,34 +18,23 @@ const container = {
 
   // 整数部分转换
   amountInWordsRound(round) {
-    if(!round) return '';
-
-    let words = '';
-    const rounds = Array.from(round);
-    let length = rounds.length;
-    let unitU = JSON.parse(JSON.stringify(AIW_unitU));
-    const unitN = JSON.parse(JSON.stringify(AIW_unitN));
-
+    if(!round) return ''
+    var words = ''
+    var rounds = Array.from(round)
+    var length = rounds.length
+    var unitU = JSON.parse(JSON.stringify(AIW_unitU))
+    var unitN = JSON.parse(JSON.stringify(AIW_unitN))
     while(length>0) {
-      length --;
-
-      const A = rounds.pop();
-      const U = unitU.pop();
-      const N = (unitU.length === 3 ? unitN.pop() : '');
-
-      if(A !== 0) {
-        words = AIW_number[A] + U + N + words;
-      } else {
-        words = AIW_number[A] + N + words;
-      }
-
-      if (unitU.length === 0) {
-        unitU = JSON.parse(JSON.stringify(AIW_unitU));
-      }
-      words = words.replace('undefined','');
-      words = words.replace('个','');
+      length--
+      const A = rounds.pop()
+      const U = unitU.pop()
+      const N = (unitU.length==3?unitN.pop():'')
+      if(A!=0) words=AIW_number[A]+U+N+words
+      else words=AIW_number[A]+N+words
+      if(unitU.length==0) unitU = JSON.parse(JSON.stringify(AIW_unitU))
+      words = words.replace('undefined','')
+      words = words.replace('个','')
     }
-
     return this.amountInWordsFormate(words)
   },
 
