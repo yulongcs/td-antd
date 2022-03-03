@@ -178,6 +178,18 @@ export default () => {
 }
 ```
 
+```jsx
+/**
+ * title: 动态设置 rowSelection
+ * desc: 业务中常常会根据不同的状态筛选不同的项
+ */
+ 
+import React from 'react';
+import Demo from '../tests/table-page/demo1';
+
+export default () => <Demo />;
+```
+
 ## API
 
 |参数|说明|类型|默认值|
