@@ -45,6 +45,18 @@ export default (props) => {
   });
 
   if (show) {
+    const crumbs = () => {
+      if (itemType === 'number') {
+        return <Input type="number" suffix={unit} {...inputProps} />;
+      }
+
+      if (itemType === 'textarea') {
+        return <Input.TextArea rows={3} {...inputProps} />;
+      }
+
+      return children || <Input {...inputProps} />;
+    };
+
     return (
       <Form.Item
         rules={rules}
@@ -52,11 +64,7 @@ export default (props) => {
         required={required}
         {...rest}
       >
-        {
-          (itemType === 'number') ?
-            <Input type="number" suffix={unit} {...inputProps} /> :
-            (children || <Input {...inputProps} />)
-        }
+        {crumbs()}
       </Form.Item>
     );
   }

@@ -180,6 +180,12 @@ export default () => {
       >
         <TdUpload maxFiles={1} />
       </FormItem>
+      <FormItem
+        label="备注"
+        name="remarks"
+        itemType="textarea"
+        inputProps={{ showCount: true, maxLength: 100 }}
+      />
       <FormItem {...tailLayout}>
         <Button htmlType="submit">提交</Button>
       </FormItem>
@@ -212,6 +218,7 @@ const tailLayout = {
 
 export default () => {
   const [form] = Form.useForm();
+
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
@@ -234,8 +241,10 @@ export default () => {
         }}
         validatorCallback={(value, callback) => {
           if (value !== '13666666666') {
-            callback('手机号码应该为 13666666666');
+            return Promise.reject(new Error('手机号码应该为 13666666666'));
           }
+
+          return Promise.resolve();
         }}
       />
       <FormItem {...tailLayout}>
@@ -292,15 +301,15 @@ export default () => {
           message: '手机号格式不正确',
         }}
         validatorCallback={(value, callback) => {
-          if (value) {
+          return new Promise((resolve, reject) => {
             setTimeout(() => {
               if (value !== '13666666666') {
-                callback('手机号码应该为 13666666666');
-              } else {
-                callback();
+                return reject(new Error('手机号码应该为 13666666666'));
               }
-            }, 2000);
-          }
+
+              resolve();
+            }, 1500);
+          })
         }}
       />
       <FormItem {...tailLayout}>
@@ -323,7 +332,7 @@ export default () => {
 |children|子节点| ReactNode |[Input](https://ant-design.gitee.io/components/input-cn/)|
 |extraRules|额外的规则，用法同 rules|Array / Object|-|
 |inputProps|Input 组件的属性 API|Object|{ }|
-|itemType|申明组件类型，普通组件(default) / Number组件(number)|String|default|
+|itemType|申明组件类型：<br/> `default(Input)` <br/> `number(Number)` <br/> `textarea(Input.TextArea)`|String|default|
 |show|是否显示。当不显示时，不进行字段记录和校验，区别于[hidden](https://ant-design.gitee.io/components/form-cn/#Form.Item)|Boolean|true|2.2.0|
 
 > 当 itemType="number" 时，只能输入数字，并可以使用以下属性<br />
