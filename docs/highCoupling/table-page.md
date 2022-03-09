@@ -14,8 +14,8 @@ title: TablePage
  */
  
 import React, { useState } from 'react';
-import { DatePicker } from 'antd';
-import { TablePage, localConfig } from 'td-antd';
+import { DatePicker, Space } from 'antd';
+import { TablePage, localConfig, LinkBtn } from 'td-antd';
 import request from '../../utils/request';
 
 localConfig.config({ request });
@@ -45,9 +45,17 @@ export default () => {
         }, {
           title: '地址',
           dataIndex: 'address',
-        },  {
+        }, {
           title: '邮箱',
           dataIndex: 'email',
+        }, {
+          title: '操作',
+          render: () => (
+            <Space>
+              <LinkBtn>查看详情</LinkBtn>
+              <LinkBtn danger>删除</LinkBtn>
+            </Space>
+          ),
         },
       ]}
     />

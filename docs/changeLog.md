@@ -14,6 +14,8 @@ order: 1
 - FormItem
   - 优化 validatorCallback 使其支持 callback 和 Promise 的返回值
   - 优化 itemType 使其支持 textarea，内置使用 Input.TextArea
+- LinkBtn
+  - 🐞 修复 loading 状态下内容消失的问题
 
 ### 🚀 2.14.0-alpha.8
 
