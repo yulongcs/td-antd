@@ -31,22 +31,10 @@ const tailLayout = {
 
 export default () => {
   const [form] = Form.useForm();
-  const [show, setShow] = useState(false);
+
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
-  
-  useEffect(() => {
-    setTimeout(() => {
-      form.setFieldsValue({
-        name: '丁老板',
-        switch: true,
-        age: 100,
-        sex: 'woman',
-        phone: '0741-454-626',
-      });
-    }, 3000)
-  }, [])
   
   return (
     <Form
@@ -72,12 +60,9 @@ export default () => {
         required={false}
         valuePropName="checked"
       >
-        <Switch onChange={(key) => { setShow(key) }} />
+        <Switch />
       </FormItem>
-      <FormItem
-        noStyle
-        shouldUpdate
-      >
+      <FormItem noStyle shouldUpdate>
         {({ getFieldValue }) => {
           if (getFieldValue('switch')) {
             return (
@@ -132,6 +117,62 @@ export default () => {
         />
       </FormItem>
       <FormItem
+        name="bankNo"
+        label="银行卡号"
+        hasFeedback
+        validateFirst
+        normalize={(v) => v.replaceAll(' ', '')}
+        extra="使用 validatorCallback 进行额外的校验，并使用 Promise 返回错误信息"
+        extraRules={{
+          pattern: /^\d{16,19}$/,
+          message: '卡号格式不正确',
+        }}
+        validatorCallback={(value) => {
+          return new Promise((resolve, reject) => {
+            fetch(`https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=${value}&cardBinCheck=true`)
+              .then(res => res.json())
+              .then(({ cardType }) => {
+                if (!cardType) {
+                  return reject(new Error('无效银行卡'))
+                }
+    
+                if (cardType === 'CC') {
+                  return reject(new Error('不能是信用卡，请更换为储蓄卡'))
+                }
+    
+                resolve();
+              });
+          })
+        }}
+      />
+      <FormItem
+        name="bankNo2"
+        label="银行卡号2"
+        hasFeedback
+        validateFirst
+        normalize={(v) => v.replaceAll(' ', '')}
+        extra="使用 validatorCallback 进行额外的校验，并使用 callback 返回错误信息"
+        extraRules={{
+          pattern: /^\d{16,19}$/,
+          message: '卡号格式不正确',
+        }}
+        validatorCallback={(value, callback) => {
+          fetch(`https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=${value}&cardBinCheck=true`)
+            .then(res => res.json())
+            .then(({ cardType }) => {
+              if (!cardType) {
+                return callback('无效银行卡');
+              }
+
+              if (cardType === 'CC') {
+                return callback('不能是信用卡，请更换为储蓄卡');
+              }
+  
+              callback();
+            });
+        }}
+      />
+      <FormItem
         label="文件"
         name="files"
         valuePropName="fileList"
@@ -139,6 +180,12 @@ export default () => {
       >
         <TdUpload maxFiles={1} />
       </FormItem>
+      <FormItem
+        label="备注"
+        name="remarks"
+        itemType="textarea"
+        inputProps={{ showCount: true, maxLength: 100 }}
+      />
       <FormItem {...tailLayout}>
         <Button htmlType="submit">提交</Button>
       </FormItem>
@@ -171,6 +218,7 @@ const tailLayout = {
 
 export default () => {
   const [form] = Form.useForm();
+
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
@@ -193,8 +241,10 @@ export default () => {
         }}
         validatorCallback={(value, callback) => {
           if (value !== '13666666666') {
-            callback('手机号码应该为 13666666666');
+            return Promise.reject(new Error('手机号码应该为 13666666666'));
           }
+
+          return Promise.resolve();
         }}
       />
       <FormItem {...tailLayout}>
@@ -251,15 +301,15 @@ export default () => {
           message: '手机号格式不正确',
         }}
         validatorCallback={(value, callback) => {
-          if (value) {
+          return new Promise((resolve, reject) => {
             setTimeout(() => {
               if (value !== '13666666666') {
-                callback('手机号码应该为 13666666666');
-              } else {
-                callback();
+                return reject(new Error('手机号码应该为 13666666666'));
               }
-            }, 2000);
-          }
+
+              resolve();
+            }, 1500);
+          })
         }}
       />
       <FormItem {...tailLayout}>
@@ -278,11 +328,11 @@ export default () => {
 |:--|:--|:--|:--|:--|
 |required|表单项是否为必填|Boolean|true|
 |message|非空校验错误文案|String|'必填项'|
-|validatorCallback|自定义校验规则，必须返回callback('错误码')|Function(value, callback)|-|
+|validatorCallback|自定义校验，同时支持 callback 和 Promise 返回值。[示例](#form-item-demo)参考|Function(value, callback)|-|
 |children|子节点| ReactNode |[Input](https://ant-design.gitee.io/components/input-cn/)|
 |extraRules|额外的规则，用法同 rules|Array / Object|-|
 |inputProps|Input 组件的属性 API|Object|{ }|
-|itemType|申明组件类型，普通组件(default) / Number组件(number)|String|default|
+|itemType|申明组件类型：<br/> `default(Input)` <br/> `number(Number)` <br/> `textarea(Input.TextArea)`|String|default|
 |show|是否显示。当不显示时，不进行字段记录和校验，区别于[hidden](https://ant-design.gitee.io/components/form-cn/#Form.Item)|Boolean|true|2.2.0|
 
 > 当 itemType="number" 时，只能输入数字，并可以使用以下属性<br />

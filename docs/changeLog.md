@@ -7,7 +7,24 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
-### 🚀 2.14.0-alpha.6
+### 🚀 2.14.0-alpha.9
+
+`2022-03-10`
+
+- FormItem
+  - 优化 validatorCallback 使其支持 callback 和 Promise 的返回值
+  - 优化 itemType 使其支持 textarea，内置使用 Input.TextArea
+- LinkBtn
+  - 🐞 修复 loading 状态下内容消失的问题
+
+### 🚀 2.14.0-alpha.8
+
+`2022-03-08`
+
+- tools.moneyToChinese
+  - 🐞 修复整数金额转化错误的问题
+
+### 🚀 2.14.0-alpha.7
 
 `2022-02-15`
 

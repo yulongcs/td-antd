@@ -41,23 +41,27 @@ export default () => {
  * title: loading 状态
  */
 import React, { useState } from 'react';
+import { Space } from 'antd';
 import { LinkBtn } from 'td-antd';
 
 export default () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <LinkBtn
-      loading={loading}
-      onClick={() => {
-        setLoading(true);
-        const timer = setTimeout(() => {
-          setLoading(false);
-          clearTimeout(timer);
-        }, 2000)
-      }}
-    >click
-    </LinkBtn>
+    <Space>
+      <LinkBtn
+        loading={loading}
+        onClick={() => {
+          setLoading(true);
+          const timer = setTimeout(() => {
+            setLoading(false);
+            clearTimeout(timer);
+          }, 2000)
+        }}
+      >click
+      </LinkBtn>
+      <LinkBtn loading>click2</LinkBtn>
+    </Space>
   );
 }
 ```

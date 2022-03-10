@@ -31,7 +31,7 @@ export default (props) => {
         }
       }}
     >
-      {loading ? <Spin size="small" /> : rest.children}
+      <Spin size="small" spinning={loading}>{rest.children}</Spin>
     </button>
   );
 };

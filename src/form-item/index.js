@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Input, Form } from 'antd';
-// import { FormContext } from 'antd/es/form/context'; // 获取form对象的 context 对象
 
 export default (props) => {
-  // const { labelCol, wrapperCol } = React.useContext(FormContext);
   const {
     className,
     children,
@@ -26,30 +24,39 @@ export default (props) => {
       // 当类型为数字类型时，则内置校验规则
       if (itemType === 'number') {
         if (nonZero && +value === 0) {
-          callback('不能为 0');
-          return;
+          return Promise.reject(new Error('不能为 0'));
         }
 
         if (!isNegative && value < 0) {
-          callback('不能小于 0');
-          return;
+          return Promise.reject(new Error('不能小于 0'));
         }
 
         if (isInteger && value && !Number.isInteger(parseFloat(value))) {
-          callback('必须为整数');
-          return;
+          return Promise.reject(new Error('必须为整数'));
         }
       }
 
       if (validatorCallback) {
-        validatorCallback(value, callback, rule);
+        return validatorCallback(value, callback, rule);
       } else {
-        callback();
+        return Promise.resolve();
       }
     },
   });
 
   if (show) {
+    const crumbs = () => {
+      if (itemType === 'number') {
+        return <Input type="number" suffix={unit} {...inputProps} />;
+      }
+
+      if (itemType === 'textarea') {
+        return <Input.TextArea rows={3} {...inputProps} />;
+      }
+
+      return children || <Input {...inputProps} />;
+    };
+
     return (
       <Form.Item
         rules={rules}
@@ -57,11 +64,7 @@ export default (props) => {
         required={required}
         {...rest}
       >
-        {
-          (itemType === 'number') ?
-            <Input type="number" suffix={unit} {...inputProps} /> :
-            (children || <Input {...inputProps} />)
-        }
+        {crumbs()}
       </Form.Item>
     );
   }
