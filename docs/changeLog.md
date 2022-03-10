@@ -9,7 +9,7 @@ order: 1
 
 ### 🚀 2.14.0-alpha.9
 
-`未发布`
+`2022-03-10`
 
 - FormItem
   - 优化 validatorCallback 使其支持 callback 和 Promise 的返回值
