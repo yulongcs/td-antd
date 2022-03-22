@@ -1,8 +1,8 @@
 ---
-title: CA
+title: Ca
 ---
 
-## CA
+## Ca
 
 数字证书使用协议
 
@@ -10,7 +10,7 @@ title: CA
 
 ```jsx
 import React, { useRef } from 'react';
-import { CA, LinkBtn } from 'td-antd';
+import { Ca, LinkBtn } from 'td-antd';
 
 export default () => {
   const caRef = useRef();
@@ -18,7 +18,7 @@ export default () => {
   return (
     <>
       <LinkBtn onClick={() => { caRef.current.visible(true) }}>查看</LinkBtn>
-      <CA
+      <Ca
         ref={caRef}
         onOk={() => {
           alert('确认');
@@ -34,5 +34,5 @@ export default () => {
 |参数|说明|类型|默认值|
 |:--|:--|:--|:--|
 |subject|主体名称|String|杭州睿轶信息技术有限公司|
-|updateTime|协议更新时间|String|2022年11月22日|
+|updateTime|协议更新时间|String|2021年11月22日|
 |effectiveTime|协议生效时间|String|2021年12月1日|

@@ -7,6 +7,13 @@ order: 1
 
 遵循 [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
+### 🚀 2.14.0-alpha.10
+
+`2022-03-22`
+
+- Ca
+  - 🐞 修复 updateTime 时间错误的问题
+
 ### 🚀 2.14.0-alpha.9
 
 `2022-03-10`

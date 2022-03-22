@@ -8,7 +8,7 @@ const H3 = (props) => <div className="td-ca-h3">{props.children}</div>;
 const Divider = () => <div className="td-ca-divider" />;
 const defaultOkText = '确认（20s阅读）';
 
-const CA = ({ subject = '杭州睿轶信息技术有限公司', updateTime = '2022年11月22日', effectiveTime = '2021年12月1日', ...rest }, ref) => {
+const CA = ({ subject = '杭州睿轶信息技术有限公司', updateTime = '2021年11月22日', effectiveTime = '2021年12月1日', ...rest }, ref) => {
   const modalRef = useRef();
   const timer = useRef();
   const [disabled, setDisabled] = useState(true);
